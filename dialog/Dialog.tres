@@ -1,0 +1,658 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ associate_first_meet
+
+set has_met_associate = true
+Associate: Welcome to Purple Beret Con!
+Associate: The number one showcase of innovative and open source enterprise tech!
+You: That's quite the introduction
+Associate: Yeah, they pay us to say it.
+=> associate_main
+
+~ associate_main
+if has_met_associate == false
+	=> associate_first_meet
+if associate_active_convo == false
+	set associate_active_convo = true
+	Associate: What can I do for you?
+	=> associate_tier_1
+else
+	Associate: Anything else?
+	=> associate_tier_1
+
+~ associate_tier_1
+- I'm ready to check in [if checked_in == false] => associate_badge_acquire
+- How's the event so far? => associate_tier_2
+- Where's the bathroom?
+	Associate: The developers didn't put one in. You're going to have to hold it.
+	You: What do we pay these people for?
+	=> associate_main
+- See you later!
+	Associate: Bye!
+	set associate_active_convo = false
+	=> END
+
+~ associate_tier_2
+Associate: So far so good!
+[i]You notice that they don't look so sure[/i]
+- I don't believe you
+	Associate: Fine by me. I just want to take a break, but I have to hand out 5 more badges.
+	=> associate_main
+- That bead of sweat on your forhead says otherwise => associate_tier_3
+
+~ associate_tier_3
+Associate: Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.
+=> associate_tier_3_choices
+
+~ associate_tier_3_choices
+- I hope it works out
+	Associate: I hope the tech shows up
+	=> associate_tier_3_choices
+- Maybe I can help => associate_tier_4
+- Can I have my money back?
+	Associate: \"Sorry, all your money are belong to us.\"
+	You: Cheeky
+	=> associate_tier_3_choices
+- Meh. I'm bored. Let's talk about something else. => associate_main
+
+~ associate_tier_4
+Associate: It's fine a tech is supposed to be on the way.
+[i]The associate looks at their watch[/i]
+You: Who's the tech?
+Associate: He's an employee. Nick Marshall. He's usually on time.
+set has_id_name = true
+=> associate_main
+
+~ associate_badge_acquire
+Associate: Great! Here's your badge
+# TODO: add badge to inventory
+<Badge added to inventory>
+set checked_in = true
+=> associate_main
+"
+errors = [  ]
+titles = {
+"associate_badge_acquire": "64",
+"associate_first_meet": "2",
+"associate_main": "10",
+"associate_tier_1": "21",
+"associate_tier_2": "33",
+"associate_tier_3": "41",
+"associate_tier_3_choices": "45",
+"associate_tier_4": "56"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "associate_first_meet",
+"type": "title"
+},
+"10": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "has_met_associate"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "12",
+"next_id": "11",
+"next_id_after": "12",
+"type": "condition"
+},
+"11": {
+"next_id": "2",
+"parent_id": "10",
+"type": "goto"
+},
+"12": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "associate_active_convo"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "16",
+"next_id": "13",
+"next_id_after": "end",
+"type": "condition"
+},
+"13": {
+"mutation": {
+"expression": [ {
+"type": "bool",
+"value": true
+} ],
+"operator": "=",
+"variable": "associate_active_convo"
+},
+"next_id": "14",
+"parent_id": "12",
+"type": "mutation"
+},
+"14": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "15",
+"parent_id": "12",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What can I do for you?",
+"translation_key": "What can I do for you?",
+"type": "dialogue"
+},
+"15": {
+"next_id": "21",
+"parent_id": "12",
+"type": "goto"
+},
+"16": {
+"next_conditional_id": "end",
+"next_id": "17",
+"next_id_after": "end",
+"type": "condition"
+},
+"17": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "18",
+"parent_id": "16",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Anything else?",
+"translation_key": "Anything else?",
+"type": "dialogue"
+},
+"18": {
+"next_id": "21",
+"parent_id": "16",
+"type": "goto"
+},
+"2": {
+"mutation": {
+"expression": [ {
+"type": "bool",
+"value": true
+} ],
+"operator": "=",
+"variable": "has_met_associate"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"20": {
+"next_id": "21",
+"text": "associate_tier_1",
+"type": "title"
+},
+"21": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "checked_in"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "64",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "21", "22", "23", "27" ),
+"text": "I'm ready to check in",
+"translation_key": "I'm ready to check in",
+"type": "response"
+},
+"22": {
+"next_id": "33",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "How's the event so far?",
+"translation_key": "How's the event so far?",
+"type": "response"
+},
+"23": {
+"next_id": "24",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Where's the bathroom?",
+"translation_key": "Where's the bathroom?",
+"type": "response"
+},
+"24": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "25",
+"parent_id": "23",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The developers didn't put one in. You're going to have to hold it.",
+"translation_key": "The developers didn't put one in. You're going to have to hold it.",
+"type": "dialogue"
+},
+"25": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "26",
+"parent_id": "23",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What do we pay these people for?",
+"translation_key": "What do we pay these people for?",
+"type": "dialogue"
+},
+"26": {
+"next_id": "10",
+"parent_id": "23",
+"type": "goto"
+},
+"27": {
+"next_id": "28",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "See you later!",
+"translation_key": "See you later!",
+"type": "response"
+},
+"28": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "29",
+"parent_id": "27",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Bye!",
+"translation_key": "Bye!",
+"type": "dialogue"
+},
+"29": {
+"mutation": {
+"expression": [ {
+"type": "bool",
+"value": false
+} ],
+"operator": "=",
+"variable": "associate_active_convo"
+},
+"next_id": "30",
+"parent_id": "27",
+"type": "mutation"
+},
+"3": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "4",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Welcome to Purple Beret Con!",
+"translation_key": "Welcome to Purple Beret Con!",
+"type": "dialogue"
+},
+"30": {
+"next_id": "end",
+"parent_id": "27",
+"type": "goto"
+},
+"32": {
+"next_id": "33",
+"text": "associate_tier_2",
+"type": "title"
+},
+"33": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "34",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "So far so good!",
+"translation_key": "So far so good!",
+"type": "dialogue"
+},
+"34": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "35",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You notice that they don't look so sure[/i]",
+"translation_key": "[i]You notice that they don't look so sure[/i]",
+"type": "dialogue"
+},
+"35": {
+"next_id": "36",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "35", "38" ),
+"text": "I don't believe you",
+"translation_key": "I don't believe you",
+"type": "response"
+},
+"36": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "37",
+"parent_id": "35",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
+"translation_key": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
+"type": "dialogue"
+},
+"37": {
+"next_id": "10",
+"parent_id": "35",
+"type": "goto"
+},
+"38": {
+"next_id": "41",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "That bead of sweat on your forhead says otherwise",
+"translation_key": "That bead of sweat on your forhead says otherwise",
+"type": "response"
+},
+"4": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "5",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The number one showcase of innovative and open source enterprise tech!",
+"translation_key": "The number one showcase of innovative and open source enterprise tech!",
+"type": "dialogue"
+},
+"40": {
+"next_id": "41",
+"text": "associate_tier_3",
+"type": "title"
+},
+"41": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "42",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
+"translation_key": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
+"type": "dialogue"
+},
+"42": {
+"next_id": "45",
+"type": "goto"
+},
+"44": {
+"next_id": "45",
+"text": "associate_tier_3_choices",
+"type": "title"
+},
+"45": {
+"next_id": "46",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "45", "48", "49", "53" ),
+"text": "I hope it works out",
+"translation_key": "I hope it works out",
+"type": "response"
+},
+"46": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "47",
+"parent_id": "45",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I hope the tech shows up",
+"translation_key": "I hope the tech shows up",
+"type": "dialogue"
+},
+"47": {
+"next_id": "45",
+"parent_id": "45",
+"type": "goto"
+},
+"48": {
+"next_id": "56",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Maybe I can help",
+"translation_key": "Maybe I can help",
+"type": "response"
+},
+"49": {
+"next_id": "50",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Can I have my money back?",
+"translation_key": "Can I have my money back?",
+"type": "response"
+},
+"5": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "6",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "That's quite the introduction",
+"translation_key": "That's quite the introduction",
+"type": "dialogue"
+},
+"50": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "51",
+"parent_id": "49",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "\"Sorry, all your money are belong to us.\"",
+"translation_key": "\"Sorry, all your money are belong to us.\"",
+"type": "dialogue"
+},
+"51": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "52",
+"parent_id": "49",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Cheeky",
+"translation_key": "Cheeky",
+"type": "dialogue"
+},
+"52": {
+"next_id": "45",
+"parent_id": "49",
+"type": "goto"
+},
+"53": {
+"next_id": "10",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Meh. I'm bored. Let's talk about something else.",
+"translation_key": "Meh. I'm bored. Let's talk about something else.",
+"type": "response"
+},
+"55": {
+"next_id": "56",
+"text": "associate_tier_4",
+"type": "title"
+},
+"56": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "57",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "It's fine a tech is supposed to be on the way.",
+"translation_key": "It's fine a tech is supposed to be on the way.",
+"type": "dialogue"
+},
+"57": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "58",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The associate looks at their watch[/i]",
+"translation_key": "[i]The associate looks at their watch[/i]",
+"type": "dialogue"
+},
+"58": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "59",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Who's the tech?",
+"translation_key": "Who's the tech?",
+"type": "dialogue"
+},
+"59": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "60",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "He's an employee. Nick Marshall. He's usually on time.",
+"translation_key": "He's an employee. Nick Marshall. He's usually on time.",
+"type": "dialogue"
+},
+"6": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "7",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Yeah, they pay us to say it.",
+"translation_key": "Yeah, they pay us to say it.",
+"type": "dialogue"
+},
+"60": {
+"mutation": {
+"expression": [ {
+"type": "bool",
+"value": true
+} ],
+"operator": "=",
+"variable": "has_id_name"
+},
+"next_id": "61",
+"type": "mutation"
+},
+"61": {
+"next_id": "10",
+"type": "goto"
+},
+"63": {
+"next_id": "64",
+"text": "associate_badge_acquire",
+"type": "title"
+},
+"64": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "66",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Great! Here's your badge",
+"translation_key": "Great! Here's your badge",
+"type": "dialogue"
+},
+"66": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "67",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Badge added to inventory>",
+"translation_key": "<Badge added to inventory>",
+"type": "dialogue"
+},
+"67": {
+"mutation": {
+"expression": [ {
+"type": "bool",
+"value": true
+} ],
+"operator": "=",
+"variable": "checked_in"
+},
+"next_id": "68",
+"type": "mutation"
+},
+"68": {
+"next_id": "10",
+"type": "goto"
+},
+"7": {
+"next_id": "10",
+"type": "goto"
+},
+"9": {
+"next_id": "10",
+"text": "associate_main",
+"type": "title"
+}
+}
