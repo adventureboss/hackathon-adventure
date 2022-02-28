@@ -1,0 +1,166 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ start
+Associate: Welcome to Red Hat summit! What can i do for you?
+- I'm ready to check in!
+	Associate: Great! Here's your badge
+	do add_item(\"badge\")
+	<You received a badge>
+- How's the event so far? => hows_event
+	
+
+~ hows_event
+Associate: So far so good!
+<You notice  they don't look so sure>
+- I don't believe you.
+	Associate: Fine by me. I just want to take a break, but i have to hand out 5 more badges
+	=> END
+- That bead of sweat on your forehead says otherwise => END"
+errors = [  ]
+titles = {
+"hows_event": "10",
+"start": "1"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "start",
+"type": "title"
+},
+"1": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "2",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Welcome to Red Hat summit! What can i do for you?",
+"translation_key": "Welcome to Red Hat summit! What can i do for you?",
+"type": "dialogue"
+},
+"10": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "11",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "So far so good!",
+"translation_key": "So far so good!",
+"type": "dialogue"
+},
+"11": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "12",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<You notice  they don't look so sure>",
+"translation_key": "<You notice  they don't look so sure>",
+"type": "dialogue"
+},
+"12": {
+"next_id": "13",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "12", "15" ),
+"text": "I don't believe you.",
+"translation_key": "I don't believe you.",
+"type": "response"
+},
+"13": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "14",
+"parent_id": "12",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine by me. I just want to take a break, but i have to hand out 5 more badges",
+"translation_key": "Fine by me. I just want to take a break, but i have to hand out 5 more badges",
+"type": "dialogue"
+},
+"14": {
+"next_id": "end",
+"parent_id": "12",
+"type": "goto"
+},
+"15": {
+"next_id": "end",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "That bead of sweat on your forehead says otherwise",
+"translation_key": "That bead of sweat on your forehead says otherwise",
+"type": "response"
+},
+"2": {
+"next_id": "3",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "2", "6" ),
+"text": "I'm ready to check in!",
+"translation_key": "I'm ready to check in!",
+"type": "response"
+},
+"3": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "4",
+"parent_id": "2",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Great! Here's your badge",
+"translation_key": "Great! Here's your badge",
+"type": "dialogue"
+},
+"4": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "badge"
+} ] ],
+"function": "add_item"
+},
+"next_id": "5",
+"parent_id": "2",
+"type": "mutation"
+},
+"5": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "end",
+"parent_id": "2",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<You received a badge>",
+"translation_key": "<You received a badge>",
+"type": "dialogue"
+},
+"6": {
+"next_id": "10",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "How's the event so far?",
+"translation_key": "How's the event so far?",
+"type": "response"
+},
+"9": {
+"next_id": "10",
+"text": "hows_event",
+"type": "title"
+}
+}
