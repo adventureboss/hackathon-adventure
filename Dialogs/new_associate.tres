@@ -1,0 +1,1258 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ initialize
+do set_dialog_state(\"new_associate\", \"met\", 0)
+do set_dialog_state(\"new_associate\", \"initialized\", true)
+do set_dialog_state(\"new_associate\", \"hostile_chat\", 0)
+=> new_associate_main
+
+~ new_associate_first_meet
+do set_dialog_state(\"new_associate\", \"met\", 1)
+New Associate: Welcome to Purple Beret Con!
+New Associate: The number one showcase of innovative....
+- Yeah, yeah, yeah, \"and open source enterprise tech.\" I know.
+	New Associate: Well, you don't have to be so rude about it.
+	do set_dialog_state(\"new_associate\", \"hostile\", true)
+	=> new_associate_hostile
+- Let the associate finish
+	New Associate: and open source enterprise tech!
+	do set_dialog_state(\"new_associate\", \"hostile\", false)
+	=> new_associate_friendly
+
+~ new_associate_main
+if get_dialog_state(\"new_associate\", \"initialized\") == false
+	=> initialize
+elif get_dialog_state(\"new_associate\", \"met\") == 0
+	=> new_associate_first_meet
+elif get_dialog_state(\"new_associate\", \"complete\", true)
+	=> new_associate_complete
+else
+	if get_dialog_state(\"new_associate\", \"hostile\") == true
+		=> new_associate_hostile
+	else
+		=> new_associate_friendly
+
+~ new_associate_hostile
+if get_dialog_state(\"new_associate\", \"hostile_chat\") == 0 
+	Hostile Associate: What do [b]YOU[/b] want? 
+	You: I need to register
+	Hostile Associate: That's nice.
+	You: ...
+	[i]The associate sighs at you[/i]
+	Hostile Associate: Do you have some ID?
+	You: But the last person I got a badge from didn't need ID
+	Hostile Associate: What now?
+	You: Nevermind
+	do set_dialog_state(\"new_associate\", \"hostile_chat\", 1)	
+	=> new_associate_hostile
+else
+	Hostile Associate: Anything else, Grumpy McGrumperson?
+	- Please can I register?
+		Hostile Associate: ID.
+		=> new_associate_hostile
+	- Look, I think we got off on the wrong foot.
+		Hostile Associate: You think?
+		=> new_associate_forgive
+	- You're not very nice.
+		Hostile Associate: Must be something in the air
+		=> new_associate_hostile
+	- I think I'm done here
+		Hostile Associate: That makes two of us.
+		=> END
+
+~ new_associate_forgive
+You: What can I do to make it up to you
+Hostile Associate: Grovel.
+You: You want a pile of rocks?
+Hostile Associate: GROVEL. G-R-O-V-E-L. Not Gravel. What's wrong with you?
+- I haven't had coffee
+	Hostile Associate: Mother of pearl! No wonder!
+	=> new_associate_friendly
+- I just finished a week long hackathon
+	Hostile Associate: Those things can be really intense
+	[i]You and the Hostile Associate blink at each other and knowingly toward the player[/i]
+	=> new_associate_friendly
+- Someone spoiled Spider-Man for me
+	Hostile Associate: Those monsters!
+	=> new_associate_friendly
+- You know what. Nevermind.
+	Hostile Associate: Suit yourself.
+	=> END
+
+~ new_associate_friendly
+New Associate: Now what can I do for you?
+- I need to register
+	New Associate: Great! What's the name?
+	=> name_choices
+- Nevermind
+	You: I think I need to something else.
+	New Associate: Bye!
+	=> END
+
+~  name_choices
+- Billy Mitchell
+	New Associate: The King of Kong himself? That's impossible. You're not wearing an American flag tie and selling hot sauce.
+	=> name_choices
+- Guybrush Threepwood
+	New Associate: This game is awfully meta, isn't it?
+	=> name_choices
+- Jim Whitehurst
+	New Associate: I'm sure he's on a boat somewhere.
+	=> name_choices
+- Nick Marshall
+	New Associate: Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].
+	do add_item(\"nick_badge\")
+	[b] Received Nick's Badge [/b]
+	You: Thanks!
+	New Associate: Good luck!
+	do set_dialog_state(\"new_associate\", \"complete\", true)
+	=> END
+
+~ new_associate_complete
+You: Hey, there! What's crackin'?
+New Associate: I'm sorry I just don't have time for this right now.
+You: Fine by me.
+New Associate: Enjoy the conference!
+=> END"
+errors = [  ]
+titles = {
+"initialize": "1",
+"name_choices": "90",
+"new_associate_complete": "109",
+"new_associate_first_meet": "7",
+"new_associate_forgive": "61",
+"new_associate_friendly": "80",
+"new_associate_hostile": "33",
+"new_associate_main": "20"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "initialize",
+"type": "title"
+},
+"1": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "2",
+"type": "mutation"
+},
+"10": {
+"next_id": "11",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "10", "14" ),
+"text": "Yeah, yeah, yeah, \"and open source enterprise tech.\" I know.",
+"translation_key": "Yeah, yeah, yeah, \"and open source enterprise tech.\" I know.",
+"type": "response"
+},
+"100": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "101",
+"parent_id": "99",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].",
+"translation_key": "Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].",
+"type": "dialogue"
+},
+"101": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "nick_badge"
+} ] ],
+"function": "add_item"
+},
+"next_id": "102",
+"parent_id": "99",
+"type": "mutation"
+},
+"102": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "103",
+"parent_id": "99",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[b] Received Nick's Badge [/b]",
+"translation_key": "[b] Received Nick's Badge [/b]",
+"type": "dialogue"
+},
+"103": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "104",
+"parent_id": "99",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Thanks!",
+"translation_key": "Thanks!",
+"type": "dialogue"
+},
+"104": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "105",
+"parent_id": "99",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Good luck!",
+"translation_key": "Good luck!",
+"type": "dialogue"
+},
+"105": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "complete"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "106",
+"parent_id": "99",
+"type": "mutation"
+},
+"106": {
+"next_id": "end",
+"parent_id": "99",
+"type": "goto"
+},
+"108": {
+"next_id": "109",
+"text": "new_associate_complete",
+"type": "title"
+},
+"109": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "110",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Hey, there! What's crackin'?",
+"translation_key": "Hey, there! What's crackin'?",
+"type": "dialogue"
+},
+"11": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "12",
+"parent_id": "10",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well, you don't have to be so rude about it.",
+"translation_key": "Well, you don't have to be so rude about it.",
+"type": "dialogue"
+},
+"110": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "111",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'm sorry I just don't have time for this right now.",
+"translation_key": "I'm sorry I just don't have time for this right now.",
+"type": "dialogue"
+},
+"111": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "112",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine by me.",
+"translation_key": "Fine by me.",
+"type": "dialogue"
+},
+"112": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "113",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Enjoy the conference!",
+"translation_key": "Enjoy the conference!",
+"type": "dialogue"
+},
+"113": {
+"next_id": "end",
+"type": "goto"
+},
+"12": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "hostile"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "13",
+"parent_id": "10",
+"type": "mutation"
+},
+"13": {
+"next_id": "33",
+"parent_id": "10",
+"type": "goto"
+},
+"14": {
+"next_id": "15",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Let the associate finish",
+"translation_key": "Let the associate finish",
+"type": "response"
+},
+"15": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "16",
+"parent_id": "14",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "and open source enterprise tech!",
+"translation_key": "and open source enterprise tech!",
+"type": "dialogue"
+},
+"16": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "hostile"
+} ], [ {
+"type": "bool",
+"value": false
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "17",
+"parent_id": "14",
+"type": "mutation"
+},
+"17": {
+"next_id": "80",
+"parent_id": "14",
+"type": "goto"
+},
+"19": {
+"next_id": "20",
+"text": "new_associate_main",
+"type": "title"
+},
+"2": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"20": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "22",
+"next_id": "21",
+"next_id_after": "end",
+"type": "condition"
+},
+"21": {
+"next_id": "1",
+"parent_id": "20",
+"type": "goto"
+},
+"22": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "24",
+"next_id": "23",
+"next_id_after": "end",
+"type": "condition"
+},
+"23": {
+"next_id": "7",
+"parent_id": "22",
+"type": "goto"
+},
+"24": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "complete"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ]
+} ]
+},
+"next_conditional_id": "26",
+"next_id": "25",
+"next_id_after": "end",
+"type": "condition"
+},
+"25": {
+"next_id": "109",
+"parent_id": "24",
+"type": "goto"
+},
+"26": {
+"next_conditional_id": "end",
+"next_id": "27",
+"next_id_after": "end",
+"type": "condition"
+},
+"27": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "hostile"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_conditional_id": "29",
+"next_id": "28",
+"next_id_after": "end",
+"parent_id": "26",
+"type": "condition"
+},
+"28": {
+"next_id": "33",
+"parent_id": "27",
+"type": "goto"
+},
+"29": {
+"next_conditional_id": "end",
+"next_id": "30",
+"next_id_after": "end",
+"parent_id": "26",
+"type": "condition"
+},
+"3": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "hostile_chat"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "4",
+"type": "mutation"
+},
+"30": {
+"next_id": "80",
+"parent_id": "29",
+"type": "goto"
+},
+"32": {
+"next_id": "33",
+"text": "new_associate_hostile",
+"type": "title"
+},
+"33": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "hostile_chat"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "45",
+"next_id": "34",
+"next_id_after": "end",
+"type": "condition"
+},
+"34": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "35",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What do [b]YOU[/b] want?",
+"translation_key": "What do [b]YOU[/b] want?",
+"type": "dialogue"
+},
+"35": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "36",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I need to register",
+"translation_key": "I need to register",
+"type": "dialogue"
+},
+"36": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "37",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "That's nice.",
+"translation_key": "That's nice.",
+"type": "dialogue"
+},
+"37": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "38",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"38": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "39",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The associate sighs at you[/i]",
+"translation_key": "[i]The associate sighs at you[/i]",
+"type": "dialogue"
+},
+"39": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "40",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Do you have some ID?",
+"translation_key": "Do you have some ID?",
+"type": "dialogue"
+},
+"4": {
+"next_id": "20",
+"type": "goto"
+},
+"40": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "41",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "But the last person I got a badge from didn't need ID",
+"translation_key": "But the last person I got a badge from didn't need ID",
+"type": "dialogue"
+},
+"41": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "42",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What now?",
+"translation_key": "What now?",
+"type": "dialogue"
+},
+"42": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "43",
+"parent_id": "33",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Nevermind",
+"translation_key": "Nevermind",
+"type": "dialogue"
+},
+"43": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "hostile_chat"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "44",
+"parent_id": "33",
+"type": "mutation"
+},
+"44": {
+"next_id": "33",
+"parent_id": "33",
+"type": "goto"
+},
+"45": {
+"next_conditional_id": "end",
+"next_id": "46",
+"next_id_after": "end",
+"type": "condition"
+},
+"46": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "47",
+"parent_id": "45",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Anything else, Grumpy McGrumperson?",
+"translation_key": "Anything else, Grumpy McGrumperson?",
+"type": "dialogue"
+},
+"47": {
+"next_id": "48",
+"next_id_after": "end",
+"parent_id": "45",
+"replacements": [  ],
+"responses": PoolStringArray( "47", "50", "53", "56" ),
+"text": "Please can I register?",
+"translation_key": "Please can I register?",
+"type": "response"
+},
+"48": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "49",
+"parent_id": "47",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "ID.",
+"translation_key": "ID.",
+"type": "dialogue"
+},
+"49": {
+"next_id": "33",
+"parent_id": "47",
+"type": "goto"
+},
+"50": {
+"next_id": "51",
+"next_id_after": "end",
+"parent_id": "45",
+"replacements": [  ],
+"text": "Look, I think we got off on the wrong foot.",
+"translation_key": "Look, I think we got off on the wrong foot.",
+"type": "response"
+},
+"51": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "52",
+"parent_id": "50",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You think?",
+"translation_key": "You think?",
+"type": "dialogue"
+},
+"52": {
+"next_id": "61",
+"parent_id": "50",
+"type": "goto"
+},
+"53": {
+"next_id": "54",
+"next_id_after": "end",
+"parent_id": "45",
+"replacements": [  ],
+"text": "You're not very nice.",
+"translation_key": "You're not very nice.",
+"type": "response"
+},
+"54": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "55",
+"parent_id": "53",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Must be something in the air",
+"translation_key": "Must be something in the air",
+"type": "dialogue"
+},
+"55": {
+"next_id": "33",
+"parent_id": "53",
+"type": "goto"
+},
+"56": {
+"next_id": "57",
+"next_id_after": "end",
+"parent_id": "45",
+"replacements": [  ],
+"text": "I think I'm done here",
+"translation_key": "I think I'm done here",
+"type": "response"
+},
+"57": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "58",
+"parent_id": "56",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "That makes two of us.",
+"translation_key": "That makes two of us.",
+"type": "dialogue"
+},
+"58": {
+"next_id": "end",
+"parent_id": "56",
+"type": "goto"
+},
+"6": {
+"next_id": "7",
+"text": "new_associate_first_meet",
+"type": "title"
+},
+"60": {
+"next_id": "61",
+"text": "new_associate_forgive",
+"type": "title"
+},
+"61": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "62",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What can I do to make it up to you",
+"translation_key": "What can I do to make it up to you",
+"type": "dialogue"
+},
+"62": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "63",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Grovel.",
+"translation_key": "Grovel.",
+"type": "dialogue"
+},
+"63": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "64",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You want a pile of rocks?",
+"translation_key": "You want a pile of rocks?",
+"type": "dialogue"
+},
+"64": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "65",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "GROVEL. G-R-O-V-E-L. Not Gravel. What's wrong with you?",
+"translation_key": "GROVEL. G-R-O-V-E-L. Not Gravel. What's wrong with you?",
+"type": "dialogue"
+},
+"65": {
+"next_id": "66",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "65", "68", "72", "75" ),
+"text": "I haven't had coffee",
+"translation_key": "I haven't had coffee",
+"type": "response"
+},
+"66": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "67",
+"parent_id": "65",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Mother of pearl! No wonder!",
+"translation_key": "Mother of pearl! No wonder!",
+"type": "dialogue"
+},
+"67": {
+"next_id": "80",
+"parent_id": "65",
+"type": "goto"
+},
+"68": {
+"next_id": "69",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I just finished a week long hackathon",
+"translation_key": "I just finished a week long hackathon",
+"type": "response"
+},
+"69": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "70",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Those things can be really intense",
+"translation_key": "Those things can be really intense",
+"type": "dialogue"
+},
+"7": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "new_associate"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "8",
+"type": "mutation"
+},
+"70": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "71",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You and the Hostile Associate blink at each other and knowingly toward the player[/i]",
+"translation_key": "[i]You and the Hostile Associate blink at each other and knowingly toward the player[/i]",
+"type": "dialogue"
+},
+"71": {
+"next_id": "80",
+"parent_id": "68",
+"type": "goto"
+},
+"72": {
+"next_id": "73",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Someone spoiled Spider-Man for me",
+"translation_key": "Someone spoiled Spider-Man for me",
+"type": "response"
+},
+"73": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "74",
+"parent_id": "72",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Those monsters!",
+"translation_key": "Those monsters!",
+"type": "dialogue"
+},
+"74": {
+"next_id": "80",
+"parent_id": "72",
+"type": "goto"
+},
+"75": {
+"next_id": "76",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "You know what. Nevermind.",
+"translation_key": "You know what. Nevermind.",
+"type": "response"
+},
+"76": {
+"character": "Hostile Associate",
+"inline_mutations": [  ],
+"next_id": "77",
+"parent_id": "75",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Suit yourself.",
+"translation_key": "Suit yourself.",
+"type": "dialogue"
+},
+"77": {
+"next_id": "end",
+"parent_id": "75",
+"type": "goto"
+},
+"79": {
+"next_id": "80",
+"text": "new_associate_friendly",
+"type": "title"
+},
+"8": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "9",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Welcome to Purple Beret Con!",
+"translation_key": "Welcome to Purple Beret Con!",
+"type": "dialogue"
+},
+"80": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "81",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Now what can I do for you?",
+"translation_key": "Now what can I do for you?",
+"type": "dialogue"
+},
+"81": {
+"next_id": "82",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "81", "84" ),
+"text": "I need to register",
+"translation_key": "I need to register",
+"type": "response"
+},
+"82": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "83",
+"parent_id": "81",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Great! What's the name?",
+"translation_key": "Great! What's the name?",
+"type": "dialogue"
+},
+"83": {
+"next_id": "90",
+"parent_id": "81",
+"type": "goto"
+},
+"84": {
+"next_id": "85",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Nevermind",
+"translation_key": "Nevermind",
+"type": "response"
+},
+"85": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "86",
+"parent_id": "84",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I think I need to something else.",
+"translation_key": "I think I need to something else.",
+"type": "dialogue"
+},
+"86": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "87",
+"parent_id": "84",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Bye!",
+"translation_key": "Bye!",
+"type": "dialogue"
+},
+"87": {
+"next_id": "end",
+"parent_id": "84",
+"type": "goto"
+},
+"89": {
+"next_id": "90",
+"text": " name_choices",
+"type": "title"
+},
+"9": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "10",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The number one showcase of innovative....",
+"translation_key": "The number one showcase of innovative....",
+"type": "dialogue"
+},
+"90": {
+"next_id": "91",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "90", "93", "96", "99" ),
+"text": "Billy Mitchell",
+"translation_key": "Billy Mitchell",
+"type": "response"
+},
+"91": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "92",
+"parent_id": "90",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The King of Kong himself? That's impossible. You're not wearing an American flag tie and selling hot sauce.",
+"translation_key": "The King of Kong himself? That's impossible. You're not wearing an American flag tie and selling hot sauce.",
+"type": "dialogue"
+},
+"92": {
+"next_id": "90",
+"parent_id": "90",
+"type": "goto"
+},
+"93": {
+"next_id": "94",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Guybrush Threepwood",
+"translation_key": "Guybrush Threepwood",
+"type": "response"
+},
+"94": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "95",
+"parent_id": "93",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "This game is awfully meta, isn't it?",
+"translation_key": "This game is awfully meta, isn't it?",
+"type": "dialogue"
+},
+"95": {
+"next_id": "90",
+"parent_id": "93",
+"type": "goto"
+},
+"96": {
+"next_id": "97",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Jim Whitehurst",
+"translation_key": "Jim Whitehurst",
+"type": "response"
+},
+"97": {
+"character": "New Associate",
+"inline_mutations": [  ],
+"next_id": "98",
+"parent_id": "96",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'm sure he's on a boat somewhere.",
+"translation_key": "I'm sure he's on a boat somewhere.",
+"type": "dialogue"
+},
+"98": {
+"next_id": "90",
+"parent_id": "96",
+"type": "goto"
+},
+"99": {
+"next_id": "100",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Nick Marshall",
+"translation_key": "Nick Marshall",
+"type": "response"
+}
+}
