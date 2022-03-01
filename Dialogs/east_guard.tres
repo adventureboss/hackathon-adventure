@@ -51,7 +51,7 @@ else
 	=> main_chat
 - May I go in?
 	East Guard: You have a badge?
-	- Of course! [if has_item(\"nick_badge\") or has_item(\"badge\")]
+	- Of course! [if has_item(\"ash_badge\") or has_item(\"badge\")]
 		East Guard: Then be my guest
 		You: Thanks!
 		do set_dialog_state(\"player\", \"east_clear\", 1)
@@ -97,7 +97,7 @@ East Guard: To whom?
 
 ~ entry_failure
 East Guard: No so fast! I'm going to need to see your badge.
-- Sure, here it is. [if has_item(\"badge\") or has_item(\"nick_badge\")]
+- Sure, here it is. [if has_item(\"badge\") or has_item(\"ash_badge\")]
 	East Guard: Alright, you're clear. Enjoy the show
 	do set_dialog_state(\"player\", \"east_clear\", 1)
 - Can I not get through on my sharp wit and good looks alone?
@@ -660,7 +660,7 @@ lines = {
 "type": "function",
 "value": [ [ {
 "type": "string",
-"value": "nick_badge"
+"value": "ash_badge"
 } ] ]
 }, {
 "type": "and_or",
@@ -1166,7 +1166,7 @@ lines = {
 "type": "function",
 "value": [ [ {
 "type": "string",
-"value": "nick_badge"
+"value": "ash_badge"
 } ] ]
 } ]
 },
