@@ -27,6 +27,21 @@ else
 
 ~ associate_tier_1
 - I'm ready to check in [if get_dialog_state(\"player\", \"checked_in\") == false] => associate_badge_acquire
+- My name is Nick Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"nick\") == false]
+	Associate: I just gave you a badge. You're not Nick.
+	You: I could be?
+	Associate: He's much smarter.
+	You: Unpossible!
+	Associate: See?
+	You: You're right. 
+	do set_dialog_state(\"associate\", \"nick\", 1)
+	=> associate_main
+- Hi, I'm Nick. I just had plastic surgery to look like some other person. [if get_dialog_state(\"associate\", \"nick\") == 1]
+	Associate: Oh wooooooooow.
+	You: You're not buying it, are you?
+	Associate: Not by a long shot.
+	do set_dialog_state(\"associate\", \"nick\", 2)
+	=> associate_main
 - How's the event so far? => associate_tier_2
 - Where's the bathroom?
 	Associate: The developers didn't put one in. You're going to have to hold it.
@@ -79,14 +94,14 @@ do set_dialog_state(\"player\", \"checked_in\", true)
 "
 errors = [  ]
 titles = {
-"associate_badge_acquire": "66",
+"associate_badge_acquire": "81",
 "associate_first_meet": "2",
 "associate_main": "10",
 "associate_tier_1": "21",
-"associate_tier_2": "35",
-"associate_tier_3": "43",
-"associate_tier_3_choices": "47",
-"associate_tier_4": "58"
+"associate_tier_2": "50",
+"associate_tier_3": "58",
+"associate_tier_3_choices": "62",
+"associate_tier_4": "73"
 }
 lines = {
 "0": {
@@ -251,94 +266,174 @@ lines = {
 "value": false
 } ]
 },
-"next_id": "66",
+"next_id": "81",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "21", "22", "23", "29" ),
+"responses": PoolStringArray( "21", "22", "31", "37", "38", "44" ),
 "text": "I'm ready to check in",
 "translation_key": "I'm ready to check in",
 "type": "response"
 },
 "22": {
-"next_id": "35",
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "has_id_name"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "nick_1"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "nick_2"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "23",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "How's the event so far?",
-"translation_key": "How's the event so far?",
+"text": "My name is Nick Marshall, and I need to check in",
+"translation_key": "My name is Nick Marshall, and I need to check in",
 "type": "response"
 },
 "23": {
-"next_id": "24",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Where's the bathroom?",
-"translation_key": "Where's the bathroom?",
-"type": "response"
-},
-"24": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "25",
-"parent_id": "23",
+"next_id": "24",
+"parent_id": "22",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "The developers didn't put one in. You're going to have to hold it.",
-"translation_key": "The developers didn't put one in. You're going to have to hold it.",
+"text": "I just gave you a badge. You're not Nick.",
+"translation_key": "I just gave you a badge. You're not Nick.",
+"type": "dialogue"
+},
+"24": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "25",
+"parent_id": "22",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I could be?",
+"translation_key": "I could be?",
 "type": "dialogue"
 },
 "25": {
-"character": "You",
+"character": "Associate",
 "inline_mutations": [  ],
 "next_id": "26",
-"parent_id": "23",
+"parent_id": "22",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "What do we pay these people for?",
-"translation_key": "What do we pay these people for?",
+"text": "He's much smarter.",
+"translation_key": "He's much smarter.",
 "type": "dialogue"
 },
 "26": {
-"character": "Associate",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "27",
-"parent_id": "23",
+"parent_id": "22",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "We have to?",
-"translation_key": "We have to?",
+"text": "Unpossible!",
+"translation_key": "Unpossible!",
 "type": "dialogue"
 },
 "27": {
-"character": "You",
+"character": "Associate",
 "inline_mutations": [  ],
 "next_id": "28",
-"parent_id": "23",
+"parent_id": "22",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Fair enough.",
-"translation_key": "Fair enough.",
+"text": "See?",
+"translation_key": "See?",
 "type": "dialogue"
 },
 "28": {
-"next_id": "10",
-"parent_id": "23",
-"type": "goto"
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "29",
+"parent_id": "22",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're right.",
+"translation_key": "You're right.",
+"type": "dialogue"
 },
 "29": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "nick_1"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
 "next_id": "30",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "See you later!",
-"translation_key": "See you later!",
-"type": "response"
+"parent_id": "22",
+"type": "mutation"
 },
 "3": {
 "character": "Associate",
@@ -353,96 +448,146 @@ lines = {
 "type": "dialogue"
 },
 "30": {
+"next_id": "10",
+"parent_id": "22",
+"type": "goto"
+},
+"31": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "nick_1"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "nick_2"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "32",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Hi, I'm Nick. I just had plastic surgery to look like some other person.",
+"translation_key": "Hi, I'm Nick. I just had plastic surgery to look like some other person.",
+"type": "response"
+},
+"32": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "31",
-"parent_id": "29",
+"next_id": "33",
+"parent_id": "31",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Bye!",
-"translation_key": "Bye!",
+"text": "Oh wooooooooow.",
+"translation_key": "Oh wooooooooow.",
 "type": "dialogue"
 },
-"31": {
+"33": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "34",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're not buying it, are you?",
+"translation_key": "You're not buying it, are you?",
+"type": "dialogue"
+},
+"34": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "35",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Not by a long shot.",
+"translation_key": "Not by a long shot.",
+"type": "dialogue"
+},
+"35": {
 "mutation": {
 "args": [ [ {
 "type": "string",
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "active"
+"value": "nick_2"
 } ], [ {
 "type": "bool",
-"value": false
+"value": true
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "32",
-"parent_id": "29",
+"next_id": "36",
+"parent_id": "31",
 "type": "mutation"
 },
-"32": {
-"next_id": "end",
-"parent_id": "29",
+"36": {
+"next_id": "10",
+"parent_id": "31",
 "type": "goto"
 },
-"34": {
-"next_id": "35",
-"text": "associate_tier_2",
-"type": "title"
-},
-"35": {
-"character": "Associate",
-"inline_mutations": [  ],
-"next_id": "36",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "So far so good!",
-"translation_key": "So far so good!",
-"type": "dialogue"
-},
-"36": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "37",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]You notice that they don't look so sure[/i]",
-"translation_key": "[i]You notice that they don't look so sure[/i]",
-"type": "dialogue"
-},
 "37": {
-"next_id": "38",
+"next_id": "50",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "37", "40" ),
-"text": "I don't believe you",
-"translation_key": "I don't believe you",
+"text": "How's the event so far?",
+"translation_key": "How's the event so far?",
 "type": "response"
 },
 "38": {
+"next_id": "39",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Where's the bathroom?",
+"translation_key": "Where's the bathroom?",
+"type": "response"
+},
+"39": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "39",
-"parent_id": "37",
+"next_id": "40",
+"parent_id": "38",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
-"translation_key": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
+"text": "The developers didn't put one in. You're going to have to hold it.",
+"translation_key": "The developers didn't put one in. You're going to have to hold it.",
 "type": "dialogue"
-},
-"39": {
-"next_id": "10",
-"parent_id": "37",
-"type": "goto"
 },
 "4": {
 "character": "Associate",
@@ -457,65 +602,97 @@ lines = {
 "type": "dialogue"
 },
 "40": {
-"next_id": "43",
-"next_id_after": "end",
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "41",
+"parent_id": "38",
+"pauses": {
+},
 "replacements": [  ],
-"text": "That bead of sweat on your forhead says otherwise",
-"translation_key": "That bead of sweat on your forhead says otherwise",
-"type": "response"
+"speeds": [  ],
+"text": "What do we pay these people for?",
+"translation_key": "What do we pay these people for?",
+"type": "dialogue"
+},
+"41": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "42",
+"parent_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "We have to?",
+"translation_key": "We have to?",
+"type": "dialogue"
 },
 "42": {
+"character": "You",
+"inline_mutations": [  ],
 "next_id": "43",
-"text": "associate_tier_3",
-"type": "title"
+"parent_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fair enough.",
+"translation_key": "Fair enough.",
+"type": "dialogue"
 },
 "43": {
-"character": "Associate",
-"inline_mutations": [  ],
-"next_id": "44",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
-"translation_key": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
-"type": "dialogue"
+"next_id": "10",
+"parent_id": "38",
+"type": "goto"
 },
 "44": {
-"next_id": "47",
-"type": "goto"
-},
-"46": {
-"next_id": "47",
-"text": "associate_tier_3_choices",
-"type": "title"
-},
-"47": {
-"next_id": "48",
+"next_id": "45",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "47", "50", "51", "55" ),
-"text": "I hope it works out",
-"translation_key": "I hope it works out",
+"text": "See you later!",
+"translation_key": "See you later!",
 "type": "response"
 },
-"48": {
+"45": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "49",
-"parent_id": "47",
+"next_id": "46",
+"parent_id": "44",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I hope the tech shows up",
-"translation_key": "I hope the tech shows up",
+"text": "Bye!",
+"translation_key": "Bye!",
 "type": "dialogue"
 },
-"49": {
+"46": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "active"
+} ], [ {
+"type": "bool",
+"value": false
+} ] ],
+"function": "set_dialog_state"
+},
 "next_id": "47",
-"parent_id": "47",
+"parent_id": "44",
+"type": "mutation"
+},
+"47": {
+"next_id": "end",
+"parent_id": "44",
 "type": "goto"
+},
+"49": {
+"next_id": "50",
+"text": "associate_tier_2",
+"type": "title"
 },
 "5": {
 "character": "You",
@@ -530,63 +707,67 @@ lines = {
 "type": "dialogue"
 },
 "50": {
-"next_id": "58",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Maybe I can help",
-"translation_key": "Maybe I can help",
-"type": "response"
-},
-"51": {
-"next_id": "52",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Can I have my money back?",
-"translation_key": "Can I have my money back?",
-"type": "response"
-},
-"52": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "53",
-"parent_id": "51",
+"next_id": "51",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Sorry, all your money are belong to us.",
-"translation_key": "Sorry, all your money are belong to us.",
+"text": "So far so good!",
+"translation_key": "So far so good!",
 "type": "dialogue"
 },
-"53": {
-"character": "You",
+"51": {
+"character": "",
 "inline_mutations": [  ],
-"next_id": "54",
-"parent_id": "51",
+"next_id": "52",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Cheeky",
-"translation_key": "Cheeky",
+"text": "[i]You notice that they don't look so sure[/i]",
+"translation_key": "[i]You notice that they don't look so sure[/i]",
+"type": "dialogue"
+},
+"52": {
+"next_id": "53",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "52", "55" ),
+"text": "I don't believe you",
+"translation_key": "I don't believe you",
+"type": "response"
+},
+"53": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "54",
+"parent_id": "52",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
+"translation_key": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
 "type": "dialogue"
 },
 "54": {
-"next_id": "47",
-"parent_id": "51",
+"next_id": "10",
+"parent_id": "52",
 "type": "goto"
 },
 "55": {
-"next_id": "10",
+"next_id": "58",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "Meh. I'm bored. Let's talk about something else.",
-"translation_key": "Meh. I'm bored. Let's talk about something else.",
+"text": "That bead of sweat on your forhead says otherwise",
+"translation_key": "That bead of sweat on your forhead says otherwise",
 "type": "response"
 },
 "57": {
 "next_id": "58",
-"text": "associate_tier_4",
+"text": "associate_tier_3",
 "type": "title"
 },
 "58": {
@@ -597,21 +778,13 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "It's fine a tech is supposed to be on the way.",
-"translation_key": "It's fine a tech is supposed to be on the way.",
+"text": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
+"translation_key": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
 "type": "dialogue"
 },
 "59": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "60",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]The associate looks at their watch[/i]",
-"translation_key": "[i]The associate looks at their watch[/i]",
-"type": "dialogue"
+"next_id": "62",
+"type": "goto"
 },
 "6": {
 "character": "Associate",
@@ -625,10 +798,130 @@ lines = {
 "translation_key": "Yeah, they pay us to say it.",
 "type": "dialogue"
 },
-"60": {
+"61": {
+"next_id": "62",
+"text": "associate_tier_3_choices",
+"type": "title"
+},
+"62": {
+"next_id": "63",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "62", "65", "66", "70" ),
+"text": "I hope it works out",
+"translation_key": "I hope it works out",
+"type": "response"
+},
+"63": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "64",
+"parent_id": "62",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I hope the tech shows up",
+"translation_key": "I hope the tech shows up",
+"type": "dialogue"
+},
+"64": {
+"next_id": "62",
+"parent_id": "62",
+"type": "goto"
+},
+"65": {
+"next_id": "73",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Maybe I can help",
+"translation_key": "Maybe I can help",
+"type": "response"
+},
+"66": {
+"next_id": "67",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Can I have my money back?",
+"translation_key": "Can I have my money back?",
+"type": "response"
+},
+"67": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "68",
+"parent_id": "66",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Sorry, all your money are belong to us.",
+"translation_key": "Sorry, all your money are belong to us.",
+"type": "dialogue"
+},
+"68": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "61",
+"next_id": "69",
+"parent_id": "66",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Cheeky",
+"translation_key": "Cheeky",
+"type": "dialogue"
+},
+"69": {
+"next_id": "62",
+"parent_id": "66",
+"type": "goto"
+},
+"7": {
+"next_id": "10",
+"type": "goto"
+},
+"70": {
+"next_id": "10",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Meh. I'm bored. Let's talk about something else.",
+"translation_key": "Meh. I'm bored. Let's talk about something else.",
+"type": "response"
+},
+"72": {
+"next_id": "73",
+"text": "associate_tier_4",
+"type": "title"
+},
+"73": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "It's fine a tech is supposed to be on the way.",
+"translation_key": "It's fine a tech is supposed to be on the way.",
+"type": "dialogue"
+},
+"74": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "75",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The associate looks at their watch[/i]",
+"translation_key": "[i]The associate looks at their watch[/i]",
+"type": "dialogue"
+},
+"75": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "76",
 "pauses": {
 },
 "replacements": [  ],
@@ -637,10 +930,10 @@ lines = {
 "translation_key": "Who's the tech?",
 "type": "dialogue"
 },
-"61": {
+"76": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "62",
+"next_id": "77",
 "pauses": {
 },
 "replacements": [  ],
@@ -649,7 +942,7 @@ lines = {
 "translation_key": "He's an employee. Nick Marshall. He's usually on time.",
 "type": "dialogue"
 },
-"62": {
+"77": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -663,22 +956,22 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "63",
+"next_id": "78",
 "type": "mutation"
 },
-"63": {
+"78": {
 "next_id": "10",
 "type": "goto"
 },
-"65": {
-"next_id": "66",
+"80": {
+"next_id": "81",
 "text": "associate_badge_acquire",
 "type": "title"
 },
-"66": {
+"81": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "67",
+"next_id": "82",
 "pauses": {
 },
 "replacements": [  ],
@@ -687,7 +980,7 @@ lines = {
 "translation_key": "Great! Here's your badge",
 "type": "dialogue"
 },
-"67": {
+"82": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -695,13 +988,13 @@ lines = {
 } ] ],
 "function": "add_item"
 },
-"next_id": "68",
+"next_id": "83",
 "type": "mutation"
 },
-"68": {
+"83": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "69",
+"next_id": "84",
 "pauses": {
 },
 "replacements": [  ],
@@ -710,7 +1003,7 @@ lines = {
 "translation_key": "<Badge added to inventory>",
 "type": "dialogue"
 },
-"69": {
+"84": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -724,14 +1017,10 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "70",
+"next_id": "85",
 "type": "mutation"
 },
-"7": {
-"next_id": "10",
-"type": "goto"
-},
-"70": {
+"85": {
 "next_id": "10",
 "type": "goto"
 },
