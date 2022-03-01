@@ -1,5 +1,10 @@
 extends Node
 
+signal show_dialogue(dialogue)
+
+var talk_to_dictionary = {
+	"associate": "associate_main"
+}
 
 func process_command(input: String):
 	var words = input.split(" ", false)
@@ -32,6 +37,9 @@ func process_command(input: String):
 func talkTo (third_word: String) -> String:
 	if third_word == "":
 		return "TALK TO who?"
+	
+	if talk_to_dictionary.has(third_word):
+		emit_signal("show_dialogue", talk_to_dictionary[third_word])
 
 	return "You TALK TO %s" % third_word
 
