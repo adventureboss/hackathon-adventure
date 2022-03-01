@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -19,6 +19,8 @@ bg_color = Color( 0.329412, 0.321569, 0.321569, 1 )
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxFlat" id=6]
+
+[sub_resource type="StyleBoxFlat" id=8]
 
 [sub_resource type="StyleBoxFlat" id=7]
 
@@ -110,13 +112,12 @@ rect_min_size = Vector2( 250, 80 )
 size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/TalkTo"]
-margin_top = 24.0
+[node name="TalkToButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/TalkTo"]
 margin_right = 250.0
-margin_bottom = 56.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 8 )
 text = "TALK TO"
-align = 1
 
 [node name="Give" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
 margin_left = 270.0
@@ -126,13 +127,12 @@ rect_min_size = Vector2( 250, 80 )
 size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Give"]
-margin_top = 24.0
+[node name="GiveButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Give"]
 margin_right = 250.0
-margin_bottom = 56.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 8 )
 text = "GIVE"
-align = 1
 
 [node name="Use" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
 margin_top = 100.0
@@ -142,13 +142,12 @@ rect_min_size = Vector2( 250, 80 )
 size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Use"]
-margin_top = 24.0
+[node name="UseButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Use"]
 margin_right = 250.0
-margin_bottom = 56.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 8 )
 text = "USE"
-align = 1
 
 [node name="Walk" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
 margin_left = 270.0
@@ -159,13 +158,12 @@ rect_min_size = Vector2( 250, 80 )
 size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Walk"]
-margin_top = 24.0
+[node name="WalkButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Walk"]
 margin_right = 250.0
-margin_bottom = 56.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 8 )
 text = "WALK"
-align = 1
 
 [node name="PickUp" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
 margin_top = 200.0
@@ -175,13 +173,12 @@ rect_min_size = Vector2( 250, 80 )
 size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/PickUp"]
-margin_top = 24.0
+[node name="PickUpButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/PickUp"]
 margin_right = 250.0
-margin_bottom = 56.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 8 )
 text = "PICK UP"
-align = 1
 
 [node name="LookAt" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
 margin_left = 270.0
@@ -192,24 +189,23 @@ rect_min_size = Vector2( 250, 80 )
 size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/LookAt"]
-margin_top = 24.0
+[node name="LookAtButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/LookAt"]
 margin_right = 250.0
-margin_bottom = 56.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 8 )
 text = "LOOK AT"
-align = 1
 
 [node name="Inventory" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer"]
 margin_left = 540.0
-margin_right = 1555.0
+margin_right = 1560.0
 margin_bottom = 280.0
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 7 )
 
 [node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/Inventory"]
 margin_top = 124.0
-margin_right = 1015.0
+margin_right = 1020.0
 margin_bottom = 156.0
 custom_fonts/font = ExtResource( 4 )
 text = "INVENTORY"
@@ -217,3 +213,9 @@ align = 1
 
 [connection signal="text_entered" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_Input_text_entered"]
 [connection signal="text_entered" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_Input_text_entered"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/TalkTo/TalkToButton" to="." method="_on_TalkToButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Give/GiveButton" to="." method="_on_GiveButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Use/UseButton" to="." method="_on_UseButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Walk/WalkButton" to="." method="_on_WalkButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/PickUp/PickUpButton" to="." method="_on_PickUpButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/LookAt/LookAtButton" to="." method="_on_LookAtButton_pressed"]
