@@ -1,0 +1,163 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ initialize
+do set_dialog_state(\"eventc\", \"met\", 0)
+do set_dialog_state(\"eventc\", \"initialized\", true)
+=> main_chat
+
+~ first_meet
+
+
+~ main
+if get_dialog_state(\"eventc\", \"initialized\") == false
+	=> initialize
+if get_dialog_state(\"eventc\", \"met\") == 0
+	=> first_meet
+
+~ main_chat
+Event Coordinator: BOOP
+"
+errors = [  ]
+titles = {
+"first_meet": "8",
+"initialize": "1",
+"main": "9",
+"main_chat": "15"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "initialize",
+"type": "title"
+},
+"1": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "eventc"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "2",
+"type": "mutation"
+},
+"10": {
+"next_id": "1",
+"parent_id": "9",
+"type": "goto"
+},
+"11": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "eventc"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "end",
+"next_id": "12",
+"next_id_after": "end",
+"type": "condition"
+},
+"12": {
+"next_id": "8",
+"parent_id": "11",
+"type": "goto"
+},
+"14": {
+"next_id": "15",
+"text": "main_chat",
+"type": "title"
+},
+"15": {
+"character": "Event Coordinator",
+"inline_mutations": [  ],
+"next_id": "",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "BOOP",
+"translation_key": "BOOP",
+"type": "dialogue"
+},
+"2": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "eventc"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"3": {
+"next_id": "15",
+"type": "goto"
+},
+"5": {
+"next_id": "end",
+"text": "first_meet",
+"type": "title"
+},
+"8": {
+"next_id": "9",
+"text": "main",
+"type": "title"
+},
+"9": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "eventc"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "11",
+"next_id": "10",
+"next_id_after": "11",
+"type": "condition"
+}
+}
