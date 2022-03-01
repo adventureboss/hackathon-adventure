@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/plex_mono_24.tres" type="DynamicFont" id=4]
 [ext_resource path="res://CommandProcessor.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
+[ext_resource path="res://RoomManager.gd" type="Script" id=7]
+[ext_resource path="res://Dialogs/associate.tres" type="Resource" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -32,6 +35,31 @@ script = ExtResource( 3 )
 
 [node name="CommandProcessor" type="Node" parent="."]
 script = ExtResource( 5 )
+
+[node name="RoomManager" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Enterance" parent="RoomManager" instance=ExtResource( 6 )]
+margin_left = 717.0
+margin_top = -719.0
+margin_right = 922.0
+margin_bottom = -519.0
+room_name = "Enterance"
+room_description = "You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North."
+talk_to_dictionary = {
+"associate": {
+"main": "associate_main",
+"resource": ExtResource( 8 )
+}
+}
+
+[node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
+margin_left = 720.0
+margin_top = -965.0
+margin_right = 925.0
+margin_bottom = -765.0
+room_name = "Lobby"
+room_description = "Welcome to the Loby"
 
 [node name="Background" type="PanelContainer" parent="."]
 anchor_right = 1.0

@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "DialogueResource",
 "language": "GDScript",
 "path": "res://addons/dialogue_manager/dialogue_resource.gd"
+}, {
+"base": "PanelContainer",
+"class": "GameRoom",
+"language": "GDScript",
+"path": "res://Scenes/Room.gd"
 } ]
 _global_script_class_icons={
-"DialogueResource": ""
+"DialogueResource": "",
+"GameRoom": ""
 }
 
 [application]

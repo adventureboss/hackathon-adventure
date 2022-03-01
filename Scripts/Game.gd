@@ -2,12 +2,14 @@ extends Control
 
 const Response = preload("res://Scenes/Response.tscn")
 const InputResponse = preload("res://Scenes/InputResponse.tscn")
+var dialog_resource = preload("res://Dialogs/associate.tres")
 
 export (int) var max_lines_remembered := 20
 
 var max_scroll_length := 0
 
 onready var command_processor = $CommandProcessor
+onready var room_manager = $RoomManager
 onready var user_cli = $Background/MarginContainer/Rows/InputArea/HBoxContainer/Input
 onready var game_info = $Background/MarginContainer/Rows/GameInfo
 onready var history_rows = $Background/MarginContainer/Rows/GameInfo/ScrollContainer/HistoryRows
@@ -20,15 +22,24 @@ onready var bottom_area = $Background/MarginContainer/Rows/BottomArea
 
 var input_status_enabled: bool = true
 
+
 func _ready() -> void:
 	scrollbar.connect("changed", self, "handle_scrollbar_changed")
 	max_scroll_length = scrollbar.max_value
-	var starting_message = Response.instance()
-	starting_message.text = "You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North."
 
+	#create_response("You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North.")
+
+	# main room dialog?
 	command_processor.connect("show_dialogue", self, "show_dialogue")
-	
-	add_response_to_game(starting_message)
+	var starting_room_response = command_processor.initialize(room_manager.get_child(0))
+	create_response(starting_room_response)
+
+
+func create_response(response_text):
+	var response = Response.instance()
+	response.text = response_text
+	add_response_to_game(response)
+
 
 func handle_scrollbar_changed():
 	if max_scroll_length != scrollbar.max_value:
@@ -47,6 +58,7 @@ func show_dialogue(resource: DialogueResource, title: String) -> void:
 	else:
 		self.set_input_status(true)
 		scroll.show()
+
 
 func delete_history_beyond_limit():
 	if history_rows.get_child_count() > max_lines_remembered:
@@ -73,7 +85,6 @@ func _on_Input_text_entered(new_text: String) -> void:
 
 	var input_response = InputResponse.instance()
 	var response = command_processor.process_command(new_text)
-	print("RESPONSE: ", response)
 	input_response.set_text(new_text, response)
 	add_response_to_game(input_response)
 

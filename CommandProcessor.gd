@@ -9,6 +9,24 @@ var talk_to_dictionary = {
 	}
 }
 
+var current_room = null
+
+
+func initialize (starting_room) -> String:
+	return change_room(starting_room)
+
+
+func change_room (new_room) -> String:
+	current_room = new_room
+	var exit_string = PoolStringArray(new_room.exits.keys()).join(" ")
+	var string = PoolStringArray([
+		"You are now in the " + new_room.room_name + ".  \n" + new_room.room_description,
+		"Exits: " + exit_string
+	]).join("\n")
+
+	return string
+
+
 func process_command(input: String):
 	var words = input.split(" ", false)
 	var first_word = words[0].to_lower()
@@ -64,8 +82,12 @@ func use (second_word: String) -> String:
 func walk (second_word: String) -> String:
 	if second_word == "":
 		return "WALK where?"
-
-	return "You WALK %s" % second_word
+	
+	if current_room.exits.keys().has(second_word):
+		var change_response = change_room(current_room.exits[second_word])
+		return PoolStringArray([ "You WALK %s." % second_word, change_response ]).join("\n")
+	else:
+		return "This room has no exit in that direction!"
 
 
 func pickUp (third_word: String) -> String:
