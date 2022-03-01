@@ -3,7 +3,10 @@ extends Node
 signal show_dialogue(dialogue)
 
 var talk_to_dictionary = {
-	"associate": "associate_main"
+	"associate": {
+		"resource": preload("res://Dialogs/associate.tres"),
+		"main": "associate_tier_1"
+	}
 }
 
 func process_command(input: String):
@@ -39,7 +42,7 @@ func talkTo (third_word: String) -> String:
 		return "TALK TO who?"
 	
 	if talk_to_dictionary.has(third_word):
-		emit_signal("show_dialogue", talk_to_dictionary[third_word])
+		emit_signal("show_dialogue", talk_to_dictionary[third_word].get("resource"), talk_to_dictionary[third_word].get("main"))
 
 	return "You TALK TO %s" % third_word
 

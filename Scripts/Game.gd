@@ -19,16 +19,13 @@ onready var input_area = $Background/MarginContainer/Rows/InputArea/HBoxContaine
 onready var bottom_area = $Background/MarginContainer/Rows/BottomArea
 
 var input_status_enabled: bool = true
-var dialog_resource
 
 func _ready() -> void:
 	scrollbar.connect("changed", self, "handle_scrollbar_changed")
 	max_scroll_length = scrollbar.max_value
 	var starting_message = Response.instance()
 	starting_message.text = "You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North."
-	
-	# main room dialog?
-	dialog_resource = preload("res://Dialogs/associate.tres")
+
 	command_processor.connect("show_dialogue", self, "show_dialogue")
 	
 	add_response_to_game(starting_message)
@@ -38,15 +35,15 @@ func handle_scrollbar_changed():
 		max_scroll_length = scrollbar.max_value
 		scroll.scroll_vertical = scrollbar.max_value
 
-func show_dialogue(title: String) -> void:
+func show_dialogue(resource: DialogueResource, title: String) -> void:
 	self.set_input_status(false)
 	scroll.hide()
-	var dialogue = yield(DialogueManager.get_next_dialogue_line(title, dialog_resource), "completed")
+	var dialogue = yield(DialogueManager.get_next_dialogue_line(title, resource), "completed")
 	if dialogue != null:
 		var node = preload("res://Scenes/Dialogue.tscn").instance()
 		node.dialogue = dialogue
 		game_info.add_child(node)
-		show_dialogue(yield(node, "actioned"))
+		show_dialogue(resource, yield(node, "actioned"))
 	else:
 		self.set_input_status(true)
 		scroll.show()
