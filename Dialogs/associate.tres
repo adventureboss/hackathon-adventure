@@ -303,26 +303,7 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick_1"
-} ] ]
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
-}, {
-"type": "and_or",
-"value": "and"
-}, {
-"function": "get_dialog_state",
-"type": "function",
-"value": [ [ {
-"type": "string",
-"value": "associate"
-} ], [ {
-"type": "string",
-"value": "nick_2"
+"value": "nick"
 } ] ]
 }, {
 "type": "comparison",
@@ -424,10 +405,10 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick_1"
+"value": "nick"
 } ], [ {
-"type": "bool",
-"value": true
+"type": "number",
+"value": 1
 } ] ],
 "function": "set_dialog_state"
 },
@@ -462,33 +443,14 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick_1"
+"value": "nick"
 } ] ]
 }, {
 "type": "comparison",
 "value": "=="
 }, {
-"type": "bool",
-"value": true
-}, {
-"type": "and_or",
-"value": "and"
-}, {
-"function": "get_dialog_state",
-"type": "function",
-"value": [ [ {
-"type": "string",
-"value": "associate"
-} ], [ {
-"type": "string",
-"value": "nick_2"
-} ] ]
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
+"type": "number",
+"value": 1
 } ]
 },
 "next_id": "32",
@@ -544,10 +506,10 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick_2"
+"value": "nick"
 } ], [ {
-"type": "bool",
-"value": true
+"type": "number",
+"value": 2
 } ] ],
 "function": "set_dialog_state"
 },
