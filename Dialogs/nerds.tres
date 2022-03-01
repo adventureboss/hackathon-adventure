@@ -40,7 +40,8 @@ elif get_dialog_state(\"nerds\", \"met\") == 2
 	Nerd 3: You  would say that, rebel scum!
 	[i]You back away slowly. These nerds are out of your league[/i]
 	=> END
-elif get_dialog_state(\"associate\", \"badges\") == true
+elif get_dialog_state(\"associate\", \"badges\") == true and get_dialog_state(\"player\", \"has_id_name\") == true
+	#TODO: there should be logic to rotate through a set of random responses here
 	Nerd 2: and I said, \"Make it so!\"
 	[i]The nerds erupt in fits of giggles. You can't help but feel left out by only catching the punchlines[/i]
 	- FIRE!
@@ -72,7 +73,7 @@ errors = [  ]
 titles = {
 "initialize": "1",
 "nerds_first_meet": "7",
-"nerds_gone": "60",
+"nerds_gone": "61",
 "nerds_main": "15"
 }
 lines = {
@@ -239,7 +240,7 @@ lines = {
 "type": "mutation"
 },
 "20": {
-"next_id": "60",
+"next_id": "61",
 "parent_id": "19",
 "type": "goto"
 },
@@ -473,17 +474,36 @@ lines = {
 }, {
 "type": "bool",
 "value": true
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "has_id_name"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
 } ]
 },
-"next_conditional_id": "55",
-"next_id": "36",
+"next_conditional_id": "56",
+"next_id": "37",
 "next_id_after": "end",
 "type": "condition"
 },
-"36": {
+"37": {
 "character": "Nerd 2",
 "inline_mutations": [  ],
-"next_id": "37",
+"next_id": "38",
 "parent_id": "35",
 "pauses": {
 },
@@ -493,10 +513,10 @@ lines = {
 "translation_key": "and I said, \"Make it so!\"",
 "type": "dialogue"
 },
-"37": {
+"38": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "38",
+"next_id": "39",
 "parent_id": "35",
 "pauses": {
 },
@@ -506,21 +526,25 @@ lines = {
 "translation_key": "[i]The nerds erupt in fits of giggles. You can't help but feel left out by only catching the punchlines[/i]",
 "type": "dialogue"
 },
-"38": {
-"next_id": "39",
-"next_id_after": "56",
+"39": {
+"next_id": "40",
+"next_id_after": "57",
 "parent_id": "35",
 "replacements": [  ],
-"responses": PoolStringArray( "38", "41", "48", "53" ),
+"responses": PoolStringArray( "39", "42", "49", "54" ),
 "text": "FIRE!",
 "translation_key": "FIRE!",
 "type": "response"
 },
-"39": {
+"4": {
+"next_id": "15",
+"type": "goto"
+},
+"40": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "40",
-"parent_id": "38",
+"next_id": "41",
+"parent_id": "39",
 "pauses": {
 },
 "replacements": [  ],
@@ -529,29 +553,25 @@ lines = {
 "translation_key": "[i]You get no reaction from the nerds. They don't seem to fear for their personal safety.[/i]",
 "type": "dialogue"
 },
-"4": {
-"next_id": "15",
-"type": "goto"
-},
-"40": {
-"next_id": "15",
-"parent_id": "38",
-"type": "goto"
-},
 "41": {
-"next_id": "42",
-"next_id_after": "56",
+"next_id": "15",
+"parent_id": "39",
+"type": "goto"
+},
+"42": {
+"next_id": "43",
+"next_id_after": "57",
 "parent_id": "35",
 "replacements": [  ],
 "text": "I heard they are showing Star Wars: Episode 1 in one of the East session rooms",
 "translation_key": "I heard they are showing Star Wars: Episode 1 in one of the East session rooms",
 "type": "response"
 },
-"42": {
+"43": {
 "character": "Nerd 3",
 "inline_mutations": [  ],
-"next_id": "43",
-"parent_id": "41",
+"next_id": "44",
+"parent_id": "42",
 "pauses": {
 },
 "replacements": [  ],
@@ -560,11 +580,11 @@ lines = {
 "translation_key": "Duh! We've all seen it and it's terrible.",
 "type": "dialogue"
 },
-"43": {
+"44": {
 "character": "Nerd 4",
 "inline_mutations": [  ],
-"next_id": "44",
-"parent_id": "41",
+"next_id": "45",
+"parent_id": "42",
 "pauses": {
 },
 "replacements": [  ],
@@ -573,11 +593,11 @@ lines = {
 "translation_key": "I feel like it's underappreciate for what it is.",
 "type": "dialogue"
 },
-"44": {
+"45": {
 "character": "Nerd 5",
 "inline_mutations": [  ],
-"next_id": "45",
-"parent_id": "41",
+"next_id": "46",
+"parent_id": "42",
 "pauses": {
 },
 "replacements": [  ],
@@ -586,11 +606,11 @@ lines = {
 "translation_key": "Sure, Qui-Gon was great, but nobody likes Jar Jar.",
 "type": "dialogue"
 },
-"45": {
+"46": {
 "character": "Nerd 2",
 "inline_mutations": [  ],
-"next_id": "46",
-"parent_id": "41",
+"next_id": "47",
+"parent_id": "42",
 "pauses": {
 },
 "replacements": [  ],
@@ -599,11 +619,11 @@ lines = {
 "translation_key": "My nephew likes, Jar Jar.",
 "type": "dialogue"
 },
-"46": {
+"47": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "47",
-"parent_id": "41",
+"next_id": "48",
+"parent_id": "42",
 "pauses": {
 },
 "replacements": [  ],
@@ -612,25 +632,25 @@ lines = {
 "translation_key": "[i]The nerds descend into deep philosophical discussions about the medichlorians[/i]",
 "type": "dialogue"
 },
-"47": {
+"48": {
 "next_id": "15",
-"parent_id": "41",
+"parent_id": "42",
 "type": "goto"
 },
-"48": {
-"next_id": "49",
-"next_id_after": "56",
+"49": {
+"next_id": "50",
+"next_id_after": "57",
 "parent_id": "35",
 "replacements": [  ],
 "text": "There are TONS of stickers up for grabs to anyone who registers right now!",
 "translation_key": "There are TONS of stickers up for grabs to anyone who registers right now!",
 "type": "response"
 },
-"49": {
+"50": {
 "character": "Nerd 3",
 "inline_mutations": [  ],
-"next_id": "50",
-"parent_id": "48",
+"next_id": "51",
+"parent_id": "49",
 "pauses": {
 },
 "replacements": [  ],
@@ -639,11 +659,11 @@ lines = {
 "translation_key": "No way! Me first!",
 "type": "dialogue"
 },
-"50": {
+"51": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "51",
-"parent_id": "48",
+"next_id": "52",
+"parent_id": "49",
 "pauses": {
 },
 "replacements": [  ],
@@ -652,7 +672,7 @@ lines = {
 "translation_key": "[i]The nerds storm the check-in desk to collect their badges[/i]",
 "type": "dialogue"
 },
-"51": {
+"52": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -666,11 +686,11 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "52",
-"parent_id": "48",
+"next_id": "53",
+"parent_id": "49",
 "type": "mutation"
 },
-"52": {
+"53": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -684,35 +704,35 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "56",
-"parent_id": "48",
+"next_id": "57",
+"parent_id": "49",
 "type": "mutation"
 },
-"53": {
-"next_id": "54",
-"next_id_after": "56",
+"54": {
+"next_id": "55",
+"next_id_after": "57",
 "parent_id": "35",
 "replacements": [  ],
 "text": "Yeah, nevermind.",
 "translation_key": "Yeah, nevermind.",
 "type": "response"
 },
-"54": {
+"55": {
 "next_id": "end",
-"parent_id": "53",
+"parent_id": "54",
 "type": "goto"
 },
-"55": {
+"56": {
 "next_conditional_id": "end",
-"next_id": "56",
+"next_id": "57",
 "next_id_after": "end",
 "type": "condition"
 },
-"56": {
+"57": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "57",
-"parent_id": "55",
+"next_id": "58",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -721,15 +741,10 @@ lines = {
 "translation_key": "[i]The nerds appear to just be rambling random movie trivia and paying no attention to you.[/i]",
 "type": "dialogue"
 },
-"57": {
+"58": {
 "next_id": "end",
-"parent_id": "55",
+"parent_id": "56",
 "type": "goto"
-},
-"59": {
-"next_id": "60",
-"text": "nerds_gone",
-"type": "title"
 },
 "6": {
 "next_id": "7",
@@ -737,9 +752,14 @@ lines = {
 "type": "title"
 },
 "60": {
+"next_id": "61",
+"text": "nerds_gone",
+"type": "title"
+},
+"61": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "61",
+"next_id": "62",
 "pauses": {
 },
 "replacements": [  ],
@@ -748,7 +768,7 @@ lines = {
 "translation_key": "[i]The nerds are long gone. They really love stickers.[/i]",
 "type": "dialogue"
 },
-"61": {
+"62": {
 "next_id": "end",
 "type": "goto"
 },
