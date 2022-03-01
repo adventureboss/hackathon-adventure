@@ -27,7 +27,7 @@ else
 
 ~ associate_tier_1
 - I'm ready to check in [if get_dialog_state(\"player\", \"checked_in\") == false] => associate_badge_acquire
-- My name is Ash Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"ash\") == false]
+- My name is Ash Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"ash\", 0) == 0]
 	Associate: I just gave you a badge. You're not Ash.
 	You: I could be?
 	Associate: They're much smarter.
@@ -42,7 +42,7 @@ else
 	Associate: Not by a long shot.
 	do set_dialog_state(\"associate\", \"ash\", 2)
 	=> associate_main
-- How's the event so far? => associate_tier_2
+- How's the event so far? [if get_dialog_state(\"player\", \"checked_in\") == true] => associate_tier_2
 - Where's the bathroom?
 	Associate: The developers didn't put one in. You're going to have to hold it.
 	You: What do we pay these people for?
@@ -305,13 +305,16 @@ lines = {
 } ], [ {
 "type": "string",
 "value": "ash"
+} ], [ {
+"type": "number",
+"value": 0
 } ] ]
 }, {
 "type": "comparison",
 "value": "=="
 }, {
-"type": "bool",
-"value": false
+"type": "number",
+"value": 0
 } ]
 },
 "next_id": "23",
@@ -524,6 +527,25 @@ lines = {
 "type": "goto"
 },
 "37": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "checked_in"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
 "next_id": "50",
 "next_id_after": "end",
 "replacements": [  ],

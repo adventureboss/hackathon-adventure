@@ -40,7 +40,6 @@ func _ready():
 			menu.add_child(item)
 	
 	menu.visible = false
-	# menu.pointer = $Margin/Body/Margin/Menu/Pointer
 	
 	var next_id: String = ""
 	if dialogue.responses.size() > 0:
