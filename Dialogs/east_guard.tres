@@ -1,0 +1,1259 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ initialize
+do set_dialog_state(\"east_guard\", \"met\", 0)
+do set_dialog_state(\"east_guard\", \"initialized\", true)
+do set_dialog_state(\"player\", \"east_clear\", 0)
+=> main
+
+~ first_meet
+The guard stares at you as you approach. He looks too big to take down on your own.
+East Guard: What do you want?
+do set_dialog_state(\"east_guard\", \"met\", 1)
+=> main_chat
+
+~ subsequent_meets
+East Guard: You again?
+=> main_chat
+
+~ main
+if get_dialog_state(\"east_guard\", \"initialized\") == false
+	=> initialize
+elif get_dialog_state(\"player\", \"east_clear\") == 1
+	=> cleared
+elif get_dialog_state(\"player\", \"east_clear\") == 2
+	=> cleared_final
+elif get_dialog_state(\"east_guard\", \"met\") == 0
+	=> first_meet
+elif get_dialog_state(\"east_guard\", \"met\") >= 1
+	=> subsequent_meets
+else
+	=> main_chat
+
+~ main_chat
+- Taking a break soon?
+	East Guard: Don't need one.
+	You: Not even to go to the bathroom?
+	East Guard: I have a system.
+	You: I'm not sure I even want to know what that means.
+	East Guard: You don't.
+	=> main_chat
+- What are you all hiding back there?
+	The guard gets a small piece of paper out of his pocket along with reading glasses entirely too small for his massive face. This guy is [b]built[/b].
+	East Guard: \"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Beret, seeking to change the world one line of code at a time\"
+	You: Well, I'm convinced.
+	East Guard: My job is done here.
+	=> main_chat
+- May I go in?
+	East Guard: You have a badge?
+	- Of course! [if has_item(\"nick_badge\") or has_item(\"badge\")]
+		East Guard: Then be my guest
+		You: Thanks!
+		do set_dialog_state(\"player\", \"east_clear\", 1)
+	- I have several George Washington's with your name on it?
+		East Guard: Are you trying to bribe me?
+		You: \"Bribe\" is such a strong word. Let's just say, if I give you this money, you let me back there.
+		East Guard: That's a bribe.
+		You: Bah. You're no fun.
+		=> main_chat
+	- We don't need no stinking badges!
+		The guard is clearly not amused
+		=> main_chat
+	- Don't need one. I'm important.
+		=> important
+- Nevermind
+	East Guard: See you around.
+	=> END
+
+
+~ important
+East Guard: To whom?
+- My mom
+	East Guard: Must be nice.
+	You: You know it!
+	East Guard: You're still not getting in.
+	You: *sigh*
+	=> important
+- Your mom?
+	East Guard: Nice try. No one's important to my mom.
+	You: That's tragic.
+	East Guard: Game got heavy didn't it?
+	You: I gotta admit, I was not expecting that.
+	=> important
+- My pet cat
+	East Guard: Does your cat work here?
+	You: Not yet.
+	East Guard: Then I don't care.
+	=> important
+- Nevermind
+	East Guard: Thought so.
+	=> main_chat
+
+
+~ entry_failure
+East Guard: No so fast! I'm going to need to see your badge.
+- Sure, here it is. [if has_item(\"badge\") or has_item(\"nick_badge\")]
+	East Guard: Alright, you're clear. Enjoy the show
+	do set_dialog_state(\"player\", \"east_clear\", 1)
+- Can I not get through on my sharp wit and good looks alone?
+	East Guard: You could. If you had either of those.
+	You: Touche
+	=> entry_failure
+- I'll just come back later
+	East Guard: Bring a badge next time
+	=> END
+
+~ cleared
+East Guard: I've seen your badge. We don't have to keep chatting like this do we?
+You: I thought we were friends.
+The guard just grunts at you
+do set_dialog_state(\"player\", \"east_clear\", 2)
+=> END
+
+~ cleared_final
+The guard just grunts and ignores you
+=> END"
+errors = [  ]
+titles = {
+"cleared": "104",
+"cleared_final": "111",
+"entry_failure": "91",
+"first_meet": "7",
+"important": "67",
+"initialize": "1",
+"main": "17",
+"main_chat": "31",
+"subsequent_meets": "13"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "initialize",
+"type": "title"
+},
+"1": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "east_guard"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "2",
+"type": "mutation"
+},
+"10": {
+"next_id": "31",
+"type": "goto"
+},
+"100": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "101",
+"parent_id": "99",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Bring a badge next time",
+"translation_key": "Bring a badge next time",
+"type": "dialogue"
+},
+"101": {
+"next_id": "end",
+"parent_id": "99",
+"type": "goto"
+},
+"103": {
+"next_id": "104",
+"text": "cleared",
+"type": "title"
+},
+"104": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "105",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I've seen your badge. We don't have to keep chatting like this do we?",
+"translation_key": "I've seen your badge. We don't have to keep chatting like this do we?",
+"type": "dialogue"
+},
+"105": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "106",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I thought we were friends.",
+"translation_key": "I thought we were friends.",
+"type": "dialogue"
+},
+"106": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "107",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The guard just grunts at you",
+"translation_key": "The guard just grunts at you",
+"type": "dialogue"
+},
+"107": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ], [ {
+"type": "number",
+"value": 2
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "108",
+"type": "mutation"
+},
+"108": {
+"next_id": "end",
+"type": "goto"
+},
+"110": {
+"next_id": "111",
+"text": "cleared_final",
+"type": "title"
+},
+"111": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "112",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The guard just grunts and ignores you",
+"translation_key": "The guard just grunts and ignores you",
+"type": "dialogue"
+},
+"112": {
+"next_id": "end",
+"type": "goto"
+},
+"12": {
+"next_id": "13",
+"text": "subsequent_meets",
+"type": "title"
+},
+"13": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "14",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You again?",
+"translation_key": "You again?",
+"type": "dialogue"
+},
+"14": {
+"next_id": "31",
+"type": "goto"
+},
+"16": {
+"next_id": "17",
+"text": "main",
+"type": "title"
+},
+"17": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "east_guard"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "19",
+"next_id": "18",
+"next_id_after": "end",
+"type": "condition"
+},
+"18": {
+"next_id": "1",
+"parent_id": "17",
+"type": "goto"
+},
+"19": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "21",
+"next_id": "20",
+"next_id_after": "end",
+"type": "condition"
+},
+"2": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "east_guard"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"20": {
+"next_id": "104",
+"parent_id": "19",
+"type": "goto"
+},
+"21": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 2
+} ]
+},
+"next_conditional_id": "23",
+"next_id": "22",
+"next_id_after": "end",
+"type": "condition"
+},
+"22": {
+"next_id": "111",
+"parent_id": "21",
+"type": "goto"
+},
+"23": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "east_guard"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "25",
+"next_id": "24",
+"next_id_after": "end",
+"type": "condition"
+},
+"24": {
+"next_id": "7",
+"parent_id": "23",
+"type": "goto"
+},
+"25": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "east_guard"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": ">="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "27",
+"next_id": "26",
+"next_id_after": "end",
+"type": "condition"
+},
+"26": {
+"next_id": "13",
+"parent_id": "25",
+"type": "goto"
+},
+"27": {
+"next_conditional_id": "end",
+"next_id": "28",
+"next_id_after": "end",
+"type": "condition"
+},
+"28": {
+"next_id": "31",
+"parent_id": "27",
+"type": "goto"
+},
+"3": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "4",
+"type": "mutation"
+},
+"30": {
+"next_id": "31",
+"text": "main_chat",
+"type": "title"
+},
+"31": {
+"next_id": "32",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "31", "38", "44", "61" ),
+"text": "Taking a break soon?",
+"translation_key": "Taking a break soon?",
+"type": "response"
+},
+"32": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "33",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Don't need one.",
+"translation_key": "Don't need one.",
+"type": "dialogue"
+},
+"33": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "34",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Not even to go to the bathroom?",
+"translation_key": "Not even to go to the bathroom?",
+"type": "dialogue"
+},
+"34": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "35",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I have a system.",
+"translation_key": "I have a system.",
+"type": "dialogue"
+},
+"35": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "36",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'm not sure I even want to know what that means.",
+"translation_key": "I'm not sure I even want to know what that means.",
+"type": "dialogue"
+},
+"36": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "37",
+"parent_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You don't.",
+"translation_key": "You don't.",
+"type": "dialogue"
+},
+"37": {
+"next_id": "31",
+"parent_id": "31",
+"type": "goto"
+},
+"38": {
+"next_id": "39",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "What are you all hiding back there?",
+"translation_key": "What are you all hiding back there?",
+"type": "response"
+},
+"39": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "40",
+"parent_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The guard gets a small piece of paper out of his pocket along with reading glasses entirely too small for his massive face. This guy is [b]built[/b].",
+"translation_key": "The guard gets a small piece of paper out of his pocket along with reading glasses entirely too small for his massive face. This guy is [b]built[/b].",
+"type": "dialogue"
+},
+"4": {
+"next_id": "17",
+"type": "goto"
+},
+"40": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "41",
+"parent_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "\"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Beret, seeking to change the world one line of code at a time\"",
+"translation_key": "\"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Beret, seeking to change the world one line of code at a time\"",
+"type": "dialogue"
+},
+"41": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "42",
+"parent_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well, I'm convinced.",
+"translation_key": "Well, I'm convinced.",
+"type": "dialogue"
+},
+"42": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "43",
+"parent_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "My job is done here.",
+"translation_key": "My job is done here.",
+"type": "dialogue"
+},
+"43": {
+"next_id": "31",
+"parent_id": "38",
+"type": "goto"
+},
+"44": {
+"next_id": "45",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "May I go in?",
+"translation_key": "May I go in?",
+"type": "response"
+},
+"45": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "46",
+"parent_id": "44",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You have a badge?",
+"translation_key": "You have a badge?",
+"type": "dialogue"
+},
+"46": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "nick_badge"
+} ] ]
+}, {
+"type": "and_or",
+"value": "or"
+}, {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "badge"
+} ] ]
+} ]
+},
+"next_id": "47",
+"next_id_after": "62",
+"parent_id": "44",
+"replacements": [  ],
+"responses": PoolStringArray( "46", "50", "56", "59" ),
+"text": "Of course!",
+"translation_key": "Of course!",
+"type": "response"
+},
+"47": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "48",
+"parent_id": "46",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Then be my guest",
+"translation_key": "Then be my guest",
+"type": "dialogue"
+},
+"48": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "49",
+"parent_id": "46",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Thanks!",
+"translation_key": "Thanks!",
+"type": "dialogue"
+},
+"49": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "62",
+"parent_id": "46",
+"type": "mutation"
+},
+"50": {
+"next_id": "51",
+"next_id_after": "62",
+"parent_id": "44",
+"replacements": [  ],
+"text": "I have several George Washington's with your name on it?",
+"translation_key": "I have several George Washington's with your name on it?",
+"type": "response"
+},
+"51": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "52",
+"parent_id": "50",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Are you trying to bribe me?",
+"translation_key": "Are you trying to bribe me?",
+"type": "dialogue"
+},
+"52": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "53",
+"parent_id": "50",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "\"Bribe\" is such a strong word. Let's just say, if I give you this money, you let me back there.",
+"translation_key": "\"Bribe\" is such a strong word. Let's just say, if I give you this money, you let me back there.",
+"type": "dialogue"
+},
+"53": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "54",
+"parent_id": "50",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "That's a bribe.",
+"translation_key": "That's a bribe.",
+"type": "dialogue"
+},
+"54": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "55",
+"parent_id": "50",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Bah. You're no fun.",
+"translation_key": "Bah. You're no fun.",
+"type": "dialogue"
+},
+"55": {
+"next_id": "31",
+"parent_id": "50",
+"type": "goto"
+},
+"56": {
+"next_id": "57",
+"next_id_after": "62",
+"parent_id": "44",
+"replacements": [  ],
+"text": "We don't need no stinking badges!",
+"translation_key": "We don't need no stinking badges!",
+"type": "response"
+},
+"57": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "58",
+"parent_id": "56",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The guard is clearly not amused",
+"translation_key": "The guard is clearly not amused",
+"type": "dialogue"
+},
+"58": {
+"next_id": "31",
+"parent_id": "56",
+"type": "goto"
+},
+"59": {
+"next_id": "60",
+"next_id_after": "62",
+"parent_id": "44",
+"replacements": [  ],
+"text": "Don't need one. I'm important.",
+"translation_key": "Don't need one. I'm important.",
+"type": "response"
+},
+"6": {
+"next_id": "7",
+"text": "first_meet",
+"type": "title"
+},
+"60": {
+"next_id": "67",
+"parent_id": "59",
+"type": "goto"
+},
+"61": {
+"next_id": "62",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Nevermind",
+"translation_key": "Nevermind",
+"type": "response"
+},
+"62": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "63",
+"parent_id": "61",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "See you around.",
+"translation_key": "See you around.",
+"type": "dialogue"
+},
+"63": {
+"next_id": "end",
+"parent_id": "61",
+"type": "goto"
+},
+"66": {
+"next_id": "67",
+"text": "important",
+"type": "title"
+},
+"67": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "To whom?",
+"translation_key": "To whom?",
+"type": "dialogue"
+},
+"68": {
+"next_id": "69",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "68", "74", "80", "85" ),
+"text": "My mom",
+"translation_key": "My mom",
+"type": "response"
+},
+"69": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "70",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Must be nice.",
+"translation_key": "Must be nice.",
+"type": "dialogue"
+},
+"7": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "8",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The guard stares at you as you approach. He looks too big to take down on your own.",
+"translation_key": "The guard stares at you as you approach. He looks too big to take down on your own.",
+"type": "dialogue"
+},
+"70": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "71",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You know it!",
+"translation_key": "You know it!",
+"type": "dialogue"
+},
+"71": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "72",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're still not getting in.",
+"translation_key": "You're still not getting in.",
+"type": "dialogue"
+},
+"72": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "73",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "*sigh*",
+"translation_key": "*sigh*",
+"type": "dialogue"
+},
+"73": {
+"next_id": "67",
+"parent_id": "68",
+"type": "goto"
+},
+"74": {
+"next_id": "75",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Your mom?",
+"translation_key": "Your mom?",
+"type": "response"
+},
+"75": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "76",
+"parent_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Nice try. No one's important to my mom.",
+"translation_key": "Nice try. No one's important to my mom.",
+"type": "dialogue"
+},
+"76": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "77",
+"parent_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "That's tragic.",
+"translation_key": "That's tragic.",
+"type": "dialogue"
+},
+"77": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "78",
+"parent_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Game got heavy didn't it?",
+"translation_key": "Game got heavy didn't it?",
+"type": "dialogue"
+},
+"78": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "79",
+"parent_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I gotta admit, I was not expecting that.",
+"translation_key": "I gotta admit, I was not expecting that.",
+"type": "dialogue"
+},
+"79": {
+"next_id": "67",
+"parent_id": "74",
+"type": "goto"
+},
+"8": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "9",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What do you want?",
+"translation_key": "What do you want?",
+"type": "dialogue"
+},
+"80": {
+"next_id": "81",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "My pet cat",
+"translation_key": "My pet cat",
+"type": "response"
+},
+"81": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "82",
+"parent_id": "80",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Does your cat work here?",
+"translation_key": "Does your cat work here?",
+"type": "dialogue"
+},
+"82": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "83",
+"parent_id": "80",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Not yet.",
+"translation_key": "Not yet.",
+"type": "dialogue"
+},
+"83": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "84",
+"parent_id": "80",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Then I don't care.",
+"translation_key": "Then I don't care.",
+"type": "dialogue"
+},
+"84": {
+"next_id": "67",
+"parent_id": "80",
+"type": "goto"
+},
+"85": {
+"next_id": "86",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Nevermind",
+"translation_key": "Nevermind",
+"type": "response"
+},
+"86": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "87",
+"parent_id": "85",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Thought so.",
+"translation_key": "Thought so.",
+"type": "dialogue"
+},
+"87": {
+"next_id": "31",
+"parent_id": "85",
+"type": "goto"
+},
+"9": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "east_guard"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "10",
+"type": "mutation"
+},
+"90": {
+"next_id": "91",
+"text": "entry_failure",
+"type": "title"
+},
+"91": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "92",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "No so fast! I'm going to need to see your badge.",
+"translation_key": "No so fast! I'm going to need to see your badge.",
+"type": "dialogue"
+},
+"92": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "badge"
+} ] ]
+}, {
+"type": "and_or",
+"value": "or"
+}, {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "nick_badge"
+} ] ]
+} ]
+},
+"next_id": "93",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "92", "95", "99" ),
+"text": "Sure, here it is.",
+"translation_key": "Sure, here it is.",
+"type": "response"
+},
+"93": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "94",
+"parent_id": "92",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Alright, you're clear. Enjoy the show",
+"translation_key": "Alright, you're clear. Enjoy the show",
+"type": "dialogue"
+},
+"94": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "end",
+"parent_id": "92",
+"type": "mutation"
+},
+"95": {
+"next_id": "96",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Can I not get through on my sharp wit and good looks alone?",
+"translation_key": "Can I not get through on my sharp wit and good looks alone?",
+"type": "response"
+},
+"96": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "97",
+"parent_id": "95",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You could. If you had either of those.",
+"translation_key": "You could. If you had either of those.",
+"type": "dialogue"
+},
+"97": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "98",
+"parent_id": "95",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Touche",
+"translation_key": "Touche",
+"type": "dialogue"
+},
+"98": {
+"next_id": "91",
+"parent_id": "95",
+"type": "goto"
+},
+"99": {
+"next_id": "100",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I'll just come back later",
+"translation_key": "I'll just come back later",
+"type": "response"
+}
+}
