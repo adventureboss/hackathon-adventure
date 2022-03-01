@@ -27,20 +27,20 @@ else
 
 ~ associate_tier_1
 - I'm ready to check in [if get_dialog_state(\"player\", \"checked_in\") == false] => associate_badge_acquire
-- My name is Nick Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"nick_1\") == false and get_dialog_state(\"associate\", \"nick_2\") == false]
+- My name is Nick Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"nick\") == false]
 	Associate: I just gave you a badge. You're not Nick.
 	You: I could be?
 	Associate: He's much smarter.
 	You: Unpossible!
 	Associate: See?
 	You: You're right. 
-	do set_dialog_state(\"associate\", \"nick_1\", true)
+	do set_dialog_state(\"associate\", \"nick\", 1)
 	=> associate_main
-- Hi, I'm Nick. I just had plastic surgery to look like some other person. [if get_dialog_state(\"associate\", \"nick_1\") == true and get_dialog_state(\"associate\", \"nick_2\") == false]
+- Hi, I'm Nick. I just had plastic surgery to look like some other person. [if get_dialog_state(\"associate\", \"nick\") == 1]
 	Associate: Oh wooooooooow.
 	You: You're not buying it, are you?
 	Associate: Not by a long shot.
-	do set_dialog_state(\"associate\", \"nick_2\", true)
+	do set_dialog_state(\"associate\", \"nick\", 2)
 	=> associate_main
 - How's the event so far? => associate_tier_2
 - Where's the bathroom?
