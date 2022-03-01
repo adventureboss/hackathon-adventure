@@ -42,7 +42,7 @@ West Guard: How can I help you?
 	West Guard: Do you have your badge?
 	- Give your badge [if has_item(\"badge\")]
 		=> player_badge
-	- Give Nick's Badge [if has_item(\"nick_badge\")]
+	- Give Ash's Badge [if has_item(\"ash_badge\")]
 		=> nick_badge
 	- I left it in my other pants.
 		West Guard: We've all been there haven't we!
@@ -83,7 +83,7 @@ West Guard: Sorry!
 	=> END
 	
 ~ nick_badge
-West Guard: Oh Nick! So glad you're here! They've been waiting. 
+West Guard: Oh Ash! So glad you're here! They've been waiting. 
 West Guard: Don't stand here talking to me. Go go go!
 do set_dialog_state(\"player\", \"west_clear\", 1)
 => END
@@ -450,7 +450,7 @@ lines = {
 "type": "function",
 "value": [ [ {
 "type": "string",
-"value": "nick_badge"
+"value": "ash_badge"
 } ] ]
 } ]
 },
@@ -458,8 +458,8 @@ lines = {
 "next_id_after": "47",
 "parent_id": "31",
 "replacements": [  ],
-"text": "Give Nick's Badge",
-"translation_key": "Give Nick's Badge",
+"text": "Give Ash's Badge",
+"translation_key": "Give Ash's Badge",
 "type": "response"
 },
 "38": {
@@ -827,8 +827,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Oh Nick! So glad you're here! They've been waiting.",
-"translation_key": "Oh Nick! So glad you're here! They've been waiting.",
+"text": "Oh Ash! So glad you're here! They've been waiting.",
+"translation_key": "Oh Ash! So glad you're here! They've been waiting.",
 "type": "dialogue"
 },
 "79": {
