@@ -6,6 +6,8 @@ var _items = []
 func add_item(item):
 	self._items.append(item)
 
+func has_item(item):
+	return self._items.has(item)
 
 func set_dialog_state(actor: String, variable: String, value):
 	if not self._dialog_state.has(actor):
