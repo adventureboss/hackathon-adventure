@@ -47,10 +47,6 @@ margin_bottom = -519.0
 room_name = "Enterance"
 room_description = "You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North."
 talk_to_dictionary = {
-"associate": {
-"main": "associate_main",
-"resource": ExtResource( 8 )
-}
 }
 
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
@@ -60,6 +56,12 @@ margin_right = 925.0
 margin_bottom = -765.0
 room_name = "Lobby"
 room_description = "Welcome to the Loby"
+talk_to_dictionary = {
+"associate": {
+"main": "associate_main",
+"resource": ExtResource( 8 )
+}
+}
 
 [node name="Background" type="PanelContainer" parent="."]
 anchor_right = 1.0
