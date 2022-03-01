@@ -5,7 +5,7 @@ signal show_dialogue(dialogue)
 var talk_to_dictionary = {
 	"associate": {
 		"resource": preload("res://Dialogs/associate.tres"),
-		"main": "associate_tier_1"
+		"main": "associate_main"
 	}
 }
 
