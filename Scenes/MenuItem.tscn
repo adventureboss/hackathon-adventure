@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/MenuItem.gd" type="Script" id=2]
+
+[node name="MenuItem" type="HBoxContainer"]
+margin_right = 221.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selection" type="RichTextLabel" parent="."]
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 0 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="RichTextLabel" parent="."]
+margin_left = 24.0
+margin_right = 221.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 40, 18 )
+size_flags_horizontal = 3
+text = "I say something
+"

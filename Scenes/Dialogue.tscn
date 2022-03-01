@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_label.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/menu.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=3]
+
+[node name="Dialogue" type="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="."]
+margin_right = 984.0
+margin_bottom = 38.0
+
+[node name="Body" type="VBoxContainer" parent="Margin"]
+margin_right = 984.0
+margin_bottom = 38.0
+
+[node name="Actor" type="RichTextLabel" parent="Margin/Body"]
+margin_right = 984.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+size_flags_horizontal = 3
+text = "Actor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="RichTextLabel" parent="Margin/Body"]
+margin_top = 19.0
+margin_right = 984.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 15 )
+text = "This is what the actor is saying"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Margin/Body"]
+margin_top = 38.0
+margin_right = 984.0
+margin_bottom = 38.0
+
+[node name="Menu" type="VBoxContainer" parent="Margin/Body/Margin"]
+margin_right = 984.0
+script = ExtResource( 2 )
