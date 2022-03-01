@@ -28,24 +28,30 @@ func _on_Input_text_entered(new_text: String) -> void:
 
 
 func _on_TalkToButton_pressed() -> void:
+	user_cli.clear()
 	user_cli.text += "TALK TO "
 
 
 func _on_GiveButton_pressed() -> void:
+	user_cli.clear()
 	user_cli.text += "GIVE "
 
 
 func _on_UseButton_pressed() -> void:
+	user_cli.clear()
 	user_cli.text += "USE "
 
 
 func _on_WalkButton_pressed() -> void:
+	user_cli.clear()
 	user_cli.text += "WALK "
 
 
 func _on_PickUpButton_pressed() -> void:
+	user_cli.clear()
 	user_cli.text += "PICK UP "
 
 
 func _on_LookAtButton_pressed() -> void:
+	user_cli.clear()
 	user_cli.text += "LOOK AT "

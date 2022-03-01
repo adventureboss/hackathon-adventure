@@ -24,6 +24,20 @@ config/name="HackathonAdventure"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GameState="*res://Scripts/game_state.gd"
+
+[display]
+
+window/size/width=1600
+window/size/height=1000
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/dialogue_manager/plugin.cfg" )
+
 [physics]
 
 common/enable_pause_aware_picking=true
