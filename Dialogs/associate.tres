@@ -27,20 +27,20 @@ else
 
 ~ associate_tier_1
 - I'm ready to check in [if get_dialog_state(\"player\", \"checked_in\") == false] => associate_badge_acquire
-- My name is Nick Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"nick\") == false]
-	Associate: I just gave you a badge. You're not Nick.
+- My name is Ash Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"ash\") == false]
+	Associate: I just gave you a badge. You're not Ash.
 	You: I could be?
-	Associate: He's much smarter.
+	Associate: They're much smarter.
 	You: Unpossible!
 	Associate: See?
 	You: You're right. 
-	do set_dialog_state(\"associate\", \"nick\", 1)
+	do set_dialog_state(\"associate\", \"ash\", 1)
 	=> associate_main
-- Hi, I'm Nick. I just had plastic surgery to look like some other person. [if get_dialog_state(\"associate\", \"nick\") == 1]
+- Hi, I'm Ash. I just had plastic surgery to look like some other person. [if get_dialog_state(\"associate\", \"ash\") == 1]
 	Associate: Oh wooooooooow.
 	You: You're not buying it, are you?
 	Associate: Not by a long shot.
-	do set_dialog_state(\"associate\", \"nick\", 2)
+	do set_dialog_state(\"associate\", \"ash\", 2)
 	=> associate_main
 - How's the event so far? => associate_tier_2
 - Where's the bathroom?
@@ -75,13 +75,14 @@ Associate: Okay, don't tell anyone, but I hear there are issues with the keynote
 	Associate: Sorry, all your money are belong to us.
 	You: Cheeky
 	=> associate_tier_3_choices
-- Meh. I'm bored. Let's talk about something else. => associate_main
+- Meh. I'm bored. Let's talk about something else.
+	=> associate_main
 
 ~ associate_tier_4
 Associate: It's fine a tech is supposed to be on the way.
 [i]The associate looks at their watch[/i]
 You: Who's the tech?
-Associate: He's an employee. Nick Marshall. He's usually on time.
+Associate: They're an employee. Ash Marshall. They're usually on time.
 do set_dialog_state(\"player\", \"has_id_name\", true)
 => associate_main
 
@@ -94,14 +95,14 @@ do set_dialog_state(\"player\", \"checked_in\", true)
 "
 errors = [  ]
 titles = {
-"associate_badge_acquire": "81",
+"associate_badge_acquire": "82",
 "associate_first_meet": "2",
 "associate_main": "10",
 "associate_tier_1": "21",
 "associate_tier_2": "50",
 "associate_tier_3": "58",
 "associate_tier_3_choices": "62",
-"associate_tier_4": "73"
+"associate_tier_4": "74"
 }
 lines = {
 "0": {
@@ -266,7 +267,7 @@ lines = {
 "value": false
 } ]
 },
-"next_id": "81",
+"next_id": "82",
 "next_id_after": "end",
 "replacements": [  ],
 "responses": PoolStringArray( "21", "22", "31", "37", "38", "44" ),
@@ -303,7 +304,7 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick"
+"value": "ash"
 } ] ]
 }, {
 "type": "comparison",
@@ -316,8 +317,8 @@ lines = {
 "next_id": "23",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "My name is Nick Marshall, and I need to check in",
-"translation_key": "My name is Nick Marshall, and I need to check in",
+"text": "My name is Ash Marshall, and I need to check in",
+"translation_key": "My name is Ash Marshall, and I need to check in",
 "type": "response"
 },
 "23": {
@@ -329,8 +330,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I just gave you a badge. You're not Nick.",
-"translation_key": "I just gave you a badge. You're not Nick.",
+"text": "I just gave you a badge. You're not Ash.",
+"translation_key": "I just gave you a badge. You're not Ash.",
 "type": "dialogue"
 },
 "24": {
@@ -355,8 +356,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "He's much smarter.",
-"translation_key": "He's much smarter.",
+"text": "They're much smarter.",
+"translation_key": "They're much smarter.",
 "type": "dialogue"
 },
 "26": {
@@ -405,7 +406,7 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick"
+"value": "ash"
 } ], [ {
 "type": "number",
 "value": 1
@@ -443,7 +444,7 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick"
+"value": "ash"
 } ] ]
 }, {
 "type": "comparison",
@@ -456,8 +457,8 @@ lines = {
 "next_id": "32",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "Hi, I'm Nick. I just had plastic surgery to look like some other person.",
-"translation_key": "Hi, I'm Nick. I just had plastic surgery to look like some other person.",
+"text": "Hi, I'm Ash. I just had plastic surgery to look like some other person.",
+"translation_key": "Hi, I'm Ash. I just had plastic surgery to look like some other person.",
 "type": "response"
 },
 "32": {
@@ -506,7 +507,7 @@ lines = {
 "value": "associate"
 } ], [ {
 "type": "string",
-"value": "nick"
+"value": "ash"
 } ], [ {
 "type": "number",
 "value": 2
@@ -793,7 +794,7 @@ lines = {
 "type": "goto"
 },
 "65": {
-"next_id": "73",
+"next_id": "74",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "Maybe I can help",
@@ -844,22 +845,27 @@ lines = {
 "type": "goto"
 },
 "70": {
-"next_id": "10",
+"next_id": "71",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "Meh. I'm bored. Let's talk about something else.",
 "translation_key": "Meh. I'm bored. Let's talk about something else.",
 "type": "response"
 },
-"72": {
-"next_id": "73",
+"71": {
+"next_id": "10",
+"parent_id": "70",
+"type": "goto"
+},
+"73": {
+"next_id": "74",
 "text": "associate_tier_4",
 "type": "title"
 },
-"73": {
+"74": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "74",
+"next_id": "75",
 "pauses": {
 },
 "replacements": [  ],
@@ -868,10 +874,10 @@ lines = {
 "translation_key": "It's fine a tech is supposed to be on the way.",
 "type": "dialogue"
 },
-"74": {
+"75": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "75",
+"next_id": "76",
 "pauses": {
 },
 "replacements": [  ],
@@ -880,10 +886,10 @@ lines = {
 "translation_key": "[i]The associate looks at their watch[/i]",
 "type": "dialogue"
 },
-"75": {
+"76": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "76",
+"next_id": "77",
 "pauses": {
 },
 "replacements": [  ],
@@ -892,19 +898,19 @@ lines = {
 "translation_key": "Who's the tech?",
 "type": "dialogue"
 },
-"76": {
+"77": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "77",
+"next_id": "78",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "He's an employee. Nick Marshall. He's usually on time.",
-"translation_key": "He's an employee. Nick Marshall. He's usually on time.",
+"text": "They're an employee. Ash Marshall. They're usually on time.",
+"translation_key": "They're an employee. Ash Marshall. They're usually on time.",
 "type": "dialogue"
 },
-"77": {
+"78": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -918,22 +924,22 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "78",
+"next_id": "79",
 "type": "mutation"
 },
-"78": {
+"79": {
 "next_id": "10",
 "type": "goto"
 },
-"80": {
-"next_id": "81",
+"81": {
+"next_id": "82",
 "text": "associate_badge_acquire",
 "type": "title"
 },
-"81": {
+"82": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "82",
+"next_id": "83",
 "pauses": {
 },
 "replacements": [  ],
@@ -942,7 +948,7 @@ lines = {
 "translation_key": "Great! Here's your badge",
 "type": "dialogue"
 },
-"82": {
+"83": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -950,13 +956,13 @@ lines = {
 } ] ],
 "function": "add_item"
 },
-"next_id": "83",
+"next_id": "84",
 "type": "mutation"
 },
-"83": {
+"84": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "84",
+"next_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -965,7 +971,7 @@ lines = {
 "translation_key": "<Badge added to inventory>",
 "type": "dialogue"
 },
-"84": {
+"85": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -979,10 +985,10 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "85",
+"next_id": "86",
 "type": "mutation"
 },
-"85": {
+"86": {
 "next_id": "10",
 "type": "goto"
 },

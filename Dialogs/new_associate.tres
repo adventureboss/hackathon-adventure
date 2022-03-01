@@ -95,8 +95,8 @@ New Associate: Now what can I do for you?
 	=> END
 
 ~  name_choices
-- Billy Mitchell
-	New Associate: The King of Kong himself? That's impossible. You're not wearing an American flag tie and selling hot sauce.
+- Samus Aran
+	New Associate: Nice try. She's totally in space right now and you know it.
 	=> name_choices
 - Guybrush Threepwood
 	New Associate: This game is awfully meta, isn't it?
@@ -104,10 +104,10 @@ New Associate: Now what can I do for you?
 - Jim Whitehurst
 	New Associate: I'm sure he's on a boat somewhere.
 	=> name_choices
-- Nick Marshall
+- Ash Marshall
 	New Associate: Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].
-	do add_item(\"nick_badge\")
-	[b] Received Nick's Badge [/b]
+	do add_item(\"ash_badge\")
+	[b] Received Ash's Badge [/b]
 	You: Thanks!
 	New Associate: Good luck!
 	do set_dialog_state(\"new_associate\", \"complete\", true)
@@ -179,7 +179,7 @@ lines = {
 "mutation": {
 "args": [ [ {
 "type": "string",
-"value": "nick_badge"
+"value": "ash_badge"
 } ] ],
 "function": "add_item"
 },
@@ -196,8 +196,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "[b] Received Nick's Badge [/b]",
-"translation_key": "[b] Received Nick's Badge [/b]",
+"text": "[b] Received Ash's Badge [/b]",
+"translation_key": "[b] Received Ash's Badge [/b]",
 "type": "dialogue"
 },
 "103": {
@@ -1173,8 +1173,8 @@ lines = {
 "next_id_after": "end",
 "replacements": [  ],
 "responses": PoolStringArray( "90", "93", "96", "99" ),
-"text": "Billy Mitchell",
-"translation_key": "Billy Mitchell",
+"text": "Samus Aran",
+"translation_key": "Samus Aran",
 "type": "response"
 },
 "91": {
@@ -1186,8 +1186,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "The King of Kong himself? That's impossible. You're not wearing an American flag tie and selling hot sauce.",
-"translation_key": "The King of Kong himself? That's impossible. You're not wearing an American flag tie and selling hot sauce.",
+"text": "Nice try. She's totally in space right now and you know it.",
+"translation_key": "Nice try. She's totally in space right now and you know it.",
 "type": "dialogue"
 },
 "92": {
@@ -1251,8 +1251,8 @@ lines = {
 "next_id": "100",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "Nick Marshall",
-"translation_key": "Nick Marshall",
+"text": "Ash Marshall",
+"translation_key": "Ash Marshall",
 "type": "response"
 }
 }
