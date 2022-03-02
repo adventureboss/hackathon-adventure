@@ -1,0 +1,879 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ initialize
+do set_dialog_state(\"cat\", \"met\", 0)
+do set_dialog_state(\"cat\", \"feral\", 0)
+do set_dialog_state(\"cat\", \"sleeping\", 0)
+do set_dialog_state(\"cat\", \"initialized\", true)
+do set_dialog_state(\"cat\", \"attempted\", false)
+do set_dialog_state(\"cat\", \"complete\", false)
+=> main
+
+~ first_meet
+You: Who's a sweet little kitty? You're a sweet little kitty
+do set_dialog_state(\"cat\", \"met\", 1)
+[i]You pet the cat[/i]
+[i]The cat purrs at you[/i]
+=> END
+
+~ main
+if get_dialog_state(\"cat\", \"initialized\") == false
+	=> initialize
+if get_dialog_state(\"cat\", \"complete\") == true
+	=> pet
+if get_dialog_state(\"cat\", \"met\") == 0 and get_dialog_state(\"cat\", \"feral\") == 0 and get_dialog_state(\"cat\", \"attempted\") == false
+	=> first_meet
+if get_dialog_state(\"cat\", \"met\") == 1 and get_dialog_state(\"cat\", \"feral\") == 0 and get_dialaog_state(\"cat\", \"attempted\") == false
+	=> subsequent_meet
+if get_dialog_state(\"cat\", \"met\") == 1 and get_dialog_state(\"cat\", \"feral\") == 0 and get_dialog_state(\"cat\", \"attempted\") == true
+	=> attempted_not_feral
+if get_dialog_state(\"cat\", \"met\") == 1 and get_dialog_state(\"cat\", \"feral\") == 1 and get_dialog_state(\"cat\", \"attempted\") == false
+	=> not_attempted_feral
+if get_dialog_state(\"cat\", \"met\") == 1 and get_dialog_state(\"cat\", \"feral\") == 1 and get_dialog_state(\"cat\", \"attempted\") == true
+	=> attempted_feral
+
+~ pet
+You: You're not so bad when you're sleeping.
+[i]You pet the cat[/i]
+
+~ subsequent_meet
+You: You're still a sweet little kitty aren't you?
+[i]The cat purrs at you[/i]
+=> END
+
+~ not_attempted_feral
+You: You're a feisty thing aren't you?
+You: Maybe you should try decaf.
+[i]The cat meows at you[/i]
+=> END
+
+~ attempted_not_feral
+You: You're never going to let me have that floppy disk are you?
+[i]The cat looks at you with big pouty eyes[/i]
+You: But I NEED it
+[i]The cat lets out a throaty growl[/i]
+You: Fine! Have it your way.
+=> END
+
+~ attempted_feral
+You: Okay, you little monster. You're not going to let me have that floppy disk, are you?
+[i]The cat meows[/i]
+You: Oh, I'll be back. You can count on that.
+=> END"
+errors = [  ]
+titles = {
+"attempted_feral": "56",
+"attempted_not_feral": "48",
+"first_meet": "10",
+"initialize": "1",
+"main": "17",
+"not_attempted_feral": "42",
+"pet": "33",
+"subsequent_meet": "37"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "initialize",
+"type": "title"
+},
+"1": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "2",
+"type": "mutation"
+},
+"10": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "11",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Who's a sweet little kitty? You're a sweet little kitty",
+"translation_key": "Who's a sweet little kitty? You're a sweet little kitty",
+"type": "dialogue"
+},
+"11": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "12",
+"type": "mutation"
+},
+"12": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "13",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You pet the cat[/i]",
+"translation_key": "[i]You pet the cat[/i]",
+"type": "dialogue"
+},
+"13": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "14",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat purrs at you[/i]",
+"translation_key": "[i]The cat purrs at you[/i]",
+"type": "dialogue"
+},
+"14": {
+"next_id": "end",
+"type": "goto"
+},
+"16": {
+"next_id": "17",
+"text": "main",
+"type": "title"
+},
+"17": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "19",
+"next_id": "18",
+"next_id_after": "19",
+"type": "condition"
+},
+"18": {
+"next_id": "1",
+"parent_id": "17",
+"type": "goto"
+},
+"19": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "complete"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_conditional_id": "21",
+"next_id": "20",
+"next_id_after": "21",
+"type": "condition"
+},
+"2": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"20": {
+"next_id": "33",
+"parent_id": "19",
+"type": "goto"
+},
+"21": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "attempted"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "23",
+"next_id": "22",
+"next_id_after": "23",
+"type": "condition"
+},
+"22": {
+"next_id": "10",
+"parent_id": "21",
+"type": "goto"
+},
+"23": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialaog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "attempted"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "25",
+"next_id": "24",
+"next_id_after": "25",
+"type": "condition"
+},
+"24": {
+"next_id": "37",
+"parent_id": "23",
+"type": "goto"
+},
+"25": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "attempted"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_conditional_id": "27",
+"next_id": "26",
+"next_id_after": "27",
+"type": "condition"
+},
+"26": {
+"next_id": "48",
+"parent_id": "25",
+"type": "goto"
+},
+"27": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "attempted"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "29",
+"next_id": "28",
+"next_id_after": "29",
+"type": "condition"
+},
+"28": {
+"next_id": "42",
+"parent_id": "27",
+"type": "goto"
+},
+"29": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "attempted"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_conditional_id": "end",
+"next_id": "30",
+"next_id_after": "end",
+"type": "condition"
+},
+"3": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "sleeping"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "4",
+"type": "mutation"
+},
+"30": {
+"next_id": "56",
+"parent_id": "29",
+"type": "goto"
+},
+"32": {
+"next_id": "33",
+"text": "pet",
+"type": "title"
+},
+"33": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "34",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're not so bad when you're sleeping.",
+"translation_key": "You're not so bad when you're sleeping.",
+"type": "dialogue"
+},
+"34": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "end",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You pet the cat[/i]",
+"translation_key": "[i]You pet the cat[/i]",
+"type": "dialogue"
+},
+"36": {
+"next_id": "37",
+"text": "subsequent_meet",
+"type": "title"
+},
+"37": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "38",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're still a sweet little kitty aren't you?",
+"translation_key": "You're still a sweet little kitty aren't you?",
+"type": "dialogue"
+},
+"38": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "39",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat purrs at you[/i]",
+"translation_key": "[i]The cat purrs at you[/i]",
+"type": "dialogue"
+},
+"39": {
+"next_id": "end",
+"type": "goto"
+},
+"4": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "5",
+"type": "mutation"
+},
+"41": {
+"next_id": "42",
+"text": "not_attempted_feral",
+"type": "title"
+},
+"42": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "43",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're a feisty thing aren't you?",
+"translation_key": "You're a feisty thing aren't you?",
+"type": "dialogue"
+},
+"43": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "44",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Maybe you should try decaf.",
+"translation_key": "Maybe you should try decaf.",
+"type": "dialogue"
+},
+"44": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "45",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat meows at you[/i]",
+"translation_key": "[i]The cat meows at you[/i]",
+"type": "dialogue"
+},
+"45": {
+"next_id": "end",
+"type": "goto"
+},
+"47": {
+"next_id": "48",
+"text": "attempted_not_feral",
+"type": "title"
+},
+"48": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "49",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're never going to let me have that floppy disk are you?",
+"translation_key": "You're never going to let me have that floppy disk are you?",
+"type": "dialogue"
+},
+"49": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "50",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat looks at you with big pouty eyes[/i]",
+"translation_key": "[i]The cat looks at you with big pouty eyes[/i]",
+"type": "dialogue"
+},
+"5": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "attempted"
+} ], [ {
+"type": "bool",
+"value": false
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "6",
+"type": "mutation"
+},
+"50": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "51",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "But I NEED it",
+"translation_key": "But I NEED it",
+"type": "dialogue"
+},
+"51": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "52",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat lets out a throaty growl[/i]",
+"translation_key": "[i]The cat lets out a throaty growl[/i]",
+"type": "dialogue"
+},
+"52": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "53",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine! Have it your way.",
+"translation_key": "Fine! Have it your way.",
+"type": "dialogue"
+},
+"53": {
+"next_id": "end",
+"type": "goto"
+},
+"55": {
+"next_id": "56",
+"text": "attempted_feral",
+"type": "title"
+},
+"56": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "57",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Okay, you little monster. You're not going to let me have that floppy disk, are you?",
+"translation_key": "Okay, you little monster. You're not going to let me have that floppy disk, are you?",
+"type": "dialogue"
+},
+"57": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "58",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat meows[/i]",
+"translation_key": "[i]The cat meows[/i]",
+"type": "dialogue"
+},
+"58": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "59",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Oh, I'll be back. You can count on that.",
+"translation_key": "Oh, I'll be back. You can count on that.",
+"type": "dialogue"
+},
+"59": {
+"next_id": "end",
+"type": "goto"
+},
+"6": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "complete"
+} ], [ {
+"type": "bool",
+"value": false
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "7",
+"type": "mutation"
+},
+"7": {
+"next_id": "17",
+"type": "goto"
+},
+"9": {
+"next_id": "10",
+"text": "first_meet",
+"type": "title"
+}
+}
