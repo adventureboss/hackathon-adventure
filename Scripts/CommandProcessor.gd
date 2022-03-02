@@ -79,7 +79,8 @@ func walk (second_word: String) -> String:
 		return "WALK where?"
 	
 	if current_room.exits.keys().has(second_word):
-		var change_response = change_room(current_room.exits[second_word])
+		var exit = current_room.exits[second_word]
+		var change_response = change_room(exit.get_other_room(current_room))
 		return PoolStringArray([ "You WALK %s." % second_word, change_response ]).join("\n")
 	else:
 		return "This room has no exit in that direction!"

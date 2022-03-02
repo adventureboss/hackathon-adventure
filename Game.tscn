@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scripts/CommandProcessor.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
-[ext_resource path="res://Dialogs/associate.tres" type="Resource" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -56,12 +55,7 @@ margin_right = 1001.0
 margin_bottom = -448.0
 room_name = "Lobby"
 room_description = "You stand in the Lobby of the convention center. It's definitely a tech conference based on the sheer quantity of nerds hanging around. You see velvet ropes guiding attendees to the check-in desk. To the east and west are hallways leading deeper into the convention center.
-"
 talk_to_dictionary = {
-"associate": {
-"main": "associate_main",
-"resource": ExtResource( 8 )
-}
 }
 
 [node name="EastEntrance" parent="RoomManager" instance=ExtResource( 6 )]
@@ -70,8 +64,7 @@ margin_top = -707.0
 margin_right = 1282.0
 margin_bottom = -464.0
 room_name = "East Entrance"
-room_description = "The entrance to the east hallway is guarded by a badge checker. He's a big guy. He could probably pick you up with one hand if you start any shenanigans. 
-"
+room_description = "The entrance to the east hallway is guarded by a badge checker. He's a big guy. He could probably pick you up with one hand if you start any shenanigans."
 talk_to_dictionary = {
 }
 
