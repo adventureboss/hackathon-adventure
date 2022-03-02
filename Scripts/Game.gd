@@ -17,6 +17,7 @@ onready var scrollbar = scroll.get_v_scrollbar()
 
 onready var rows = $Background/MarginContainer/Rows
 onready var input_area = $Background/MarginContainer/Rows/InputArea/HBoxContainer/Input
+onready var inventory_list = $Background/MarginContainer/Rows/HBoxContainer/Inventory/VBoxContainer/InventoryList
 
 onready var game_state = get_node("/root/GameState")
 
@@ -30,6 +31,7 @@ func _ready() -> void:
 	#create_response("You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North.")
 
 	game_state.connect("show_dialogue", self, "show_dialogue")
+	game_state.connect("items_updated", self, "update_items")
 	var starting_room_response = command_processor.initialize(room_manager.get_child(0))
 	create_response(starting_room_response)
 
@@ -57,6 +59,11 @@ func show_dialogue(resource: DialogueResource, title: String) -> void:
 	else:
 		self.set_input_status(true)
 		scroll.show()
+
+func update_items(items) -> void:
+	inventory_list.clear()
+	for item in items:
+		inventory_list.add_item(item.display_name)
 
 
 func delete_history_beyond_limit():
