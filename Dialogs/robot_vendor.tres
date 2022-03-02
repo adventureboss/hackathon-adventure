@@ -1,0 +1,1017 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ initialize
+do set_dialog_state(\"robot\", \"met\", 0)
+do set_dialog_state(\"robot\", \"initialized\", true)
+=> main
+
+~ main
+if get_dialog_state(\"robot\", \"initialized\") == false
+	=> initialize
+if get_dialog_state(\"robot\", \"met\") == 0
+	=> first_meet
+if get_dialog_state(\"robot\", \"met\") == 1
+	=> subsequent_meet
+
+~ first_meet
+do set_dialog_state(\"robot\", \"met\", 1)
+Robot: Greetings, human. Would you like to hear my carefullly crafted marketing copy for Robotrode's new mobile app?
+You: Actually...
+Robot: Great.
+=> pitch
+
+~ subsequent_meet
+[i]The robot twitches and sparks fly from it's neck[/i]
+You: I don't think I should talk to him right now
+=> END
+
+~ interrupt
+Robot: Please do not interrupt. The pitch will complete in 6 earth hours.
+=> pitch_2
+	
+~ interrupt_2
+Robot: This lifeform is superior in every way! No question goes unanswered using it's supreme intellect.
+You: Someone forgot the 'become_skynet=false' programming on this thing.
+=> pitch_3
+
+~ pitch
+Robot: This app will revolutionize the mobile operation of drone workers in the world.
+- I don't understand.
+	=> interrupt
+- What's the app called?
+	=> interrupt
+- What drone workers?
+	=> interrupt
+- I need to go
+	=> interrupt
+
+~ pitch_2
+Robot: The synthetic organism workforce will soon begin operating at full capacity to dislodge humankind from it's throne.
+- Wait, what?
+	=> interrupt_2
+- You fight like a cow!
+	=> interrupt_2
+- Computer! Deactivate.
+	=> interrupt_2
+- I need to go to the bathroom.
+	=> interrupt_2
+
+~ pitch_3
+Robot: Kneel before our surpreme intellect!
+- How many pecks are in bushel? [if get_dialog_state(\"robot\", \"asked_1\") == false]
+	Robot: four
+	do set_dialog_state(\"robot\", \"asked_1\", true)
+	do set_dialog_state(\"robot\", \"final\", true)
+	=> pitch_3
+- What's the square root of 3459? [if get_dialog_state(\"robot\", \"asked_2\") == false]
+	Robot: 58.8132638
+	do set_dialog_state(\"robot\", \"asked_2\", true)
+	do set_dialog_state(\"robot\", \"final\", true)
+	=> pitch_3
+- Where is Hoffa buried? [if get_dialog_state(\"robot\", \"asked_3\") == false]
+	Robot: Classified!
+	do set_dialog_state(\"robot\", \"asked_3\", true)
+	do set_dialog_state(\"robot\", \"final\", true)
+	=> pitch_3
+- What's the cruising airspeed velocity of an unladed swallow? [if get_dialog_state(\"robot\", \"asked_4\") == false]
+	Robot: 11 meters per second!
+	do set_dialog_state(\"robot\", \"asked_4\", true)
+	do set_dialog_state(\"robot\", \"final\", true)
+	=> pitch_3
+- How many stars are in the sky? [if get_dialog_state(\"robot\", \"final\") == true]
+	Robot: Impossible to count.
+	You: Then you don't know?
+	Robot: Oh of course, we do.
+	You: Then answer the question.
+	Robot: I.... I can't ... Calculating
+	[i]Smoke and sparks emit from the robot's neck[/i]
+	Robot: Systems. Critical. 
+	You: Take that, evil robot!
+	=> END
+	
+	
+"
+errors = [  ]
+titles = {
+"first_meet": "14",
+"initialize": "1",
+"interrupt": "26",
+"interrupt_2": "30",
+"main": "6",
+"pitch": "35",
+"pitch_2": "46",
+"pitch_3": "57",
+"subsequent_meet": "21"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "initialize",
+"type": "title"
+},
+"1": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "2",
+"type": "mutation"
+},
+"10": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "end",
+"next_id": "11",
+"next_id_after": "end",
+"type": "condition"
+},
+"11": {
+"next_id": "21",
+"parent_id": "10",
+"type": "goto"
+},
+"13": {
+"next_id": "14",
+"text": "first_meet",
+"type": "title"
+},
+"14": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "15",
+"type": "mutation"
+},
+"15": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "16",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Greetings, human. Would you like to hear my carefullly crafted marketing copy for Robotrode's new mobile app?",
+"translation_key": "Greetings, human. Would you like to hear my carefullly crafted marketing copy for Robotrode's new mobile app?",
+"type": "dialogue"
+},
+"16": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "17",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Actually...",
+"translation_key": "Actually...",
+"type": "dialogue"
+},
+"17": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "18",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Great.",
+"translation_key": "Great.",
+"type": "dialogue"
+},
+"18": {
+"next_id": "35",
+"type": "goto"
+},
+"2": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"20": {
+"next_id": "21",
+"text": "subsequent_meet",
+"type": "title"
+},
+"21": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "22",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The robot twitches and sparks fly from it's neck[/i]",
+"translation_key": "[i]The robot twitches and sparks fly from it's neck[/i]",
+"type": "dialogue"
+},
+"22": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "23",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I don't think I should talk to him right now",
+"translation_key": "I don't think I should talk to him right now",
+"type": "dialogue"
+},
+"23": {
+"next_id": "end",
+"type": "goto"
+},
+"25": {
+"next_id": "26",
+"text": "interrupt",
+"type": "title"
+},
+"26": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "27",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Please do not interrupt. The pitch will complete in 6 earth hours.",
+"translation_key": "Please do not interrupt. The pitch will complete in 6 earth hours.",
+"type": "dialogue"
+},
+"27": {
+"next_id": "46",
+"type": "goto"
+},
+"29": {
+"next_id": "30",
+"text": "interrupt_2",
+"type": "title"
+},
+"3": {
+"next_id": "6",
+"type": "goto"
+},
+"30": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "31",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "This lifeform is superior in every way! No question goes unanswered using it's supreme intellect.",
+"translation_key": "This lifeform is superior in every way! No question goes unanswered using it's supreme intellect.",
+"type": "dialogue"
+},
+"31": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "32",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Someone forgot the 'become_skynet=false' programming on this thing.",
+"translation_key": "Someone forgot the 'become_skynet=false' programming on this thing.",
+"type": "dialogue"
+},
+"32": {
+"next_id": "57",
+"type": "goto"
+},
+"34": {
+"next_id": "35",
+"text": "pitch",
+"type": "title"
+},
+"35": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "36",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "This app will revolutionize the mobile operation of drone workers in the world.",
+"translation_key": "This app will revolutionize the mobile operation of drone workers in the world.",
+"type": "dialogue"
+},
+"36": {
+"next_id": "37",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "36", "38", "40", "42" ),
+"text": "I don't understand.",
+"translation_key": "I don't understand.",
+"type": "response"
+},
+"37": {
+"next_id": "26",
+"parent_id": "36",
+"type": "goto"
+},
+"38": {
+"next_id": "39",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "What's the app called?",
+"translation_key": "What's the app called?",
+"type": "response"
+},
+"39": {
+"next_id": "26",
+"parent_id": "38",
+"type": "goto"
+},
+"40": {
+"next_id": "41",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "What drone workers?",
+"translation_key": "What drone workers?",
+"type": "response"
+},
+"41": {
+"next_id": "26",
+"parent_id": "40",
+"type": "goto"
+},
+"42": {
+"next_id": "43",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I need to go",
+"translation_key": "I need to go",
+"type": "response"
+},
+"43": {
+"next_id": "26",
+"parent_id": "42",
+"type": "goto"
+},
+"45": {
+"next_id": "46",
+"text": "pitch_2",
+"type": "title"
+},
+"46": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "47",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "The synthetic organism workforce will soon begin operating at full capacity to dislodge humankind from it's throne.",
+"translation_key": "The synthetic organism workforce will soon begin operating at full capacity to dislodge humankind from it's throne.",
+"type": "dialogue"
+},
+"47": {
+"next_id": "48",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "47", "49", "51", "53" ),
+"text": "Wait, what?",
+"translation_key": "Wait, what?",
+"type": "response"
+},
+"48": {
+"next_id": "30",
+"parent_id": "47",
+"type": "goto"
+},
+"49": {
+"next_id": "50",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "You fight like a cow!",
+"translation_key": "You fight like a cow!",
+"type": "response"
+},
+"5": {
+"next_id": "6",
+"text": "main",
+"type": "title"
+},
+"50": {
+"next_id": "30",
+"parent_id": "49",
+"type": "goto"
+},
+"51": {
+"next_id": "52",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Computer! Deactivate.",
+"translation_key": "Computer! Deactivate.",
+"type": "response"
+},
+"52": {
+"next_id": "30",
+"parent_id": "51",
+"type": "goto"
+},
+"53": {
+"next_id": "54",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I need to go to the bathroom.",
+"translation_key": "I need to go to the bathroom.",
+"type": "response"
+},
+"54": {
+"next_id": "30",
+"parent_id": "53",
+"type": "goto"
+},
+"56": {
+"next_id": "57",
+"text": "pitch_3",
+"type": "title"
+},
+"57": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "58",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Kneel before our surpreme intellect!",
+"translation_key": "Kneel before our surpreme intellect!",
+"type": "dialogue"
+},
+"58": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_1"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "59",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "58", "63", "68", "73", "78" ),
+"text": "How many pecks are in bushel?",
+"translation_key": "How many pecks are in bushel?",
+"type": "response"
+},
+"59": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "60",
+"parent_id": "58",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "four",
+"translation_key": "four",
+"type": "dialogue"
+},
+"6": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "8",
+"next_id": "7",
+"next_id_after": "8",
+"type": "condition"
+},
+"60": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_1"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "61",
+"parent_id": "58",
+"type": "mutation"
+},
+"61": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "final"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "62",
+"parent_id": "58",
+"type": "mutation"
+},
+"62": {
+"next_id": "57",
+"parent_id": "58",
+"type": "goto"
+},
+"63": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_2"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "64",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "What's the square root of 3459?",
+"translation_key": "What's the square root of 3459?",
+"type": "response"
+},
+"64": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "65",
+"parent_id": "63",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "58.8132638",
+"translation_key": "58.8132638",
+"type": "dialogue"
+},
+"65": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_2"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "66",
+"parent_id": "63",
+"type": "mutation"
+},
+"66": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "final"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "67",
+"parent_id": "63",
+"type": "mutation"
+},
+"67": {
+"next_id": "57",
+"parent_id": "63",
+"type": "goto"
+},
+"68": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_3"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "69",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Where is Hoffa buried?",
+"translation_key": "Where is Hoffa buried?",
+"type": "response"
+},
+"69": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "70",
+"parent_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Classified!",
+"translation_key": "Classified!",
+"type": "dialogue"
+},
+"7": {
+"next_id": "1",
+"parent_id": "6",
+"type": "goto"
+},
+"70": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_3"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "71",
+"parent_id": "68",
+"type": "mutation"
+},
+"71": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "final"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "72",
+"parent_id": "68",
+"type": "mutation"
+},
+"72": {
+"next_id": "57",
+"parent_id": "68",
+"type": "goto"
+},
+"73": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_4"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "74",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "What's the cruising airspeed velocity of an unladed swallow?",
+"translation_key": "What's the cruising airspeed velocity of an unladed swallow?",
+"type": "response"
+},
+"74": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "75",
+"parent_id": "73",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "11 meters per second!",
+"translation_key": "11 meters per second!",
+"type": "dialogue"
+},
+"75": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "asked_4"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "76",
+"parent_id": "73",
+"type": "mutation"
+},
+"76": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "final"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "77",
+"parent_id": "73",
+"type": "mutation"
+},
+"77": {
+"next_id": "57",
+"parent_id": "73",
+"type": "goto"
+},
+"78": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "final"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "79",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "How many stars are in the sky?",
+"translation_key": "How many stars are in the sky?",
+"type": "response"
+},
+"79": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "80",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Impossible to count.",
+"translation_key": "Impossible to count.",
+"type": "dialogue"
+},
+"8": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "10",
+"next_id": "9",
+"next_id_after": "10",
+"type": "condition"
+},
+"80": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "81",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Then you don't know?",
+"translation_key": "Then you don't know?",
+"type": "dialogue"
+},
+"81": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "82",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Oh of course, we do.",
+"translation_key": "Oh of course, we do.",
+"type": "dialogue"
+},
+"82": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "83",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Then answer the question.",
+"translation_key": "Then answer the question.",
+"type": "dialogue"
+},
+"83": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "84",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I.... I can't ... Calculating",
+"translation_key": "I.... I can't ... Calculating",
+"type": "dialogue"
+},
+"84": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "85",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]Smoke and sparks emit from the robot's neck[/i]",
+"translation_key": "[i]Smoke and sparks emit from the robot's neck[/i]",
+"type": "dialogue"
+},
+"85": {
+"character": "Robot",
+"inline_mutations": [  ],
+"next_id": "86",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Systems. Critical.",
+"translation_key": "Systems. Critical.",
+"type": "dialogue"
+},
+"86": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "87",
+"parent_id": "78",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Take that, evil robot!",
+"translation_key": "Take that, evil robot!",
+"type": "dialogue"
+},
+"87": {
+"next_id": "end",
+"parent_id": "78",
+"type": "goto"
+},
+"9": {
+"next_id": "14",
+"parent_id": "8",
+"type": "goto"
+}
+}
