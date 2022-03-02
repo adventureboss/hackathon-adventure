@@ -2,7 +2,6 @@ extends Control
 
 const Response = preload("res://Scenes/Response.tscn")
 const InputResponse = preload("res://Scenes/InputResponse.tscn")
-const Item = preload("res://Scenes/Item.tscn")
 
 export (int) var max_lines_remembered := 20
 
