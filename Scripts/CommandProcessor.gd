@@ -84,7 +84,7 @@ func use (second_word: String) -> String:
 
 	var actor = get_actor(second_word)
 	if actor != null:
-		return PoolStringArray([ "You USE %s" % second_word, actor.use() ]).join("\n")
+		return PoolStringArray([ "You USE %s" % second_word, actor.use("self") ]).join("\n")
 	else:
 		return "%s can't be picked up" % second_word
 

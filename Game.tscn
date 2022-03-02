@@ -13,6 +13,12 @@
 [ext_resource path="res://Scripts/items/doors_entrance.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/ropes.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/desk.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/items/pamphlets.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/npc/event_coordinator.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/items/stage.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/items/seats.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/npc/guard_east_hallway.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/items/east_hallway.gd" type="Script" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -92,6 +98,14 @@ room_description = "The entrance to the east hallway is guarded by a badge check
 talk_to_dictionary = {
 }
 
+[node name="guard" type="Node" parent="RoomManager/EastEntrance"]
+script = ExtResource( 18 )
+display_name = "Guard"
+
+[node name="hallway" type="Node" parent="RoomManager/EastEntrance"]
+script = ExtResource( 19 )
+display_name = "East hallway"
+
 [node name="WestEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 257.0
 margin_top = -706.0
@@ -111,6 +125,22 @@ room_name = "Ballroom"
 room_description = "You are standing in the room of the main event. The gem of the entire conference. The Keynote Ballroom. There is a large stage, rows and rows of seats with pamphlets on them, and a person standing near a projector machine pulling at their hair."
 talk_to_dictionary = {
 }
+
+[node name="pamphlets" type="Node" parent="RoomManager/Ballroom"]
+script = ExtResource( 14 )
+display_name = "Pamphlets"
+
+[node name="person" type="Node" parent="RoomManager/Ballroom"]
+script = ExtResource( 15 )
+display_name = "Person"
+
+[node name="stage" type="Node" parent="RoomManager/Ballroom"]
+script = ExtResource( 16 )
+display_name = "Stage"
+
+[node name="seats" type="Node" parent="RoomManager/Ballroom"]
+script = ExtResource( 17 )
+display_name = "Seats"
 
 [node name="EastHall" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1332.0
