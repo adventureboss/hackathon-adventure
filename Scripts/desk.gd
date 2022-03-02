@@ -9,5 +9,5 @@ func pick_up():
 	return "That's waaaay too heavy for me"
 
 
-func use():
+func use(with):
 	return "I don't think so"

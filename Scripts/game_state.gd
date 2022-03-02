@@ -13,6 +13,22 @@ func _init():
 	badge.display_name = "Badge"
 	_global_items["badge"] = badge
 	
+	var pamphlet = load("res://Scripts/items/pamphlets.gd").new()
+	pamphlet.display_name = "Pamphlet"
+	_global_items["pamphlet"] = pamphlet
+	
+	var drink_vouchers = load("res://Scripts/items/drink_vouchers.gd").new()
+	drink_vouchers.display_name = "Drink vouchers"
+	_global_items["drink_vouchers"] = drink_vouchers
+	
+	var ash_badge = load("res://Scripts/items/ash_badge.gd").new()
+	ash_badge.display_name = "Ash Badge"
+	_global_items["ash_badge"] = ash_badge
+	
+	var lens = load("res://Scripts/items/lens.gd").new()
+	lens.display_name = "Lens"
+	_global_items["lens"] = lens
+	
 	# set player default state
 	set_dialog_state("player", "caffeinated", 0)
 	set_dialog_state("player", "east_clear", 0)
