@@ -1,6 +1,6 @@
 extends Node
 
-signal show_dialogue(dialogue)
+const Actor = preload("res://Scripts/actor.gd")
 
 var current_room = null
 
@@ -48,12 +48,21 @@ func process_command(input: String):
 			return "Unrecognized command - Please try again."
 
 
+func get_actor(item: String) -> Actor:
+	for child in current_room.get_children():
+		if child.name == item:
+			return child
+
+	return null
+
+
 func talkTo (third_word: String) -> String:
 	if third_word == "":
 		return "TALK TO who?"
 	
-	if current_room.talk_to_dictionary.has(third_word):
-		emit_signal("show_dialogue", current_room.talk_to_dictionary[third_word].get("resource"), current_room.talk_to_dictionary[third_word].get("main"))
+	var actor = get_actor(third_word)
+	if actor != null:
+		actor.talk_to()
 	else:
 		return "%s is unable to speak at this time." % third_word
 

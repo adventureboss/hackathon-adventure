@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/CommandProcessor.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/npc/associate.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -57,6 +58,9 @@ room_name = "Lobby"
 room_description = "You stand in the Lobby of the convention center. It's definitely a tech conference based on the sheer quantity of nerds hanging around. You see velvet ropes guiding attendees to the check-in desk. To the east and west are hallways leading deeper into the convention center."
 talk_to_dictionary = {
 }
+
+[node name="associate" type="Node" parent="RoomManager/Lobby"]
+script = ExtResource( 10 )
 
 [node name="EastEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1020.0

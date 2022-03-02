@@ -1,5 +1,7 @@
 extends Node
 
+signal show_dialogue(dialog_file, dialog_entry)
+
 var _dialog_state: Dictionary = {}
 var _items = []
 
@@ -32,3 +34,5 @@ func handle_quest_turnin(item_value):
 	var result = item_number + item_value
 	return result
 
+func show_dialogue(dialogue: Resource, entry: String):
+	emit_signal("show_dialogue", dialogue, entry)
