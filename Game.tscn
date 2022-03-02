@@ -108,6 +108,16 @@ room_description = "The vendor hall is an enormous room filled with different ve
 talk_to_dictionary = {
 }
 
+[node name="SessionRoom" parent="RoomManager" instance=ExtResource( 6 )]
+margin_left = 1388.0
+margin_top = -410.0
+margin_right = 1705.0
+margin_bottom = -147.0
+room_name = "Session Room"
+room_description = "The session room! Where tired attendees come to listen to someone drone while they catch a quick nap. The room is empty right now aside from a few napping nerds and a lonely podium."
+talk_to_dictionary = {
+}
+
 [node name="Background" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
