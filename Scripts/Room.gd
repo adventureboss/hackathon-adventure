@@ -20,10 +20,11 @@ func set_room_description(new_description: String):
 	room_description = new_description
 
 
-func connect_exit(direction: String, room: GameRoom):
+func connect_exit(direction: String, room: GameRoom, is_locked: bool = false):
 	var exit = Exit.new()
 	exit.room_1 = self
 	exit.room_2 = room
+	exit.exit_is_locked = is_locked
 	exits[direction] = exit
 	match direction:
 		"west":
