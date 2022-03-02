@@ -80,7 +80,11 @@ func use (second_word: String) -> String:
 	if second_word == "":
 		return "USE what?"
 
-	return "You USE %s" % second_word
+	var actor = get_actor(second_word)
+	if actor != null:
+		return PoolStringArray([ "You USE %s" % second_word, actor.use() ]).join("\n")
+	else:
+		return "%s can't be picked up" % second_word
 
 
 func walk (second_word: String) -> String:
@@ -101,11 +105,19 @@ func pickUp (third_word: String) -> String:
 	if third_word == "":
 		return "PICK UP what?"
 
-	return "You PICK UP %s" % third_word
+	var actor = get_actor(third_word)
+	if actor != null:
+		return PoolStringArray([ "You PICK UP %s" % third_word, actor.pick_up() ]).join("\n")
+	else:
+		return "%s can't be picked up" % third_word
 
 
 func lookAt (third_word: String) -> String:
 	if third_word == "":
 		return "LOOK AT what?"
-
-	return "You LOOK AT %s" % third_word
+	
+	var actor = get_actor(third_word)
+	if actor != null:
+		return PoolStringArray([ "You LOOK AT %s" % third_word, actor.look_at() ]).join("\n")
+	else:
+		return "%s can't be looked at, it is unseeable" % third_word
