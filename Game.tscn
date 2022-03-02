@@ -17,6 +17,8 @@
 [ext_resource path="res://Scripts/npc/event_coordinator.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/items/stage.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/items/seats.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/npc/guard_east_hallway.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/items/east_hallway.gd" type="Script" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -95,6 +97,14 @@ room_name = "East Entrance"
 room_description = "The entrance to the east hallway is guarded by a badge checker. He's a big guy. He could probably pick you up with one hand if you start any shenanigans."
 talk_to_dictionary = {
 }
+
+[node name="guard" type="Node" parent="RoomManager/EastEntrance"]
+script = ExtResource( 18 )
+display_name = "Guard"
+
+[node name="hallway" type="Node" parent="RoomManager/EastEntrance"]
+script = ExtResource( 19 )
+display_name = "East hallway"
 
 [node name="WestEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 257.0
