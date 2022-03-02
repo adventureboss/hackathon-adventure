@@ -29,6 +29,7 @@ func _init():
 	lens.display_name = "Lens"
 	_global_items["lens"] = lens
 	
+	
 	# set player default state
 	set_dialog_state("player", "caffeinated", 0)
 	set_dialog_state("player", "east_clear", 0)

@@ -2,6 +2,8 @@ extends Node
 
 const Actor = preload("res://Scripts/actor.gd")
 
+onready var game_state: GameState = get_node("/root/GameState")
+
 var current_room = null
 
 
@@ -25,17 +27,20 @@ func process_command(input: String):
 	var first_word = words[0].to_lower()
 	var second_word = ""
 	var third_word = ""
+	var fourth_word = ""
 
 	if words.size() > 1:
 		second_word = words[1].to_lower()
 	if words.size() > 2:
 		third_word = words[2].to_lower()
+	if words.size() > 3:
+		fourth_word = words[3].to_lower()
 
 	match first_word:
 		"talk":
 			return talkTo(third_word)
 		"give":
-			return give(second_word)
+			return give(second_word, third_word, fourth_word)
 		"use":
 			return use(second_word)
 		"walk":
@@ -71,11 +76,24 @@ func talkTo (third_word: String) -> String:
 	return "You TALK TO %s" % third_word
 
 
-func give (second_word: String) -> String:
+func give (second_word: String, third_word: String, fourth_word: String) -> String:
 	if second_word == "":
 		return "GIVE what?"
 
-	return "You GIVE %s" % second_word
+	if third_word == "":
+		return "GIVE %s <to> <something>" % second_word
+
+	if fourth_word == "":
+		return "GIVE %s to what?" % second_word
+		
+	if game_state.has_item(second_word) == false:
+		return "I don't have %s" % second_word
+
+	var actor = get_actor(fourth_word)
+	if actor != null:
+		return PoolStringArray([ "You GIVE %s to %s" % [second_word, fourth_word], actor.give(second_word) ]).join("\n")
+	else:
+		return "Can't give an item to %s" % fourth_word
 
 
 func use (second_word: String) -> String:
