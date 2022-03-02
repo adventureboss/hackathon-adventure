@@ -105,18 +105,16 @@ margin_right = 1677.0
 margin_bottom = -731.0
 room_name = "Vendor Hall"
 room_description = "The vendor hall is an enormous room filled with different vendors trying to pitch their wares to people who just want their t-shirts. From the entrance, you're able to see a widget vendor, a software vendor, and a robot vendor. Like really, it's a robot who is also a vendor."
-"
 talk_to_dictionary = {
 }
 
 [node name="SessionRoom" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 1372.0
-margin_top = -390.0
-margin_right = 1636.0
-margin_bottom = -118.0
+margin_left = 1388.0
+margin_top = -410.0
+margin_right = 1705.0
+margin_bottom = -147.0
 room_name = "Session Room"
 room_description = "The session room! Where tired attendees come to listen to someone drone while they catch a quick nap. The room is empty right now aside from a few napping nerds and a lonely podium."
-"
 talk_to_dictionary = {
 }
 
