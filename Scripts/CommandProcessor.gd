@@ -77,9 +77,11 @@ func use (second_word: String) -> String:
 func walk (second_word: String) -> String:
 	if second_word == "":
 		return "WALK where?"
-	
+
 	if current_room.exits.keys().has(second_word):
 		var exit = current_room.exits[second_word]
+		if exit.is_other_room_locked(current_room):
+			return "That exit is currently blocked, you'll need the right badge to get through"
 		var change_response = change_room(exit.get_other_room(current_room))
 		return PoolStringArray([ "You WALK %s." % second_word, change_response ]).join("\n")
 	else:
