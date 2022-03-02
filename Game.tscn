@@ -113,13 +113,13 @@ talk_to_dictionary = {
 }
 
 [node name="guard" type="Node" parent="RoomManager/WestEntrance"]
-script = ExtResource( 11 )
+script = ExtResource( 20 )
 
 [node name="doorway" type="Node" parent="RoomManager/WestEntrance"]
-script = ExtResource( 12 )
+script = ExtResource( 21 )
 
 [node name="phone" type="Node" parent="RoomManager/WestEntrance"]
-script = ExtResource( 13 )
+script = ExtResource( 22 )
 
 [node name="Ballroom" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = -75.0
