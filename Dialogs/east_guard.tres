@@ -117,13 +117,21 @@ do set_dialog_state(\"player\", \"east_clear\", 2)
 
 ~ cleared_final
 The guard just grunts and ignores you
-=> END"
+=> END
+
+~ give
+You: Here's my badge!
+East Guard: Fine, fine. You can go on in.
+do set_dialog_state(\"player\", \"east_clear\", 1)
+=> END
+"
 errors = [  ]
 titles = {
 "cleared": "104",
 "cleared_final": "111",
 "entry_failure": "91",
 "first_meet": "7",
+"give": "115",
 "important": "67",
 "initialize": "1",
 "main": "17",
@@ -255,6 +263,56 @@ lines = {
 "type": "dialogue"
 },
 "112": {
+"next_id": "end",
+"type": "goto"
+},
+"114": {
+"next_id": "115",
+"text": "give",
+"type": "title"
+},
+"115": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "116",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Here's my badge!",
+"translation_key": "Here's my badge!",
+"type": "dialogue"
+},
+"116": {
+"character": "East Guard",
+"inline_mutations": [  ],
+"next_id": "117",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine, fine. You can go on in.",
+"translation_key": "Fine, fine. You can go on in.",
+"type": "dialogue"
+},
+"117": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "118",
+"type": "mutation"
+},
+"118": {
 "next_id": "end",
 "type": "goto"
 },
