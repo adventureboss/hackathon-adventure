@@ -62,10 +62,12 @@ func talkTo (third_word: String) -> String:
 	
 	var actor = get_actor(third_word)
 	if actor != null:
-		actor.talk_to()
+		var response = actor.talk_to()
+		if response != null:
+			return response
 	else:
 		return "%s is unable to speak at this time." % third_word
-
+		
 	return "You TALK TO %s" % third_word
 
 

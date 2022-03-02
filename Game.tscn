@@ -8,9 +8,11 @@
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
 [ext_resource path="res://Fonts/plex_mono_16.tres" type="DynamicFont" id=8]
-[ext_resource path="res://Scripts/ropes.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/desk.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/npc/nerds_entrance.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/npc/associate.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/items/doors_entrance.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/ropes.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/desk.gd" type="Script" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -52,6 +54,14 @@ room_description = "You have arrived at Purple Beret Con! A gathering of nerds f
 talk_to_dictionary = {
 }
 
+[node name="nerds" type="Node" parent="RoomManager/Entrance"]
+script = ExtResource( 9 )
+display_name = "Nerds"
+
+[node name="doors" type="Node" parent="RoomManager/Entrance"]
+script = ExtResource( 11 )
+display_name = "Doors"
+
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 534.0
 margin_top = -737.0
@@ -67,10 +77,10 @@ script = ExtResource( 10 )
 display_name = "Associate"
 
 [node name="ropes" type="Node" parent="RoomManager/Lobby"]
-script = ExtResource( 8 )
+script = ExtResource( 12 )
 
 [node name="desk" type="Node" parent="RoomManager/Lobby"]
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 
 [node name="EastEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1020.0
