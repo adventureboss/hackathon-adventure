@@ -2,7 +2,6 @@ extends Control
 
 const Response = preload("res://Scenes/Response.tscn")
 const InputResponse = preload("res://Scenes/InputResponse.tscn")
-var dialog_resource = preload("res://Dialogs/associate.tres")
 
 export (int) var max_lines_remembered := 20
 
@@ -18,7 +17,8 @@ onready var scrollbar = scroll.get_v_scrollbar()
 
 onready var rows = $Background/MarginContainer/Rows
 onready var input_area = $Background/MarginContainer/Rows/InputArea/HBoxContainer/Input
-onready var bottom_area = $Background/MarginContainer/Rows/BottomArea
+
+onready var game_state = get_node("/root/GameState")
 
 var input_status_enabled: bool = true
 
@@ -29,8 +29,7 @@ func _ready() -> void:
 
 	#create_response("You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North.")
 
-	# main room dialog?
-	command_processor.connect("show_dialogue", self, "show_dialogue")
+	game_state.connect("show_dialogue", self, "show_dialogue")
 	var starting_room_response = command_processor.initialize(room_manager.get_child(0))
 	create_response(starting_room_response)
 
@@ -78,7 +77,8 @@ func set_input_status(is_enabled: bool):
 		input_area.show()
 	else:
 		input_area.hide()
-	
+
+
 func _on_Input_text_entered(new_text: String) -> void:
 	if new_text.empty():
 		return
