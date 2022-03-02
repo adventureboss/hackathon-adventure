@@ -1,19 +1,37 @@
 extends Node
 
 signal show_dialogue(dialog_file, dialog_entry)
+signal items_updated(items)
+
+var _global_items = {}
 
 var _dialog_state: Dictionary = {}
 var _items = []
 
+func _init():
+	var badge = load("res://Scripts/items/badge.gd").new()
+	badge.display_name = "Badge"
+	_global_items["badge"] = badge
+
+func _get_item(item_or_name):
+	if typeof(item_or_name) == TYPE_STRING:
+		var item = _global_items[item_or_name]
+		assert(item != null, "Unknown item used")
+		return item
+	return item_or_name
+
+
 func add_item(item):
-	self._items.append(item)
+	self._items.append(_get_item(item))
+	emit_signal("items_updated", _items)
 
 func has_item(item):
-	return self._items.has(item)
+	return self._items.has(_get_item(item))
 
 func remove_item(item):
-	var i = _items.find(item)
+	var i = _items.find(_get_item(item))
 	_items.remove(i)
+	emit_signal("items_updated", _items)
 	
 func set_dialog_state(actor: String, variable: String, value):
 	if not self._dialog_state.has(actor):

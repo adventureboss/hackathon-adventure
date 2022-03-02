@@ -1,6 +1,7 @@
 extends Node
 
 onready var game_state: GameState = get_node("/root/GameState")
+export var display_name: String
 
 func talk_to() -> String:
 	return "generic talk to response"
