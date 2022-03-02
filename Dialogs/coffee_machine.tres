@@ -1,0 +1,1267 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ initialize
+do set_dialog_state(\"coffee_machine\", \"met\", 0)
+do set_dialog_state(\"coffee_machine\", \"cup\", 0)
+do set_dialog_state(\"coffee_machine\", \"initialized\", true)
+=> main
+
+~ first_meet
+Coffee Machine: Greetings, stranger! I'm a coffee machine!
+You: Whoa! You talk?
+Coffee Machine: Only the fanciest coffee for the fanciest tech con in the world?
+[i]You glance around at the standard temporary walls and slightly stained floor.[/i]
+Coffee Machine: Look, it's not perfect. I'm doing my best here.
+Coffee Machine: Can I interest you in a cup of our finest coffee? Brewed from the STRONGEST beans on the market?
+You: How strong are they?
+Coffee Machine: They're illegal in 6 countries.
+You: Sounds ... criminal.
+[i]You and the coffee machine share a hearty laugh, before you stop to question reality itself.[/i]
+do set_dialog_state(\"coffee_machine\", \"met\", 1)
+=> main_chat
+
+~ main
+if get_dialog_state(\"coffee_machine\", \"initialized\") == false
+	=> initialize
+if get_dialog_state(\"coffee_machine\", \"met\") == 0
+	=> first_meet
+if get_dialog_state(\"coffee_machine\", \"met\") == 1
+	
+~ main_chat
+if has_item(\"cup\")
+	=> has_cup
+else
+	=> no_cup
+
+~ has_cup
+=> choices
+
+~ no_cup
+if get_dialog_state(\"coffee_machine\", \"cup\") == 0
+	Coffee Machine: You're, uh, going to need a cup.
+	You: I can't carry the coffee in my hands?
+	Coffee Machine: I would let you, but my parent company won't allow it. 
+	You: Come on, machine! Fight the man.
+	Coffee Machine: I'm trying to save for retirment. The legal battle would just set me back.
+	Coffee Machine: Bring me a cup.
+	do set_dialog_state(\"coffee_machine\", \"cup\", 1)
+	=> END
+if get_dialog_state(\"coffee_machine\", \"cup\") == 1
+	Coffee Machine: Seriously. You need a cup.
+	You: What if I just want beans.
+	Coffee Machine: Oh you can't have these beans. The caffiene content is much too strong for unfiltered consumption.
+	Coffee Machien: Bring a cup
+	do set_dialog_state(\"coffee_machine\", \"cup\", 2)
+	=> END
+if get_dialog_state(\"coffee_machine\", \"cup\") == 2
+	Coffee Machine: We're not doing this again.
+	You: Pleeeeease.
+	Coffee Machine: No. Give me a cup.
+	=> END
+
+
+~ choices
+What can I get for you today?
+- I'll have a Coffee, please.
+	if has_item(\"drink_vouchers\")
+		=> get_coffee
+	else
+		=> need_vouchers
+- I'll have some Tea, please
+	if has_item(\"drink_vouchers\")
+		=> get_tea
+	else
+		=> need_vouchers
+- Just give me some of those illegal beans
+	=> get_beans
+- Eh. Nevermind
+	Coffee Machine: See you next time!
+	=> END
+	
+~ get_beans
+Coffee Machine: Oh, I can't do that.
+You: Come on, no one is watching.
+Coffee Machine: Look. I could get written up for just talking about these beans.
+You: But I NEED those beans.
+Coffee Machine: I don't care. 
+You: Cough them up, machine!
+Coffee Machine: Over my dead body!
+You: Fine!
+=> END
+
+~ get_coffee
+Coffee Machine: One silky smooth cup of joe coming right up.
+[i]The Coffee Machine puts a dark liquid in your cup[/i]
+do remove_item(\"cup\")
+do add_item(\"coffee_cup\")
+You: Smells nutty.
+Coffee Machine: Enjoy!
+=> END
+
+~ get_tea
+Coffee Machine: This is the best tea on earth. Meant to calm the nerves and help even the most high strung person to relax.
+[i]The Coffee machine puts a light brown liquid into the cup[/i]
+Coffee Machine: I put some extra honey in there for some sweetness.
+You: Gee, thanks.
+Coffee Machine: Don't mention it.
+do remove_item(\"cup\")
+do add_item(\"tea_cup\")
+=> END
+
+~ need_vouchers
+Coffee Machine: Ooooh. So sorry. I'm going to need a drink voucher if you're going to get a coffee.
+You: Wait a minute. It's not free?
+Coffee Machine: Well, of course not! I have a family to support.
+You: Hold on ...
+Coffee Machine: Just bring me some vouchers. You're killing me.
+=> END
+
+"
+errors = [  ]
+titles = {
+"choices": "61",
+"first_meet": "7",
+"get_beans": "79",
+"get_coffee": "90",
+"get_tea": "99",
+"has_cup": "34",
+"initialize": "1",
+"main": "21",
+"main_chat": "28",
+"need_vouchers": "109",
+"no_cup": "37"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "initialize",
+"type": "title"
+},
+"1": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "2",
+"type": "mutation"
+},
+"10": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "11",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You glance around at the standard temporary walls and slightly stained floor.[/i]",
+"translation_key": "[i]You glance around at the standard temporary walls and slightly stained floor.[/i]",
+"type": "dialogue"
+},
+"100": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "101",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The Coffee machine puts a light brown liquid into the cup[/i]",
+"translation_key": "[i]The Coffee machine puts a light brown liquid into the cup[/i]",
+"type": "dialogue"
+},
+"101": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "102",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I put some extra honey in there for some sweetness.",
+"translation_key": "I put some extra honey in there for some sweetness.",
+"type": "dialogue"
+},
+"102": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "103",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Gee, thanks.",
+"translation_key": "Gee, thanks.",
+"type": "dialogue"
+},
+"103": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "104",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Don't mention it.",
+"translation_key": "Don't mention it.",
+"type": "dialogue"
+},
+"104": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cup"
+} ] ],
+"function": "remove_item"
+},
+"next_id": "105",
+"type": "mutation"
+},
+"105": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "tea_cup"
+} ] ],
+"function": "add_item"
+},
+"next_id": "106",
+"type": "mutation"
+},
+"106": {
+"next_id": "end",
+"type": "goto"
+},
+"108": {
+"next_id": "109",
+"text": "need_vouchers",
+"type": "title"
+},
+"109": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "110",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Ooooh. So sorry. I'm going to need a drink voucher if you're going to get a coffee.",
+"translation_key": "Ooooh. So sorry. I'm going to need a drink voucher if you're going to get a coffee.",
+"type": "dialogue"
+},
+"11": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "12",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Look, it's not perfect. I'm doing my best here.",
+"translation_key": "Look, it's not perfect. I'm doing my best here.",
+"type": "dialogue"
+},
+"110": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "111",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Wait a minute. It's not free?",
+"translation_key": "Wait a minute. It's not free?",
+"type": "dialogue"
+},
+"111": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "112",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well, of course not! I have a family to support.",
+"translation_key": "Well, of course not! I have a family to support.",
+"type": "dialogue"
+},
+"112": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "113",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Hold on ...",
+"translation_key": "Hold on ...",
+"type": "dialogue"
+},
+"113": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "114",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Just bring me some vouchers. You're killing me.",
+"translation_key": "Just bring me some vouchers. You're killing me.",
+"type": "dialogue"
+},
+"114": {
+"next_id": "end",
+"type": "goto"
+},
+"12": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "13",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Can I interest you in a cup of our finest coffee? Brewed from the STRONGEST beans on the market?",
+"translation_key": "Can I interest you in a cup of our finest coffee? Brewed from the STRONGEST beans on the market?",
+"type": "dialogue"
+},
+"13": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "14",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "How strong are they?",
+"translation_key": "How strong are they?",
+"type": "dialogue"
+},
+"14": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "15",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "They're illegal in 6 countries.",
+"translation_key": "They're illegal in 6 countries.",
+"type": "dialogue"
+},
+"15": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "16",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Sounds ... criminal.",
+"translation_key": "Sounds ... criminal.",
+"type": "dialogue"
+},
+"16": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "17",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You and the coffee machine share a hearty laugh, before you stop to question reality itself.[/i]",
+"translation_key": "[i]You and the coffee machine share a hearty laugh, before you stop to question reality itself.[/i]",
+"type": "dialogue"
+},
+"17": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "18",
+"type": "mutation"
+},
+"18": {
+"next_id": "28",
+"type": "goto"
+},
+"2": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "cup"
+} ], [ {
+"type": "number",
+"value": 0
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "3",
+"type": "mutation"
+},
+"20": {
+"next_id": "21",
+"text": "main",
+"type": "title"
+},
+"21": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "23",
+"next_id": "22",
+"next_id_after": "23",
+"type": "condition"
+},
+"22": {
+"next_id": "1",
+"parent_id": "21",
+"type": "goto"
+},
+"23": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "25",
+"next_id": "24",
+"next_id_after": "25",
+"type": "condition"
+},
+"24": {
+"next_id": "7",
+"parent_id": "23",
+"type": "goto"
+},
+"25": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "met"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "end",
+"next_id": "end",
+"next_id_after": "end",
+"type": "condition"
+},
+"27": {
+"next_id": "28",
+"text": "main_chat",
+"type": "title"
+},
+"28": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "cup"
+} ] ]
+} ]
+},
+"next_conditional_id": "30",
+"next_id": "29",
+"next_id_after": "end",
+"type": "condition"
+},
+"29": {
+"next_id": "34",
+"parent_id": "28",
+"type": "goto"
+},
+"3": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "initialized"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "4",
+"type": "mutation"
+},
+"30": {
+"next_conditional_id": "end",
+"next_id": "31",
+"next_id_after": "end",
+"type": "condition"
+},
+"31": {
+"next_id": "37",
+"parent_id": "30",
+"type": "goto"
+},
+"33": {
+"next_id": "34",
+"text": "has_cup",
+"type": "title"
+},
+"34": {
+"next_id": "61",
+"type": "goto"
+},
+"36": {
+"next_id": "37",
+"text": "no_cup",
+"type": "title"
+},
+"37": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "cup"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_conditional_id": "46",
+"next_id": "38",
+"next_id_after": "46",
+"type": "condition"
+},
+"38": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "39",
+"parent_id": "37",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You're, uh, going to need a cup.",
+"translation_key": "You're, uh, going to need a cup.",
+"type": "dialogue"
+},
+"39": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "40",
+"parent_id": "37",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I can't carry the coffee in my hands?",
+"translation_key": "I can't carry the coffee in my hands?",
+"type": "dialogue"
+},
+"4": {
+"next_id": "21",
+"type": "goto"
+},
+"40": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "41",
+"parent_id": "37",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I would let you, but my parent company won't allow it.",
+"translation_key": "I would let you, but my parent company won't allow it.",
+"type": "dialogue"
+},
+"41": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "42",
+"parent_id": "37",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Come on, machine! Fight the man.",
+"translation_key": "Come on, machine! Fight the man.",
+"type": "dialogue"
+},
+"42": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "43",
+"parent_id": "37",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'm trying to save for retirment. The legal battle would just set me back.",
+"translation_key": "I'm trying to save for retirment. The legal battle would just set me back.",
+"type": "dialogue"
+},
+"43": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "44",
+"parent_id": "37",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Bring me a cup.",
+"translation_key": "Bring me a cup.",
+"type": "dialogue"
+},
+"44": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "cup"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "45",
+"parent_id": "37",
+"type": "mutation"
+},
+"45": {
+"next_id": "end",
+"parent_id": "37",
+"type": "goto"
+},
+"46": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "cup"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "53",
+"next_id": "47",
+"next_id_after": "53",
+"type": "condition"
+},
+"47": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "48",
+"parent_id": "46",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Seriously. You need a cup.",
+"translation_key": "Seriously. You need a cup.",
+"type": "dialogue"
+},
+"48": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "49",
+"parent_id": "46",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What if I just want beans.",
+"translation_key": "What if I just want beans.",
+"type": "dialogue"
+},
+"49": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "50",
+"parent_id": "46",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Oh you can't have these beans. The caffiene content is much too strong for unfiltered consumption.",
+"translation_key": "Oh you can't have these beans. The caffiene content is much too strong for unfiltered consumption.",
+"type": "dialogue"
+},
+"50": {
+"character": "Coffee Machien",
+"inline_mutations": [  ],
+"next_id": "51",
+"parent_id": "46",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Bring a cup",
+"translation_key": "Bring a cup",
+"type": "dialogue"
+},
+"51": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "cup"
+} ], [ {
+"type": "number",
+"value": 2
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "52",
+"parent_id": "46",
+"type": "mutation"
+},
+"52": {
+"next_id": "end",
+"parent_id": "46",
+"type": "goto"
+},
+"53": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "coffee_machine"
+} ], [ {
+"type": "string",
+"value": "cup"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 2
+} ]
+},
+"next_conditional_id": "end",
+"next_id": "54",
+"next_id_after": "end",
+"type": "condition"
+},
+"54": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "55",
+"parent_id": "53",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "We're not doing this again.",
+"translation_key": "We're not doing this again.",
+"type": "dialogue"
+},
+"55": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "56",
+"parent_id": "53",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Pleeeeease.",
+"translation_key": "Pleeeeease.",
+"type": "dialogue"
+},
+"56": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "57",
+"parent_id": "53",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "No. Give me a cup.",
+"translation_key": "No. Give me a cup.",
+"type": "dialogue"
+},
+"57": {
+"next_id": "end",
+"parent_id": "53",
+"type": "goto"
+},
+"6": {
+"next_id": "7",
+"text": "first_meet",
+"type": "title"
+},
+"60": {
+"next_id": "61",
+"text": "choices",
+"type": "title"
+},
+"61": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "62",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What can I get for you today?",
+"translation_key": "What can I get for you today?",
+"type": "dialogue"
+},
+"62": {
+"next_id": "63",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "62", "67", "72", "74" ),
+"text": "I'll have a Coffee, please.",
+"translation_key": "I'll have a Coffee, please.",
+"type": "response"
+},
+"63": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "drink_vouchers"
+} ] ]
+} ]
+},
+"next_conditional_id": "65",
+"next_id": "64",
+"next_id_after": "end",
+"parent_id": "62",
+"type": "condition"
+},
+"64": {
+"next_id": "90",
+"parent_id": "63",
+"type": "goto"
+},
+"65": {
+"next_conditional_id": "end",
+"next_id": "66",
+"next_id_after": "end",
+"parent_id": "62",
+"type": "condition"
+},
+"66": {
+"next_id": "109",
+"parent_id": "65",
+"type": "goto"
+},
+"67": {
+"next_id": "68",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I'll have some Tea, please",
+"translation_key": "I'll have some Tea, please",
+"type": "response"
+},
+"68": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "drink_vouchers"
+} ] ]
+} ]
+},
+"next_conditional_id": "70",
+"next_id": "69",
+"next_id_after": "end",
+"parent_id": "67",
+"type": "condition"
+},
+"69": {
+"next_id": "99",
+"parent_id": "68",
+"type": "goto"
+},
+"7": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "8",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Greetings, stranger! I'm a coffee machine!",
+"translation_key": "Greetings, stranger! I'm a coffee machine!",
+"type": "dialogue"
+},
+"70": {
+"next_conditional_id": "end",
+"next_id": "71",
+"next_id_after": "end",
+"parent_id": "67",
+"type": "condition"
+},
+"71": {
+"next_id": "109",
+"parent_id": "70",
+"type": "goto"
+},
+"72": {
+"next_id": "73",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Just give me some of those illegal beans",
+"translation_key": "Just give me some of those illegal beans",
+"type": "response"
+},
+"73": {
+"next_id": "79",
+"parent_id": "72",
+"type": "goto"
+},
+"74": {
+"next_id": "75",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Eh. Nevermind",
+"translation_key": "Eh. Nevermind",
+"type": "response"
+},
+"75": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "76",
+"parent_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "See you next time!",
+"translation_key": "See you next time!",
+"type": "dialogue"
+},
+"76": {
+"next_id": "end",
+"parent_id": "74",
+"type": "goto"
+},
+"78": {
+"next_id": "79",
+"text": "get_beans",
+"type": "title"
+},
+"79": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "80",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Oh, I can't do that.",
+"translation_key": "Oh, I can't do that.",
+"type": "dialogue"
+},
+"8": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "9",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Whoa! You talk?",
+"translation_key": "Whoa! You talk?",
+"type": "dialogue"
+},
+"80": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "81",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Come on, no one is watching.",
+"translation_key": "Come on, no one is watching.",
+"type": "dialogue"
+},
+"81": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "82",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Look. I could get written up for just talking about these beans.",
+"translation_key": "Look. I could get written up for just talking about these beans.",
+"type": "dialogue"
+},
+"82": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "83",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "But I NEED those beans.",
+"translation_key": "But I NEED those beans.",
+"type": "dialogue"
+},
+"83": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "84",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I don't care.",
+"translation_key": "I don't care.",
+"type": "dialogue"
+},
+"84": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "85",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Cough them up, machine!",
+"translation_key": "Cough them up, machine!",
+"type": "dialogue"
+},
+"85": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "86",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Over my dead body!",
+"translation_key": "Over my dead body!",
+"type": "dialogue"
+},
+"86": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "87",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Fine!",
+"translation_key": "Fine!",
+"type": "dialogue"
+},
+"87": {
+"next_id": "end",
+"type": "goto"
+},
+"89": {
+"next_id": "90",
+"text": "get_coffee",
+"type": "title"
+},
+"9": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "10",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Only the fanciest coffee for the fanciest tech con in the world?",
+"translation_key": "Only the fanciest coffee for the fanciest tech con in the world?",
+"type": "dialogue"
+},
+"90": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "91",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "One silky smooth cup of joe coming right up.",
+"translation_key": "One silky smooth cup of joe coming right up.",
+"type": "dialogue"
+},
+"91": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "92",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The Coffee Machine puts a dark liquid in your cup[/i]",
+"translation_key": "[i]The Coffee Machine puts a dark liquid in your cup[/i]",
+"type": "dialogue"
+},
+"92": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cup"
+} ] ],
+"function": "remove_item"
+},
+"next_id": "93",
+"type": "mutation"
+},
+"93": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "coffee_cup"
+} ] ],
+"function": "add_item"
+},
+"next_id": "94",
+"type": "mutation"
+},
+"94": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "95",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Smells nutty.",
+"translation_key": "Smells nutty.",
+"type": "dialogue"
+},
+"95": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "96",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Enjoy!",
+"translation_key": "Enjoy!",
+"type": "dialogue"
+},
+"96": {
+"next_id": "end",
+"type": "goto"
+},
+"98": {
+"next_id": "99",
+"text": "get_tea",
+"type": "title"
+},
+"99": {
+"character": "Coffee Machine",
+"inline_mutations": [  ],
+"next_id": "100",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "This is the best tea on earth. Meant to calm the nerves and help even the most high strung person to relax.",
+"translation_key": "This is the best tea on earth. Meant to calm the nerves and help even the most high strung person to relax.",
+"type": "dialogue"
+}
+}
