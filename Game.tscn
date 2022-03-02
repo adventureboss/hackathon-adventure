@@ -40,20 +40,20 @@ script = ExtResource( 5 )
 script = ExtResource( 7 )
 
 [node name="Enterance" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 717.0
-margin_top = -719.0
-margin_right = 922.0
-margin_bottom = -519.0
+margin_left = 537.0
+margin_top = -757.0
+margin_right = 964.0
+margin_bottom = -399.0
 room_name = "Enterance"
 room_description = "You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North."
 talk_to_dictionary = {
 }
 
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 720.0
-margin_top = -965.0
-margin_right = 925.0
-margin_bottom = -765.0
+margin_left = 639.0
+margin_top = -1049.0
+margin_right = 844.0
+margin_bottom = -849.0
 room_name = "Lobby"
 room_description = "Welcome to the Loby"
 talk_to_dictionary = {

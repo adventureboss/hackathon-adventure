@@ -1,12 +1,23 @@
+tool
 extends PanelContainer
 
 class_name GameRoom
 
-export (String) var room_name = "name"
-export (String) var room_description = "description"
+export (String) var room_name = "name" setget set_room_name
+export (String, MULTILINE) var room_description = "description" setget set_room_description
 export (Dictionary) var talk_to_dictionary = {}
 
 var exits: Dictionary = {}
+
+
+func set_room_name(new_name: String):
+	$MarginContainer/Rows/RoomName.text = new_name
+	room_name = new_name
+
+
+func set_room_description(new_description: String):
+	$MarginContainer/Rows/RoomDescription.text = new_description
+	room_description = new_description
 
 
 func connect_exit(direction: String, room: GameRoom):
