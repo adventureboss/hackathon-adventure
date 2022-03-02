@@ -95,12 +95,33 @@ do set_dialog_state(\"player\", \"west_clear\", 2)
 => END
 
 ~ cleared_final
-[i] The guard is enthralled with whatever they are playing on their phone [/i]"
+[i] The guard is enthralled with whatever they are playing on their phone [/i]
+=> END
+
+~ give_badge
+You: Here's my badge.
+West Guard: Well, would you look at that. You're all kinds of official. 
+West Guard: Except I can't let you in yet.
+West Guard: <whispers> There are technical difficulties.
+West Guard: You'll just have to come back later. 
+=> END
+
+~ give_ash_badge
+You: Here's my badge! I'm definitely the person that that says I am.
+West Guard: And why wouldn't you be? I'm so glad you're here.
+West Guard: Head on in and see what you can do to fix this whole thing up.
+You: You got it! Ash Marshall, at your service. Just heading on in with my real ID and all.
+do set_dialog_status(\"player\", \"west_clear\", 1)
+=> END
+
+"
 errors = [  ]
 titles = {
 "cleared": "84",
 "cleared_final": "90",
 "first_meet": "7",
+"give_ash_badge": "102",
+"give_badge": "94",
 "initialize": "1",
 "main": "16",
 "main_chat": "30",
@@ -131,6 +152,80 @@ lines = {
 },
 "next_id": "2",
 "type": "mutation"
+},
+"101": {
+"next_id": "102",
+"text": "give_ash_badge",
+"type": "title"
+},
+"102": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "103",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Here's my badge! I'm definitely the person that that says I am.",
+"translation_key": "Here's my badge! I'm definitely the person that that says I am.",
+"type": "dialogue"
+},
+"103": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "104",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "And why wouldn't you be? I'm so glad you're here.",
+"translation_key": "And why wouldn't you be? I'm so glad you're here.",
+"type": "dialogue"
+},
+"104": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "105",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Head on in and see what you can do to fix this whole thing up.",
+"translation_key": "Head on in and see what you can do to fix this whole thing up.",
+"type": "dialogue"
+},
+"105": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "106",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You got it! Ash Marshall, at your service. Just heading on in with my real ID and all.",
+"translation_key": "You got it! Ash Marshall, at your service. Just heading on in with my real ID and all.",
+"type": "dialogue"
+},
+"106": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "west_clear"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_status"
+},
+"next_id": "107",
+"type": "mutation"
+},
+"107": {
+"next_id": "end",
+"type": "goto"
 },
 "11": {
 "next_id": "12",
@@ -938,7 +1033,7 @@ lines = {
 "90": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "",
+"next_id": "91",
 "pauses": {
 },
 "replacements": [  ],
@@ -946,5 +1041,78 @@ lines = {
 "text": "[i] The guard is enthralled with whatever they are playing on their phone [/i]",
 "translation_key": "[i] The guard is enthralled with whatever they are playing on their phone [/i]",
 "type": "dialogue"
+},
+"91": {
+"next_id": "end",
+"type": "goto"
+},
+"93": {
+"next_id": "94",
+"text": "give_badge",
+"type": "title"
+},
+"94": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "95",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Here's my badge.",
+"translation_key": "Here's my badge.",
+"type": "dialogue"
+},
+"95": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "96",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well, would you look at that. You're all kinds of official.",
+"translation_key": "Well, would you look at that. You're all kinds of official.",
+"type": "dialogue"
+},
+"96": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "97",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Except I can't let you in yet.",
+"translation_key": "Except I can't let you in yet.",
+"type": "dialogue"
+},
+"97": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "98",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<whispers> There are technical difficulties.",
+"translation_key": "<whispers> There are technical difficulties.",
+"type": "dialogue"
+},
+"98": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "99",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You'll just have to come back later.",
+"translation_key": "You'll just have to come back later.",
+"type": "dialogue"
+},
+"99": {
+"next_id": "end",
+"type": "goto"
 }
 }

@@ -64,12 +64,33 @@ You: Fine! Have it your way.
 You: Okay, you little monster. You're not going to let me have that floppy disk, are you?
 [i]The cat meows[/i]
 You: Oh, I'll be back. You can count on that.
+=> END
+
+~ give_coffee
+[i]The cat starts lapping at the coffee[/i]
+You: Good kitty. Drink it up.
+[i]The kitty spins in a circle, then slashes at you with it's mighty tiger like claws[/i]
+[i]It runs around the room on the walls like a spider then lunges toward your face[/i]
+[i]You dodge out of the way and run out of the room as fast as your legs will carry you[/i]
+You: Well. That didn't go as planned.
+do set_dialog_state(\"cat\", \"feral\", 1)
+=>END
+
+~ give_tea
+[i]The cat starts lapping up the tea[/i]
+You: There we go. Sweet kitty.
+[i]As he drinks, it looks like his eyes are getting heavy.[/i]
+[i]The cat lays over and falls fast asleep.[/i]
+You: There we go. It's a good thing that virtual tea is totally safe for virtual cats.
+do set_dialog_state(\"cat\", \"sleeping\", 1)
 => END"
 errors = [  ]
 titles = {
 "attempted_feral": "56",
 "attempted_not_feral": "48",
 "first_meet": "10",
+"give_coffee": "62",
+"give_tea": "72",
 "initialize": "1",
 "main": "17",
 "not_attempted_feral": "42",
@@ -867,8 +888,200 @@ lines = {
 "next_id": "7",
 "type": "mutation"
 },
+"61": {
+"next_id": "62",
+"text": "give_coffee",
+"type": "title"
+},
+"62": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "63",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat starts lapping at the coffee[/i]",
+"translation_key": "[i]The cat starts lapping at the coffee[/i]",
+"type": "dialogue"
+},
+"63": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "64",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Good kitty. Drink it up.",
+"translation_key": "Good kitty. Drink it up.",
+"type": "dialogue"
+},
+"64": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "65",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The kitty spins in a circle, then slashes at you with it's mighty tiger like claws[/i]",
+"translation_key": "[i]The kitty spins in a circle, then slashes at you with it's mighty tiger like claws[/i]",
+"type": "dialogue"
+},
+"65": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "66",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]It runs around the room on the walls like a spider then lunges toward your face[/i]",
+"translation_key": "[i]It runs around the room on the walls like a spider then lunges toward your face[/i]",
+"type": "dialogue"
+},
+"66": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "67",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You dodge out of the way and run out of the room as fast as your legs will carry you[/i]",
+"translation_key": "[i]You dodge out of the way and run out of the room as fast as your legs will carry you[/i]",
+"type": "dialogue"
+},
+"67": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "68",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well. That didn't go as planned.",
+"translation_key": "Well. That didn't go as planned.",
+"type": "dialogue"
+},
+"68": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "feral"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "69",
+"type": "mutation"
+},
+"69": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "end",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "=>END",
+"translation_key": "=>END",
+"type": "dialogue"
+},
 "7": {
 "next_id": "17",
+"type": "goto"
+},
+"71": {
+"next_id": "72",
+"text": "give_tea",
+"type": "title"
+},
+"72": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "73",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat starts lapping up the tea[/i]",
+"translation_key": "[i]The cat starts lapping up the tea[/i]",
+"type": "dialogue"
+},
+"73": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "74",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "There we go. Sweet kitty.",
+"translation_key": "There we go. Sweet kitty.",
+"type": "dialogue"
+},
+"74": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "75",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]As he drinks, it looks like his eyes are getting heavy.[/i]",
+"translation_key": "[i]As he drinks, it looks like his eyes are getting heavy.[/i]",
+"type": "dialogue"
+},
+"75": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "76",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat lays over and falls fast asleep.[/i]",
+"translation_key": "[i]The cat lays over and falls fast asleep.[/i]",
+"type": "dialogue"
+},
+"76": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "77",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "There we go. It's a good thing that virtual tea is totally safe for virtual cats.",
+"translation_key": "There we go. It's a good thing that virtual tea is totally safe for virtual cats.",
+"type": "dialogue"
+},
+"77": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "cat"
+} ], [ {
+"type": "string",
+"value": "sleeping"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "78",
+"type": "mutation"
+},
+"78": {
+"next_id": "end",
 "type": "goto"
 },
 "9": {
