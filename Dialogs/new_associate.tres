@@ -9,35 +9,35 @@ raw_text = "~ initialize
 do set_dialog_state(\"new_associate\", \"met\", 0)
 do set_dialog_state(\"new_associate\", \"initialized\", true)
 do set_dialog_state(\"new_associate\", \"hostile_chat\", 0)
-=> new_associate_main
+=> main
 
-~ new_associate_first_meet
+~ first_meet
 do set_dialog_state(\"new_associate\", \"met\", 1)
 New Associate: Welcome to Purple Beret Con!
 New Associate: The number one showcase of innovative....
 - Yeah, yeah, yeah, \"and open source enterprise tech.\" I know.
 	New Associate: Well, you don't have to be so rude about it.
 	do set_dialog_state(\"new_associate\", \"hostile\", true)
-	=> new_associate_hostile
+	=> hostile
 - Let the associate finish
 	New Associate: and open source enterprise tech!
 	do set_dialog_state(\"new_associate\", \"hostile\", false)
-	=> new_associate_friendly
+	=> friendly
 
-~ new_associate_main
+~ main
 if get_dialog_state(\"new_associate\", \"initialized\") == false
 	=> initialize
 elif get_dialog_state(\"new_associate\", \"met\") == 0
-	=> new_associate_first_meet
+	=> first_meet
 elif get_dialog_state(\"new_associate\", \"complete\", true)
-	=> new_associate_complete
+	=> complete
 else
 	if get_dialog_state(\"new_associate\", \"hostile\") == true
-		=> new_associate_hostile
+		=> hostile
 	else
-		=> new_associate_friendly
+		=> friendly
 
-~ new_associate_hostile
+~ hostile
 if get_dialog_state(\"new_associate\", \"hostile_chat\") == 0 
 	Hostile Associate: What do [b]YOU[/b] want? 
 	You: I need to register
@@ -49,42 +49,42 @@ if get_dialog_state(\"new_associate\", \"hostile_chat\") == 0
 	Hostile Associate: What now?
 	You: Nevermind
 	do set_dialog_state(\"new_associate\", \"hostile_chat\", 1)	
-	=> new_associate_hostile
+	=> hostile
 else
 	Hostile Associate: Anything else, Grumpy McGrumperson?
 	- Please can I register?
 		Hostile Associate: ID.
-		=> new_associate_hostile
+		=> hostile
 	- Look, I think we got off on the wrong foot.
 		Hostile Associate: You think?
-		=> new_associate_forgive
+		=> forgive
 	- You're not very nice.
 		Hostile Associate: Must be something in the air
-		=> new_associate_hostile
+		=> hostile
 	- I think I'm done here
 		Hostile Associate: That makes two of us.
 		=> END
 
-~ new_associate_forgive
+~ forgive
 You: What can I do to make it up to you
 Hostile Associate: Grovel.
 You: You want a pile of rocks?
 Hostile Associate: GROVEL. G-R-O-V-E-L. Not Gravel. What's wrong with you?
 - I haven't had coffee
 	Hostile Associate: Mother of pearl! No wonder!
-	=> new_associate_friendly
+	=> friendly
 - I just finished a week long hackathon
 	Hostile Associate: Those things can be really intense
 	[i]You and the Hostile Associate blink at each other and knowingly toward the player[/i]
-	=> new_associate_friendly
+	=> friendly
 - Someone spoiled Spider-Man for me
 	Hostile Associate: Those monsters!
-	=> new_associate_friendly
+	=> friendly
 - You know what. Nevermind.
 	Hostile Associate: Suit yourself.
 	=> END
 
-~ new_associate_friendly
+~ friendly
 New Associate: Now what can I do for you?
 - I need to register
 	New Associate: Great! What's the name?
@@ -113,7 +113,7 @@ New Associate: Now what can I do for you?
 	do set_dialog_state(\"new_associate\", \"complete\", true)
 	=> END
 
-~ new_associate_complete
+~ complete
 You: Hey, there! What's crackin'?
 New Associate: I'm sorry I just don't have time for this right now.
 You: Fine by me.
@@ -121,14 +121,14 @@ New Associate: Enjoy the conference!
 => END"
 errors = [  ]
 titles = {
+"complete": "109",
+"first_meet": "7",
+"forgive": "61",
+"friendly": "80",
+"hostile": "33",
 "initialize": "1",
-"name_choices": "90",
-"new_associate_complete": "109",
-"new_associate_first_meet": "7",
-"new_associate_forgive": "61",
-"new_associate_friendly": "80",
-"new_associate_hostile": "33",
-"new_associate_main": "20"
+"main": "20",
+"name_choices": "90"
 }
 lines = {
 "0": {
@@ -251,7 +251,7 @@ lines = {
 },
 "108": {
 "next_id": "109",
-"text": "new_associate_complete",
+"text": "complete",
 "type": "title"
 },
 "109": {
@@ -388,7 +388,7 @@ lines = {
 },
 "19": {
 "next_id": "20",
-"text": "new_associate_main",
+"text": "main",
 "type": "title"
 },
 "2": {
@@ -563,7 +563,7 @@ lines = {
 },
 "32": {
 "next_id": "33",
-"text": "new_associate_hostile",
+"text": "hostile",
 "type": "title"
 },
 "33": {
@@ -865,12 +865,12 @@ lines = {
 },
 "6": {
 "next_id": "7",
-"text": "new_associate_first_meet",
+"text": "first_meet",
 "type": "title"
 },
 "60": {
 "next_id": "61",
-"text": "new_associate_forgive",
+"text": "forgive",
 "type": "title"
 },
 "61": {
@@ -1058,7 +1058,7 @@ lines = {
 },
 "79": {
 "next_id": "80",
-"text": "new_associate_friendly",
+"text": "friendly",
 "type": "title"
 },
 "8": {
