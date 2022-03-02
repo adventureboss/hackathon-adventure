@@ -12,6 +12,12 @@ func _init():
 	var badge = load("res://Scripts/items/badge.gd").new()
 	badge.display_name = "Badge"
 	_global_items["badge"] = badge
+	
+	# set player default state
+	set_dialog_state("player", "caffeinated", 0)
+	set_dialog_state("player", "east_clear", 0)
+	set_dialog_state("player", "west_clear", 0)
+	set_dialog_state("player", "items", 0)
 
 func _get_item(item_or_name):
 	if typeof(item_or_name) == TYPE_STRING:
