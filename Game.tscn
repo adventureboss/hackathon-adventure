@@ -9,9 +9,12 @@
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/desk.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/npc/associate.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/npc/guard.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/doorway.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/phone.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/items/doors_entrance.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/ropes.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/desk.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/npc/guard.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/doorway.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/phone.gd" type="Script" id=22]
 [ext_resource path="res://Scripts/items/pamphlets.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/npc/event_coordinator.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/items/stage.gd" type="Script" id=16]
@@ -62,7 +65,7 @@ talk_to_dictionary = {
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 9 )
 
-[node name="doors" type="Node" parent="RoomManager/Entrance"]
+[node name="doors_entrance" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 11 )
 display_name = "Doors"
 
