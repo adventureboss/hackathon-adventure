@@ -3,7 +3,10 @@ extends Node
 
 func _ready() -> void:
 	$Entrance.connect_exit("north", $Lobby)
-	$EastEntrance.connect_exit("west", $Lobby)
-	$EastEntrance.connect_exit("south", $SessionRoom)
-	$EastEntrance.connect_exit("north", $VendorHall)
-	$WestEntrance.connect_exit("east", $Ballroom)
+	$Lobby.connect_exit("east", $EastEntrance)
+	$Lobby.connect_exit("west", $WestEntrance)
+	$EastEntrance.connect_exit("east", $EastHall)
+	$EastHall.connect_exit("south", $SessionRoom)
+	$EastHall.connect_exit("north", $VendorHall)
+	$WestEntrance.connect_exit("west", $Ballroom)
+	
