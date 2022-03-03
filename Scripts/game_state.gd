@@ -8,6 +8,7 @@ var _global_items = {}
 var _dialog_state: Dictionary = {}
 var _items = []
 var _self
+var current_room
 
 func _init():
 	_self = _add_global_item("res://Scripts/npc/self.gd", "self", "Self")
@@ -44,7 +45,6 @@ func _get_item(item_or_name):
 		assert(item != null, "Unknown item used")
 		return item
 	return item_or_name
-
 
 func add_item(item):
 	self._items.append(_get_item(item))

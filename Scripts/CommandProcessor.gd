@@ -13,6 +13,7 @@ func initialize (starting_room) -> String:
 
 func change_room (new_room) -> String:
 	current_room = new_room
+	game_state.current_room = new_room
 	var exit_string = PoolStringArray(new_room.exits.keys()).join(" ")
 	var string = PoolStringArray([
 		"You are now in the " + new_room.room_name + ".  \n" + new_room.room_description,
