@@ -46,7 +46,14 @@ func _add_global_item(resource, name, display_name):
 
 func _get_item(item_or_name):
 	if typeof(item_or_name) == TYPE_STRING:
-		var item = _global_items[item_or_name]
+		var item
+		if _global_items.has(item_or_name):
+			item = _global_items[item_or_name]
+		else:
+			for element in current_room.get_children():
+				if 'display_name' in element and element.name == item_or_name:
+					item = element
+					break
 		assert(item != null, "Unknown item used")
 		return item
 	return item_or_name

@@ -175,7 +175,7 @@ func pickUp (search_words: PoolStringArray) -> String:
 	
 	var actors = _extract_actors(search_words, 1)
 	
-	if actors.size() == 0:
+	if actors.size() == 1:
 		return PoolStringArray([ "You PICK UP %s" % actors[0].display_name, actors[0].pick_up() ]).join("\n")
 	else:
 		return "%s can't be picked up" % search_words.join(' ')
