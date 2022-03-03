@@ -27,6 +27,9 @@ func _init():
 	set_dialog_state("player", "east_clear", 0)
 	set_dialog_state("player", "west_clear", 0)
 	set_dialog_state("player", "items", 0)
+	
+	# npc default states when necessary
+	set_dialog_state("nerds", "present", true)
 
 func _add_global_item(resource, name, display_name):
 	assert(_global_items.has(name) == false, "global items already contains this item")
