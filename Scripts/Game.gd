@@ -6,6 +6,7 @@ const InputResponse = preload("res://Scenes/InputResponse.tscn")
 export (int) var max_lines_remembered := 20
 
 var max_scroll_length := 0
+var button_carot_position := 10
 
 onready var command_processor = $CommandProcessor
 onready var room_manager = $RoomManager
@@ -99,29 +100,35 @@ func _on_Input_text_entered(new_text: String) -> void:
 func _on_TalkToButton_pressed() -> void:
 	user_cli.clear()
 	user_cli.text += "TALK TO "
+	user_cli.caret_position = button_carot_position
 
 
 func _on_GiveButton_pressed() -> void:
 	user_cli.clear()
 	user_cli.text += "GIVE "
+	user_cli.caret_position = button_carot_position
 
 
 func _on_UseButton_pressed() -> void:
 	user_cli.clear()
 	user_cli.text += "USE "
+	user_cli.caret_position = button_carot_position
 
 
 func _on_WalkButton_pressed() -> void:
 	user_cli.clear()
 	user_cli.text += "WALK "
+	user_cli.caret_position = button_carot_position
 
 
 func _on_PickUpButton_pressed() -> void:
 	user_cli.clear()
 	user_cli.text += "PICK UP "
+	user_cli.caret_position = button_carot_position
 
 
 func _on_LookAtButton_pressed() -> void:
 	user_cli.clear()
 	user_cli.text += "LOOK AT "
+	user_cli.caret_position = button_carot_position
 	

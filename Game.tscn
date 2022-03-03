@@ -434,10 +434,15 @@ custom_styles/panel = SubResource( 6 )
 [node name="TalkToButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/TalkTo"]
 margin_right = 250.0
 margin_bottom = 80.0
+focus_previous = NodePath("../../../../InputArea/HBoxContainer/Input")
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/normal = SubResource( 8 )
+enabled_focus_mode = 0
 text = "TALK TO"
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Give" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
 margin_left = 270.0
@@ -450,9 +455,11 @@ custom_styles/panel = SubResource( 6 )
 [node name="GiveButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Give"]
 margin_right = 250.0
 margin_bottom = 80.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 10 )
 custom_styles/normal = SubResource( 8 )
+enabled_focus_mode = 0
 text = "GIVE"
 
 [node name="Use" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
@@ -466,9 +473,11 @@ custom_styles/panel = SubResource( 6 )
 [node name="UseButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Use"]
 margin_right = 250.0
 margin_bottom = 80.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 11 )
 custom_styles/normal = SubResource( 8 )
+enabled_focus_mode = 0
 text = "USE"
 
 [node name="Walk" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
@@ -483,9 +492,11 @@ custom_styles/panel = SubResource( 6 )
 [node name="WalkButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Walk"]
 margin_right = 250.0
 margin_bottom = 80.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 12 )
 custom_styles/normal = SubResource( 8 )
+enabled_focus_mode = 0
 text = "WALK"
 
 [node name="PickUp" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
@@ -499,9 +510,11 @@ custom_styles/panel = SubResource( 6 )
 [node name="PickUpButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/PickUp"]
 margin_right = 250.0
 margin_bottom = 80.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 13 )
 custom_styles/normal = SubResource( 8 )
+enabled_focus_mode = 0
 text = "PICK UP"
 
 [node name="LookAt" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea"]
@@ -516,9 +529,11 @@ custom_styles/panel = SubResource( 6 )
 [node name="LookAtButton" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/VerbArea/LookAt"]
 margin_right = 250.0
 margin_bottom = 80.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 14 )
 custom_styles/normal = SubResource( 8 )
+enabled_focus_mode = 0
 text = "LOOK AT"
 
 [node name="Inventory" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer"]
