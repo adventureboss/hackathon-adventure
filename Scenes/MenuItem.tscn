@@ -13,22 +13,24 @@ __meta__ = {
 }
 
 [node name="Selection" type="RichTextLabel" parent="."]
-margin_right = 20.0
-margin_bottom = 46.0
+margin_right = 30.0
+margin_bottom = 99.0
 rect_min_size = Vector2( 30, 0 )
+custom_colors/default_color = Color( 0.796078, 0.117647, 0.792157, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
-text = ">"
+text = ">>"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Value" type="RichTextLabel" parent="."]
-margin_left = 24.0
+margin_left = 34.0
 margin_right = 221.0
-margin_bottom = 46.0
+margin_bottom = 99.0
 rect_min_size = Vector2( 40, 18 )
 size_flags_horizontal = 3
+custom_colors/default_color = Color( 0.0705882, 0.780392, 0.968627, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 text = "I say something
 "
