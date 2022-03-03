@@ -2,7 +2,7 @@ extends "res://Scripts/actor.gd"
 
 const dialogue = preload("res://Dialogs/coffee_machine.tres")
 
-func _init():
+func _ready():
 	game_state.set_dialog_state("coffee_machine", "broken", false)
 
 func look_at():

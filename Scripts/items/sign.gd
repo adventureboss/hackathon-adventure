@@ -8,7 +8,7 @@ var look_at_responses = [
 	" I guess that’s the last event"
 ]
 
-func _init():
+func _ready():
 	game_state.set_dialog_state("east_hall_sign", "look_at_index", 0)
 
 func look_at():
