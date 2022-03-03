@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://Scripts/rooms/east_hall.gd" type="Script" id=55]
 [ext_resource path="res://Scripts/rooms/vendor_hall.gd" type="Script" id=56]
 [ext_resource path="res://Scripts/rooms/session_room.gd" type="Script" id=57]
+[ext_resource path="res://Scripts/rooms/title_screen.gd" type="Script" id=58]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.0313726, 0.607843, 1 )
@@ -110,6 +111,13 @@ script = ExtResource( 5 )
 
 [node name="RoomManager" type="Node" parent="."]
 script = ExtResource( 7 )
+
+[node name="TitleScreen" parent="RoomManager" instance=ExtResource( 6 )]
+margin_left = 1813.0
+margin_top = -386.0
+margin_right = 2129.0
+margin_bottom = -79.0
+script = ExtResource( 58 )
 
 [node name="Entrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 553.0

@@ -1,6 +1,7 @@
 extends Node
 
 const Actor = preload("res://Scripts/actor.gd")
+const help = preload("res://Dialogs/help.tres")
 
 onready var game_state: GameState = get_node("/root/GameState")
 
@@ -28,11 +29,14 @@ func _slice(search_words: PoolStringArray, start, end):
 
 func look_at_room():
 	var exit_string = PoolStringArray(game_state.current_room.exits.keys()).join(" ")
-	var string = PoolStringArray([
-		"You are now in the " + game_state.current_room.get_room_name() + ".  \n" + game_state.current_room.get_room_description(),
-		"Exits: " + exit_string
-	]).join("\n")
-	return string 
+	if game_state.current_room.get_room_name() == "title screen":
+		return game_state.current_room.get_room_description()
+	else:
+		var string = PoolStringArray([
+			"You are now in the " + game_state.current_room.get_room_name() + ".  \n" + game_state.current_room.get_room_description(),
+			"Exits: " + exit_string
+		]).join("\n")
+		return string 
 
 func initialize (starting_room) -> String:
 	return change_room(starting_room)
@@ -73,6 +77,8 @@ func process_command(input: String):
 			return pickUp(_slice(words, 2, words.size()))
 		"look":
 			return lookAt(_slice(words, 2, words.size()))
+		"help":
+			return help()
 		_:
 			return "Unrecognized command - Please try again."
 
@@ -94,6 +100,9 @@ func get_actor(item: String) -> Actor:
 
 	return null
 
+func help():
+	game_state.show_dialogue(help, "help")
+	return "You get HELP"
 
 func talkTo (search_words: PoolStringArray) -> String:
 	if search_words.size() == 0:
