@@ -14,7 +14,7 @@ do set_dialog_state(\"west_guard\", \"used_badge\", false)
 
 ~ first_meet
 The guard smiles at you and gestures you over
-West Guard: Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.
+West Guard: Well, hello there! Welcome to Purple Cap Con! We're just so dang happy to have you with us.
 do set_dialog_state(\"west_guard\", \"met\", 1)
 => main_chat
 
@@ -1289,8 +1289,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.",
-"translation_key": "Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.",
+"text": "Well, hello there! Welcome to Purple Cap Con! We're just so dang happy to have you with us.",
+"translation_key": "Well, hello there! Welcome to Purple Cap Con! We're just so dang happy to have you with us.",
 "type": "dialogue"
 },
 "90": {
