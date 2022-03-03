@@ -92,7 +92,7 @@ West Guard: Sorry!
 - Who is allowed back there?
 	West Guard: I've been sworn to secrecy. If I tell, they'll steal my dog.
 	You: Really? That seems a little ... intense.
-	West Guard: Purple Beret doesn't play around with their NDAs.
+	West Guard: Purple Cap doesn't play around with their NDAs.
 	=> player_badge_2
 - I'll be back later then.
 	West Guard: TTFN!
@@ -1264,8 +1264,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Purple Beret doesn't play around with their NDAs.",
-"translation_key": "Purple Beret doesn't play around with their NDAs.",
+"text": "Purple Cap doesn't play around with their NDAs.",
+"translation_key": "Purple Cap doesn't play around with their NDAs.",
 "type": "dialogue"
 },
 "88": {
