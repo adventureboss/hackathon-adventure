@@ -135,7 +135,7 @@ func give (search_words: PoolStringArray) -> String:
 	if game_state.has_item(actors[0]) == false:
 		return "I don't have %s" % actors[0].display_name
 
-	return PoolStringArray([ "You GIVE %s to %s" % [actors[0].display_name, actors[1].display_name], actors[0].give(actors[1]) ]).join("\n")
+	return PoolStringArray([ "You GIVE %s to %s" % [actors[0].display_name, actors[1].display_name], actors[1].give(actors[0]) ]).join("\n")
 
 func use (search_words: PoolStringArray) -> String:
 	if search_words.size() == 0:
