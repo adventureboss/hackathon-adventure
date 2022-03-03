@@ -60,6 +60,8 @@ func show_dialogue(resource: DialogueResource, title: String) -> void:
 	else:
 		self.set_input_status(true)
 		scroll.show()
+	user_cli.grab_focus()
+	user_cli.caret_position = 0
 
 func update_items(items) -> void:
 	inventory_list.clear()
