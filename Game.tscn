@@ -108,9 +108,6 @@ bg_color = Color( 0.137255, 0, 0.0705882, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CommandProcessor" type="Node" parent="."]
 script = ExtResource( 5 )
