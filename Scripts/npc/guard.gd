@@ -8,7 +8,7 @@ func talk_to():
 
 
 func look_at():
-	return "It's a big security guard standing at the west enterance"
+	return "It's a skinny security guard standing at the west entrance"
 
 
 func pick_up():
@@ -16,7 +16,7 @@ func pick_up():
 
 
 func use(item):
-	return "NO way!"
+	return "No way."
 
 
 func give(item: String):
@@ -25,7 +25,7 @@ func give(item: String):
 		game_state.show_dialogue(west_guard_dialogue, "player_badge")
 		return ""
 	elif item == "ash_badge":
-		game_state.show_dialogue(west_guard_dialogue, "nick_badge")
+		game_state.show_dialogue(west_guard_dialogue, "ash_badge")
 		return ""
 	else:
 		return "I don't think I can give him that"
