@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/dialogue_manager/dialogue_label.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/menu.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Fonts/plex_mono_24_BOLD.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Fonts/plex_mono_24_Italic.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Fonts/plex_mono_16_Italic.tres" type="DynamicFont" id=8]
 
 [node name="Dialogue" type="VBoxContainer"]
 margin_right = 984.0
@@ -17,11 +18,11 @@ script = ExtResource( 3 )
 
 [node name="Margin" type="MarginContainer" parent="."]
 margin_right = 984.0
-margin_bottom = 79.0
+margin_bottom = 105.0
 
 [node name="Body" type="VBoxContainer" parent="Margin"]
 margin_right = 984.0
-margin_bottom = 79.0
+margin_bottom = 105.0
 
 [node name="Actor" type="RichTextLabel" parent="Margin/Body"]
 margin_right = 984.0
@@ -70,3 +71,10 @@ margin_bottom = 79.0
 [node name="Menu" type="VBoxContainer" parent="Margin/Body/Margin"]
 margin_right = 984.0
 script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Margin/Body"]
+margin_top = 83.0
+margin_right = 984.0
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 8 )
+text = "<Press enter to continue>"
