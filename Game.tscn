@@ -116,17 +116,17 @@ script = ExtResource( 5 )
 script = ExtResource( 7 )
 
 [node name="TitleScreen" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 1813.0
-margin_top = -386.0
-margin_right = 2129.0
-margin_bottom = -79.0
+margin_left = 1933.0
+margin_top = -914.0
+margin_right = 2249.0
+margin_bottom = -607.0
 script = ExtResource( 58 )
 
 [node name="Entrance" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 553.0
-margin_top = -405.0
-margin_right = 980.0
-margin_bottom = -47.0
+margin_left = -875.0
+margin_top = -1021.0
+margin_right = -448.0
+margin_bottom = -663.0
 script = ExtResource( 51 )
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
@@ -142,10 +142,10 @@ script = ExtResource( 26 )
 display_name = "Associates"
 
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 534.0
-margin_top = -737.0
-margin_right = 1001.0
-margin_bottom = -448.0
+margin_left = -390.0
+margin_top = -1341.0
+margin_right = 77.0
+margin_bottom = -1052.0
 script = ExtResource( 50 )
 
 [node name="associate" type="Node" parent="RoomManager/Lobby"]
@@ -165,10 +165,10 @@ script = ExtResource( 9 )
 display_name = "Nerds"
 
 [node name="EastEntrance" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 1020.0
-margin_top = -707.0
-margin_right = 1282.0
-margin_bottom = -464.0
+margin_left = 1144.0
+margin_top = -1407.0
+margin_right = 1406.0
+margin_bottom = -1164.0
 script = ExtResource( 52 )
 
 [node name="guard" type="Node" parent="RoomManager/EastEntrance"]
@@ -222,10 +222,10 @@ script = ExtResource( 17 )
 display_name = "Seats"
 
 [node name="EastHall" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 1332.0
-margin_top = -710.0
-margin_right = 1740.0
-margin_bottom = -438.0
+margin_left = 664.0
+margin_top = -1202.0
+margin_right = 1072.0
+margin_bottom = -930.0
 script = ExtResource( 55 )
 
 [node name="banners" type="Node" parent="RoomManager/EastHall"]
@@ -312,10 +312,10 @@ script = ExtResource( 25 )
 display_name = "T-Shirt"
 
 [node name="SessionRoom" parent="RoomManager" instance=ExtResource( 6 )]
-margin_left = 1388.0
-margin_top = -410.0
-margin_right = 1705.0
-margin_bottom = -147.0
+margin_left = 756.0
+margin_top = -782.0
+margin_right = 1073.0
+margin_bottom = -519.0
 script = ExtResource( 57 )
 
 [node name="nerds" type="Node" parent="RoomManager/SessionRoom"]
