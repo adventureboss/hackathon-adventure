@@ -451,6 +451,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 focus_previous = NodePath("../../../../InputArea/HBoxContainer/Input")
+focus_mode = 0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/normal = SubResource( 8 )

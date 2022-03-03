@@ -1,6 +1,6 @@
 extends "res://Scripts/actor.gd"
 
-const west_guard_dialogue = preload("res://Dialogs/east_guard.tres")
+const west_guard_dialogue = preload("res://Dialogs/west_guard.tres")
 
 func talk_to():
 	game_state.show_dialogue(west_guard_dialogue, "main")
