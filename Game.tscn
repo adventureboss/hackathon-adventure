@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -35,6 +35,20 @@
 [ext_resource path="res://Scripts/items/router.gd" type="Script" id=33]
 [ext_resource path="res://Scripts/items/note.gd" type="Script" id=34]
 [ext_resource path="res://Scripts/items/button.gd" type="Script" id=35]
+[ext_resource path="res://Scripts/items/coffee_machine.gd" type="Script" id=36]
+[ext_resource path="res://Scripts/items/nametag.gd" type="Script" id=37]
+[ext_resource path="res://Scripts/npc/cat.gd" type="Script" id=38]
+[ext_resource path="res://Scripts/items/vendor_sign.gd" type="Script" id=39]
+[ext_resource path="res://Scripts/items/cups.gd" type="Script" id=40]
+[ext_resource path="res://Scripts/items/beans.gd" type="Script" id=41]
+[ext_resource path="res://Scripts/items/stir_sticks.gd" type="Script" id=42]
+[ext_resource path="res://Scripts/items/banners.gd" type="Script" id=43]
+[ext_resource path="res://Scripts/items/collar.gd" type="Script" id=44]
+[ext_resource path="res://Scripts/items/session_room.gd" type="Script" id=45]
+[ext_resource path="res://Scripts/items/sign.gd" type="Script" id=46]
+[ext_resource path="res://Scripts/items/water_fountain.gd" type="Script" id=47]
+[ext_resource path="res://Scripts/items/vendor_hall.gd" type="Script" id=48]
+[ext_resource path="res://Scripts/items/floppy.gd" type="Script" id=49]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -176,6 +190,53 @@ room_description = "The east hall is a fairly non-descript conference center hal
 talk_to_dictionary = {
 }
 
+[node name="banners" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 43 )
+display_name = "Banners"
+
+[node name="cups" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 40 )
+display_name = "Cups"
+
+[node name="coffee_machine" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 36 )
+display_name = "Coffee machine"
+
+[node name="beans" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 41 )
+display_name = "Beans"
+
+[node name="water_fountain" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 47 )
+display_name = "Water fountain"
+
+[node name="vendor_sign" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 39 )
+
+[node name="sign" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 46 )
+
+[node name="vendor_hall" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 48 )
+
+[node name="session_room" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 45 )
+
+[node name="cat" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 38 )
+
+[node name="nametag" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 37 )
+
+[node name="collar" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 44 )
+
+[node name="floppy" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 49 )
+
+[node name="stir_stick" type="Node" parent="RoomManager/EastHall"]
+script = ExtResource( 42 )
+
 [node name="VendorHall" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1355.0
 margin_top = -1053.0
@@ -188,6 +249,7 @@ talk_to_dictionary = {
 
 [node name="widget_vendor" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 8 )
+display_name = "Widget vendor"
 
 [node name="robot_vendor" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 27 )
