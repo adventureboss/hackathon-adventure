@@ -28,7 +28,9 @@ rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 custom_colors/default_color = Color( 0.239216, 0.239216, 0.686275, 1 )
 custom_fonts/normal_font = ExtResource( 4 )
-text = "Actor"
+bbcode_enabled = true
+bbcode_text = "Actor [color=blue]blue[/color]"
+text = "Actor blue"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,7 +43,9 @@ margin_bottom = 75.0
 rect_min_size = Vector2( 0, 35 )
 custom_colors/default_color = Color( 0.0705882, 0.780392, 0.968627, 1 )
 custom_fonts/normal_font = ExtResource( 5 )
-text = "This is what the actor is saying"
+bbcode_enabled = true
+bbcode_text = "what actor is saying [color=blue]blue[/color]"
+text = "what actor is saying blue"
 fit_content_height = true
 script = ExtResource( 1 )
 __meta__ = {
