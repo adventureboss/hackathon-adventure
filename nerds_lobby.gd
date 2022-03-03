@@ -13,7 +13,7 @@ func talk_to():
 
 func look_at():
 	if game_state.get_dialog_state("nerds", "present"):
-		return "It's a cluster of nerds. Looks like five of the. They seem to be in a heated debate."
+		return "It's a cluster of nerds. Looks like five of them. They seem to be in a heated debate."
 	else:
 		return "I can't look at them anymore. They checked in."
 	
