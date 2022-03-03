@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -97,6 +97,12 @@ bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
 bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
 
 [sub_resource type="StyleBoxFlat" id=7]
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.313726, 0.027451, 0.172549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -551,6 +557,7 @@ margin_bottom = 280.0
 margin_right = 1020.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = SubResource( 15 )
 text = "INVENTORY"
 align = 1
 
@@ -560,6 +567,9 @@ margin_right = 1020.0
 margin_bottom = 280.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_colors/font_color = Color( 0.733333, 0.827451, 0.0705882, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/bg = SubResource( 16 )
 max_columns = 3
 __meta__ = {
 "_editor_description_": "abc
