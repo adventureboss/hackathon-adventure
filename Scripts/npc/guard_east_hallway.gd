@@ -10,8 +10,10 @@ func give(what):
 	match(what.name):
 		"badge":
 			game_state.show_dialogue(east_guard_dialogue, "badge")
+			return ""
 		"ash_badge":
 			game_state.show_dialogue(east_guard_dialogue, "badge")
+			return ""
 		_:
 			return "I don't think they want that"
 
