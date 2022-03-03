@@ -1,7 +1,7 @@
 extends "res://Scripts/actor.gd"
 
 func look_at():
-	return "It's a small hole with a reset button.  If only I could push it"
+	return "It's a small hole with a reset " + keyword("button") + ".  If only I could push it"
 
 
 func use(object):
@@ -11,7 +11,7 @@ func use(object):
 	elif object == "stir_stick":
 		game_state.add_item("password")
 		return PoolStringArray([
-			"Aha! I pressed it. it must be resetting.  It says the password is 'PowerBacon'.  Now I'm hungry.",
+			"Aha! I pressed it. it must be resetting.  It says the " + keyword("password") + " is 'PowerBacon'.  Now I'm hungry.",
 			"<Password added to your inventory>"
 		]).join("\n")
 	else:

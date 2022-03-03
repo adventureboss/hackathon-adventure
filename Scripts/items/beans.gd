@@ -5,7 +5,7 @@ func look_at():
 
 func pick_up():
 	if game_state.has_item("beans"):
-		return "I already have some beans!"
+		return "I already have some " + keyword("beans") + "!"
 	
 	game_state.add_item("beans")
 	return "I’ll just take some of the evidence from the crime scene"

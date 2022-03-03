@@ -9,7 +9,7 @@ func pick_up():
 		game_state.add_item("chips")
 		return "Sure, why not"
 	else:
-		return "I already have chips"
+		return "I already have " + keyword("chips") + "."
 
 
 func look_at():

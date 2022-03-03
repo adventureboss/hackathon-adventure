@@ -2,7 +2,7 @@ extends "res://Scripts/actor.gd"
 
 
 func talk_to():
-	return "Nah, they're sleeping"
+	return "I don't want to wake them up. They might start talking to me."
 
 
 func look_at():
