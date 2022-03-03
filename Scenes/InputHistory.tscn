@@ -5,6 +5,6 @@
 [node name="InputHistory" type="Label"]
 margin_right = 984.0
 margin_bottom = 32.0
-custom_colors/font_color = Color( 0.513726, 0.513726, 0.513726, 1 )
+custom_colors/font_color = Color( 0.862745, 0.866667, 0.160784, 1 )
 custom_fonts/font = ExtResource( 1 )
-text = " > This is what the user typed"
+text = " >> This is what the user typed"

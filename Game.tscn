@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -51,21 +51,41 @@
 [ext_resource path="res://Scripts/items/floppy.gd" type="Script" id=49]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
+bg_color = Color( 0, 0.0313726, 0.607843, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.223529, 0.215686, 0.215686, 1 )
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.329412, 0.321569, 0.321569, 1 )
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
 
 [sub_resource type="StyleBoxFlat" id=8]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 
@@ -364,6 +384,7 @@ margin_left = 55.0
 margin_right = 1560.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.839216, 0.858824, 0.862745, 1 )
 custom_fonts/font = ExtResource( 2 )
 custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 4 )
@@ -394,6 +415,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 9 )
 custom_styles/normal = SubResource( 8 )
 text = "TALK TO"
 
@@ -409,6 +431,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 10 )
 custom_styles/normal = SubResource( 8 )
 text = "GIVE"
 
@@ -424,6 +447,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 11 )
 custom_styles/normal = SubResource( 8 )
 text = "USE"
 
@@ -440,6 +464,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 12 )
 custom_styles/normal = SubResource( 8 )
 text = "WALK"
 
@@ -455,6 +480,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 13 )
 custom_styles/normal = SubResource( 8 )
 text = "PICK UP"
 
@@ -471,6 +497,7 @@ custom_styles/panel = SubResource( 6 )
 margin_right = 250.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 14 )
 custom_styles/normal = SubResource( 8 )
 text = "LOOK AT"
 
