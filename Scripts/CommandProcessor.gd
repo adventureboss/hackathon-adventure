@@ -57,12 +57,12 @@ func update_exit (direction):
 
 
 func process_command(input: String):
-	var words = input.split(" ", false)
-	var first_word = words[0].to_lower()
+	var words = input.to_lower().split(" ", false)
+	var first_word = words[0]
 	var second_word = ""
 	
 	if words.size() > 1:
-		second_word = words[1].to_lower()
+		second_word = words[1]
 	
 	match first_word:
 		"talk":

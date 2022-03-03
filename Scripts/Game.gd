@@ -27,6 +27,7 @@ var input_status_enabled: bool = true
 
 func _ready() -> void:
 	scrollbar.connect("changed", self, "handle_scrollbar_changed")
+	game_state.connect("keyword_clicked", self, "on_keyword_pressed")
 	max_scroll_length = scrollbar.max_value
 
 	#create_response("You have arrived at Purple Cap Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North.")
@@ -132,3 +133,7 @@ func _on_LookAtButton_pressed() -> void:
 	user_cli.text += "LOOK AT "
 	user_cli.caret_position = button_carot_position
 	
+func on_keyword_pressed(keyword):
+	if not user_cli.text.ends_with(" "):
+		user_cli.text += " "
+	user_cli.text += keyword
