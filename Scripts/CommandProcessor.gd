@@ -42,7 +42,7 @@ func process_command(input: String):
 		"give":
 			return give(second_word, third_word, fourth_word)
 		"use":
-			return use(second_word)
+			return use(second_word, third_word, fourth_word)
 		"walk":
 			return walk(second_word)
 		"pick":
@@ -109,13 +109,22 @@ func give (second_word: String, third_word: String, fourth_word: String) -> Stri
 		return "Can't give an item to %s" % fourth_word
 
 
-func use (second_word: String) -> String:
+func use (second_word: String, third_word: String, fourth_word: String) -> String:
 	if second_word == "":
 		return "USE what?"
+	
+	if third_word != "on":
+		return "USE %s || USE %s <on> <something>"
 
-	var actor = get_actor(second_word)
+	if fourth_word != "" && game_state.has_item(second_word) == false:
+		return "I don't have %s" % second_word
+
+	var actor = get_actor(fourth_word)
 	if actor != null:
-		return PoolStringArray([ "You USE %s" % second_word, actor.use(game_state.get_self()) ]).join("\n")
+		if third_word == "" && fourth_word == "":
+			return PoolStringArray([ "You USE %s " % second_word, actor.use(second_word) ]).join("\n")
+		else:
+			return PoolStringArray([ "You USE %s on %s" % [second_word, fourth_word], actor.use(second_word) ]).join("\n")
 	else:
 		return "%s can't be picked up" % second_word
 
