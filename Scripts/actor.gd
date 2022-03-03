@@ -13,7 +13,7 @@ func pick_up() -> String:
 	return "I can't pick that up"
 
 func give(who) -> String:
-	return "I don't think " + who.display_name + " would like a " + self.display_name
+	return "I don't think " + self.display_name + " would like a " + who.display_name
 
 func use(with_what) -> String:
 	return "I can't use it with that!"

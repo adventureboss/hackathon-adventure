@@ -6,18 +6,19 @@ const help = preload("res://Dialogs/help.tres")
 onready var game_state: GameState = get_node("/root/GameState")
 
 func _extract_actors(input: Array, count: int, items: Array = []):
-	for i in range(count):
-		var search = ""
-		for word in input:
-			if search != "":
-				search += "_"
-			search += word
-			var actor = get_actor(search)
-			if actor != null:
-				items.append(actor)
-				if i + 1 < input.size() and count > 1:
-					return _extract_actors(input.slice(i + 1, input.size()), count - 1, items)
-				return items
+	var search = ""
+	for i in input.size():
+		var word = input[i]
+		if search != "":
+			search += "_"
+		search += word
+
+		var actor = get_actor(search)
+		if actor != null:
+			items.append(actor)
+			if i + 1 < input.size() and count > 1:
+				return _extract_actors(input.slice(i + 1, input.size()), count - 1, items)
+			return items
 	
 	if input.size() > 1:
 		return _extract_actors(input.slice(1, input.size()), count, items)
