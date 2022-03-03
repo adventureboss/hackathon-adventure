@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -49,6 +49,14 @@
 [ext_resource path="res://Scripts/items/water_fountain.gd" type="Script" id=47]
 [ext_resource path="res://Scripts/items/vendor_hall.gd" type="Script" id=48]
 [ext_resource path="res://Scripts/items/floppy.gd" type="Script" id=49]
+[ext_resource path="res://Scripts/rooms/lobby.gd" type="Script" id=50]
+[ext_resource path="res://Scripts/rooms/entrance.gd" type="Script" id=51]
+[ext_resource path="res://Scripts/rooms/east_entrance.gd" type="Script" id=52]
+[ext_resource path="res://Scripts/rooms/west_entrance.gd" type="Script" id=53]
+[ext_resource path="res://Scripts/rooms/ballroom.gd" type="Script" id=54]
+[ext_resource path="res://Scripts/rooms/east_hall.gd" type="Script" id=55]
+[ext_resource path="res://Scripts/rooms/vendor_hall.gd" type="Script" id=56]
+[ext_resource path="res://Scripts/rooms/session_room.gd" type="Script" id=57]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.0313726, 0.607843, 1 )
@@ -105,10 +113,7 @@ margin_left = 553.0
 margin_top = -405.0
 margin_right = 980.0
 margin_bottom = -47.0
-room_name = "Entrance"
-room_description = "You have arrived at Purple Beret Con! A gathering of technology enthusiasts from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around?"
-talk_to_dictionary = {
-}
+script = ExtResource( 51 )
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 24 )
@@ -125,10 +130,7 @@ margin_left = 534.0
 margin_top = -737.0
 margin_right = 1001.0
 margin_bottom = -448.0
-room_name = "Lobby"
-room_description = "You stand in the Lobby of the convention center. It's definitely a tech conference based on the sheer quantity of nerds hanging around. You see velvet ropes guiding attendees to the check-in desk. One associate doesn't have a line. To the east and west are hallways leading deeper into the convention center."
-talk_to_dictionary = {
-}
+script = ExtResource( 50 )
 
 [node name="associate" type="Node" parent="RoomManager/Lobby"]
 script = ExtResource( 10 )
@@ -148,10 +150,7 @@ margin_left = 1020.0
 margin_top = -707.0
 margin_right = 1282.0
 margin_bottom = -464.0
-room_name = "East Entrance"
-room_description = "You at the east  entrance. A guard stands by checking badges. He's a big guy. He could probably pick you up with one hand if you start any shenanigans. Beyond the guard is a hallway leading deeper into the convention center."
-talk_to_dictionary = {
-}
+script = ExtResource( 52 )
 
 [node name="guard" type="Node" parent="RoomManager/EastEntrance"]
 script = ExtResource( 18 )
@@ -164,10 +163,7 @@ margin_left = 257.0
 margin_top = -706.0
 margin_right = 504.0
 margin_bottom = -459.0
-room_name = "West Entrance"
-room_description = "The entrance to the west hallway is an elaborate and large doorway. There is a guard at the door checking badges. He seems to be playing absent mindedly on his phone."
-talk_to_dictionary = {
-}
+script = ExtResource( 53 )
 
 [node name="guard" type="Node" parent="RoomManager/WestEntrance"]
 script = ExtResource( 20 )
@@ -183,10 +179,7 @@ margin_left = -75.0
 margin_top = -736.0
 margin_right = 238.0
 margin_bottom = -439.0
-room_name = "Ballroom"
-room_description = "You are standing the Keynote Ballroom. The gem of the entire conference. There is a large stage, rows and rows of seats, and a person standing near a projector machine pulling at their hair."
-talk_to_dictionary = {
-}
+script = ExtResource( 54 )
 
 [node name="pamphlets" type="Node" parent="RoomManager/Ballroom"]
 script = ExtResource( 14 )
@@ -205,10 +198,7 @@ margin_left = 1332.0
 margin_top = -710.0
 margin_right = 1740.0
 margin_bottom = -438.0
-room_name = "East Hall"
-room_description = "The east hall is a fairly non-descript conference center hallway, adorned with banners about the conference. There is a water fountain and a somewhat elaborate coffee machine nearby. To the north, you see a sign indicating the vendor hall. To the south, is a session room with a sign out front showing the schedule."
-talk_to_dictionary = {
-}
+script = ExtResource( 55 )
 
 [node name="banners" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 43 )
@@ -271,10 +261,7 @@ margin_left = 1355.0
 margin_top = -1053.0
 margin_right = 1677.0
 margin_bottom = -731.0
-room_name = "Vendor Hall"
-room_description = "The vendor hall is an enormous room filled with different vendors trying to pitch their wares to people who just want their t-shirts. From the entrance, you're able to see a vendor promoting some kind of widget, and a robot . The robot seems to be promoting...something."
-talk_to_dictionary = {
-}
+script = ExtResource( 56 )
 
 [node name="widget_vendor" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 8 )
@@ -297,10 +284,7 @@ margin_left = 1388.0
 margin_top = -410.0
 margin_right = 1705.0
 margin_bottom = -147.0
-room_name = "Session Room"
-room_description = "You are inside a session room. Tired attendees come here to listen to someone drone while they catch a quick nap. The room is empty right now aside from a few napping nerds and a lonely podium."
-talk_to_dictionary = {
-}
+script = ExtResource( 57 )
 
 [node name="nerds" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 29 )

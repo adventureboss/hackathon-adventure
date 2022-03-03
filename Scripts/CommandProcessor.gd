@@ -6,6 +6,13 @@ onready var game_state: GameState = get_node("/root/GameState")
 
 var current_room = null
 
+func look_at_room():
+	var exit_string = PoolStringArray(current_room.exits.keys()).join(" ")
+	var string = PoolStringArray([
+		"You are now in the " + current_room.get_room_name() + ".  \n" + current_room.get_room_description(),
+		"Exits: " + exit_string
+	]).join("\n")
+	return string 
 
 func initialize (starting_room) -> String:
 	return change_room(starting_room)
@@ -14,14 +21,7 @@ func initialize (starting_room) -> String:
 func change_room (new_room) -> String:
 	current_room = new_room
 	game_state.current_room = new_room
-	var exit_string = PoolStringArray(new_room.exits.keys()).join(" ")
-	var string = PoolStringArray([
-		"You are now in the " + new_room.room_name + ".  \n" + new_room.room_description,
-		"Exits: " + exit_string
-	]).join("\n")
-
-	return string
-
+	return look_at_room()
 
 func process_command(input: String):
 	var words = input.split(" ", false)
@@ -158,6 +158,9 @@ func pickUp (third_word: String) -> String:
 func lookAt (third_word: String) -> String:
 	if third_word == "":
 		return "LOOK AT what?"
+	
+	if third_word == "room":
+		return look_at_room()
 	
 	var actor = get_actor(third_word)
 	if actor != null:
