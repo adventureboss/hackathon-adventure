@@ -43,14 +43,14 @@ West Guard: How can I help you?
 - What's going on back there?
 	West Guard: Oh that? That's the keynote ballroom. There's gonna be a whole big presentation in a little bit.
 	You: Sweet! Can I go in?
-	West Guard: Do you have your badge?
+	West Guard: Do you have your [color=#cb1eca]badge[/color]?
 	=> badge
 	- Give your badge [if has_item(\"badge\")]
 		=> player_badge
 	- Give Ash's Badge [if has_item(\"ash_badge\")]
 		=> ash_badge
 	- Don't you know who I am!?
-		West Guard: Someone thinking about violating badge policy and being ushered out of the convention and onto the street forever?
+		West Guard: Someone thinking about violating [color=#cb1eca]badge[/color] policy and being ushered out of the convention and onto the street forever?
 		You: ...
 		West Guard: ...
 		You: I'll be back later.
@@ -100,8 +100,8 @@ West Guard: Sorry!
 	
 ~ ash_badge
 if get_dialog_state(\"west_guard\", \"used_badge\") == true
-	West Guard: You already showed me a badge and this wasn't it.
-	You: There was a mixup at the desk. I'm definitely the person on that badge.
+	West Guard: You already showed me a [color=#cb1eca]badge[/color] and this wasn't it.
+	You: There was a mixup at the desk. I'm definitely the person on that [color=#cb1eca]badge[/color].
 	West Guard: Well, if you say so!
 else 
 	West Guard: Oh Ash! So glad you're here! They've been waiting. 
@@ -120,7 +120,7 @@ do set_dialog_state(\"player\", \"west_clear\", 2)
 => END
 
 ~ give_badge
-You: Here's my badge.
+You: Here's my [color=#cb1eca]badge[/color].
 West Guard: Well, would you look at that. You're all kinds of official. 
 West Guard: Except I can't let you in yet.
 West Guard: <whispers> There are technical difficulties.
@@ -313,8 +313,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Here's my badge.",
-"translation_key": "Here's my badge.",
+"text": "Here's my [color=#cb1eca]badge[/color].",
+"translation_key": "Here's my [color=#cb1eca]badge[/color].",
 "type": "dialogue"
 },
 "116": {
@@ -758,8 +758,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Do you have your badge?",
-"translation_key": "Do you have your badge?",
+"text": "Do you have your [color=#cb1eca]badge[/color]?",
+"translation_key": "Do you have your [color=#cb1eca]badge[/color]?",
 "type": "dialogue"
 },
 "39": {
@@ -851,8 +851,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Someone thinking about violating badge policy and being ushered out of the convention and onto the street forever?",
-"translation_key": "Someone thinking about violating badge policy and being ushered out of the convention and onto the street forever?",
+"text": "Someone thinking about violating [color=#cb1eca]badge[/color] policy and being ushered out of the convention and onto the street forever?",
+"translation_key": "Someone thinking about violating [color=#cb1eca]badge[/color] policy and being ushered out of the convention and onto the street forever?",
 "type": "dialogue"
 },
 "46": {
@@ -1350,8 +1350,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You already showed me a badge and this wasn't it.",
-"translation_key": "You already showed me a badge and this wasn't it.",
+"text": "You already showed me a [color=#cb1eca]badge[/color] and this wasn't it.",
+"translation_key": "You already showed me a [color=#cb1eca]badge[/color] and this wasn't it.",
 "type": "dialogue"
 },
 "96": {
@@ -1363,8 +1363,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "There was a mixup at the desk. I'm definitely the person on that badge.",
-"translation_key": "There was a mixup at the desk. I'm definitely the person on that badge.",
+"text": "There was a mixup at the desk. I'm definitely the person on that [color=#cb1eca]badge[/color].",
+"translation_key": "There was a mixup at the desk. I'm definitely the person on that [color=#cb1eca]badge[/color].",
 "type": "dialogue"
 },
 "97": {

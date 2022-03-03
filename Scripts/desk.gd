@@ -2,7 +2,7 @@ extends "res://Scripts/actor.gd"
 
 
 func look_at():
-	return "It's a long desk with several associates handing out badges. At least one isn't busy"
+	return "It's a long desk with several associates handing out badges. At least one " + keyword("associate") + " isn't busy"
 
 
 func pick_up():

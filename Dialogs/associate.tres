@@ -35,7 +35,7 @@ Associate: What can I do for you?
 - I'm ready to check in [if get_dialog_state(\"player\", \"checked_in\") == false] 
 	=> associate_badge_acquire
 - My name is Ash Marshall, and I need to check in [if get_dialog_state(\"player\", \"has_id_name\") == true and get_dialog_state(\"associate\", \"ash\", 0) == 0]
-	Associate: I just gave you a badge. You're not Ash.
+	Associate: I just gave you a [color=#cb1eca]badge[/color]. You're not Ash.
 	You: I could be?
 	Associate: They're much smarter.
 	You: Unpossible!
@@ -99,7 +99,7 @@ do set_dialog_state(\"player\", \"has_id_name\", true)
 => main_chat
 
 ~ associate_badge_acquire
-Associate: Great! Here's your badge.
+Associate: Great! Here's your [color=#cb1eca]badge[/color].
 do add_item(\"badge\")
 <Badge added to inventory>
 do set_dialog_state(\"player\", \"checked_in\", true)
@@ -401,8 +401,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I just gave you a badge. You're not Ash.",
-"translation_key": "I just gave you a badge. You're not Ash.",
+"text": "I just gave you a [color=#cb1eca]badge[/color]. You're not Ash.",
+"translation_key": "I just gave you a [color=#cb1eca]badge[/color]. You're not Ash.",
 "type": "dialogue"
 },
 "31": {
@@ -1086,8 +1086,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Great! Here's your badge.",
-"translation_key": "Great! Here's your badge.",
+"text": "Great! Here's your [color=#cb1eca]badge[/color].",
+"translation_key": "Great! Here's your [color=#cb1eca]badge[/color].",
 "type": "dialogue"
 },
 "95": {

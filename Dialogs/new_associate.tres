@@ -45,7 +45,7 @@ if get_dialog_state(\"new_associate\", \"hostile_chat\") == 0
 	You: ...
 	[i]The associate sighs at you[/i]
 	Hostile Associate: Do you have some ID?
-	You: But the last person I got a badge from didn't need ID
+	You: But the last person I got a [color=#cb1eca]badge[/color] from didn't need ID
 	Hostile Associate: What now?
 	You: Nevermind
 	do set_dialog_state(\"new_associate\", \"hostile_chat\", 1)	
@@ -105,7 +105,7 @@ New Associate: Now what can I do for you?
 	New Associate: I'm sure he's on a boat somewhere.
 	=> name_choices
 - Ash Marshall
-	New Associate: Oh good! We've been waiting for you. Head to the West Hallway.
+	New Associate: Oh good! We've been waiting for you. Head to the [color=#cb1eca]west[/color] Hallway.
 	do add_item(\"ash_badge\")
 	<Received Ash's Badge>
 	You: Thanks!
@@ -171,8 +171,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Oh good! We've been waiting for you. Head to the West Hallway.",
-"translation_key": "Oh good! We've been waiting for you. Head to the West Hallway.",
+"text": "Oh good! We've been waiting for you. Head to the [color=#cb1eca]west[/color] Hallway.",
+"translation_key": "Oh good! We've been waiting for you. Head to the [color=#cb1eca]west[/color] Hallway.",
 "type": "dialogue"
 },
 "101": {
@@ -682,8 +682,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "But the last person I got a badge from didn't need ID",
-"translation_key": "But the last person I got a badge from didn't need ID",
+"text": "But the last person I got a [color=#cb1eca]badge[/color] from didn't need ID",
+"translation_key": "But the last person I got a [color=#cb1eca]badge[/color] from didn't need ID",
 "type": "dialogue"
 },
 "41": {
