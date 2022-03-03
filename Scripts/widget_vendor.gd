@@ -1,16 +1,12 @@
-extends Node
+extends "res://Scripts/actor.gd"
+
+const widget_vendor_dialogue = preload("res://Dialogs/vendor.tres")
+
+func talk_to():
+	game_state.show_dialogue(widget_vendor_dialogue, "main")
+	return null
 
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+func look_at():
+	return "I don’t know what he’s selling. But he has some mighty fine swag."
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass

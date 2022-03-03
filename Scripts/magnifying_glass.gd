@@ -1,16 +1,9 @@
-extends Node
+extends "res://Scripts/actor.gd"
 
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+func pick_up():
+	return "Vendor: Ah, ah ah! Not until you've heard my pitch!"
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func use(item):
+	return "I can't use it from here"

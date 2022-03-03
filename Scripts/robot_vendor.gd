@@ -1,16 +1,15 @@
-extends Node
+extends "res://Scripts/actor.gd"
+
+const robot_vendor_dialogue = preload("res://Dialogs/robot_vendor.tres")
+
+func talk_to():
+	if game_state.get_dialog_state("robot", "finished") == true:
+		return "Yeah, I think he’s fried. Better leave him alone"
+	else:
+		return game_state.show_dialogue(robot_vendor_dialogue, "main")
+		return null
 
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+func look_at():
+	return "It's a robot! Who cares what it's pitching"
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
