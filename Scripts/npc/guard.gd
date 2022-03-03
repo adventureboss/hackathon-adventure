@@ -1,6 +1,6 @@
 extends "res://Scripts/actor.gd"
 
-const west_guard_dialogue = preload("res://Dialogs/west_guard.tres")
+const west_guard_dialogue = preload("res://Dialogs/east_guard.tres")
 
 func talk_to():
 	game_state.show_dialogue(west_guard_dialogue, "main")
@@ -19,12 +19,12 @@ func use(item):
 	return "No way."
 
 
-func give(item: String):
+func give(item):
 	# Add link to dialogue here
-	if item == "badge":
+	if item.name == "badge":
 		game_state.show_dialogue(west_guard_dialogue, "give_badge")
 		return ""
-	elif item == "ash_badge":
+	elif item.name == "ash_badge":
 		game_state.show_dialogue(west_guard_dialogue, "give_ash_badge")
 		return ""
 	else:

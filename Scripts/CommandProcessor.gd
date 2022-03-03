@@ -5,6 +5,27 @@ const help = preload("res://Dialogs/help.tres")
 
 onready var game_state: GameState = get_node("/root/GameState")
 
+func _extract_actors(input: Array, count: int, items: Array = []):
+	for i in range(count):
+		var search = ""
+		for word in input:
+			if search != "":
+				search += "_"
+			search += word
+			var actor = get_actor(search)
+			if actor != null:
+				items.append(actor)
+				if i + 1 < input.size() and count > 1:
+					return _extract_actors(input.slice(i + 1, input.size()), count - 1, items)
+				return items
+	
+	if input.size() > 1:
+		return _extract_actors(input.slice(1, input.size()), count, items)
+	
+	return items
+
+func _slice(search_words: PoolStringArray, start, end):
+	return PoolStringArray(Array(search_words).slice(start, end))
 
 func look_at_room():
 	var exit_string = PoolStringArray(game_state.current_room.exits.keys()).join(" ")
@@ -39,29 +60,23 @@ func process_command(input: String):
 	var words = input.split(" ", false)
 	var first_word = words[0].to_lower()
 	var second_word = ""
-	var third_word = ""
-	var fourth_word = ""
-
+	
 	if words.size() > 1:
 		second_word = words[1].to_lower()
-	if words.size() > 2:
-		third_word = words[2].to_lower()
-	if words.size() > 3:
-		fourth_word = words[3].to_lower()
-
+	
 	match first_word:
 		"talk":
-			return talkTo(third_word)
+			return talkTo(_slice(words, 2, words.size()))
 		"give":
-			return give(second_word, third_word, fourth_word)
+			return give(_slice(words, 1, words.size()))
 		"use":
-			return use(second_word, third_word, fourth_word)
+			return use(_slice(words, 1, words.size()))
 		"walk":
 			return walk(second_word)
 		"pick":
-			return pickUp(third_word)
+			return pickUp(_slice(words, 2, words.size()))
 		"look":
-			return lookAt(third_word)
+			return lookAt(_slice(words, 2, words.size()))
 		"help":
 			return help()
 		_:
@@ -82,8 +97,6 @@ func get_actor(item: String) -> Actor:
 	for actor in actors:
 		if actor.name.to_lower() == item:
 			return actor
-		elif actor.display_name.to_lower() == item:
-			return actor
 
 	return null
 
@@ -91,60 +104,52 @@ func help():
 	game_state.show_dialogue(help, "help")
 	return "You get HELP"
 
-func talkTo (third_word: String) -> String:
-	if third_word == "":
+func talkTo (search_words: PoolStringArray) -> String:
+	if search_words.size() == 0:
 		return "TALK TO who?"
 	
-	var actor = get_actor(third_word)
-	if actor != null:
-		var response = actor.talk_to()
+	var actors = _extract_actors(search_words, 1)
+	
+	if actors.size() > 0:
+		var response = actors[0].talk_to()
 		if response != null:
 			return response
 	else:
-		return "%s is unable to speak at this time." % third_word
-		
-	return "You TALK TO %s" % third_word
+		return "%s is unable to speak at this time." % search_words.join(' ')
+	return "You TALK TO %s" % search_words.join(' ')
 
 
-func give (second_word: String, third_word: String, fourth_word: String) -> String:
-	if second_word == "":
+func give (search_words: PoolStringArray) -> String:
+	if search_words.size() == 0:
 		return "GIVE what?"
-
-	if third_word == "":
-		return "GIVE %s <to> <something>" % second_word
-
-	if fourth_word == "":
-		return "GIVE %s to what?" % second_word
 		
-	if game_state.has_item(second_word) == false:
-		return "I don't have %s" % second_word
-
-	var actor = get_actor(fourth_word)
-	if actor != null:
-		return PoolStringArray([ "You GIVE %s to %s" % [second_word, fourth_word], actor.give(second_word) ]).join("\n")
-	else:
-		return "Can't give an item to %s" % fourth_word
-
-
-func use (second_word: String, third_word: String, fourth_word: String) -> String:
-	if second_word == "":
-		return "USE what?"
+	var actors = _extract_actors(search_words, 2)
 	
-	if third_word != "on":
-		return "USE %s || USE %s <on> <something>"
+	if actors.size() == 0:
+		return "That's not possible"
+		
+	
+	if actors.size() < 2:
+		return "GIVE %s <to> <something>" % actors[0].display_name
+		
+	if game_state.has_item(actors[0]) == false:
+		return "I don't have %s" % actors[0].display_name
 
-	if fourth_word != "" && game_state.has_item(second_word) == false:
-		return "I don't have %s" % second_word
+	return PoolStringArray([ "You GIVE %s to %s" % [actors[0].display_name, actors[1].display_name], actors[1].give(actors[0]) ]).join("\n")
 
-	var actor = get_actor(fourth_word)
-	if actor != null:
-		if third_word == "" && fourth_word == "":
-			return PoolStringArray([ "You USE %s " % second_word, actor.use(second_word) ]).join("\n")
-		else:
-			return PoolStringArray([ "You USE %s on %s" % [second_word, fourth_word], actor.use(second_word) ]).join("\n")
-	else:
-		return "%s can't be picked up" % second_word
-
+func use (search_words: PoolStringArray) -> String:
+	if search_words.size() == 0:
+		return "USE <something> or USE <something> on/with >something else>"
+		
+	var actors = _extract_actors(search_words, 2)
+	
+	if actors.size() == 0:
+		return "I can't use that"
+	
+	if actors.size() == 1:
+		return PoolStringArray([ "You USE %s " % actors[0].display_name, actors[0].use(game_state._self) ]).join("\n")
+	
+	return PoolStringArray([ "You USE %s with %s" % [actors[0].display_name, actors[1].display_name], actors[0].use(actors[1]) ]).join("\n")
 
 func walk (second_word: String) -> String:
 	if second_word == "":
@@ -162,26 +167,27 @@ func walk (second_word: String) -> String:
 		return "This room has no exit in that direction!"
 
 
-func pickUp (third_word: String) -> String:
-	if third_word == "":
+func pickUp (search_words: PoolStringArray) -> String:
+	if search_words.size() == 0:
 		return "PICK UP what?"
-
-	var actor = get_actor(third_word)
-	if actor != null:
-		return PoolStringArray([ "You PICK UP %s" % third_word, actor.pick_up() ]).join("\n")
+	
+	var actors = _extract_actors(search_words, 1)
+	
+	if actors.size() == 0:
+		return PoolStringArray([ "You PICK UP %s" % actors[0].display_name, actors[0].pick_up() ]).join("\n")
 	else:
-		return "%s can't be picked up" % third_word
+		return "%s can't be picked up" % search_words.join(' ')
 
 
-func lookAt (third_word: String) -> String:
-	if third_word == "":
+func lookAt (search_words: PoolStringArray) -> String:
+	if search_words.size() == 0:
 		return "LOOK AT what?"
 	
-	if third_word == "room":
+	if search_words.size() > 0 and search_words[0] == "room":
 		return look_at_room()
 	
-	var actor = get_actor(third_word)
-	if actor != null:
-		return PoolStringArray([ "You LOOK AT %s" % third_word, actor.look_at() ]).join("\n")
+	var actors = _extract_actors(search_words, 1)
+	if actors.size() > 0:
+		return PoolStringArray([ "You LOOK AT %s" % actors[0].display_name, actors[0].look_at() ]).join("\n")
 	else:
-		return "%s can't be looked at, it is unseeable" % third_word
+		return "%s can't be looked at, it is unseeable" % search_words.join(' ')

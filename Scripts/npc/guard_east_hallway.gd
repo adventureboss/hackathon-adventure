@@ -7,7 +7,7 @@ func talk_to():
 
 
 func give(what):
-	match(what):
+	match(what.name):
 		"badge":
 			game_state.show_dialogue(east_guard_dialogue, "badge")
 		"ash_badge":
