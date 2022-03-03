@@ -12,6 +12,9 @@ func update():
 	$MarginContainer/Rows/RoomName.text = get_room_name()
 	$MarginContainer/Rows/RoomDescription.text = get_room_description()
 	
+func keyword(keyword: String):
+	return "[color=#cb1eca]%s[/color]" % keyword
+	
 func get_room_name():
 	return "Default room name"
 	
