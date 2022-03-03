@@ -105,9 +105,9 @@ New Associate: Now what can I do for you?
 	New Associate: I'm sure he's on a boat somewhere.
 	=> name_choices
 - Ash Marshall
-	New Associate: Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].
+	New Associate: Oh good! We've been waiting for you. Head to the West Hallway.
 	do add_item(\"ash_badge\")
-	[b] Received Ash's Badge [/b]
+	<Received Ash's Badge>
 	You: Thanks!
 	New Associate: Good luck!
 	do set_dialog_state(\"new_associate\", \"complete\", true)
@@ -171,8 +171,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].",
-"translation_key": "Oh good! We've been waiting for you. Head to the [b]West Hallway[/b].",
+"text": "Oh good! We've been waiting for you. Head to the West Hallway.",
+"translation_key": "Oh good! We've been waiting for you. Head to the West Hallway.",
 "type": "dialogue"
 },
 "101": {
@@ -196,8 +196,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "[b] Received Ash's Badge [/b]",
-"translation_key": "[b] Received Ash's Badge [/b]",
+"text": "<Received Ash's Badge>",
+"translation_key": "<Received Ash's Badge>",
 "type": "dialogue"
 },
 "103": {
