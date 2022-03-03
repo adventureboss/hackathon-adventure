@@ -331,7 +331,7 @@ display_name = "Router"
 script = ExtResource( 34 )
 display_name = "Note"
 
-[node name="button_hole_reset" type="Node" parent="RoomManager/SessionRoom"]
+[node name="button" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 35 )
 display_name = "Button hole reset"
 
