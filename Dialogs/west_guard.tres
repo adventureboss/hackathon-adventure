@@ -14,7 +14,7 @@ do set_dialog_state(\"west_guard\", \"used_badge\", false)
 
 ~ first_meet
 The guard smiles at you and gestures you over
-West Guard: Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.
+West Guard: Well, hello there! Welcome to Purple Cap Con! We're just so dang happy to have you with us.
 do set_dialog_state(\"west_guard\", \"met\", 1)
 => main_chat
 
@@ -128,6 +128,8 @@ West Guard: You'll just have to come back later.
 => END
 
 ~ give_ash_badge
+if get_dialog_status(\"player\", \"west_clear\") >= 1
+	=> main
 You: Here's my badge! I'm definitely the person that that says I am.
 West Guard: And why wouldn't you be? I'm so glad you're here.
 West Guard: Head on in and see what you can do to fix this whole thing up.
@@ -375,9 +377,39 @@ lines = {
 "type": "title"
 },
 "123": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_status",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "west_clear"
+} ] ]
+}, {
+"type": "comparison",
+"value": ">="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "125",
+"next_id": "124",
+"next_id_after": "125",
+"type": "condition"
+},
+"124": {
+"next_id": "18",
+"parent_id": "123",
+"type": "goto"
+},
+"125": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "124",
+"next_id": "126",
 "pauses": {
 },
 "replacements": [  ],
@@ -386,10 +418,10 @@ lines = {
 "translation_key": "Here's my badge! I'm definitely the person that that says I am.",
 "type": "dialogue"
 },
-"124": {
+"126": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "125",
+"next_id": "127",
 "pauses": {
 },
 "replacements": [  ],
@@ -398,10 +430,10 @@ lines = {
 "translation_key": "And why wouldn't you be? I'm so glad you're here.",
 "type": "dialogue"
 },
-"125": {
+"127": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "126",
+"next_id": "128",
 "pauses": {
 },
 "replacements": [  ],
@@ -410,10 +442,10 @@ lines = {
 "translation_key": "Head on in and see what you can do to fix this whole thing up.",
 "type": "dialogue"
 },
-"126": {
+"128": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "127",
+"next_id": "129",
 "pauses": {
 },
 "replacements": [  ],
@@ -422,7 +454,7 @@ lines = {
 "translation_key": "You got it! Ash Marshall, at your service. Just heading on in with my real ID and all.",
 "type": "dialogue"
 },
-"127": {
+"129": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -436,17 +468,17 @@ lines = {
 } ] ],
 "function": "set_dialog_status"
 },
-"next_id": "128",
+"next_id": "130",
 "type": "mutation"
-},
-"128": {
-"next_id": "end",
-"type": "goto"
 },
 "13": {
 "next_id": "14",
 "text": "subsequent_meets",
 "type": "title"
+},
+"130": {
+"next_id": "end",
+"type": "goto"
 },
 "14": {
 "character": "West Guard",
@@ -1289,8 +1321,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.",
-"translation_key": "Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.",
+"text": "Well, hello there! Welcome to Purple Cap Con! We're just so dang happy to have you with us.",
+"translation_key": "Well, hello there! Welcome to Purple Cap Con! We're just so dang happy to have you with us.",
 "type": "dialogue"
 },
 "90": {
