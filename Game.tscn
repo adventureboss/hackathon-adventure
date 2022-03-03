@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -7,20 +7,19 @@
 [ext_resource path="res://Scripts/CommandProcessor.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/desk.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/npc/associate.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/items/doors_entrance.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/ropes.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/desk.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/npc/guard.gd" type="Script" id=20]
-[ext_resource path="res://Scripts/doorway.gd" type="Script" id=21]
-[ext_resource path="res://Scripts/phone.gd" type="Script" id=22]
 [ext_resource path="res://Scripts/items/pamphlets.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/npc/event_coordinator.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/items/stage.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/items/seats.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/npc/guard_east_hallway.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/items/east_hallway.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/npc/guard.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/doorway.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/phone.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -63,7 +62,7 @@ talk_to_dictionary = {
 }
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 
 [node name="doors_entrance" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 11 )

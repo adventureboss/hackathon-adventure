@@ -21,6 +21,17 @@ func change_room (new_room) -> String:
 
 	return string
 
+func extract_items(input: Array, count: int):
+	var items = []
+	var last_index = 0
+	for i in range(count):
+		var search = ""
+		for word in input:
+			search += word
+			var actor = get_actor(search)
+			if actor != null:
+				items.append(actor)
+				break
 
 func process_command(input: String):
 	var words = input.split(" ", false)
@@ -55,7 +66,9 @@ func process_command(input: String):
 
 func get_actor(item: String) -> Actor:
 	for child in current_room.get_children():
-		if child.name == item:
+		if child.name.to_lower() == item:
+			return child
+		elif child.display_name.to_lower() == item:
 			return child
 
 	return null
