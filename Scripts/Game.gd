@@ -138,3 +138,4 @@ func on_keyword_pressed(keyword):
 		user_cli.text += " "
 	user_cli.text += keyword
 	user_cli.grab_focus()
+	user_cli.caret_position = user_cli.text.length()
