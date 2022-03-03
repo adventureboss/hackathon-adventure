@@ -2,6 +2,7 @@ extends Node
 
 signal show_dialogue(dialog_file, dialog_entry)
 signal items_updated(items)
+signal keyword_clicked(keyword)
 
 var _global_items = {}
 
