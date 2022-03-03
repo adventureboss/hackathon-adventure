@@ -1,5 +1,4 @@
-[gd_scene load_steps=32 format=2]
-
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -8,7 +7,7 @@
 [ext_resource path="res://Scripts/CommandProcessor.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/npc/nerds_entrance.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/widget_vendor.gd" type="Script" id=8]
 [ext_resource path="res://nerds_lobby.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/npc/associate.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/items/doors_entrance.gd" type="Script" id=11]
@@ -23,8 +22,12 @@
 [ext_resource path="res://Scripts/npc/guard.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/doorway.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/phone.gd" type="Script" id=22]
-[ext_resource path="res://associates.gd" type="Script" id=23]
-
+[ext_resource path="res://Scripts/swag.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/npc/nerds_entrance.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/t-shirt.gd" type="Script" id=25]
+[ext_resource path="res://associates.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/robot_vendor.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/magnifying_glass.gd" type="Script" id=28]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -67,15 +70,14 @@ talk_to_dictionary = {
 }
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
-script = ExtResource( 8 )
-
+script = ExtResource( 24 )
 
 [node name="doors" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 11 )
 display_name = "Doors"
 
 [node name="associates" type="Node" parent="RoomManager/Entrance"]
-script = ExtResource( 23 )
+script = ExtResource( 26 )
 
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 534.0
@@ -176,6 +178,21 @@ room_name = "Vendor Hall"
 room_description = "The vendor hall is an enormous room filled with different vendors trying to pitch their wares to people who just want their t-shirts. From the entrance, you're able to see a widget vendor, a software vendor, and a robot vendor. Like really, it's a robot who is also a vendor."
 talk_to_dictionary = {
 }
+
+[node name="widget_vendor" type="Node" parent="RoomManager/VendorHall"]
+script = ExtResource( 8 )
+
+[node name="robot_vendor" type="Node" parent="RoomManager/VendorHall"]
+script = ExtResource( 27 )
+
+[node name="swag" type="Node" parent="RoomManager/VendorHall"]
+script = ExtResource( 23 )
+
+[node name="magnifying_glass" type="Node" parent="RoomManager/VendorHall"]
+script = ExtResource( 28 )
+
+[node name="t-shirt" type="Node" parent="RoomManager/VendorHall"]
+script = ExtResource( 25 )
 
 [node name="SessionRoom" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1388.0
