@@ -120,6 +120,8 @@ The guard just grunts and ignores you
 => END
 
 ~ badge
+if get_dialoge_state(\"player\", \"east_clear\") >= 1
+	=> main
 You: Here's my badge!
 East Guard: Fine, fine. You can go on in.
 do set_dialog_state(\"player\", \"east_clear\", 1)
@@ -272,9 +274,39 @@ lines = {
 "type": "title"
 },
 "115": {
+"condition": {
+"expression": [ {
+"function": "get_dialoge_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "east_clear"
+} ] ]
+}, {
+"type": "comparison",
+"value": ">="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "117",
+"next_id": "116",
+"next_id_after": "117",
+"type": "condition"
+},
+"116": {
+"next_id": "17",
+"parent_id": "115",
+"type": "goto"
+},
+"117": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "116",
+"next_id": "118",
 "pauses": {
 },
 "replacements": [  ],
@@ -283,10 +315,10 @@ lines = {
 "translation_key": "Here's my badge!",
 "type": "dialogue"
 },
-"116": {
+"118": {
 "character": "East Guard",
 "inline_mutations": [  ],
-"next_id": "117",
+"next_id": "119",
 "pauses": {
 },
 "replacements": [  ],
@@ -295,7 +327,7 @@ lines = {
 "translation_key": "Fine, fine. You can go on in.",
 "type": "dialogue"
 },
-"117": {
+"119": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -309,17 +341,17 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "118",
+"next_id": "120",
 "type": "mutation"
-},
-"118": {
-"next_id": "end",
-"type": "goto"
 },
 "12": {
 "next_id": "13",
 "text": "subsequent_meets",
 "type": "title"
+},
+"120": {
+"next_id": "end",
+"type": "goto"
 },
 "13": {
 "character": "East Guard",
