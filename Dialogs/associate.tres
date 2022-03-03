@@ -66,20 +66,26 @@ Associate: What can I do for you?
 Associate: So far so good!
 [i]You notice that they don't look so sure[/i]
 - I don't believe you
-	Associate: Fine by me. I just want to take a break, but I have to hand out 5 more badges.
+	Associate: And I don't believe you should wear a belt AND suspenders, but there you are.
+	You: One can never be too careful.
+	Associate: Uh huh.
 	=> main_chat
 - That bead of sweat on your forhead says otherwise
 	=> sweat
 
 ~ sweat
 Associate: Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.
+Associate: A tech is supposed to be coming to help, but I don't know when they will be here.
+Associate: I really just want to hand out five more badges so I can take a break.
+do set_dialog_state(\"associate\", \"badges\", true)
 => choices
 
 ~ choices
 - I hope it works out
 	Associate: I hope the tech shows up
 	=> choices
-- Maybe I can help => help
+- Who is the tech?
+	=> tech
 - Can I have my money back?
 	Associate: Sorry, all your money are belong to us.
 	You: Cheeky
@@ -87,32 +93,29 @@ Associate: Okay, don't tell anyone, but I hear there are issues with the keynote
 - Meh. I'm bored. Let's talk about something else.
 	=> main_chat
 
-~ help
-Associate: It's fine a tech is supposed to be on the way.
-[i]The associate looks at their watch[/i]
-You: Who's the tech?
+~ tech
 Associate: They're an employee. Ash Marshall. They're usually on time.
 do set_dialog_state(\"player\", \"has_id_name\", true)
 => main_chat
 
 ~ associate_badge_acquire
-Associate: Great! Here's your badge
+Associate: Great! Here's your badge.
 do add_item(\"badge\")
 <Badge added to inventory>
 do set_dialog_state(\"player\", \"checked_in\", true)
 => main_chat"
 errors = [  ]
 titles = {
-"associate_badge_acquire": "91",
-"choices": "71",
+"associate_badge_acquire": "94",
+"choices": "76",
 "event": "58",
 "first_meet": "6",
-"help": "83",
 "initialize": "1",
 "main": "18",
 "main_chat": "26",
 "subsequent_meets": "14",
-"sweat": "67"
+"sweat": "69",
+"tech": "89"
 }
 lines = {
 "0": {
@@ -332,7 +335,7 @@ lines = {
 "type": "response"
 },
 "28": {
-"next_id": "91",
+"next_id": "94",
 "parent_id": "27",
 "type": "goto"
 },
@@ -775,7 +778,7 @@ lines = {
 "next_id": "61",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "60", "63" ),
+"responses": PoolStringArray( "60", "65" ),
 "text": "I don't believe you",
 "translation_key": "I don't believe you",
 "type": "response"
@@ -789,37 +792,63 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
-"translation_key": "Fine by me. I just want to take a break, but I have to hand out 5 more badges.",
+"text": "And I don't believe you should wear a belt AND suspenders, but there you are.",
+"translation_key": "And I don't believe you should wear a belt AND suspenders, but there you are.",
 "type": "dialogue"
 },
 "62": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "63",
+"parent_id": "60",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "One can never be too careful.",
+"translation_key": "One can never be too careful.",
+"type": "dialogue"
+},
+"63": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "64",
+"parent_id": "60",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Uh huh.",
+"translation_key": "Uh huh.",
+"type": "dialogue"
+},
+"64": {
 "next_id": "26",
 "parent_id": "60",
 "type": "goto"
 },
-"63": {
-"next_id": "64",
+"65": {
+"next_id": "66",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "That bead of sweat on your forhead says otherwise",
 "translation_key": "That bead of sweat on your forhead says otherwise",
 "type": "response"
 },
-"64": {
-"next_id": "67",
-"parent_id": "63",
+"66": {
+"next_id": "69",
+"parent_id": "65",
 "type": "goto"
 },
-"66": {
-"next_id": "67",
+"68": {
+"next_id": "69",
 "text": "sweat",
 "type": "title"
 },
-"67": {
+"69": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "68",
+"next_id": "70",
 "pauses": {
 },
 "replacements": [  ],
@@ -827,10 +856,6 @@ lines = {
 "text": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
 "translation_key": "Okay, don't tell anyone, but I hear there are issues with the keynote and no one here knows what to do.",
 "type": "dialogue"
-},
-"68": {
-"next_id": "71",
-"type": "goto"
 },
 "7": {
 "character": "Associate",
@@ -845,24 +870,69 @@ lines = {
 "type": "dialogue"
 },
 "70": {
+"character": "Associate",
+"inline_mutations": [  ],
 "next_id": "71",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "A tech is supposed to be coming to help, but I don't know when they will be here.",
+"translation_key": "A tech is supposed to be coming to help, but I don't know when they will be here.",
+"type": "dialogue"
+},
+"71": {
+"character": "Associate",
+"inline_mutations": [  ],
+"next_id": "72",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I really just want to hand out five more badges so I can take a break.",
+"translation_key": "I really just want to hand out five more badges so I can take a break.",
+"type": "dialogue"
+},
+"72": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "associate"
+} ], [ {
+"type": "string",
+"value": "badges"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "73",
+"type": "mutation"
+},
+"73": {
+"next_id": "76",
+"type": "goto"
+},
+"75": {
+"next_id": "76",
 "text": "choices",
 "type": "title"
 },
-"71": {
-"next_id": "72",
+"76": {
+"next_id": "77",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "71", "74", "75", "79" ),
+"responses": PoolStringArray( "76", "79", "81", "85" ),
 "text": "I hope it works out",
 "translation_key": "I hope it works out",
 "type": "response"
 },
-"72": {
+"77": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "73",
-"parent_id": "71",
+"next_id": "78",
+"parent_id": "76",
 "pauses": {
 },
 "replacements": [  ],
@@ -871,64 +941,17 @@ lines = {
 "translation_key": "I hope the tech shows up",
 "type": "dialogue"
 },
-"73": {
-"next_id": "71",
-"parent_id": "71",
-"type": "goto"
-},
-"74": {
-"next_id": "83",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Maybe I can help",
-"translation_key": "Maybe I can help",
-"type": "response"
-},
-"75": {
-"next_id": "76",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Can I have my money back?",
-"translation_key": "Can I have my money back?",
-"type": "response"
-},
-"76": {
-"character": "Associate",
-"inline_mutations": [  ],
-"next_id": "77",
-"parent_id": "75",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Sorry, all your money are belong to us.",
-"translation_key": "Sorry, all your money are belong to us.",
-"type": "dialogue"
-},
-"77": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "78",
-"parent_id": "75",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Cheeky",
-"translation_key": "Cheeky",
-"type": "dialogue"
-},
 "78": {
-"next_id": "71",
-"parent_id": "75",
+"next_id": "76",
+"parent_id": "76",
 "type": "goto"
 },
 "79": {
 "next_id": "80",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "Meh. I'm bored. Let's talk about something else.",
-"translation_key": "Meh. I'm bored. Let's talk about something else.",
+"text": "Who is the tech?",
+"translation_key": "Who is the tech?",
 "type": "response"
 },
 "8": {
@@ -944,55 +967,71 @@ lines = {
 "type": "dialogue"
 },
 "80": {
-"next_id": "26",
+"next_id": "89",
 "parent_id": "79",
 "type": "goto"
 },
-"82": {
-"next_id": "83",
-"text": "help",
-"type": "title"
+"81": {
+"next_id": "82",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Can I have my money back?",
+"translation_key": "Can I have my money back?",
+"type": "response"
 },
-"83": {
+"82": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "84",
+"next_id": "83",
+"parent_id": "81",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "It's fine a tech is supposed to be on the way.",
-"translation_key": "It's fine a tech is supposed to be on the way.",
+"text": "Sorry, all your money are belong to us.",
+"translation_key": "Sorry, all your money are belong to us.",
+"type": "dialogue"
+},
+"83": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "84",
+"parent_id": "81",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Cheeky",
+"translation_key": "Cheeky",
 "type": "dialogue"
 },
 "84": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "85",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]The associate looks at their watch[/i]",
-"translation_key": "[i]The associate looks at their watch[/i]",
-"type": "dialogue"
+"next_id": "76",
+"parent_id": "81",
+"type": "goto"
 },
 "85": {
-"character": "You",
-"inline_mutations": [  ],
 "next_id": "86",
-"pauses": {
-},
+"next_id_after": "end",
 "replacements": [  ],
-"speeds": [  ],
-"text": "Who's the tech?",
-"translation_key": "Who's the tech?",
-"type": "dialogue"
+"text": "Meh. I'm bored. Let's talk about something else.",
+"translation_key": "Meh. I'm bored. Let's talk about something else.",
+"type": "response"
 },
 "86": {
+"next_id": "26",
+"parent_id": "85",
+"type": "goto"
+},
+"88": {
+"next_id": "89",
+"text": "tech",
+"type": "title"
+},
+"89": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "87",
+"next_id": "90",
 "pauses": {
 },
 "replacements": [  ],
@@ -1000,27 +1039,6 @@ lines = {
 "text": "They're an employee. Ash Marshall. They're usually on time.",
 "translation_key": "They're an employee. Ash Marshall. They're usually on time.",
 "type": "dialogue"
-},
-"87": {
-"mutation": {
-"args": [ [ {
-"type": "string",
-"value": "player"
-} ], [ {
-"type": "string",
-"value": "has_id_name"
-} ], [ {
-"type": "bool",
-"value": true
-} ] ],
-"function": "set_dialog_state"
-},
-"next_id": "88",
-"type": "mutation"
-},
-"88": {
-"next_id": "26",
-"type": "goto"
 },
 "9": {
 "character": "You",
@@ -1035,23 +1053,44 @@ lines = {
 "type": "dialogue"
 },
 "90": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "has_id_name"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
 "next_id": "91",
+"type": "mutation"
+},
+"91": {
+"next_id": "26",
+"type": "goto"
+},
+"93": {
+"next_id": "94",
 "text": "associate_badge_acquire",
 "type": "title"
 },
-"91": {
+"94": {
 "character": "Associate",
 "inline_mutations": [  ],
-"next_id": "92",
+"next_id": "95",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Great! Here's your badge",
-"translation_key": "Great! Here's your badge",
+"text": "Great! Here's your badge.",
+"translation_key": "Great! Here's your badge.",
 "type": "dialogue"
 },
-"92": {
+"95": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -1059,13 +1098,13 @@ lines = {
 } ] ],
 "function": "add_item"
 },
-"next_id": "93",
+"next_id": "96",
 "type": "mutation"
 },
-"93": {
+"96": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "94",
+"next_id": "97",
 "pauses": {
 },
 "replacements": [  ],
@@ -1074,7 +1113,7 @@ lines = {
 "translation_key": "<Badge added to inventory>",
 "type": "dialogue"
 },
-"94": {
+"97": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -1088,10 +1127,10 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "95",
+"next_id": "98",
 "type": "mutation"
 },
-"95": {
+"98": {
 "next_id": "26",
 "type": "goto"
 }
