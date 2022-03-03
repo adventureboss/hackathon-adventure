@@ -7,13 +7,13 @@ func _ready():
 
 func look_at():
 	if game_state.get_dialog_state("coffee_machine", "broken") == true:
-		return "It used to be a fancy coffee machine. I like to think I’ve enhanced it"
+		return "It used to be a fancy " + keyword("coffee machine") + ". I like to think I’ve enhanced it"
 
-	return "It’s a fancy coffee machine. It says, “uses the strongest beans known to man.” Looks like it makes tea too!"
+	return "It’s a fancy " + keyword("coffee machine") + ". It says, “uses the strongest beans known to man.” Looks like it makes tea too! I can even have a " + keyword("stir stick") + "!"
 
 func pick_up():
 	game_state.set_dialog_state("coffee_machine", "broken", true)
-	return "“You’re coming with me, fancy coffee machine!” You attempt to pick it up and drop it with a loud crash. Beans spill out all over the floor. “Whoops”"
+	return "“You’re coming with me, fancy " + keyword("coffee machine") + "!” You attempt to pick it up and drop it with a loud crash. " + keyword("Beans") + " spill out all over the floor. “Whoops”"
 
 func talk_to():
 	game_state.show_dialogue(dialogue, "main")

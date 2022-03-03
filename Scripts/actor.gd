@@ -17,3 +17,6 @@ func give(who) -> String:
 
 func use(with_what) -> String:
 	return "I can't use it with that!"
+
+func keyword(keyword: String):
+	return "[color=#cb1eca]%s[/color]" % keyword
