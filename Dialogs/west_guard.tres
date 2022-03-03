@@ -128,13 +128,13 @@ West Guard: You'll just have to come back later.
 => END
 
 ~ give_ash_badge
-if get_dialog_status(\"player\", \"west_clear\") >= 1
+if get_dialog_state(\"player\", \"west_clear\") >= 1
 	=> main
 You: Here's my badge! I'm definitely the person that that says I am.
 West Guard: And why wouldn't you be? I'm so glad you're here.
 West Guard: Head on in and see what you can do to fix this whole thing up.
 You: You got it! Ash Marshall, at your service. Just heading on in with my real ID and all.
-do set_dialog_status(\"player\", \"west_clear\", 1)
+do set_dialog_state(\"player\", \"west_clear\", 1)
 => END
 
 "
@@ -379,7 +379,7 @@ lines = {
 "123": {
 "condition": {
 "expression": [ {
-"function": "get_dialog_status",
+"function": "get_dialog_state",
 "type": "function",
 "value": [ [ {
 "type": "string",
@@ -466,7 +466,7 @@ lines = {
 "type": "number",
 "value": 1
 } ] ],
-"function": "set_dialog_status"
+"function": "set_dialog_state"
 },
 "next_id": "130",
 "type": "mutation"
