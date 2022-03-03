@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -28,6 +28,13 @@
 [ext_resource path="res://associates.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/robot_vendor.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/magnifying_glass.gd" type="Script" id=28]
+[ext_resource path="res://Scripts/nerds_session_hall.gd" type="Script" id=29]
+[ext_resource path="res://Scripts/podium.gd" type="Script" id=30]
+[ext_resource path="res://Scripts/nook.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/items/chips.gd" type="Script" id=32]
+[ext_resource path="res://Scripts/items/router.gd" type="Script" id=33]
+[ext_resource path="res://Scripts/items/note.gd" type="Script" id=34]
+[ext_resource path="res://Scripts/items/button.gd" type="Script" id=35]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -203,6 +210,27 @@ room_name = "Session Room"
 room_description = "The session room! Where tired attendees come to listen to someone drone while they catch a quick nap. The room is empty right now aside from a few napping nerds and a lonely podium."
 talk_to_dictionary = {
 }
+
+[node name="nerds" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 29 )
+
+[node name="podium" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 30 )
+
+[node name="nook" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 31 )
+
+[node name="chips" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 32 )
+
+[node name="router" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 33 )
+
+[node name="note" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 34 )
+
+[node name="buttonholereset" type="Node" parent="RoomManager/SessionRoom"]
+script = ExtResource( 35 )
 
 [node name="Background" type="PanelContainer" parent="."]
 anchor_right = 1.0
