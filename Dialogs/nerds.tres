@@ -76,7 +76,6 @@ else
 	You notice the associates change shifts. There is a new associate at the desk now.
 	do set_dialog_state(\"nerds\", \"checked_in\", true)
 	do set_dialog_state(\"nerds\", \"present\", false)
-	do 
 	=> END
 - Yeah, nevermind.
 	=> END
@@ -88,7 +87,7 @@ else
 errors = [  ]
 titles = {
 "first_meet": "8",
-"gone": "77",
+"gone": "76",
 "initialize": "1",
 "interrupt": "55",
 "main": "20"
@@ -338,7 +337,7 @@ lines = {
 "type": "condition"
 },
 "25": {
-"next_id": "77",
+"next_id": "76",
 "parent_id": "24",
 "type": "goto"
 },
@@ -756,7 +755,7 @@ lines = {
 "next_id": "56",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "55", "58", "65", "73" ),
+"responses": PoolStringArray( "55", "58", "65", "72" ),
 "text": "FIRE!",
 "translation_key": "FIRE!",
 "type": "response"
@@ -946,45 +945,32 @@ lines = {
 "type": "mutation"
 },
 "71": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "72",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "do",
-"translation_key": "do",
-"type": "dialogue"
-},
-"72": {
 "next_id": "end",
 "parent_id": "65",
 "type": "goto"
 },
-"73": {
-"next_id": "74",
+"72": {
+"next_id": "73",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "Yeah, nevermind.",
 "translation_key": "Yeah, nevermind.",
 "type": "response"
 },
-"74": {
+"73": {
 "next_id": "end",
-"parent_id": "73",
+"parent_id": "72",
 "type": "goto"
 },
-"76": {
-"next_id": "77",
+"75": {
+"next_id": "76",
 "text": "gone",
 "type": "title"
 },
-"77": {
+"76": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "78",
+"next_id": "77",
 "pauses": {
 },
 "replacements": [  ],
@@ -993,7 +979,7 @@ lines = {
 "translation_key": "[i]The nerds are long gone. They really love stickers.[/i]",
 "type": "dialogue"
 },
-"78": {
+"77": {
 "next_id": "end",
 "type": "goto"
 },
