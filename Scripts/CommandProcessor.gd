@@ -56,6 +56,8 @@ func process_command(input: String):
 func get_actor(item: String) -> Actor:
 	var actors = []
 	
+	actors.append(game_state.get_self())
+	
 	for child in current_room.get_children():
 		if "display_name" in child: # poor's man way to check if its an Actor
 			actors.append(child)
@@ -113,7 +115,7 @@ func use (second_word: String) -> String:
 
 	var actor = get_actor(second_word)
 	if actor != null:
-		return PoolStringArray([ "You USE %s" % second_word, actor.use("self") ]).join("\n")
+		return PoolStringArray([ "You USE %s" % second_word, actor.use(game_state.get_self()) ]).join("\n")
 	else:
 		return "%s can't be picked up" % second_word
 

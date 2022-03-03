@@ -7,8 +7,10 @@ var _global_items = {}
 
 var _dialog_state: Dictionary = {}
 var _items = []
+var _self
 
 func _init():
+	_self = _add_global_item("res://Scripts/npc/self.gd", "self", "Self")
 	_add_global_item("res://Scripts/items/badge.gd", "badge", "Badge")
 	_add_global_item("res://Scripts/items/pamphlets.gd", "pamphlet", "Pamphlet")
 	_add_global_item("res://Scripts/items/drink_vouchers.gd", "drink_vouchers", "Drink vouchers")
@@ -32,6 +34,7 @@ func _add_global_item(resource, name, display_name):
 	item.display_name = display_name
 	item.name = name
 	_global_items[name] = item
+	return item
 
 func _get_item(item_or_name):
 	if typeof(item_or_name) == TYPE_STRING:
@@ -47,6 +50,9 @@ func add_item(item):
 
 func has_item(item):
 	return self._items.has(_get_item(item))
+	
+func get_self():
+	return _self
 
 func remove_item(item):
 	var i = _items.find(_get_item(item))
