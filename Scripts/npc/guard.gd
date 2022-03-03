@@ -8,7 +8,7 @@ func talk_to():
 
 
 func look_at():
-	return "It's a skinny security guard standing at the west entrance"
+	return "It's a skinny security guard standing at the " + keyword("west") + " entrance"
 
 
 func pick_up():

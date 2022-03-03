@@ -15,7 +15,7 @@ do set_dialog_state(\"nerds\", \"checked_in\", false)
 ~ first_meet
 Nerd 1: So then I said, \"do or do not, there is no try\"
 [i]The nerds burst out laughing[/i]
-You: How do you do, fellow nerds?
+You: How do you do, fellow [color=#cb1eca]nerds[/color]?
 [i]They seem entrenched in some kind of nerdy conversation and ignore you[/i]
 do set_dialog_state(\"nerds\", \"met\", 1)
 if get_dialog_state(\"associate\", \"badges\") == true and get_dialog_state(\"player\", \"has_id_name\") == true
@@ -124,8 +124,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "How do you do, fellow nerds?",
-"translation_key": "How do you do, fellow nerds?",
+"text": "How do you do, fellow [color=#cb1eca]nerds[/color]?",
+"translation_key": "How do you do, fellow [color=#cb1eca]nerds[/color]?",
 "type": "dialogue"
 },
 "11": {

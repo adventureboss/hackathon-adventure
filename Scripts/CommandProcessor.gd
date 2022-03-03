@@ -48,10 +48,11 @@ func change_room (new_room) -> String:
 	return look_at_room()
 
 func update_exit (direction):
-	if game_state.current_room.get_room_name() == "East Entrance":
+	print(game_state.current_room.get_room_name())
+	if game_state.current_room.get_room_name() == "East Checkpoint":
 		if game_state.get_dialog_state("player", "east_clear"):
 			game_state.current_room.exits[direction].exit_is_locked = false
-	elif direction == "west" && game_state.current_room.get_room_name() == "West Entrance":
+	elif direction == "west" && game_state.current_room.get_room_name() == "West Checkpoint":
 		if game_state.get_dialog_state("player", "west_clear"):
 			game_state.current_room.exits[direction].exit_is_locked = false
 
