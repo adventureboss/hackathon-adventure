@@ -212,30 +212,39 @@ display_name = "Water fountain"
 
 [node name="vendor_sign" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 39 )
+display_name = "Vendor sign"
 
 [node name="sign" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 46 )
+display_name = "Sign"
 
 [node name="vendor_hall" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 48 )
+display_name = "Vendor hall"
 
 [node name="session_room" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 45 )
+display_name = "Session room"
 
 [node name="cat" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 38 )
+display_name = "Cat"
 
 [node name="nametag" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 37 )
+display_name = "Nametag"
 
 [node name="collar" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 44 )
+display_name = "Collar"
 
 [node name="floppy" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 49 )
+display_name = "Floppy"
 
 [node name="stir_stick" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 42 )
+display_name = "Stir stick"
 
 [node name="VendorHall" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1355.0
