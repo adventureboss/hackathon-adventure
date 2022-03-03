@@ -11,8 +11,8 @@ onready var command_processor = $CommandProcessor
 onready var room_manager = $RoomManager
 onready var user_cli = $Background/MarginContainer/Rows/InputArea/HBoxContainer/Input
 onready var game_info = $Background/MarginContainer/Rows/GameInfo
-onready var history_rows = $Background/MarginContainer/Rows/GameInfo/ScrollContainer/HistoryRows
-onready var scroll = $Background/MarginContainer/Rows/GameInfo/ScrollContainer
+onready var history_rows = $Background/MarginContainer/Rows/GameInfo/MarginContainer/ScrollContainer/HistoryRows
+onready var scroll = $Background/MarginContainer/Rows/GameInfo/MarginContainer/ScrollContainer
 onready var scrollbar = scroll.get_v_scrollbar()
 
 onready var rows = $Background/MarginContainer/Rows
