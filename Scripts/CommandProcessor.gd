@@ -54,9 +54,20 @@ func process_command(input: String):
 
 
 func get_actor(item: String) -> Actor:
+	var actors = []
+	
 	for child in current_room.get_children():
-		if child.name == item:
-			return child
+		if "display_name" in child: # poor's man way to check if its an Actor
+			actors.append(child)
+				
+	for inventory_item in game_state.get_items():
+		actors.append(inventory_item)
+	
+	for actor in actors:
+		if actor.name.to_lower() == item:
+			return actor
+		elif actor.display_name.to_lower() == item:
+			return actor
 
 	return null
 

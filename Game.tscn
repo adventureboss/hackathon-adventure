@@ -1,5 +1,6 @@
 [gd_scene load_steps=32 format=2]
 
+
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
@@ -23,6 +24,7 @@
 [ext_resource path="res://Scripts/doorway.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/phone.gd" type="Script" id=22]
 [ext_resource path="res://associates.gd" type="Script" id=23]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -66,6 +68,7 @@ talk_to_dictionary = {
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 8 )
+
 
 [node name="doors" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 11 )
