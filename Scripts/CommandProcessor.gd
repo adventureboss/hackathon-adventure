@@ -14,7 +14,7 @@ func _extract_actors(input: Array, count: int, items: Array = []):
 			var actor = get_actor(search)
 			if actor != null:
 				items.append(actor)
-				if i + 1 > input.size() and count > 1:
+				if i + 1 < input.size() and count > 1:
 					return _extract_actors(input.slice(i + 1, input.size()), count - 1, items)
 				return items
 	
@@ -118,6 +118,7 @@ func give (search_words: PoolStringArray) -> String:
 	
 	if actors.size() == 0:
 		return "That's not possible"
+		
 	
 	if actors.size() < 2:
 		return "GIVE %s <to> <something>" % actors[0].display_name

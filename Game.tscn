@@ -101,6 +101,9 @@ bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CommandProcessor" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -117,6 +120,7 @@ script = ExtResource( 51 )
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 24 )
+display_name = "Nerds"
 
 [node name="doors" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 11 )
@@ -124,6 +128,7 @@ display_name = "Doors"
 
 [node name="associates" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 26 )
+display_name = "Associates"
 
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 534.0
@@ -138,12 +143,15 @@ display_name = "Associate"
 
 [node name="ropes" type="Node" parent="RoomManager/Lobby"]
 script = ExtResource( 12 )
+display_name = "Ropes"
 
 [node name="desk" type="Node" parent="RoomManager/Lobby"]
 script = ExtResource( 13 )
+display_name = "Desk"
 
 [node name="nerds" type="Node" parent="RoomManager/Lobby"]
 script = ExtResource( 9 )
+display_name = "Nerds"
 
 [node name="EastEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1020.0
@@ -154,9 +162,11 @@ script = ExtResource( 52 )
 
 [node name="guard" type="Node" parent="RoomManager/EastEntrance"]
 script = ExtResource( 18 )
+display_name = "Guard"
 
 [node name="hallway" type="Node" parent="RoomManager/EastEntrance"]
 script = ExtResource( 19 )
+display_name = "hallway"
 
 [node name="WestEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 257.0
@@ -167,12 +177,15 @@ script = ExtResource( 53 )
 
 [node name="guard" type="Node" parent="RoomManager/WestEntrance"]
 script = ExtResource( 20 )
+display_name = "Guard"
 
 [node name="doorway" type="Node" parent="RoomManager/WestEntrance"]
 script = ExtResource( 21 )
+display_name = "Doorway"
 
 [node name="phone" type="Node" parent="RoomManager/WestEntrance"]
 script = ExtResource( 22 )
+display_name = "Phone"
 
 [node name="Ballroom" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = -75.0
@@ -183,15 +196,19 @@ script = ExtResource( 54 )
 
 [node name="pamphlets" type="Node" parent="RoomManager/Ballroom"]
 script = ExtResource( 14 )
+display_name = "Pamphlets"
 
 [node name="person" type="Node" parent="RoomManager/Ballroom"]
 script = ExtResource( 15 )
+display_name = "Person"
 
 [node name="stage" type="Node" parent="RoomManager/Ballroom"]
 script = ExtResource( 16 )
+display_name = "Stage"
 
 [node name="seats" type="Node" parent="RoomManager/Ballroom"]
 script = ExtResource( 17 )
+display_name = "Seats"
 
 [node name="EastHall" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1332.0
@@ -258,9 +275,9 @@ display_name = "Stir stick"
 
 [node name="VendorHall" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1355.0
-margin_top = -1053.0
+margin_top = -1051.0
 margin_right = 1677.0
-margin_bottom = -731.0
+margin_bottom = -729.0
 script = ExtResource( 56 )
 
 [node name="widget_vendor" type="Node" parent="RoomManager/VendorHall"]
@@ -269,15 +286,19 @@ display_name = "Widget vendor"
 
 [node name="robot_vendor" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 27 )
+display_name = "Robot vendor"
 
 [node name="swag" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 23 )
+display_name = "Swag"
 
 [node name="magnifying_glass" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 28 )
+display_name = "Magnifying glass"
 
 [node name="t-shirt" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 25 )
+display_name = "T-Shirt"
 
 [node name="SessionRoom" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1388.0
@@ -288,24 +309,31 @@ script = ExtResource( 57 )
 
 [node name="nerds" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 29 )
+display_name = "Nerds"
 
 [node name="podium" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 30 )
+display_name = "Podium"
 
 [node name="nook" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 31 )
+display_name = "Nook"
 
 [node name="chips" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 32 )
+display_name = "Chips"
 
 [node name="router" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 33 )
+display_name = "Router"
 
 [node name="note" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 34 )
+display_name = "Note"
 
-[node name="buttonholereset" type="Node" parent="RoomManager/SessionRoom"]
+[node name="button_hole_reset" type="Node" parent="RoomManager/SessionRoom"]
 script = ExtResource( 35 )
+display_name = "Button hole reset"
 
 [node name="Background" type="PanelContainer" parent="."]
 anchor_right = 1.0
