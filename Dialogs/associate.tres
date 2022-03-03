@@ -12,7 +12,7 @@ do set_dialog_state(\"associate\", \"initialized\", true)
 
 ~ first_meet
 do set_dialog_state(\"associate\", \"met\", 1)
-Associate: Welcome to Purple Beret Con!
+Associate: Welcome to Purple Cap Con!
 Associate: The number one showcase of innovative and open source enterprise tech!
 You: That's quite the introduction
 Associate: Yeah, they pay us to say it.
@@ -865,8 +865,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Welcome to Purple Beret Con!",
-"translation_key": "Welcome to Purple Beret Con!",
+"text": "Welcome to Purple Cap Con!",
+"translation_key": "Welcome to Purple Cap Con!",
 "type": "dialogue"
 },
 "70": {

@@ -45,7 +45,7 @@ else
 	=> main_chat
 - What are you all hiding back there?
 	The guard gets a small piece of paper out of his pocket along with reading glasses entirely too small for his massive face. This guy is [b]built[/b].
-	East Guard: \"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Beret, seeking to change the world one line of code at a time\"
+	East Guard: \"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Cap, seeking to change the world one line of code at a time\"
 	You: Well, I'm convinced.
 	East Guard: My job is done here.
 	=> main_chat
@@ -655,8 +655,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "\"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Beret, seeking to change the world one line of code at a time\"",
-"translation_key": "\"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Beret, seeking to change the world one line of code at a time\"",
+"text": "\"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Cap, seeking to change the world one line of code at a time\"",
+"translation_key": "\"Behind these hallowed doors you will find knowledge of technology and services the likes of which the world has never seen. Marvel at the tireless work of thousands of engineers at Purple Cap, seeking to change the world one line of code at a time\"",
 "type": "dialogue"
 },
 "41": {
