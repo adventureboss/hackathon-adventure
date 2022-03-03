@@ -9,25 +9,15 @@ var _dialog_state: Dictionary = {}
 var _items = []
 
 func _init():
-	var badge = load("res://Scripts/items/badge.gd").new()
-	badge.display_name = "Badge"
-	_global_items["badge"] = badge
-	
-	var pamphlet = load("res://Scripts/items/pamphlets.gd").new()
-	pamphlet.display_name = "Pamphlet"
-	_global_items["pamphlet"] = pamphlet
-	
-	var drink_vouchers = load("res://Scripts/items/drink_vouchers.gd").new()
-	drink_vouchers.display_name = "Drink vouchers"
-	_global_items["drink_vouchers"] = drink_vouchers
-	
-	var ash_badge = load("res://Scripts/items/ash_badge.gd").new()
-	ash_badge.display_name = "Ash Badge"
-	_global_items["ash_badge"] = ash_badge
-	
-	var lens = load("res://Scripts/items/lens.gd").new()
-	lens.display_name = "Lens"
-	_global_items["lens"] = lens
+	_add_global_item("res://Scripts/items/badge.gd", "badge", "Badge")
+	_add_global_item("res://Scripts/items/pamphlets.gd", "pamphlet", "Pamphlet")
+	_add_global_item("res://Scripts/items/drink_vouchers.gd", "drink_vouchers", "Drink vouchers")
+	_add_global_item("res://Scripts/items/ash_badge.gd", "ash_badge", "Ash badge")
+	_add_global_item("res://Scripts/items/lens.gd", "lens", "Lens")
+	_add_global_item("res://Scripts/items/cup.gd", "cup", "Cup")
+	_add_global_item("res://Scripts/items/water_cup.gd", "water_cup", "Water cup")
+	_add_global_item("res://Scripts/items/coffee_cup.gd", "coffee_cup", "Coffee cup")
+	_add_global_item("res://Scripts/items/beans_cup.gd", "beans_cup", "Beans cup")
 	
 	
 	# set player default state
@@ -35,6 +25,13 @@ func _init():
 	set_dialog_state("player", "east_clear", 0)
 	set_dialog_state("player", "west_clear", 0)
 	set_dialog_state("player", "items", 0)
+
+func _add_global_item(resource, name, display_name):
+	assert(_global_items.has(name) == false, "global items already contains this item")
+	var item = load(resource).new()
+	item.display_name = display_name
+	item.name = name
+	_global_items[name] = item
 
 func _get_item(item_or_name):
 	if typeof(item_or_name) == TYPE_STRING:
@@ -55,6 +52,9 @@ func remove_item(item):
 	var i = _items.find(_get_item(item))
 	_items.remove(i)
 	emit_signal("items_updated", _items)
+	
+func get_items():
+	return _items
 	
 func set_dialog_state(actor: String, variable: String, value):
 	if not self._dialog_state.has(actor):
