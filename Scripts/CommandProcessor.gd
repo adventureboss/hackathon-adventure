@@ -7,11 +7,14 @@ onready var game_state: GameState = get_node("/root/GameState")
 
 func look_at_room():
 	var exit_string = PoolStringArray(game_state.current_room.exits.keys()).join(" ")
-	var string = PoolStringArray([
-		"You are now in the " + game_state.current_room.get_room_name() + ".  \n" + game_state.current_room.get_room_description(),
-		"Exits: " + exit_string
-	]).join("\n")
-	return string 
+	if game_state.current_room.get_room_name() == "title screen":
+		return game_state.current_room.get_room_description()
+	else:
+		var string = PoolStringArray([
+			"You are now in the " + game_state.current_room.get_room_name() + ".  \n" + game_state.current_room.get_room_description(),
+			"Exits: " + exit_string
+		]).join("\n")
+		return string 
 
 func initialize (starting_room) -> String:
 	return change_room(starting_room)
