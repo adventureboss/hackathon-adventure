@@ -1,0 +1,172 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+syntax_version = 2
+raw_text = "~ help
+To move around the convention use the walk command accompanied by an exit direction.\\nFor example:\\nWALK north\\nOr\\nWALK south
+To TALK to a character, use TALK TO acccompanied by the character name:\\nTALK TO guard\\nOr\\nTALK TO cat
+To GIVE a character an item, use the following syntax:\\nGIVE item TO character
+To PICK UP an item in the world, use:\\nPICK UP item
+To USE an item, you can type:\\nUSE item (use it on yourself)\\n Or\\nUSE item WITH other item (use it with something else)
+Explore and interact with objects in the world.
+Enjoy the Convention!
+Would you like to repeat help?
+- Yes
+	=> help
+- No"
+errors = [  ]
+titles = {
+"help": "1"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "help",
+"type": "title"
+},
+"1": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "2",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "To move around the convention use the walk command accompanied by an exit direction.
+For example:
+WALK north
+Or
+WALK south",
+"translation_key": "To move around the convention use the walk command accompanied by an exit direction.
+For example:
+WALK north
+Or
+WALK south",
+"type": "dialogue"
+},
+"10": {
+"next_id": "1",
+"parent_id": "9",
+"type": "goto"
+},
+"11": {
+"next_id": "",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "No",
+"translation_key": "No",
+"type": "response"
+},
+"2": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "3",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "To TALK to a character, use TALK TO acccompanied by the character name:
+TALK TO guard
+Or
+TALK TO cat",
+"translation_key": "To TALK to a character, use TALK TO acccompanied by the character name:
+TALK TO guard
+Or
+TALK TO cat",
+"type": "dialogue"
+},
+"3": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "4",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "To GIVE a character an item, use the following syntax:
+GIVE item TO character",
+"translation_key": "To GIVE a character an item, use the following syntax:
+GIVE item TO character",
+"type": "dialogue"
+},
+"4": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "5",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "To PICK UP an item in the world, use:
+PICK UP item",
+"translation_key": "To PICK UP an item in the world, use:
+PICK UP item",
+"type": "dialogue"
+},
+"5": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "6",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "To USE an item, you can type:
+USE item (use it on yourself)
+ Or
+USE item WITH other item (use it with something else)",
+"translation_key": "To USE an item, you can type:
+USE item (use it on yourself)
+ Or
+USE item WITH other item (use it with something else)",
+"type": "dialogue"
+},
+"6": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "7",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Explore and interact with objects in the world.",
+"translation_key": "Explore and interact with objects in the world.",
+"type": "dialogue"
+},
+"7": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "8",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Enjoy the Convention!",
+"translation_key": "Enjoy the Convention!",
+"type": "dialogue"
+},
+"8": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "9",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Would you like to repeat help?",
+"translation_key": "Would you like to repeat help?",
+"type": "dialogue"
+},
+"9": {
+"next_id": "10",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "9", "11" ),
+"text": "Yes",
+"translation_key": "Yes",
+"type": "response"
+}
+}
