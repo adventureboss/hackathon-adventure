@@ -4,7 +4,7 @@ const Actor = preload("res://Scripts/actor.gd")
 
 onready var game_state: GameState = get_node("/root/GameState")
 
-var current_room = null
+# var current_room = null
 
 func look_at_room():
 	var exit_string = PoolStringArray(current_room.exits.keys()).join(" ")
@@ -19,9 +19,18 @@ func initialize (starting_room) -> String:
 
 
 func change_room (new_room) -> String:
-	current_room = new_room
+	# current_room = new_room
 	game_state.current_room = new_room
 	return look_at_room()
+
+func update_exit (direction):
+	if game_state.current_room.room_name == "East Entrance":
+		if game_state.get_dialog_state("player", "east_clear"):
+			game_state.current_room.exits[direction].exit_is_locked = false
+	elif direction == "west" && game_state.current_room.room_name == "West Entrance":
+		if game_state.get_dialog_state("player", "west_clear"):
+			game_state.current_room.exits[direction].exit_is_locked = false
+
 
 func process_command(input: String):
 	var words = input.split(" ", false)
@@ -59,7 +68,7 @@ func get_actor(item: String) -> Actor:
 	
 	actors.append(game_state.get_self())
 	
-	for child in current_room.get_children():
+	for child in game_state.current_room.get_children():
 		if "display_name" in child: # poor's man way to check if its an Actor
 			actors.append(child)
 				
@@ -134,11 +143,13 @@ func walk (second_word: String) -> String:
 	if second_word == "":
 		return "WALK where?"
 
-	if current_room.exits.keys().has(second_word):
-		var exit = current_room.exits[second_word]
-		if exit.is_other_room_locked(current_room):
+	if game_state.current_room.exits.keys().has(second_word):
+		update_exit(second_word)
+		var exit = game_state.current_room.exits[second_word]
+
+		if exit.is_other_room_locked(game_state.current_room):
 			return "That exit is currently blocked, you'll need the right badge to get through"
-		var change_response = change_room(exit.get_other_room(current_room))
+		var change_response = change_room(exit.get_other_room(game_state.current_room))
 		return PoolStringArray([ "You WALK %s." % second_word, change_response ]).join("\n")
 	else:
 		return "This room has no exit in that direction!"

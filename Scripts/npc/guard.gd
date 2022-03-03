@@ -22,10 +22,10 @@ func use(item):
 func give(item: String):
 	# Add link to dialogue here
 	if item == "badge":
-		game_state.show_dialogue(west_guard_dialogue, "player_badge")
+		game_state.show_dialogue(west_guard_dialogue, "give_badge")
 		return ""
 	elif item == "ash_badge":
-		game_state.show_dialogue(west_guard_dialogue, "ash_badge")
+		game_state.show_dialogue(west_guard_dialogue, "give_ash_badge")
 		return ""
 	else:
 		return "I don't think I can give him that"
