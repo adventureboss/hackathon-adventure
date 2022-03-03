@@ -20,6 +20,8 @@ func _init():
 	_add_global_item("res://Scripts/items/water_cup.gd", "water_cup", "Water cup")
 	_add_global_item("res://Scripts/items/coffee_cup.gd", "coffee_cup", "Coffee cup")
 	_add_global_item("res://Scripts/items/beans_cup.gd", "beans_cup", "Beans cup")
+	_add_global_item("res://Scripts/items/chips.gd", "chips", "Chips")
+	_add_global_item("res://Scripts/items/password.gd", "password", "Password")
 	
 	
 	# set player default state
