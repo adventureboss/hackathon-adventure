@@ -1,6 +1,7 @@
 extends Node
 
 const Actor = preload("res://Scripts/actor.gd")
+const help = preload("res://Dialogs/help.tres")
 
 onready var game_state: GameState = get_node("/root/GameState")
 
@@ -58,9 +59,10 @@ func process_command(input: String):
 			return pickUp(third_word)
 		"look":
 			return lookAt(third_word)
+		"help":
+			return help()
 		_:
 			return "Unrecognized command - Please try again."
-
 
 func get_actor(item: String) -> Actor:
 	var actors = []
@@ -82,6 +84,9 @@ func get_actor(item: String) -> Actor:
 
 	return null
 
+func help():
+	game_state.show_dialogue(help, "help")
+	return "You get HELP"
 
 func talkTo (third_word: String) -> String:
 	if third_word == "":
