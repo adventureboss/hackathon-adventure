@@ -137,3 +137,4 @@ func on_keyword_pressed(keyword):
 	if not user_cli.text.ends_with(" "):
 		user_cli.text += " "
 	user_cli.text += keyword
+	user_cli.grab_focus()
