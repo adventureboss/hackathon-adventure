@@ -2,6 +2,7 @@ extends Node
 
 
 func _ready() -> void:
+	$TitleScreen.connect_exit("north", $Entrance)
 	$Entrance.connect_exit("north", $Lobby)
 	$Lobby.connect_exit("east", $EastEntrance)
 	$Lobby.connect_exit("west", $WestEntrance)
