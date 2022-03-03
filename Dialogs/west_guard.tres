@@ -9,11 +9,13 @@ raw_text = "~ initialize
 do set_dialog_state(\"west_guard\", \"met\", 0)
 do set_dialog_state(\"player\", \"west_clear\", 0)
 do set_dialog_state(\"west_guard\", \"initialized\", true)
+do set_dialog_state(\"west_guard\", \"used_badge\", false)
 => main
 
 ~ first_meet
 The guard smiles at you and gestures you over
 West Guard: Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.
+do set_dialog_state(\"west_guard\", \"met\", 1)
 => main_chat
 
 ~ subsequent_meets
@@ -36,29 +38,43 @@ else
 
 ~ main_chat
 West Guard: How can I help you?
+- I have my badge and I'm ready to go in! [if has_item(\"badge\") or has_item(\"ash_badge\")]
+	=> badge
 - What's going on back there?
 	West Guard: Oh that? That's the keynote ballroom. There's gonna be a whole big presentation in a little bit.
 	You: Sweet! Can I go in?
 	West Guard: Do you have your badge?
+	=> badge
 	- Give your badge [if has_item(\"badge\")]
 		=> player_badge
 	- Give Ash's Badge [if has_item(\"ash_badge\")]
-		=> nick_badge
-	- I left it in my other pants.
-		West Guard: We've all been there haven't we!
-		West Guard: But I'm afraid I can't let you pass without one.
-		=> main_chat
-	- I'll be back
-		West Guard: See you later!
+		=> ash_badge
+	- Don't you know who I am!?
+		West Guard: Someone thinking about violating badge policy and being ushered out of the convention and onto the street forever?
+		You: ...
+		West Guard: ...
+		You: I'll be back later.
 		=> END
 - No one can help me. I'm already awesome.
 	West Guard: And humble too!
 	=> main_chat
-- Nah, I'm good!
+- I'll be back later.
 	West Guard: I'm here if you need something!
 	=> END
-		
+	
+~ badge
+West Gaurd: Wonderful! May I see it?
+- Give your badge [if has_item(\"badge\")]
+	=> player_badge
+- Give Ash's badge [if has_item(\"ash_badge\")]
+	=> ash_badge
+- I left it in my other pants.
+	West Guard: We've all been there haven't we!
+	West Guard: But I'm afraid I can't let you pass without one.
+	=> main_chat
+
 ~ player_badge
+do set_dialog_state(\"west_guard\", \"used_badge\", true)
 West Guard: Oh my. I'm so sorry. I just dont' know where my mind is.
 West Guard: I can't let you back right now. The smart folks back there are working on some things.
 => player_badge_2
@@ -82,8 +98,13 @@ West Guard: Sorry!
 	West Guard: TTFN!
 	=> END
 	
-~ nick_badge
-West Guard: Oh Ash! So glad you're here! They've been waiting. 
+~ ash_badge
+if get_dialog_state(\"west_guard\", \"used_badge\") == true
+	West Guard: You already showed me a badge and this wasn't it.
+	You: There was a mixup at the desk. I'm definitely the person on that badge.
+	West Guard: Well, if you say so!
+else 
+	West Guard: Oh Ash! So glad you're here! They've been waiting. 
 West Guard: Don't stand here talking to me. Go go go!
 do set_dialog_state(\"player\", \"west_clear\", 1)
 => END
@@ -117,18 +138,19 @@ do set_dialog_status(\"player\", \"west_clear\", 1)
 "
 errors = [  ]
 titles = {
-"cleared": "84",
-"cleared_final": "90",
-"first_meet": "7",
-"give_ash_badge": "102",
-"give_badge": "94",
+"ash_badge": "94",
+"badge": "58",
+"cleared": "105",
+"cleared_final": "111",
+"first_meet": "8",
+"give_ash_badge": "123",
+"give_badge": "115",
 "initialize": "1",
-"main": "16",
-"main_chat": "30",
-"nick_badge": "78",
-"player_badge": "54",
-"player_badge_2": "59",
-"subsequent_meets": "12"
+"main": "18",
+"main_chat": "32",
+"player_badge": "69",
+"player_badge_2": "75",
+"subsequent_meets": "14"
 }
 lines = {
 "0": {
@@ -153,15 +175,209 @@ lines = {
 "next_id": "2",
 "type": "mutation"
 },
+"10": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "west_guard"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "11",
+"type": "mutation"
+},
+"100": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "101",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Don't stand here talking to me. Go go go!",
+"translation_key": "Don't stand here talking to me. Go go go!",
+"type": "dialogue"
+},
 "101": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "west_clear"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
 "next_id": "102",
+"type": "mutation"
+},
+"102": {
+"next_id": "end",
+"type": "goto"
+},
+"104": {
+"next_id": "105",
+"text": "cleared",
+"type": "title"
+},
+"105": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "106",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Look I would love to chat with you, but I'm awfully busy.",
+"translation_key": "Look I would love to chat with you, but I'm awfully busy.",
+"type": "dialogue"
+},
+"106": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "107",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i] The guard starts playing a game on the oldest brick phone you've ever seen. Looks like a Nokia [/i]",
+"translation_key": "[i] The guard starts playing a game on the oldest brick phone you've ever seen. Looks like a Nokia [/i]",
+"type": "dialogue"
+},
+"107": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "west_clear"
+} ], [ {
+"type": "number",
+"value": 2
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "108",
+"type": "mutation"
+},
+"108": {
+"next_id": "end",
+"type": "goto"
+},
+"11": {
+"next_id": "32",
+"type": "goto"
+},
+"110": {
+"next_id": "111",
+"text": "cleared_final",
+"type": "title"
+},
+"111": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "112",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i] The guard is enthralled with whatever they are playing on their phone [/i]",
+"translation_key": "[i] The guard is enthralled with whatever they are playing on their phone [/i]",
+"type": "dialogue"
+},
+"112": {
+"next_id": "end",
+"type": "goto"
+},
+"114": {
+"next_id": "115",
+"text": "give_badge",
+"type": "title"
+},
+"115": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "116",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Here's my badge.",
+"translation_key": "Here's my badge.",
+"type": "dialogue"
+},
+"116": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "117",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well, would you look at that. You're all kinds of official.",
+"translation_key": "Well, would you look at that. You're all kinds of official.",
+"type": "dialogue"
+},
+"117": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "118",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Except I can't let you in yet.",
+"translation_key": "Except I can't let you in yet.",
+"type": "dialogue"
+},
+"118": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "119",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<whispers> There are technical difficulties.",
+"translation_key": "<whispers> There are technical difficulties.",
+"type": "dialogue"
+},
+"119": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "120",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You'll just have to come back later.",
+"translation_key": "You'll just have to come back later.",
+"type": "dialogue"
+},
+"120": {
+"next_id": "end",
+"type": "goto"
+},
+"122": {
+"next_id": "123",
 "text": "give_ash_badge",
 "type": "title"
 },
-"102": {
+"123": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "103",
+"next_id": "124",
 "pauses": {
 },
 "replacements": [  ],
@@ -170,10 +386,10 @@ lines = {
 "translation_key": "Here's my badge! I'm definitely the person that that says I am.",
 "type": "dialogue"
 },
-"103": {
+"124": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "104",
+"next_id": "125",
 "pauses": {
 },
 "replacements": [  ],
@@ -182,10 +398,10 @@ lines = {
 "translation_key": "And why wouldn't you be? I'm so glad you're here.",
 "type": "dialogue"
 },
-"104": {
+"125": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "105",
+"next_id": "126",
 "pauses": {
 },
 "replacements": [  ],
@@ -194,10 +410,10 @@ lines = {
 "translation_key": "Head on in and see what you can do to fix this whole thing up.",
 "type": "dialogue"
 },
-"105": {
+"126": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "106",
+"next_id": "127",
 "pauses": {
 },
 "replacements": [  ],
@@ -206,7 +422,7 @@ lines = {
 "translation_key": "You got it! Ash Marshall, at your service. Just heading on in with my real ID and all.",
 "type": "dialogue"
 },
-"106": {
+"127": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -220,22 +436,22 @@ lines = {
 } ] ],
 "function": "set_dialog_status"
 },
-"next_id": "107",
+"next_id": "128",
 "type": "mutation"
 },
-"107": {
+"128": {
 "next_id": "end",
 "type": "goto"
 },
-"11": {
-"next_id": "12",
+"13": {
+"next_id": "14",
 "text": "subsequent_meets",
 "type": "title"
 },
-"12": {
+"14": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "13",
+"next_id": "15",
 "pauses": {
 },
 "replacements": [  ],
@@ -244,16 +460,16 @@ lines = {
 "translation_key": "Hello there again, friend!",
 "type": "dialogue"
 },
-"13": {
-"next_id": "30",
+"15": {
+"next_id": "32",
 "type": "goto"
 },
-"15": {
-"next_id": "16",
+"17": {
+"next_id": "18",
 "text": "main",
 "type": "title"
 },
-"16": {
+"18": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -273,43 +489,13 @@ lines = {
 "value": false
 } ]
 },
-"next_conditional_id": "18",
-"next_id": "17",
-"next_id_after": "end",
-"type": "condition"
-},
-"17": {
-"next_id": "1",
-"parent_id": "16",
-"type": "goto"
-},
-"18": {
-"condition": {
-"expression": [ {
-"function": "get_dialog_state",
-"type": "function",
-"value": [ [ {
-"type": "string",
-"value": "player"
-} ], [ {
-"type": "string",
-"value": "west_clear"
-} ] ]
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "number",
-"value": 1
-} ]
-},
 "next_conditional_id": "20",
 "next_id": "19",
 "next_id_after": "end",
 "type": "condition"
 },
 "19": {
-"next_id": "84",
+"next_id": "1",
 "parent_id": "18",
 "type": "goto"
 },
@@ -344,10 +530,10 @@ lines = {
 } ] ]
 }, {
 "type": "comparison",
-"value": ">="
+"value": "=="
 }, {
 "type": "number",
-"value": 2
+"value": 1
 } ]
 },
 "next_conditional_id": "22",
@@ -356,11 +542,41 @@ lines = {
 "type": "condition"
 },
 "21": {
-"next_id": "90",
+"next_id": "105",
 "parent_id": "20",
 "type": "goto"
 },
 "22": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "west_clear"
+} ] ]
+}, {
+"type": "comparison",
+"value": ">="
+}, {
+"type": "number",
+"value": 2
+} ]
+},
+"next_conditional_id": "24",
+"next_id": "23",
+"next_id_after": "end",
+"type": "condition"
+},
+"23": {
+"next_id": "111",
+"parent_id": "22",
+"type": "goto"
+},
+"24": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -380,17 +596,17 @@ lines = {
 "value": 0
 } ]
 },
-"next_conditional_id": "24",
-"next_id": "23",
+"next_conditional_id": "26",
+"next_id": "25",
 "next_id_after": "end",
 "type": "condition"
 },
-"23": {
-"next_id": "7",
-"parent_id": "22",
+"25": {
+"next_id": "8",
+"parent_id": "24",
 "type": "goto"
 },
-"24": {
+"26": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -410,31 +626,26 @@ lines = {
 "value": 1
 } ]
 },
-"next_conditional_id": "26",
-"next_id": "25",
-"next_id_after": "end",
-"type": "condition"
-},
-"25": {
-"next_id": "12",
-"parent_id": "24",
-"type": "goto"
-},
-"26": {
-"next_conditional_id": "end",
+"next_conditional_id": "28",
 "next_id": "27",
 "next_id_after": "end",
 "type": "condition"
 },
 "27": {
-"next_id": "30",
+"next_id": "14",
 "parent_id": "26",
 "type": "goto"
 },
+"28": {
+"next_conditional_id": "end",
+"next_id": "29",
+"next_id_after": "end",
+"type": "condition"
+},
 "29": {
-"next_id": "30",
-"text": "main_chat",
-"type": "title"
+"next_id": "32",
+"parent_id": "28",
+"type": "goto"
 },
 "3": {
 "mutation": {
@@ -453,10 +664,15 @@ lines = {
 "next_id": "4",
 "type": "mutation"
 },
-"30": {
+"31": {
+"next_id": "32",
+"text": "main_chat",
+"type": "title"
+},
+"32": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "31",
+"next_id": "33",
 "pauses": {
 },
 "replacements": [  ],
@@ -465,20 +681,53 @@ lines = {
 "translation_key": "How can I help you?",
 "type": "dialogue"
 },
-"31": {
-"next_id": "32",
+"33": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "badge"
+} ] ]
+}, {
+"type": "and_or",
+"value": "or"
+}, {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "ash_badge"
+} ] ]
+} ]
+},
+"next_id": "34",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "31", "46", "49" ),
+"responses": PoolStringArray( "33", "35", "50", "53" ),
+"text": "I have my badge and I'm ready to go in!",
+"translation_key": "I have my badge and I'm ready to go in!",
+"type": "response"
+},
+"34": {
+"next_id": "58",
+"parent_id": "33",
+"type": "goto"
+},
+"35": {
+"next_id": "36",
+"next_id_after": "end",
+"replacements": [  ],
 "text": "What's going on back there?",
 "translation_key": "What's going on back there?",
 "type": "response"
 },
-"32": {
+"36": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "33",
-"parent_id": "31",
+"next_id": "37",
+"parent_id": "35",
 "pauses": {
 },
 "replacements": [  ],
@@ -487,11 +736,11 @@ lines = {
 "translation_key": "Oh that? That's the keynote ballroom. There's gonna be a whole big presentation in a little bit.",
 "type": "dialogue"
 },
-"33": {
+"37": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "34",
-"parent_id": "31",
+"next_id": "38",
+"parent_id": "35",
 "pauses": {
 },
 "replacements": [  ],
@@ -500,11 +749,11 @@ lines = {
 "translation_key": "Sweet! Can I go in?",
 "type": "dialogue"
 },
-"34": {
+"38": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "35",
-"parent_id": "31",
+"next_id": "39",
+"parent_id": "35",
 "pauses": {
 },
 "replacements": [  ],
@@ -513,7 +762,29 @@ lines = {
 "translation_key": "Do you have your badge?",
 "type": "dialogue"
 },
-"35": {
+"39": {
+"next_id": "58",
+"parent_id": "35",
+"type": "goto"
+},
+"4": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "west_guard"
+} ], [ {
+"type": "string",
+"value": "used_badge"
+} ], [ {
+"type": "bool",
+"value": false
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "5",
+"type": "mutation"
+},
+"40": {
 "condition": {
 "expression": [ {
 "function": "has_item",
@@ -524,21 +795,21 @@ lines = {
 } ] ]
 } ]
 },
-"next_id": "36",
-"next_id_after": "47",
-"parent_id": "31",
+"next_id": "41",
+"next_id_after": "51",
+"parent_id": "35",
 "replacements": [  ],
-"responses": PoolStringArray( "35", "37", "39", "43" ),
+"responses": PoolStringArray( "40", "42", "44" ),
 "text": "Give your badge",
 "translation_key": "Give your badge",
 "type": "response"
 },
-"36": {
-"next_id": "54",
-"parent_id": "35",
+"41": {
+"next_id": "69",
+"parent_id": "40",
 "type": "goto"
 },
-"37": {
+"42": {
 "condition": {
 "expression": [ {
 "function": "has_item",
@@ -549,103 +820,102 @@ lines = {
 } ] ]
 } ]
 },
-"next_id": "38",
-"next_id_after": "47",
-"parent_id": "31",
+"next_id": "43",
+"next_id_after": "51",
+"parent_id": "35",
 "replacements": [  ],
 "text": "Give Ash's Badge",
 "translation_key": "Give Ash's Badge",
 "type": "response"
 },
-"38": {
-"next_id": "78",
-"parent_id": "37",
-"type": "goto"
-},
-"39": {
-"next_id": "40",
-"next_id_after": "47",
-"parent_id": "31",
-"replacements": [  ],
-"text": "I left it in my other pants.",
-"translation_key": "I left it in my other pants.",
-"type": "response"
-},
-"4": {
-"next_id": "16",
-"type": "goto"
-},
-"40": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "41",
-"parent_id": "39",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "We've all been there haven't we!",
-"translation_key": "We've all been there haven't we!",
-"type": "dialogue"
-},
-"41": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "42",
-"parent_id": "39",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "But I'm afraid I can't let you pass without one.",
-"translation_key": "But I'm afraid I can't let you pass without one.",
-"type": "dialogue"
-},
-"42": {
-"next_id": "30",
-"parent_id": "39",
-"type": "goto"
-},
 "43": {
-"next_id": "44",
-"next_id_after": "47",
-"parent_id": "31",
-"replacements": [  ],
-"text": "I'll be back",
-"translation_key": "I'll be back",
-"type": "response"
+"next_id": "94",
+"parent_id": "42",
+"type": "goto"
 },
 "44": {
+"next_id": "45",
+"next_id_after": "51",
+"parent_id": "35",
+"replacements": [  ],
+"text": "Don't you know who I am!?",
+"translation_key": "Don't you know who I am!?",
+"type": "response"
+},
+"45": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "45",
-"parent_id": "43",
+"next_id": "46",
+"parent_id": "44",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "See you later!",
-"translation_key": "See you later!",
+"text": "Someone thinking about violating badge policy and being ushered out of the convention and onto the street forever?",
+"translation_key": "Someone thinking about violating badge policy and being ushered out of the convention and onto the street forever?",
 "type": "dialogue"
 },
-"45": {
+"46": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "47",
+"parent_id": "44",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"47": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "48",
+"parent_id": "44",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"48": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "49",
+"parent_id": "44",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'll be back later.",
+"translation_key": "I'll be back later.",
+"type": "dialogue"
+},
+"49": {
 "next_id": "end",
-"parent_id": "43",
+"parent_id": "44",
 "type": "goto"
 },
-"46": {
-"next_id": "47",
+"5": {
+"next_id": "18",
+"type": "goto"
+},
+"50": {
+"next_id": "51",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "No one can help me. I'm already awesome.",
 "translation_key": "No one can help me. I'm already awesome.",
 "type": "response"
 },
-"47": {
+"51": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "48",
-"parent_id": "46",
+"next_id": "52",
+"parent_id": "50",
 "pauses": {
 },
 "replacements": [  ],
@@ -654,24 +924,24 @@ lines = {
 "translation_key": "And humble too!",
 "type": "dialogue"
 },
-"48": {
-"next_id": "30",
-"parent_id": "46",
+"52": {
+"next_id": "32",
+"parent_id": "50",
 "type": "goto"
 },
-"49": {
-"next_id": "50",
+"53": {
+"next_id": "54",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "Nah, I'm good!",
-"translation_key": "Nah, I'm good!",
+"text": "I'll be back later.",
+"translation_key": "I'll be back later.",
 "type": "response"
 },
-"50": {
+"54": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "51",
-"parent_id": "49",
+"next_id": "55",
+"parent_id": "53",
 "pauses": {
 },
 "replacements": [  ],
@@ -680,99 +950,81 @@ lines = {
 "translation_key": "I'm here if you need something!",
 "type": "dialogue"
 },
-"51": {
-"next_id": "end",
-"parent_id": "49",
-"type": "goto"
-},
-"53": {
-"next_id": "54",
-"text": "player_badge",
-"type": "title"
-},
-"54": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "55",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Oh my. I'm so sorry. I just dont' know where my mind is.",
-"translation_key": "Oh my. I'm so sorry. I just dont' know where my mind is.",
-"type": "dialogue"
-},
 "55": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "56",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I can't let you back right now. The smart folks back there are working on some things.",
-"translation_key": "I can't let you back right now. The smart folks back there are working on some things.",
-"type": "dialogue"
-},
-"56": {
-"next_id": "59",
+"next_id": "end",
+"parent_id": "53",
 "type": "goto"
+},
+"57": {
+"next_id": "58",
+"text": "badge",
+"type": "title"
 },
 "58": {
+"character": "West Gaurd",
+"inline_mutations": [  ],
 "next_id": "59",
-"text": "player_badge_2",
-"type": "title"
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Wonderful! May I see it?",
+"translation_key": "Wonderful! May I see it?",
+"type": "dialogue"
 },
 "59": {
-"character": "West Guard",
-"inline_mutations": [  ],
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "badge"
+} ] ]
+} ]
+},
 "next_id": "60",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Sorry!",
-"translation_key": "Sorry!",
-"type": "dialogue"
-},
-"6": {
-"next_id": "7",
-"text": "first_meet",
-"type": "title"
-},
-"60": {
-"next_id": "61",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "60", "63", "68", "73" ),
-"text": "I can help! I'm an engineer.",
-"translation_key": "I can help! I'm an engineer.",
+"responses": PoolStringArray( "59", "61", "63" ),
+"text": "Give your badge",
+"translation_key": "Give your badge",
 "type": "response"
 },
-"61": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "62",
-"parent_id": "60",
-"pauses": {
+"60": {
+"next_id": "69",
+"parent_id": "59",
+"type": "goto"
 },
+"61": {
+"condition": {
+"expression": [ {
+"function": "has_item",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "ash_badge"
+} ] ]
+} ]
+},
+"next_id": "62",
+"next_id_after": "end",
 "replacements": [  ],
-"speeds": [  ],
-"text": "Well bless your heart, I'm sure you are, but I just can't allow you back there. So sorry.",
-"translation_key": "Well bless your heart, I'm sure you are, but I just can't allow you back there. So sorry.",
-"type": "dialogue"
+"text": "Give Ash's badge",
+"translation_key": "Give Ash's badge",
+"type": "response"
 },
 "62": {
-"next_id": "59",
-"parent_id": "60",
+"next_id": "94",
+"parent_id": "61",
 "type": "goto"
 },
 "63": {
 "next_id": "64",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "What kind of things?",
-"translation_key": "What kind of things?",
+"text": "I left it in my other pants.",
+"translation_key": "I left it in my other pants.",
 "type": "response"
 },
 "64": {
@@ -784,12 +1036,12 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Oh I'm sure I wouldn't even be able to tell you. I can't even set the clock on my VCR.",
-"translation_key": "Oh I'm sure I wouldn't even be able to tell you. I can't even set the clock on my VCR.",
+"text": "We've all been there haven't we!",
+"translation_key": "We've all been there haven't we!",
 "type": "dialogue"
 },
 "65": {
-"character": "You",
+"character": "West Guard",
 "inline_mutations": [  ],
 "next_id": "66",
 "parent_id": "63",
@@ -797,53 +1049,126 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "VCR?",
-"translation_key": "VCR?",
+"text": "But I'm afraid I can't let you pass without one.",
+"translation_key": "But I'm afraid I can't let you pass without one.",
 "type": "dialogue"
 },
 "66": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "67",
-"parent_id": "63",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Well, of course! I might not know much about technology but I do try to stay up to date.",
-"translation_key": "Well, of course! I might not know much about technology but I do try to stay up to date.",
-"type": "dialogue"
-},
-"67": {
-"next_id": "59",
+"next_id": "32",
 "parent_id": "63",
 "type": "goto"
 },
 "68": {
 "next_id": "69",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Who is allowed back there?",
-"translation_key": "Who is allowed back there?",
-"type": "response"
+"text": "player_badge",
+"type": "title"
 },
 "69": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "west_guard"
+} ], [ {
+"type": "string",
+"value": "used_badge"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "70",
+"type": "mutation"
+},
+"7": {
+"next_id": "8",
+"text": "first_meet",
+"type": "title"
+},
+"70": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "70",
-"parent_id": "68",
+"next_id": "71",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I've been sworn to secrecy. If I tell, they'll steal my dog.",
-"translation_key": "I've been sworn to secrecy. If I tell, they'll steal my dog.",
+"text": "Oh my. I'm so sorry. I just dont' know where my mind is.",
+"translation_key": "Oh my. I'm so sorry. I just dont' know where my mind is.",
 "type": "dialogue"
 },
-"7": {
+"71": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "72",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I can't let you back right now. The smart folks back there are working on some things.",
+"translation_key": "I can't let you back right now. The smart folks back there are working on some things.",
+"type": "dialogue"
+},
+"72": {
+"next_id": "75",
+"type": "goto"
+},
+"74": {
+"next_id": "75",
+"text": "player_badge_2",
+"type": "title"
+},
+"75": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "76",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Sorry!",
+"translation_key": "Sorry!",
+"type": "dialogue"
+},
+"76": {
+"next_id": "77",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "76", "79", "84", "89" ),
+"text": "I can help! I'm an engineer.",
+"translation_key": "I can help! I'm an engineer.",
+"type": "response"
+},
+"77": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "78",
+"parent_id": "76",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well bless your heart, I'm sure you are, but I just can't allow you back there. So sorry.",
+"translation_key": "Well bless your heart, I'm sure you are, but I just can't allow you back there. So sorry.",
+"type": "dialogue"
+},
+"78": {
+"next_id": "75",
+"parent_id": "76",
+"type": "goto"
+},
+"79": {
+"next_id": "80",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "What kind of things?",
+"translation_key": "What kind of things?",
+"type": "response"
+},
+"8": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "8",
+"next_id": "9",
 "pauses": {
 },
 "replacements": [  ],
@@ -852,11 +1177,76 @@ lines = {
 "translation_key": "The guard smiles at you and gestures you over",
 "type": "dialogue"
 },
-"70": {
+"80": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "81",
+"parent_id": "79",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Oh I'm sure I wouldn't even be able to tell you. I can't even set the clock on my VCR.",
+"translation_key": "Oh I'm sure I wouldn't even be able to tell you. I can't even set the clock on my VCR.",
+"type": "dialogue"
+},
+"81": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "71",
-"parent_id": "68",
+"next_id": "82",
+"parent_id": "79",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "VCR?",
+"translation_key": "VCR?",
+"type": "dialogue"
+},
+"82": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "83",
+"parent_id": "79",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well, of course! I might not know much about technology but I do try to stay up to date.",
+"translation_key": "Well, of course! I might not know much about technology but I do try to stay up to date.",
+"type": "dialogue"
+},
+"83": {
+"next_id": "75",
+"parent_id": "79",
+"type": "goto"
+},
+"84": {
+"next_id": "85",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Who is allowed back there?",
+"translation_key": "Who is allowed back there?",
+"type": "response"
+},
+"85": {
+"character": "West Guard",
+"inline_mutations": [  ],
+"next_id": "86",
+"parent_id": "84",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I've been sworn to secrecy. If I tell, they'll steal my dog.",
+"translation_key": "I've been sworn to secrecy. If I tell, they'll steal my dog.",
+"type": "dialogue"
+},
+"86": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "87",
+"parent_id": "84",
 "pauses": {
 },
 "replacements": [  ],
@@ -865,11 +1255,11 @@ lines = {
 "translation_key": "Really? That seems a little ... intense.",
 "type": "dialogue"
 },
-"71": {
+"87": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "72",
-"parent_id": "68",
+"next_id": "88",
+"parent_id": "84",
 "pauses": {
 },
 "replacements": [  ],
@@ -878,70 +1268,23 @@ lines = {
 "translation_key": "Purple Beret doesn't play around with their NDAs.",
 "type": "dialogue"
 },
-"72": {
-"next_id": "59",
-"parent_id": "68",
+"88": {
+"next_id": "75",
+"parent_id": "84",
 "type": "goto"
 },
-"73": {
-"next_id": "74",
+"89": {
+"next_id": "90",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "I'll be back later then.",
 "translation_key": "I'll be back later then.",
 "type": "response"
 },
-"74": {
+"9": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "75",
-"parent_id": "73",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "TTFN!",
-"translation_key": "TTFN!",
-"type": "dialogue"
-},
-"75": {
-"next_id": "end",
-"parent_id": "73",
-"type": "goto"
-},
-"77": {
-"next_id": "78",
-"text": "nick_badge",
-"type": "title"
-},
-"78": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "79",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Oh Ash! So glad you're here! They've been waiting.",
-"translation_key": "Oh Ash! So glad you're here! They've been waiting.",
-"type": "dialogue"
-},
-"79": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "80",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Don't stand here talking to me. Go go go!",
-"translation_key": "Don't stand here talking to me. Go go go!",
-"type": "dialogue"
-},
-"8": {
-"character": "West Guard",
-"inline_mutations": [  ],
-"next_id": "9",
+"next_id": "10",
 "pauses": {
 },
 "replacements": [  ],
@@ -950,169 +1293,110 @@ lines = {
 "translation_key": "Well, hello there! Welcome to Purple Beret Con! We're just so dang happy to have you with us.",
 "type": "dialogue"
 },
-"80": {
-"mutation": {
-"args": [ [ {
-"type": "string",
-"value": "player"
-} ], [ {
-"type": "string",
-"value": "west_clear"
-} ], [ {
-"type": "number",
-"value": 1
-} ] ],
-"function": "set_dialog_state"
-},
-"next_id": "81",
-"type": "mutation"
-},
-"81": {
-"next_id": "end",
-"type": "goto"
-},
-"83": {
-"next_id": "84",
-"text": "cleared",
-"type": "title"
-},
-"84": {
+"90": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "85",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Look I would love to chat with you, but I'm awfully busy.",
-"translation_key": "Look I would love to chat with you, but I'm awfully busy.",
-"type": "dialogue"
-},
-"85": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "86",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i] The guard starts playing a game on the oldest brick phone you've ever seen. Looks like a Nokia [/i]",
-"translation_key": "[i] The guard starts playing a game on the oldest brick phone you've ever seen. Looks like a Nokia [/i]",
-"type": "dialogue"
-},
-"86": {
-"mutation": {
-"args": [ [ {
-"type": "string",
-"value": "player"
-} ], [ {
-"type": "string",
-"value": "west_clear"
-} ], [ {
-"type": "number",
-"value": 2
-} ] ],
-"function": "set_dialog_state"
-},
-"next_id": "87",
-"type": "mutation"
-},
-"87": {
-"next_id": "end",
-"type": "goto"
-},
-"89": {
-"next_id": "90",
-"text": "cleared_final",
-"type": "title"
-},
-"9": {
-"next_id": "30",
-"type": "goto"
-},
-"90": {
-"character": "",
-"inline_mutations": [  ],
 "next_id": "91",
+"parent_id": "89",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "[i] The guard is enthralled with whatever they are playing on their phone [/i]",
-"translation_key": "[i] The guard is enthralled with whatever they are playing on their phone [/i]",
+"text": "TTFN!",
+"translation_key": "TTFN!",
 "type": "dialogue"
 },
 "91": {
 "next_id": "end",
+"parent_id": "89",
 "type": "goto"
 },
 "93": {
 "next_id": "94",
-"text": "give_badge",
+"text": "ash_badge",
 "type": "title"
 },
 "94": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "95",
-"pauses": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "west_guard"
+} ], [ {
+"type": "string",
+"value": "used_badge"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": true
+} ]
 },
-"replacements": [  ],
-"speeds": [  ],
-"text": "Here's my badge.",
-"translation_key": "Here's my badge.",
-"type": "dialogue"
+"next_conditional_id": "98",
+"next_id": "95",
+"next_id_after": "100",
+"type": "condition"
 },
 "95": {
 "character": "West Guard",
 "inline_mutations": [  ],
 "next_id": "96",
+"parent_id": "94",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Well, would you look at that. You're all kinds of official.",
-"translation_key": "Well, would you look at that. You're all kinds of official.",
+"text": "You already showed me a badge and this wasn't it.",
+"translation_key": "You already showed me a badge and this wasn't it.",
 "type": "dialogue"
 },
 "96": {
-"character": "West Guard",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "97",
+"parent_id": "94",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Except I can't let you in yet.",
-"translation_key": "Except I can't let you in yet.",
+"text": "There was a mixup at the desk. I'm definitely the person on that badge.",
+"translation_key": "There was a mixup at the desk. I'm definitely the person on that badge.",
 "type": "dialogue"
 },
 "97": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "98",
+"next_id": "100",
+"parent_id": "94",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "<whispers> There are technical difficulties.",
-"translation_key": "<whispers> There are technical difficulties.",
+"text": "Well, if you say so!",
+"translation_key": "Well, if you say so!",
 "type": "dialogue"
 },
 "98": {
+"next_conditional_id": "100",
+"next_id": "99",
+"next_id_after": "100",
+"type": "condition"
+},
+"99": {
 "character": "West Guard",
 "inline_mutations": [  ],
-"next_id": "99",
+"next_id": "100",
+"parent_id": "98",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You'll just have to come back later.",
-"translation_key": "You'll just have to come back later.",
+"text": "Oh Ash! So glad you're here! They've been waiting.",
+"translation_key": "Oh Ash! So glad you're here! They've been waiting.",
 "type": "dialogue"
-},
-"99": {
-"next_id": "end",
-"type": "goto"
 }
 }
