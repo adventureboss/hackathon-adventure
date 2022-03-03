@@ -120,7 +120,7 @@ The guard just grunts and ignores you
 => END
 
 ~ badge
-if get_dialoge_state(\"player\", \"east_clear\") >= 1
+if get_dialog_state(\"player\", \"east_clear\") >= 1
 	=> main
 You: Here's my badge!
 East Guard: Fine, fine. You can go on in.
@@ -276,7 +276,7 @@ lines = {
 "115": {
 "condition": {
 "expression": [ {
-"function": "get_dialoge_state",
+"function": "get_dialog_state",
 "type": "function",
 "value": [ [ {
 "type": "string",
