@@ -1,4 +1,5 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
+
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -7,6 +8,8 @@
 [ext_resource path="res://Scripts/CommandProcessor.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomManager.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/npc/nerds_entrance.gd" type="Script" id=8]
+[ext_resource path="res://nerds_lobby.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/npc/associate.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/items/doors_entrance.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/ropes.gd" type="Script" id=12]
@@ -20,6 +23,8 @@
 [ext_resource path="res://Scripts/npc/guard.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/doorway.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/phone.gd" type="Script" id=22]
+[ext_resource path="res://associates.gd" type="Script" id=23]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0627451, 0.0470588, 0.0470588, 1 )
@@ -57,16 +62,20 @@ margin_top = -405.0
 margin_right = 980.0
 margin_bottom = -47.0
 room_name = "Entrance"
-room_description = "You have arrived at Purple Beret Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around?"
+room_description = "You have arrived at Purple Beret Con! A gathering of technology enthusiasts from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around?"
 talk_to_dictionary = {
 }
 
 [node name="nerds" type="Node" parent="RoomManager/Entrance"]
-script = ExtResource( 13 )
+script = ExtResource( 8 )
 
-[node name="doors_entrance" type="Node" parent="RoomManager/Entrance"]
+
+[node name="doors" type="Node" parent="RoomManager/Entrance"]
 script = ExtResource( 11 )
 display_name = "Doors"
+
+[node name="associates" type="Node" parent="RoomManager/Entrance"]
+script = ExtResource( 23 )
 
 [node name="Lobby" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 534.0
@@ -87,6 +96,9 @@ script = ExtResource( 12 )
 
 [node name="desk" type="Node" parent="RoomManager/Lobby"]
 script = ExtResource( 13 )
+
+[node name="nerds" type="Node" parent="RoomManager/Lobby"]
+script = ExtResource( 9 )
 
 [node name="EastEntrance" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 1020.0
