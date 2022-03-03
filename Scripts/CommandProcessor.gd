@@ -4,12 +4,11 @@ const Actor = preload("res://Scripts/actor.gd")
 
 onready var game_state: GameState = get_node("/root/GameState")
 
-# var current_room = null
 
 func look_at_room():
-	var exit_string = PoolStringArray(current_room.exits.keys()).join(" ")
+	var exit_string = PoolStringArray(game_state.current_room.exits.keys()).join(" ")
 	var string = PoolStringArray([
-		"You are now in the " + current_room.get_room_name() + ".  \n" + current_room.get_room_description(),
+		"You are now in the " + game_state.current_room.get_room_name() + ".  \n" + game_state.current_room.get_room_description(),
 		"Exits: " + exit_string
 	]).join("\n")
 	return string 
