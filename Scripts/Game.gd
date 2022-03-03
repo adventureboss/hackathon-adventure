@@ -28,6 +28,7 @@ var input_status_enabled: bool = true
 func _ready() -> void:
 	scrollbar.connect("changed", self, "handle_scrollbar_changed")
 	game_state.connect("keyword_clicked", self, "on_keyword_pressed")
+	inventory_list.connect("item_selected", self, "on_item_clicked")
 	max_scroll_length = scrollbar.max_value
 
 	#create_response("You have arrived at Purple Cap Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North.")
@@ -141,3 +142,7 @@ func on_keyword_pressed(keyword):
 	user_cli.text += keyword
 	user_cli.grab_focus()
 	user_cli.caret_position = user_cli.text.length()
+	
+func on_item_clicked(item_idx):
+	game_state.emit_signal("keyword_clicked", game_state.get_items()[item_idx].name)
+	inventory_list.unselect_all()
