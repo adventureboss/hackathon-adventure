@@ -52,6 +52,7 @@ func _get_item(item_or_name):
 func add_item(item):
 	self._items.append(_get_item(item))
 	emit_signal("items_updated", _items)
+	self._update_room()
 
 func has_item(item):
 	return self._items.has(_get_item(item))
@@ -63,6 +64,7 @@ func remove_item(item):
 	var i = _items.find(_get_item(item))
 	_items.remove(i)
 	emit_signal("items_updated", _items)
+	self._update_room()
 	
 func get_items():
 	return _items
@@ -72,6 +74,7 @@ func set_dialog_state(actor: String, variable: String, value):
 		self._dialog_state[actor] = {}
 		
 	self._dialog_state[actor][variable] = value
+	self._update_room()
 
 
 func get_dialog_state(actor: String, variable, default = null):
@@ -88,3 +91,8 @@ func handle_quest_turnin(item_value):
 
 func show_dialogue(dialogue: Resource, entry: String):
 	emit_signal("show_dialogue", dialogue, entry)
+
+func _update_room():
+	print(current_room)
+	if current_room != null:
+		current_room.update()
