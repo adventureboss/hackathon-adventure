@@ -1,7 +1,7 @@
 extends "res://Scripts/actor.gd"
 
 func look_at():
-	return "If you reset the " + keyword("router") + ", the default" + keyword("password") + " will show on the screen"
+	return "If you reset the " + keyword("router") + ", the default " + keyword("password") + " will show on the screen"
 
 
 func pick_up():
