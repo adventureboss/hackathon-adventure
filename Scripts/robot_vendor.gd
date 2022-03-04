@@ -7,9 +7,9 @@ func talk_to():
 		return "Yeah, I think he’s fried. Better leave him alone"
 	else:
 		return game_state.show_dialogue(robot_vendor_dialogue, "main")
-		return null
+		return ""
 
 
 func look_at():
-	return "It's a robot! Who cares what it's pitching"
+	return "It's a robot! I love robots!"
 
