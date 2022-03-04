@@ -41,6 +41,7 @@ func _add_global_item(resource, name, display_name):
 	var item = load(resource).new()
 	item.display_name = display_name
 	item.name = name
+	item.game_state = self
 	_global_items[name] = item
 	return item
 
