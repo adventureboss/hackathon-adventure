@@ -8,5 +8,5 @@ func talk_to():
 
 
 func look_at():
-	return "I don’t know what he’s selling. But he has some mighty fine swag."
+	return "I don’t know what he’s selling. But he has some mighty fine " + keyword("swag") + "."
 

@@ -11,5 +11,5 @@ func talk_to():
 
 
 func look_at():
-	return "It's a robot! I love robots!"
+	return "It's a " + keyword("robot") + "! I love robots!"
 
