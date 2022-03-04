@@ -3,13 +3,15 @@ extends Node
 signal show_dialogue(dialog_file, dialog_entry)
 signal items_updated(items)
 signal keyword_clicked(keyword)
+signal room_changed_programatically(room, command)
 
 var _global_items = {}
 
 var _dialog_state: Dictionary = {}
 var _items = []
 var _self
-var current_room
+var current_room setget set_current_room
+var _previous_room
 
 func _init():
 	_self = _add_global_item("res://Scripts/npc/self.gd", "self", "Self")
@@ -108,3 +110,16 @@ func show_dialogue(dialogue: Resource, entry: String):
 func _update_room():
 	if current_room != null:
 		current_room.update()
+
+func set_current_room(new_room):
+	if current_room != null:
+		_previous_room = current_room
+	else:
+		_previous_room = new_room
+	current_room = new_room
+
+func back_to_previous_room(why = ""):
+	var room = _previous_room
+	set_current_room(room)
+	emit_signal("room_changed_programatically", room, why)
+	
