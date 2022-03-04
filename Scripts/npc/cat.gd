@@ -30,7 +30,8 @@ func pick_up():
 		return "I already put the " + keyword("cat") + " out of the way"
 	
 	if game_state.get_dialog_state("cat", "sleeping") == 1:
-		game_state.set_dialog_state("cat", "complete", false)
+		game_state.set_dialog_state("cat", "complete", true)
+		game_state.enable_room_item("beans")
 		return "There. I moved him. He looks much more comfortable"
 	else:
 		return "Ah! He’s a feisty one. I’m never going to be able to move him like this"

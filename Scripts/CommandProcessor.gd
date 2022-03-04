@@ -14,7 +14,7 @@ func _extract_actors(input: Array, count: int, items: Array = []):
 		search += word
 
 		var actor = get_actor(search)
-		if actor != null:
+		if actor != null and not actor.is_disabled:
 			items.append(actor)
 			if i + 1 < input.size() and count > 1:
 				return _extract_actors(input.slice(i + 1, input.size()), count - 1, items)
