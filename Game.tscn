@@ -248,9 +248,9 @@ display_name = "Beans"
 script = ExtResource( 47 )
 display_name = "Water fountain"
 
-[node name="vendor_sign" type="Node" parent="RoomManager/EastHall"]
+[node name="sign" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 39 )
-display_name = "Vendor sign"
+display_name = "Sign"
 
 [node name="schedule" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 46 )
