@@ -29,15 +29,7 @@ func _slice(search_words: PoolStringArray, start, end):
 	return PoolStringArray(Array(search_words).slice(start, end))
 
 func look_at_room():
-	var exit_string = PoolStringArray(game_state.current_room.exits.keys()).join(" ")
-	if game_state.current_room.get_room_name() == "title screen":
-		return game_state.current_room.get_room_description()
-	else:
-		var string = PoolStringArray([
-			"You are now in the " + game_state.current_room.get_room_name() + ".  \n" + game_state.current_room.get_room_description(),
-			"Exits: " + exit_string
-		]).join("\n")
-		return string 
+	return game_state.current_room.look()
 
 func initialize (starting_room) -> String:
 	return change_room(starting_room)
