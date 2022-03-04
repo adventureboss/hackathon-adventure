@@ -26,7 +26,7 @@ func use(with):
 		return "The " + keyword("cat") + " is already sleeping"
 
 func pick_up():
-	if game_state.get_dialog_state("cat", "complete") == false:
+	if game_state.get_dialog_state("cat", "complete") == true:
 		return "I already put the " + keyword("cat") + " out of the way"
 	
 	if game_state.get_dialog_state("cat", "sleeping") == 1:
