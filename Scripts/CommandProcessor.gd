@@ -65,7 +65,7 @@ func process_command(input: String):
 			return give(_slice(words, 1, words.size()))
 		"use":
 			return use(_slice(words, 1, words.size()))
-		"walk":
+		"walk", "go":
 			return walk(second_word)
 		"pick":
 			return pickUp(_slice(words, 2, words.size()))
