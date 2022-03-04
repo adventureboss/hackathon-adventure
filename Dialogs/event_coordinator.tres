@@ -159,7 +159,7 @@ Coordinator: I can't keep track of everything, you know.
 You: Neither can I.
 Coordinator: Ugh, fine. Here's a list.
 <Item List added to inventory>
-do add_item(\"quest_list\")
+do add_item(\"quest_items\")
 => anything_else
 
 
@@ -863,7 +863,7 @@ lines = {
 "mutation": {
 "args": [ [ {
 "type": "string",
-"value": "quest_list"
+"value": "quest_items"
 } ] ],
 "function": "add_item"
 },
