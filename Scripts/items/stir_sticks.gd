@@ -14,5 +14,12 @@ func look_at():
 func use(with):
 	if with.name == "self":
 		return "I wonder how far I can get this up my nose? Ouch! Not far."
-	#TODO: use on router
+	elif with.name == "button":
+		game_state.add_item("password")
+		return PoolStringArray([
+			"Aha! I pressed it. it must be resetting.  It says the " + keyword("password") + " is 'PowerBacon'.  Now I'm hungry.",
+			"<Password added to your inventory>"
+		]).join("\n")
+	else:
+		return "That won't work"
 		
