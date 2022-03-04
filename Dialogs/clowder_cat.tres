@@ -94,7 +94,13 @@ You: There we go. Sweet kitty.
 You: There we go. It's a good thing that virtual tea is totally safe for virtual cats.
 do remove_item(\"tea_cup\")
 do set_dialog_state(\"cat\", \"sleeping\", 1)
-=> END"
+=> END
+
+~ give_water
+[i]The cat starts lapping up the water[/i]
+You: Water is definitely the best thing for your cat. *the more you know*
+do remove_item(\"water_cup\")
+=> END "
 errors = [  ]
 titles = {
 "attempted_feral": "56",
@@ -103,6 +109,7 @@ titles = {
 "give_beans": "73",
 "give_coffee": "62",
 "give_tea": "82",
+"give_water": "92",
 "initialize": "1",
 "main": "17",
 "not_attempted_feral": "42",
@@ -1200,5 +1207,49 @@ lines = {
 "next_id": "10",
 "text": "first_meet",
 "type": "title"
+},
+"91": {
+"next_id": "92",
+"text": "give_water",
+"type": "title"
+},
+"92": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "93",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The cat starts lapping up the water[/i]",
+"translation_key": "[i]The cat starts lapping up the water[/i]",
+"type": "dialogue"
+},
+"93": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "94",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Water is definitely the best thing for your cat. *the more you know*",
+"translation_key": "Water is definitely the best thing for your cat. *the more you know*",
+"type": "dialogue"
+},
+"94": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "water_cup"
+} ] ],
+"function": "remove_item"
+},
+"next_id": "95",
+"type": "mutation"
+},
+"95": {
+"next_id": "end",
+"type": "goto"
 }
 }
