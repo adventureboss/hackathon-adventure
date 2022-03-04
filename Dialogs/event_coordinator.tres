@@ -10,13 +10,13 @@ do set_dialog_state(\"eventc\", \"met\", 0)
 do set_dialog_state(\"eventc\", \"initialized\", true)
 do set_dialog_state(\"eventc\", \"quest_accept\", false)
 do set_dialog_state(\"eventc\", \"items\", 0)
-# lens 1, floppy 2, password 4. Add together for value
-# lens and floppy = 3, lens and password = 5, floppy password = 6, all three = 7
+# magnifying glass 1, floppy 2, password 4. Add together for value
+# magnifying glass and floppy = 3, magnifying glass and password = 5, floppy password = 6, all three = 7
 => main
 
 ~ first_meet
 do set_dialog_state(\"eventc\", \"met\", 1)
-You walk up to the person muttering what sounds like expletives under their breath
+[i]You walk up to the person muttering what sounds like expletives under their breath[/i]
 Coordinator: Massive piece of junk. This whole thing is a disaster.
 Coordinator: Heads are gonna roll if we can't get this thing off the ground. MY HEAD is going to roll.
 You: Excuse me?
@@ -156,15 +156,19 @@ Coordinator: Look, you're a character in a text adventure game. Don't look down 
 Coordinator: Last thing. I need the wifi password.
 You: You don't have the password for your own event?
 Coordinator: I can't keep track of everything, you know.
+You: Neither can I.
+Coordinator: Ugh, fine. Here's a list.
+<Item List added to inventory>
+do add_item(\"quest_items\")
 => anything_else
 
 
 ~ give_lens
-You: I found your lens!
-do remove_item(\"lens\")
+You: I found a lens! Or a lens-ish thing we can use.
+do remove_item(\"magnifying_glass\")
 do handle_turnin(1)
-<Lens removed from inventory>
-Coordinator: Excellent!
+<Magnifying Glass removed from inventory>
+Coordinator: It's not perfect, but it'll do. Thanks!
 if get_dialog_state(\"eventc\", \"items\", 7)
 	=> items
 else
@@ -195,9 +199,9 @@ errors = [  ]
 titles = {
 "anything_else": "85",
 "first_meet": "10",
-"give_floppy": "166",
-"give_lens": "155",
-"give_password": "177",
+"give_floppy": "170",
+"give_lens": "159",
+"give_password": "181",
 "initialize": "1",
 "items": "34",
 "main": "103",
@@ -354,8 +358,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You walk up to the person muttering what sounds like expletives under their breath",
-"translation_key": "You walk up to the person muttering what sounds like expletives under their breath",
+"text": "[i]You walk up to the person muttering what sounds like expletives under their breath[/i]",
+"translation_key": "[i]You walk up to the person muttering what sounds like expletives under their breath[/i]",
 "type": "dialogue"
 },
 "110": {
@@ -820,70 +824,71 @@ lines = {
 "type": "dialogue"
 },
 "151": {
-"next_id": "85",
-"type": "goto"
-},
-"154": {
-"next_id": "155",
-"text": "give_lens",
-"type": "title"
-},
-"155": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "156",
+"next_id": "152",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I found your lens!",
-"translation_key": "I found your lens!",
+"text": "Neither can I.",
+"translation_key": "Neither can I.",
 "type": "dialogue"
 },
-"156": {
+"152": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "153",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Ugh, fine. Here's a list.",
+"translation_key": "Ugh, fine. Here's a list.",
+"type": "dialogue"
+},
+"153": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "154",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Item List added to inventory>",
+"translation_key": "<Item List added to inventory>",
+"type": "dialogue"
+},
+"154": {
 "mutation": {
 "args": [ [ {
 "type": "string",
-"value": "lens"
+"value": "quest_items"
 } ] ],
-"function": "remove_item"
+"function": "add_item"
 },
-"next_id": "157",
+"next_id": "155",
 "type": "mutation"
 },
-"157": {
-"mutation": {
-"args": [ [ {
-"type": "number",
-"value": 1
-} ] ],
-"function": "handle_turnin"
-},
-"next_id": "158",
-"type": "mutation"
+"155": {
+"next_id": "85",
+"type": "goto"
 },
 "158": {
-"character": "",
-"inline_mutations": [  ],
 "next_id": "159",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "<Lens removed from inventory>",
-"translation_key": "<Lens removed from inventory>",
-"type": "dialogue"
+"text": "give_lens",
+"type": "title"
 },
 "159": {
-"character": "Coordinator",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "160",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Excellent!",
-"translation_key": "Excellent!",
+"text": "I found a lens! Or a lens-ish thing we can use.",
+"translation_key": "I found a lens! Or a lens-ish thing we can use.",
 "type": "dialogue"
 },
 "16": {
@@ -896,6 +901,52 @@ lines = {
 "type": "response"
 },
 "160": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "magnifying_glass"
+} ] ],
+"function": "remove_item"
+},
+"next_id": "161",
+"type": "mutation"
+},
+"161": {
+"mutation": {
+"args": [ [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "handle_turnin"
+},
+"next_id": "162",
+"type": "mutation"
+},
+"162": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "163",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Magnifying Glass removed from inventory>",
+"translation_key": "<Magnifying Glass removed from inventory>",
+"type": "dialogue"
+},
+"163": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "164",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "It's not perfect, but it'll do. Thanks!",
+"translation_key": "It's not perfect, but it'll do. Thanks!",
+"type": "dialogue"
+},
+"164": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -912,36 +963,41 @@ lines = {
 } ] ]
 } ]
 },
-"next_conditional_id": "162",
-"next_id": "161",
+"next_conditional_id": "166",
+"next_id": "165",
 "next_id_after": "end",
 "type": "condition"
-},
-"161": {
-"next_id": "34",
-"parent_id": "160",
-"type": "goto"
-},
-"162": {
-"next_conditional_id": "end",
-"next_id": "163",
-"next_id_after": "end",
-"type": "condition"
-},
-"163": {
-"next_id": "end",
-"parent_id": "162",
-"type": "goto"
 },
 "165": {
-"next_id": "166",
+"next_id": "34",
+"parent_id": "164",
+"type": "goto"
+},
+"166": {
+"next_conditional_id": "end",
+"next_id": "167",
+"next_id_after": "end",
+"type": "condition"
+},
+"167": {
+"next_id": "end",
+"parent_id": "166",
+"type": "goto"
+},
+"169": {
+"next_id": "170",
 "text": "give_floppy",
 "type": "title"
 },
-"166": {
+"17": {
+"next_id": "111",
+"parent_id": "16",
+"type": "goto"
+},
+"170": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "167",
+"next_id": "171",
 "pauses": {
 },
 "replacements": [  ],
@@ -950,7 +1006,7 @@ lines = {
 "translation_key": "I found your floppy disk!",
 "type": "dialogue"
 },
-"167": {
+"171": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -958,10 +1014,10 @@ lines = {
 } ] ],
 "function": "remove_item"
 },
-"next_id": "168",
+"next_id": "172",
 "type": "mutation"
 },
-"168": {
+"172": {
 "mutation": {
 "args": [ [ {
 "type": "number",
@@ -969,13 +1025,13 @@ lines = {
 } ] ],
 "function": "handle_turnin"
 },
-"next_id": "169",
+"next_id": "173",
 "type": "mutation"
 },
-"169": {
+"173": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "170",
+"next_id": "174",
 "pauses": {
 },
 "replacements": [  ],
@@ -984,15 +1040,10 @@ lines = {
 "translation_key": "<Floppy removed from inventory>",
 "type": "dialogue"
 },
-"17": {
-"next_id": "111",
-"parent_id": "16",
-"type": "goto"
-},
-"170": {
+"174": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "171",
+"next_id": "175",
 "pauses": {
 },
 "replacements": [  ],
@@ -1001,7 +1052,7 @@ lines = {
 "translation_key": "Great!",
 "type": "dialogue"
 },
-"171": {
+"175": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -1018,65 +1069,26 @@ lines = {
 } ] ]
 } ]
 },
-"next_conditional_id": "173",
-"next_id": "172",
+"next_conditional_id": "177",
+"next_id": "176",
 "next_id_after": "end",
 "type": "condition"
-},
-"172": {
-"next_id": "34",
-"parent_id": "171",
-"type": "goto"
-},
-"173": {
-"next_conditional_id": "end",
-"next_id": "174",
-"next_id_after": "end",
-"type": "condition"
-},
-"174": {
-"next_id": "end",
-"parent_id": "173",
-"type": "goto"
 },
 "176": {
-"next_id": "177",
-"text": "give_password",
-"type": "title"
+"next_id": "34",
+"parent_id": "175",
+"type": "goto"
 },
 "177": {
-"character": "You",
-"inline_mutations": [  ],
+"next_conditional_id": "end",
 "next_id": "178",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I found the wifi password!",
-"translation_key": "I found the wifi password!",
-"type": "dialogue"
+"next_id_after": "end",
+"type": "condition"
 },
 "178": {
-"mutation": {
-"args": [ [ {
-"type": "string",
-"value": "password"
-} ] ],
-"function": "remove_item"
-},
-"next_id": "179",
-"type": "mutation"
-},
-"179": {
-"mutation": {
-"args": [ [ {
-"type": "number",
-"value": 4
-} ] ],
-"function": "handle_turnin"
-},
-"next_id": "180",
-"type": "mutation"
+"next_id": "end",
+"parent_id": "177",
+"type": "goto"
 },
 "18": {
 "next_id": "19",
@@ -1087,9 +1099,48 @@ lines = {
 "type": "response"
 },
 "180": {
+"next_id": "181",
+"text": "give_password",
+"type": "title"
+},
+"181": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "182",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I found the wifi password!",
+"translation_key": "I found the wifi password!",
+"type": "dialogue"
+},
+"182": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "password"
+} ] ],
+"function": "remove_item"
+},
+"next_id": "183",
+"type": "mutation"
+},
+"183": {
+"mutation": {
+"args": [ [ {
+"type": "number",
+"value": 4
+} ] ],
+"function": "handle_turnin"
+},
+"next_id": "184",
+"type": "mutation"
+},
+"184": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "181",
+"next_id": "185",
 "pauses": {
 },
 "replacements": [  ],
@@ -1098,10 +1149,10 @@ lines = {
 "translation_key": "<Password removed from inventory>",
 "type": "dialogue"
 },
-"181": {
+"185": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "182",
+"next_id": "186",
 "pauses": {
 },
 "replacements": [  ],
@@ -1110,7 +1161,7 @@ lines = {
 "translation_key": "Well done!",
 "type": "dialogue"
 },
-"182": {
+"186": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -1127,25 +1178,25 @@ lines = {
 } ] ]
 } ]
 },
-"next_conditional_id": "184",
-"next_id": "183",
+"next_conditional_id": "188",
+"next_id": "187",
 "next_id_after": "end",
 "type": "condition"
 },
-"183": {
+"187": {
 "next_id": "34",
-"parent_id": "182",
+"parent_id": "186",
 "type": "goto"
 },
-"184": {
+"188": {
 "next_conditional_id": "end",
-"next_id": "185",
+"next_id": "189",
 "next_id_after": "end",
 "type": "condition"
 },
-"185": {
+"189": {
 "next_id": "end",
-"parent_id": "184",
+"parent_id": "188",
 "type": "goto"
 },
 "19": {

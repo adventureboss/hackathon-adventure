@@ -16,6 +16,6 @@ func pick_up():
 func use(with):
 	if with.name == "self":
 		game_state.set_dialog_state("player", "caffeinated", 2)
-		return PoolStringArray(["Here goes nothing","[i]You eat the beans raw[/i]", "Blech! Tastes like sand and fingernail polish.", "Oh look! I can see between atoms."]).join("/n")
+		return "I'll just chew these up. Blech! Tastes like sand and fingernail polish. Oh look! I can see between atoms."
 	if with.name == "cat":
 		return "I don't think he'll eat them raw."
