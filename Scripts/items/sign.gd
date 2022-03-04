@@ -14,7 +14,7 @@ func _ready():
 func look_at():
 	var state = game_state.get_dialog_state("east_hall_sign", "look_at_index")
 	var response = look_at_responses[state]
-	if state + 1 < look_at_responses.length:
+	if state + 1 < look_at_responses.size():
 		game_state.set_dialog_state("east_hall_sign", "look_at_index", state + 1)
 	
 	return response
