@@ -8,10 +8,10 @@ func pick_up():
 
 func use(with):
 	match with.name:
-		"coffee machine":
+		"coffee_machine":
 			with.talk_to()
 			return ""
-		"water fountain":
+		"water_fountain":
 			if game_state.has_item("water_cup"):
 				return "I already have a cup of water."
 			game_state.remove_item("cup")
