@@ -5,8 +5,7 @@ func look_at():
 
 
 func use(object):
-	# add a way to just use object (singular) not on something
-	if object == "button":
+	if object.name == "self":
 		return "My fingers are too big.  I can't just push it"
 	elif object == "stir_stick":
 		game_state.add_item("password")
