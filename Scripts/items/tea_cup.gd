@@ -7,6 +7,8 @@ func look_at():
 
 func use(with):
 	if with.name == "cat":
+		game_state.remove_item("tea_cup")
+		game_state.add_item("cup")
 		game_state.show_dialog(dialog, "give_tea")
 	if with.name == "self":
 		game_state.remove_item("tea_cup")
