@@ -21,6 +21,16 @@ func get_room_name():
 func get_room_description():
 	return "Default room description"
 	
+func look():
+	var exit_string = PoolStringArray(exits.keys()).join(" ")
+	if get_room_name() == "title screen":
+		return get_room_description()
+	else:
+		var string = PoolStringArray([
+			"You are now in the " + get_room_name() + ".  \n" + get_room_description(),
+			"Exits: " + exit_string
+		]).join("\n")
+		return string
 
 var exits: Dictionary = {}
 

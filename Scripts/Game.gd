@@ -35,6 +35,7 @@ func _ready() -> void:
 
 	game_state.connect("show_dialogue", self, "show_dialogue")
 	game_state.connect("items_updated", self, "update_items")
+	game_state.connect("room_changed_programatically", self, "on_change_to_room_programatically")
 	var starting_room_response = command_processor.initialize(room_manager.get_child(0))
 	create_response(starting_room_response)
 	update_items(game_state.get_items())
@@ -101,6 +102,10 @@ func _on_Input_text_entered(new_text: String) -> void:
 	input_response.set_text(new_text, response)
 	add_response_to_game(input_response)
 
+func on_change_to_room_programatically(room, command = "") -> void:
+	var input_response = InputResponse.instance()
+	input_response.set_text(command, room.look())
+	add_response_to_game(input_response)
 
 func _on_TalkToButton_pressed() -> void:
 	user_cli.clear()
@@ -145,5 +150,6 @@ func on_keyword_pressed(keyword):
 	user_cli.caret_position = user_cli.text.length()
 	
 func on_item_clicked(item_idx):
-	game_state.emit_signal("keyword_clicked", game_state.get_items()[item_idx].name)
+	var keyword = game_state.get_items()[item_idx].name.replace("_", " ")
+	game_state.emit_signal("keyword_clicked", keyword)
 	inventory_list.unselect_all()

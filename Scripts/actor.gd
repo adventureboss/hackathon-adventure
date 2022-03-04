@@ -2,6 +2,7 @@ extends Node
 
 onready var game_state: GameState = get_node("/root/GameState")
 export var display_name: String
+export var is_disabled: bool
 
 func talk_to() -> String:
 	return "I can't talk with " + self.display_name
