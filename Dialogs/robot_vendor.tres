@@ -91,7 +91,7 @@ Robot: Kneel before our surpreme intellect!
 	Robot: I.... I can't ... Calculating
 	[i]Smoke and sparks emit from the robot's neck[/i]
 	Robot: Systems. Critical. 
-	You: Take that, evil robot!
+	You: Take that, evil [color=#cb1eca]robot[/color]!
 	=> END
 	
 	
@@ -1000,8 +1000,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Take that, evil robot!",
-"translation_key": "Take that, evil robot!",
+"text": "Take that, evil [color=#cb1eca]robot[/color]!",
+"translation_key": "Take that, evil [color=#cb1eca]robot[/color]!",
 "type": "dialogue"
 },
 "87": {

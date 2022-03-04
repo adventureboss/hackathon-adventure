@@ -43,13 +43,13 @@ Vendor: Hello again, friend! Do you have a few moments to speak now?
 	=> END
 
 ~ more
-Vendor: Care to hear more? There's a sweet reverse magnifying glass in it for you.
+Vendor: Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.
 - Sure! Hit me! [if get_dialog_state(\"vendor\", \"pitched\") == 0]
 	=> pitch
 - I'm totally ready this time! [if get_dialog_state(\"vendor\", \"pitched\") == 1]
 	=> pitch
 - A REVERSE magnifying glass?
-	Vendor: You bet! For anyone that listens to the whole thing, they walk away with a reverse magnifying glass. Point it at things and they get smaller, or aim light through it and it gets bigger.
+	Vendor: You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.
 	You: What good is something like that anyway?
 	Vendor: I'm sure you'll figure it out
 	=> more
@@ -66,8 +66,8 @@ if get_dialog_state(\"player\", \"caffeinated\") == 0
 	Vendor: You fell asleep, sir.
 	You: What! No, of course not. I close my eyes to focus.
 	Vendor: You were snoring.
-	You: Fine, you got me. Can I have my magnifying glass now?
-	Vendor: REVERSE magnifying glass. And no, you cannot have it. You have to listen to the whole pitch.
+	You: Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?
+	Vendor: REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.
 	Vendor: Better luck next time.
 	=> END
 if get_dialog_state(\"player\", \"caffeinated\", 1)
@@ -90,7 +90,7 @@ if get_dialog_state(\"player\", \"caffeinated\", 2)
 	You: Oh wow. So the induction reaction actually MULTIPLIES the divisive antenna reducer?
 	Vendor: That's right!
 	You: This is truly next level engineering.
-	Vendor: Groovetech thanks you for your time. Have a reverse magnifying glass.
+	Vendor: Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].
 	do add_item(\"lens\")
 	You: Thanks!
 	do set_dialog_state(\"vendor\", \"complete\", true)
@@ -453,8 +453,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Care to hear more? There's a sweet reverse magnifying glass in it for you.",
-"translation_key": "Care to hear more? There's a sweet reverse magnifying glass in it for you.",
+"text": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
+"translation_key": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
 "type": "dialogue"
 },
 "39": {
@@ -556,8 +556,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You bet! For anyone that listens to the whole thing, they walk away with a reverse magnifying glass. Point it at things and they get smaller, or aim light through it and it gets bigger.",
-"translation_key": "You bet! For anyone that listens to the whole thing, they walk away with a reverse magnifying glass. Point it at things and they get smaller, or aim light through it and it gets bigger.",
+"text": "You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.",
+"translation_key": "You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.",
 "type": "dialogue"
 },
 "45": {
@@ -751,8 +751,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Fine, you got me. Can I have my magnifying glass now?",
-"translation_key": "Fine, you got me. Can I have my magnifying glass now?",
+"text": "Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?",
+"translation_key": "Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?",
 "type": "dialogue"
 },
 "62": {
@@ -764,8 +764,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "REVERSE magnifying glass. And no, you cannot have it. You have to listen to the whole pitch.",
-"translation_key": "REVERSE magnifying glass. And no, you cannot have it. You have to listen to the whole pitch.",
+"text": "REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.",
+"translation_key": "REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.",
 "type": "dialogue"
 },
 "63": {
@@ -1095,8 +1095,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Groovetech thanks you for your time. Have a reverse magnifying glass.",
-"translation_key": "Groovetech thanks you for your time. Have a reverse magnifying glass.",
+"text": "Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].",
+"translation_key": "Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].",
 "type": "dialogue"
 },
 "86": {
