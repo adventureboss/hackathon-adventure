@@ -9,3 +9,6 @@ func use(with):
 	
 func give(what):
 	return use(what)
+
+func look_at():
+	return "I have a lot of vouchers!"
