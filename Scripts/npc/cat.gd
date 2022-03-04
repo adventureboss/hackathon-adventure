@@ -11,20 +11,26 @@ func talk_to():
 func use(with):
 	if game_state.get_dialog_state("cat", "sleeping") == 0:
 		if with.name == "coffee_cup":
-			return with.use(self)
-		elif with.name == "sleepytime_tea":
-			# Todo: move to sleepytime_tea
-			# Todo: Update room description
-			return "The " + keyword("cat") + " falls sleep on the floor"
-	
-	return "The " + keyword("cat") + " is already sleeping"
+			game_state.remove_item("coffee_cup")
+			game_state.show_dialogue(dialogue, "give_coffee")
+			return ""
+		elif with.name == "tea_cup":
+			game_state.remove_item("tea_cup")
+			game_state.show_dialogue(dialogue, "give_tea")
+			return ""
+		elif with.name == "water_cup":
+			game_state.remove_item("water_cup")
+			game_state.show_dialogue(dialogue, "give_water")
+			return ""
+	else:
+		return "The " + keyword("cat") + " is already sleeping"
 
 func pick_up():
-	if game_state.get_dialog_state("cat", "complete") == 1:
+	if game_state.get_dialog_state("cat", "complete") == false:
 		return "I already put the " + keyword("cat") + " out of the way"
 	
 	if game_state.get_dialog_state("cat", "sleeping") == 1:
-		game_state.set_dialog_state("cat", "complete", 1)
+		game_state.set_dialog_state("cat", "complete", false)
 		return "There. I moved him. He looks much more comfortable"
 	else:
 		return "Ah! He’s a feisty one. I’m never going to be able to move him like this"
