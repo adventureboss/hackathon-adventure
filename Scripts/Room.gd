@@ -13,7 +13,7 @@ func update():
 	$MarginContainer/Rows/RoomDescription.text = get_room_description()
 	
 func keyword(keyword: String):
-	return "[url=%s][color=#cb1eca]%s[/color][/url]" % [keyword, keyword]
+	return game_state.keyword_link(keyword)
 	
 func get_room_name():
 	return "Default room name"
