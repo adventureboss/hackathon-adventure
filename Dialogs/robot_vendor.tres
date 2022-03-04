@@ -92,6 +92,7 @@ Robot: Kneel before our surpreme intellect!
 	[i]Smoke and sparks emit from the robot's neck[/i]
 	Robot: Systems. Critical. 
 	You: Take that, evil [color=#cb1eca]robot[/color]!
+	do set_dialog_state(\"robot\", \"finished\", true)
 	=> END
 	
 	
@@ -1005,6 +1006,24 @@ lines = {
 "type": "dialogue"
 },
 "87": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "robot"
+} ], [ {
+"type": "string",
+"value": "finished"
+} ], [ {
+"type": "bool",
+"value": true
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "88",
+"parent_id": "78",
+"type": "mutation"
+},
+"88": {
 "next_id": "end",
 "parent_id": "78",
 "type": "goto"
