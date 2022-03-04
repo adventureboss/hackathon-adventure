@@ -10,7 +10,7 @@ func use(with):
 	match with.name:
 		"coffee machine":
 			with.talk_to()
-			return null
+			return ""
 		"water fountain":
 			if game_state.has_item("water_cup"):
 				return "I already have a cup of water."
@@ -20,14 +20,10 @@ func use(with):
 		"beans":
 			if game_state.has_item("beans_cup"):
 				return "I already have a cup of beans."
-			
-			if game_state.has_item("beans"):
+			else:
 				game_state.remove_item("cup")
-				game_state.remove_item("beans")
 				game_state.add_item("beans_cup")
-				return "Great! now I have a beans cup"
-			
-			return "First I need to pick up the beans."
+				return "Great! Now I have a cup of beans."
 			
 	return "I can't do that"
 			
