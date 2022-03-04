@@ -37,6 +37,7 @@ func _ready() -> void:
 	game_state.connect("items_updated", self, "update_items")
 	var starting_room_response = command_processor.initialize(room_manager.get_child(0))
 	create_response(starting_room_response)
+	update_items(game_state.get_items())
 
 
 func create_response(response_text):
