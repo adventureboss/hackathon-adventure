@@ -35,6 +35,7 @@ func _init():
 	
 	# npc default states when necessary
 	set_dialog_state("nerds", "present", true)
+	set_dialog_state("cat", "complete", false)
 
 func _add_global_item(resource, name, display_name, add_to_inventory = false):
 	assert(_global_items.has(name) == false, "global items already contains this item")
