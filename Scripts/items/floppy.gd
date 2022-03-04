@@ -11,7 +11,7 @@ func pick_up():
 	if game_state.get_dialog_state("cat", "sleeping") == 1:
 		return "I can't pick it up. The cat is on top of it"
 	
-	return "Ah! Bad kitty. There’s no way I’m getting that with that cat on it"
+	return "Ah! He swiped at me. Bad kitty. There’s no way I’m getting that with that cat on it"
 
 func look_at():
 	if game_state.has_item("floppy"):
