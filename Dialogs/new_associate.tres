@@ -29,7 +29,7 @@ if get_dialog_state(\"new_associate\", \"initialized\") == false
 	=> initialize
 elif get_dialog_state(\"new_associate\", \"met\") == 0
 	=> first_meet
-elif get_dialog_state(\"new_associate\", \"complete\", true)
+elif get_dialog_state(\"new_associate\", \"complete\") == true
 	=> complete
 else
 	if get_dialog_state(\"new_associate\", \"hostile\") == true
@@ -70,7 +70,7 @@ You: What can I do to make it up to you
 Hostile Associate: Grovel.
 You: You want a pile of rocks?
 Hostile Associate: GROVEL. G-R-O-V-E-L. Not Gravel. What's wrong with you?
-- I haven't had coffee
+- I haven't had coffee [if get_dialog_state(\"player\", \"caffeinated\") == 0]
 	Hostile Associate: Mother of pearl! No wonder!
 	=> friendly
 - I just finished a week long hackathon
@@ -479,10 +479,13 @@ lines = {
 } ], [ {
 "type": "string",
 "value": "complete"
-} ], [ {
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
 "type": "bool",
 "value": true
-} ] ]
 } ]
 },
 "next_conditional_id": "26",
@@ -922,6 +925,25 @@ lines = {
 "type": "dialogue"
 },
 "65": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "caffeinated"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
 "next_id": "66",
 "next_id_after": "end",
 "replacements": [  ],
