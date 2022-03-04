@@ -36,13 +36,15 @@ func _init():
 	# npc default states when necessary
 	set_dialog_state("nerds", "present", true)
 
-func _add_global_item(resource, name, display_name):
+func _add_global_item(resource, name, display_name, add_to_inventory = false):
 	assert(_global_items.has(name) == false, "global items already contains this item")
 	var item = load(resource).new()
 	item.display_name = display_name
 	item.name = name
 	item.game_state = self
 	_global_items[name] = item
+	if add_to_inventory:
+		add_item(item)
 	return item
 
 func _get_item(item_or_name):
@@ -103,6 +105,5 @@ func show_dialogue(dialogue: Resource, entry: String):
 	emit_signal("show_dialogue", dialogue, entry)
 
 func _update_room():
-	print(current_room)
 	if current_room != null:
 		current_room.update()
