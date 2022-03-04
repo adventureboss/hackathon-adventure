@@ -5,4 +5,4 @@ func look_at():
 
 
 func pick_up():
-	return "Hey there's a " + keyword("note") + "under this."
+	return "Hey there's a " + keyword("note") + " under this."
