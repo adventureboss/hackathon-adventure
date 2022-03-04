@@ -19,7 +19,7 @@ func _init():
 	_add_global_item("res://Scripts/items/pamphlets.gd", "pamphlet", "Pamphlet")
 	_add_global_item("res://Scripts/items/drink_vouchers.gd", "drink_vouchers", "Drink vouchers")
 	_add_global_item("res://Scripts/items/ash_badge.gd", "ash_badge", "Ash badge")
-	_add_global_item("res://Scripts/items/lens.gd", "lens", "Lens")
+	_add_global_item("res://Scripts/magnifying_glass.gd", "magnifying_glass", "Magnifying Glass")
 	_add_global_item("res://Scripts/items/cup.gd", "cup", "Cup")
 	_add_global_item("res://Scripts/items/water_cup.gd", "water_cup", "Water cup")
 	_add_global_item("res://Scripts/items/coffee_cup.gd", "coffee_cup", "Coffee cup")
@@ -27,6 +27,7 @@ func _init():
 	_add_global_item("res://Scripts/items/chips.gd", "chips", "Chips")
 	_add_global_item("res://Scripts/items/password.gd", "password", "Password")
 	_add_global_item("res://Scripts/items/tea_cup.gd", "tea_cup", "Tea cup")
+	_add_global_item("res://Scripts/items/quest_items.gd", "quest_items", "Item List")
 	
 	
 	# set player default state
