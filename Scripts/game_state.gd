@@ -48,6 +48,12 @@ func _add_global_item(resource, name, display_name, add_to_inventory = false):
 		add_item(item)
 	return item
 
+func enable_room_item(name: String):
+	for element in current_room.get_children():
+		if 'display_name' in element and element.name == name:
+			element.is_disabled = false
+			break
+
 func _get_item(item_or_name):
 	if typeof(item_or_name) == TYPE_STRING:
 		var item

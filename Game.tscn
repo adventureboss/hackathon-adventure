@@ -243,6 +243,7 @@ display_name = "Coffee machine"
 [node name="beans" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 41 )
 display_name = "Beans"
+is_disabled = true
 
 [node name="water_fountain" type="Node" parent="RoomManager/EastHall"]
 script = ExtResource( 47 )
