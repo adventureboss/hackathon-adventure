@@ -6,7 +6,7 @@ func look_at():
 	return "Aw, it’s cute. It has a little " + keyword("collar") +  " with a " + keyword("nametag") + ". Ah! He’s laying on a " + keyword("floppy") + " disk!"
 
 func talk_to():
-	game_state.show_dialog(dialogue, "main")
+	game_state.show_dialogue(dialogue, "main")
 
 func use(with):
 	if game_state.get_dialog_state("cat", "sleeping") == 0:
