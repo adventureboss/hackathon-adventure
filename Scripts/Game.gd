@@ -145,5 +145,6 @@ func on_keyword_pressed(keyword):
 	user_cli.caret_position = user_cli.text.length()
 	
 func on_item_clicked(item_idx):
-	game_state.emit_signal("keyword_clicked", game_state.get_items()[item_idx].name)
+	var keyword = game_state.get_items()[item_idx].name.replace("_", " ")
+	game_state.emit_signal("keyword_clicked", keyword)
 	inventory_list.unselect_all()
