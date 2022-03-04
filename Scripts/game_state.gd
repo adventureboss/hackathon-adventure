@@ -27,7 +27,7 @@ func _init():
 	_add_global_item("res://Scripts/items/chips.gd", "chips", "Chips")
 	_add_global_item("res://Scripts/items/password.gd", "password", "Password")
 	_add_global_item("res://Scripts/items/tea_cup.gd", "tea_cup", "Tea cup")
-	_add_global_item("res://Scripts/items/quest_items.gd", "quest_items", "Item List")
+	_add_global_item("res://Scripts/items/quest_items.gd", "quest_items", "Quest Items")
 	
 	
 	# set player default state
