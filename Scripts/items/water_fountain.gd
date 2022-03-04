@@ -1,7 +1,7 @@
 extends "res://Scripts/actor.gd"
 
 func look_at():
-	return "There’s little cucumbers floating in it. At least I think those are cucumbers. Yikes! One winked at me"
+	return "It's a " + keyword("water fountain") + " with " + keyword("cups") + " next to it. There’s little cucumbers floating in it. At least I think those are cucumbers. Yikes! One winked at me"
 
 func pick_up():
 	return "Nah, I’ll just spill it everywhere"
