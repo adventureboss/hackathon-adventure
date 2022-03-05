@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -95,6 +95,43 @@ bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
 
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.384314, 0.164706, 0.403922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.137255, 0, 0.0705882, 1 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 
@@ -551,19 +588,104 @@ custom_styles/normal = SubResource( 8 )
 enabled_focus_mode = 0
 text = "LOOK AT"
 
-[node name="Inventory" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer"]
+[node name="CompassContainer" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer"]
 margin_left = 540.0
+margin_right = 590.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 50, 0 )
+custom_styles/panel = SubResource( 26 )
+
+[node name="Compass" type="VBoxContainer" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer"]
+margin_right = 50.0
+margin_bottom = 280.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="North" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass"]
+margin_right = 50.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 27 )
+
+[node name="Button" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/North"]
+margin_right = 50.0
+margin_bottom = 66.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/normal = SubResource( 28 )
+enabled_focus_mode = 0
+text = "N"
+
+[node name="West" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass"]
+margin_top = 71.0
+margin_right = 50.0
+margin_bottom = 137.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 20 )
+
+[node name="Button" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/West"]
+margin_right = 50.0
+margin_bottom = 66.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/normal = SubResource( 29 )
+enabled_focus_mode = 0
+text = "W"
+
+[node name="East" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass"]
+margin_top = 142.0
+margin_right = 50.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 22 )
+
+[node name="Button" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/East"]
+margin_right = 50.0
+margin_bottom = 66.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 23 )
+custom_styles/normal = SubResource( 30 )
+enabled_focus_mode = 0
+text = "E"
+
+[node name="South" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass"]
+margin_top = 213.0
+margin_right = 50.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 24 )
+
+[node name="Button" type="Button" parent="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/South"]
+margin_right = 50.0
+margin_bottom = 67.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/normal = SubResource( 31 )
+enabled_focus_mode = 0
+text = "S"
+
+[node name="Inventory" type="PanelContainer" parent="Background/MarginContainer/Rows/HBoxContainer"]
+margin_left = 610.0
 margin_right = 1560.0
 margin_bottom = 280.0
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 7 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/Rows/HBoxContainer/Inventory"]
-margin_right = 1020.0
+margin_right = 950.0
 margin_bottom = 280.0
 
 [node name="Label" type="Label" parent="Background/MarginContainer/Rows/HBoxContainer/Inventory/VBoxContainer"]
-margin_right = 1020.0
+margin_right = 950.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 4 )
 custom_styles/normal = SubResource( 15 )
@@ -572,7 +694,7 @@ align = 1
 
 [node name="InventoryList" type="ItemList" parent="Background/MarginContainer/Rows/HBoxContainer/Inventory/VBoxContainer"]
 margin_top = 36.0
-margin_right = 1020.0
+margin_right = 950.0
 margin_bottom = 280.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -594,3 +716,7 @@ asd"
 [connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/Walk/WalkButton" to="." method="_on_WalkButton_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/PickUp/PickUpButton" to="." method="_on_PickUpButton_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/VerbArea/LookAt/LookAtButton" to="." method="_on_LookAtButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/North/Button" to="." method="_on_WalkNorthButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/West/Button" to="." method="_on_WalkWestButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/East/Button" to="." method="_on_WalkEastButton_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/HBoxContainer/CompassContainer/Compass/South/Button" to="." method="_on_WalkSouthButton_pressed"]
