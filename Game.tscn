@@ -292,11 +292,11 @@ margin_right = 1677.0
 margin_bottom = -729.0
 script = ExtResource( 56 )
 
-[node name="widget_vendor" type="Node" parent="RoomManager/VendorHall"]
+[node name="vendor" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 8 )
 display_name = "Widget vendor"
 
-[node name="robot_vendor" type="Node" parent="RoomManager/VendorHall"]
+[node name="robot" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 27 )
 display_name = "Robot vendor"
 
