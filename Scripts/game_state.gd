@@ -78,6 +78,19 @@ func _get_item(item_or_name):
 		assert(item != null, "Unknown item used")
 		return item
 	return item_or_name
+	
+func _load_get_item(item_name):
+	var item
+	if _global_items.has(item_name):
+		item = _global_items[item_name]
+	else:
+		for room in rooms:
+			for element in room.get_children():
+				if 'display_name' in element and element.name == item_name:
+					item = element
+					break
+	assert(item != null, "Unknown item loaded")
+	return item
 
 func add_item(item):
 	self._items.append(_get_item(item))
@@ -172,8 +185,9 @@ func load_game(filename: String):
 		
 		_dialog_state = game_data["dialog_state"]
 		
+		_items = []
 		for item in game_data["items"]:
-			_items.append(_get_item(item))
+			_items.append(_load_get_item(item))
 		
 		return true
 	else:
