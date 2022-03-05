@@ -31,14 +31,16 @@ func _ready() -> void:
 	inventory_list.connect("item_selected", self, "on_item_clicked")
 	max_scroll_length = scrollbar.max_value
 
-	#create_response("You have arrived at Purple Cap Con! A gathering of nerds from all over to learn about the latest and greatest open source achievements. The conference center doors are in front of you to the North. Nerds are piling in to see what your favorite open source company has to show this time. You can tell by the panicked faces on some associates that things aren't going quite as well as expected. Maybe you should ask around? The Lobby is ahead of you to the North.")
-
 	game_state.connect("show_dialogue", self, "show_dialogue")
 	game_state.connect("items_updated", self, "update_items")
 	game_state.connect("room_changed_programatically", self, "on_change_to_room_programatically")
 	var starting_room_response = command_processor.initialize(room_manager.get_child(0))
 	create_response(starting_room_response)
 	update_items(game_state.get_items())
+	
+	game_state.rooms = []
+	for room in room_manager.get_children():
+		game_state.rooms.append(room)
 
 
 func create_response(response_text):
@@ -97,15 +99,17 @@ func _on_Input_text_entered(new_text: String) -> void:
 	if new_text.empty():
 		return
 
-	var input_response = InputResponse.instance()
 	var response = command_processor.process_command(new_text)
-	input_response.set_text(new_text, response)
-	add_response_to_game(input_response)
+	if response != null:
+		var input_response = InputResponse.instance()
+		input_response.set_text(new_text, response)
+		add_response_to_game(input_response)
 
 func on_change_to_room_programatically(room, command = "") -> void:
 	var input_response = InputResponse.instance()
 	input_response.set_text(command, room.look())
 	add_response_to_game(input_response)
+	update_items(game_state.get_items())
 
 func _on_TalkToButton_pressed() -> void:
 	user_cli.clear()

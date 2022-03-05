@@ -10,6 +10,7 @@ var _global_items = {}
 var _dialog_state: Dictionary = {}
 var _items = []
 var _self
+var rooms
 var current_room setget set_current_room
 var _previous_room
 
@@ -137,3 +138,57 @@ func back_to_previous_room(why = ""):
 	set_current_room(room)
 	emit_signal("room_changed_programatically", room, why)
 	
+func load_game(filename: String):
+	var file = File.new()
+	if file.file_exists(filename):
+		file.open(filename, File.READ)
+		var game_data = file.get_var()
+		file.close()
+		
+		# Update items
+		# This is really because of the beans that needs to be disabled
+		for room in rooms:
+			if room.name == game_data["current_room"]:
+				current_room = room
+			if room.name == game_data["previous_room"]:
+				_previous_room = room
+			
+			if game_data["rooms"].has(room.name):
+				var saved_room_items = game_data["rooms"]
+				for item in room.get_children():
+					if "display_name" in item and saved_room_items.has(item.name):
+						item.is_disabled = saved_room_items[item.name]["is_disabled"]
+		
+		_dialog_state = game_data["dialog_state"]
+		
+		for item in game_data["items"]:
+			_items.append(_get_item(item))
+		
+		return true
+	else:
+		return false
+		
+
+func save_game(filename: String):
+	var save_data: Dictionary = {}
+	save_data["rooms"] = {}
+	for room in rooms:
+		save_data["rooms"][room.name] = {}
+		for item in room.get_children():
+			if "display_name" in item:
+				save_data["rooms"][room.name][item.name] = {
+					"is_disabled": item.is_disabled
+				}
+	
+	save_data["dialog_state"] = _dialog_state
+	save_data["items"] = []
+	for item in _items:
+		save_data["items"].append(item.name)
+	
+	save_data["current_room"] = rooms[rooms.find(current_room)].name
+	save_data["previous_room"] = rooms[rooms.find(current_room)].name
+	
+	var file = File.new()
+	file.open(filename, File.WRITE)
+	file.store_var(save_data, true)
+	file.close()
