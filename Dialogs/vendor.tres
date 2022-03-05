@@ -99,7 +99,7 @@ if get_dialog_state(\"player\", \"caffeinated\") == 2
 	Vendor: That's right!
 	You: This is truly next level engineering.
 	Vendor: Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].
-	do add_item(\"lens\")
+	do add_item(\"magnifying_glass\")
 	You: Thanks!
 	do set_dialog_state(\"vendor\", \"complete\", true)
 	do set_dialog_state(\"player\", \"caffeinated\", 0)
@@ -1325,7 +1325,7 @@ lines = {
 "mutation": {
 "args": [ [ {
 "type": "string",
-"value": "lens"
+"value": "magnifying_glass"
 } ] ],
 "function": "add_item"
 },
