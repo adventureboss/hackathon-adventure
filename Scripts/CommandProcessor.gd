@@ -73,6 +73,10 @@ func process_command(input: String):
 			return lookAt(_slice(words, 2, words.size()))
 		"help":
 			return help()
+		"save":
+			return save_game("%s.save" % second_word)
+		"load":
+			return load_game("%s.save" % second_word)
 		_:
 			return "Unrecognized command - Please try again."
 
@@ -94,6 +98,18 @@ func get_actor(item: String) -> Actor:
 
 	return null
 
+func save_game(where):
+	game_state.save_game("user://%s" % where)
+	return "Game state saved to %s" % where
+
+func load_game(where):
+	var result = game_state.load_game("user://%s" % where)
+	if result:
+		game_state.emit_signal("room_changed_programatically", game_state.current_room, "load %s" % where)
+		return null
+	else:
+		return "Couldn't load - Maybe the save does not exist?"
+	
 func help():
 	game_state.show_dialogue(help, "help")
 	return "You get HELP"
