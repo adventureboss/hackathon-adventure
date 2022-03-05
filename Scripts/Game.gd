@@ -146,6 +146,29 @@ func _on_LookAtButton_pressed() -> void:
 	user_cli.text += "LOOK AT "
 	user_cli.caret_position = button_carot_position
 	
+func _on_WalkNorthButton_pressed() -> void:
+	user_cli.clear()
+	user_cli.text += "WALK NORTH"
+	user_cli.caret_position = button_carot_position
+
+	
+func _on_WalkEastButton_pressed() -> void:
+	user_cli.clear()
+	user_cli.text += "WALK EAST"
+	user_cli.caret_position = button_carot_position
+
+	
+func _on_WalkWestButton_pressed() -> void:
+	user_cli.clear()
+	user_cli.text += "WALK WEST"
+	user_cli.caret_position = button_carot_position
+	
+	
+func _on_WalkSouthButton_pressed() -> void:
+	user_cli.clear()
+	user_cli.text += "WALK SOUTH"
+	user_cli.caret_position = button_carot_position
+	
 func on_keyword_pressed(keyword):
 	if not user_cli.text.ends_with(" "):
 		user_cli.text += " "
