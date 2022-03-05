@@ -19,25 +19,28 @@ if get_dialog_state(\"vendor\", \"met\") == 0
 	=> first_meet
 if get_dialog_state(\"vendor\", \"met\") == 1 and get_dialog_state(\"vendor\", \"pitched\") == 0
 	=> subsequent_meet
-if get_dialog_state(\"vendor\", \"met\") == 1 and get_dailog_state(\"vendor\", \"pitched\") == 1
+if get_dialog_state(\"vendor\", \"met\") == 1 and get_dialog_state(\"vendor\", \"pitched\") == 1
 	=> unamused
 	
 ~ first_meet
 Vendor: Well, hello there! Do you have time to discuss GrooveTech's new Retro Action Multi Dynamic Capacitation Encabulator?
+do set_dialog_state(\"vendor\", \"met\", 1)
 => choices
 
 ~ subsequent_meet
-Vendor: Hello again, friend! Do you have a few moments to speak now?
+Vendor: Hello again, friend! Do you have a few moments to hear about the latest inventrion from Groovetech?
 => choices
 
 ~ choices
-- What are you pitching?
+- What is this thing?
 	Vendor: The finest in deep machine learning AI refactor code bases.
 	You: I'm pretty sure those are just words
 	=> more
 - Yeah, sure!
 	Vendor: I'm glad you said so. I'm talking about the Retro Action Multi Dynamic Capacitation Encabulator from Groovetech! It's designed to take your makeshift fasmatic converter and rework it to be the rotoscope mixer of your dreams.
 	=> more
+- I'm totally ready for your pitch this time. Let's go. [if get_dialog_state(\"vendor\", \"pitched\") >= 1]
+	=> pitch
 - I, uh, have to wash my hair
 	Vendor: Okay, then!
 	=> END
@@ -63,28 +66,33 @@ if get_dialog_state(\"player\", \"caffeinated\") == 0
 	Vendor: Imagine for a moment blah blah yadda dah dah pssshhhh....
 	[i]You fell asleep[/i]
 	You: ....
-	Vendor: You fell asleep, sir.
+	Vendor: You fell asleep.
 	You: What! No, of course not. I close my eyes to focus.
 	Vendor: You were snoring.
 	You: Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?
 	Vendor: REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.
 	Vendor: Better luck next time.
+	do set_dialog_state(\"vendor\", \"pitched\", 1)
 	=> END
-if get_dialog_state(\"player\", \"caffeinated\", 1)
+if get_dialog_state(\"player\", \"caffeinated\") == 1
 	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator! 
-	Vendor: Imagine for a moment you're standing in front of you gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....
+	Vendor: Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....
 	[i]Your eyes are getting heavier[/i]
 	You: .....
-	Vendor: Sir?
+	Vendor: Excuse me?
 	You: What! I'm awake! I got it! 
 	You: Socket gas explodes into your ace inhibitors through the bilateral valve component!
-	Vendor: You fell asleep again.
+	if get_dialog_state(\"vendor\", \"pitched\") >= 1
+		Vendor: You fell asleep again.
+	else
+		Vendor: You fell asleep.
 	You: Dang it!
 	Vendor: See you next time.
+	do set_dialog_state(\"vendor\", \"pitched\", 1)
 	=> END
-if get_dialog_state(\"player\", \"caffeinated\", 2)
+if get_dialog_state(\"player\", \"caffeinated\") == 2
 	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator! 
-	Vendor: Imagine for a moment you're standing in front of you gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.
+	Vendor: Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.
 	Vendor: Well, with Groovetech's device, the mass function contrabulation mechanism can withstand thirty-seven jules of highly dedicated structural spanners!
 	[i]20 minutes later[/i]
 	You: Oh wow. So the induction reaction actually MULTIPLIES the divisive antenna reducer?
@@ -100,21 +108,23 @@ if get_dialog_state(\"player\", \"caffeinated\", 2)
 
 ~ unamused
 Vendor: I see you're back. Do you want to hear this thing again?
-You: Let's rock and roll.
-[i]The vendor sighs at you[/i]
-Vendor: Okay, here goes...
-=> pitch
+- I actually have other questions
+	=> choices
+ - Let's rock and roll.
+	[i]The vendor sighs at you[/i]
+	Vendor: Okay, here goes...
+	=> pitch
 "
 errors = [  ]
 titles = {
-"choices": "26",
+"choices": "27",
 "first_meet": "18",
 "initialize": "1",
 "main": "8",
-"more": "38",
-"pitch": "53",
-"subsequent_meet": "22",
-"unamused": "94"
+"more": "41",
+"pitch": "56",
+"subsequent_meet": "23",
+"unamused": "102"
 }
 lines = {
 "0": {
@@ -163,6 +173,76 @@ lines = {
 "next_id": "11",
 "next_id_after": "12",
 "type": "condition"
+},
+"101": {
+"next_id": "102",
+"text": "unamused",
+"type": "title"
+},
+"102": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "103",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I see you're back. Do you want to hear this thing again?",
+"translation_key": "I see you're back. Do you want to hear this thing again?",
+"type": "dialogue"
+},
+"103": {
+"next_id": "104",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "103", "105" ),
+"text": "I actually have other questions",
+"translation_key": "I actually have other questions",
+"type": "response"
+},
+"104": {
+"next_id": "27",
+"parent_id": "103",
+"type": "goto"
+},
+"105": {
+"next_id": "106",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Let's rock and roll.",
+"translation_key": "Let's rock and roll.",
+"type": "response"
+},
+"106": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "107",
+"parent_id": "105",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]The vendor sighs at you[/i]",
+"translation_key": "[i]The vendor sighs at you[/i]",
+"type": "dialogue"
+},
+"107": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "108",
+"parent_id": "105",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Okay, here goes...",
+"translation_key": "Okay, here goes...",
+"type": "dialogue"
+},
+"108": {
+"next_id": "56",
+"parent_id": "105",
+"type": "goto"
 },
 "11": {
 "next_id": "18",
@@ -214,7 +294,7 @@ lines = {
 "type": "condition"
 },
 "13": {
-"next_id": "22",
+"next_id": "23",
 "parent_id": "12",
 "type": "goto"
 },
@@ -240,7 +320,7 @@ lines = {
 "type": "and_or",
 "value": "and"
 }, {
-"function": "get_dailog_state",
+"function": "get_dialog_state",
 "type": "function",
 "value": [ [ {
 "type": "string",
@@ -263,7 +343,7 @@ lines = {
 "type": "condition"
 },
 "15": {
-"next_id": "94",
+"next_id": "102",
 "parent_id": "14",
 "type": "goto"
 },
@@ -285,8 +365,21 @@ lines = {
 "type": "dialogue"
 },
 "19": {
-"next_id": "26",
-"type": "goto"
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "vendor"
+} ], [ {
+"type": "string",
+"value": "met"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "20",
+"type": "mutation"
 },
 "2": {
 "mutation": {
@@ -305,46 +398,50 @@ lines = {
 "next_id": "3",
 "type": "mutation"
 },
-"21": {
-"next_id": "22",
+"20": {
+"next_id": "27",
+"type": "goto"
+},
+"22": {
+"next_id": "23",
 "text": "subsequent_meet",
 "type": "title"
 },
-"22": {
+"23": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "23",
+"next_id": "24",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Hello again, friend! Do you have a few moments to speak now?",
-"translation_key": "Hello again, friend! Do you have a few moments to speak now?",
+"text": "Hello again, friend! Do you have a few moments to hear about the latest inventrion from Groovetech?",
+"translation_key": "Hello again, friend! Do you have a few moments to hear about the latest inventrion from Groovetech?",
 "type": "dialogue"
 },
-"23": {
-"next_id": "26",
+"24": {
+"next_id": "27",
 "type": "goto"
-},
-"25": {
-"next_id": "26",
-"text": "choices",
-"type": "title"
 },
 "26": {
 "next_id": "27",
-"next_id_after": "end",
-"replacements": [  ],
-"responses": PoolStringArray( "26", "30", "33" ),
-"text": "What are you pitching?",
-"translation_key": "What are you pitching?",
-"type": "response"
+"text": "choices",
+"type": "title"
 },
 "27": {
+"next_id": "28",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "27", "31", "34", "36" ),
+"text": "What is this thing?",
+"translation_key": "What is this thing?",
+"type": "response"
+},
+"28": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "28",
-"parent_id": "26",
+"next_id": "29",
+"parent_id": "27",
 "pauses": {
 },
 "replacements": [  ],
@@ -353,11 +450,11 @@ lines = {
 "translation_key": "The finest in deep machine learning AI refactor code bases.",
 "type": "dialogue"
 },
-"28": {
+"29": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "29",
-"parent_id": "26",
+"next_id": "30",
+"parent_id": "27",
 "pauses": {
 },
 "replacements": [  ],
@@ -365,11 +462,6 @@ lines = {
 "text": "I'm pretty sure those are just words",
 "translation_key": "I'm pretty sure those are just words",
 "type": "dialogue"
-},
-"29": {
-"next_id": "38",
-"parent_id": "26",
-"type": "goto"
 },
 "3": {
 "mutation": {
@@ -389,18 +481,23 @@ lines = {
 "type": "mutation"
 },
 "30": {
-"next_id": "31",
+"next_id": "41",
+"parent_id": "27",
+"type": "goto"
+},
+"31": {
+"next_id": "32",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "Yeah, sure!",
 "translation_key": "Yeah, sure!",
 "type": "response"
 },
-"31": {
+"32": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "32",
-"parent_id": "30",
+"next_id": "33",
+"parent_id": "31",
 "pauses": {
 },
 "replacements": [  ],
@@ -409,55 +506,12 @@ lines = {
 "translation_key": "I'm glad you said so. I'm talking about the Retro Action Multi Dynamic Capacitation Encabulator from Groovetech! It's designed to take your makeshift fasmatic converter and rework it to be the rotoscope mixer of your dreams.",
 "type": "dialogue"
 },
-"32": {
-"next_id": "38",
-"parent_id": "30",
-"type": "goto"
-},
 "33": {
-"next_id": "34",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "I, uh, have to wash my hair",
-"translation_key": "I, uh, have to wash my hair",
-"type": "response"
+"next_id": "41",
+"parent_id": "31",
+"type": "goto"
 },
 "34": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "35",
-"parent_id": "33",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Okay, then!",
-"translation_key": "Okay, then!",
-"type": "dialogue"
-},
-"35": {
-"next_id": "end",
-"parent_id": "33",
-"type": "goto"
-},
-"37": {
-"next_id": "38",
-"text": "more",
-"type": "title"
-},
-"38": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "39",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
-"translation_key": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
-"type": "dialogue"
-},
-"39": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -471,19 +525,49 @@ lines = {
 } ] ]
 }, {
 "type": "comparison",
-"value": "=="
+"value": ">="
 }, {
 "type": "number",
-"value": 0
+"value": 1
 } ]
 },
-"next_id": "40",
+"next_id": "35",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "39", "41", "43", "48" ),
-"text": "Sure! Hit me!",
-"translation_key": "Sure! Hit me!",
+"text": "I'm totally ready for your pitch this time. Let's go.",
+"translation_key": "I'm totally ready for your pitch this time. Let's go.",
 "type": "response"
+},
+"35": {
+"next_id": "56",
+"parent_id": "34",
+"type": "goto"
+},
+"36": {
+"next_id": "37",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I, uh, have to wash my hair",
+"translation_key": "I, uh, have to wash my hair",
+"type": "response"
+},
+"37": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "38",
+"parent_id": "36",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Okay, then!",
+"translation_key": "Okay, then!",
+"type": "dialogue"
+},
+"38": {
+"next_id": "end",
+"parent_id": "36",
+"type": "goto"
 },
 "4": {
 "mutation": {
@@ -503,11 +587,56 @@ lines = {
 "type": "mutation"
 },
 "40": {
-"next_id": "53",
-"parent_id": "39",
-"type": "goto"
+"next_id": "41",
+"text": "more",
+"type": "title"
 },
 "41": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "42",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
+"translation_key": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
+"type": "dialogue"
+},
+"42": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "vendor"
+} ], [ {
+"type": "string",
+"value": "pitched"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_id": "43",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "42", "44", "46", "51" ),
+"text": "Sure! Hit me!",
+"translation_key": "Sure! Hit me!",
+"type": "response"
+},
+"43": {
+"next_id": "56",
+"parent_id": "42",
+"type": "goto"
+},
+"44": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -527,31 +656,31 @@ lines = {
 "value": 1
 } ]
 },
-"next_id": "42",
+"next_id": "45",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "I'm totally ready this time!",
 "translation_key": "I'm totally ready this time!",
 "type": "response"
 },
-"42": {
-"next_id": "53",
-"parent_id": "41",
+"45": {
+"next_id": "56",
+"parent_id": "44",
 "type": "goto"
 },
-"43": {
-"next_id": "44",
+"46": {
+"next_id": "47",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "A REVERSE magnifying glass?",
 "translation_key": "A REVERSE magnifying glass?",
 "type": "response"
 },
-"44": {
+"47": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "45",
-"parent_id": "43",
+"next_id": "48",
+"parent_id": "46",
 "pauses": {
 },
 "replacements": [  ],
@@ -560,11 +689,11 @@ lines = {
 "translation_key": "You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.",
 "type": "dialogue"
 },
-"45": {
+"48": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "46",
-"parent_id": "43",
+"next_id": "49",
+"parent_id": "46",
 "pauses": {
 },
 "replacements": [  ],
@@ -573,11 +702,11 @@ lines = {
 "translation_key": "What good is something like that anyway?",
 "type": "dialogue"
 },
-"46": {
+"49": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "47",
-"parent_id": "43",
+"next_id": "50",
+"parent_id": "46",
 "pauses": {
 },
 "replacements": [  ],
@@ -586,24 +715,28 @@ lines = {
 "translation_key": "I'm sure you'll figure it out",
 "type": "dialogue"
 },
-"47": {
-"next_id": "38",
-"parent_id": "43",
+"5": {
+"next_id": "8",
 "type": "goto"
 },
-"48": {
-"next_id": "49",
+"50": {
+"next_id": "41",
+"parent_id": "46",
+"type": "goto"
+},
+"51": {
+"next_id": "52",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "I think I've had enough for one day",
 "translation_key": "I think I've had enough for one day",
 "type": "response"
 },
-"49": {
+"52": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "50",
-"parent_id": "48",
+"next_id": "53",
+"parent_id": "51",
 "pauses": {
 },
 "replacements": [  ],
@@ -612,21 +745,17 @@ lines = {
 "translation_key": "You bet! Come back any time!",
 "type": "dialogue"
 },
-"5": {
-"next_id": "8",
-"type": "goto"
-},
-"50": {
+"53": {
 "next_id": "end",
-"parent_id": "48",
+"parent_id": "51",
 "type": "goto"
 },
-"52": {
-"next_id": "53",
+"55": {
+"next_id": "56",
 "text": "pitch",
 "type": "title"
 },
-"53": {
+"56": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -646,16 +775,16 @@ lines = {
 "value": 0
 } ]
 },
-"next_conditional_id": "65",
-"next_id": "54",
-"next_id_after": "65",
+"next_conditional_id": "69",
+"next_id": "57",
+"next_id_after": "69",
 "type": "condition"
 },
-"54": {
+"57": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "55",
-"parent_id": "53",
+"next_id": "58",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -664,11 +793,11 @@ lines = {
 "translation_key": "I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!",
 "type": "dialogue"
 },
-"55": {
+"58": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "56",
-"parent_id": "53",
+"next_id": "59",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -677,11 +806,11 @@ lines = {
 "translation_key": "Imagine for a moment blah blah yadda dah dah pssshhhh....",
 "type": "dialogue"
 },
-"56": {
+"59": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "57",
-"parent_id": "53",
+"next_id": "60",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -690,11 +819,11 @@ lines = {
 "translation_key": "[i]You fell asleep[/i]",
 "type": "dialogue"
 },
-"57": {
+"60": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "58",
-"parent_id": "53",
+"next_id": "61",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -703,24 +832,24 @@ lines = {
 "translation_key": "....",
 "type": "dialogue"
 },
-"58": {
+"61": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "59",
-"parent_id": "53",
+"next_id": "62",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You fell asleep, sir.",
-"translation_key": "You fell asleep, sir.",
+"text": "You fell asleep.",
+"translation_key": "You fell asleep.",
 "type": "dialogue"
 },
-"59": {
+"62": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "60",
-"parent_id": "53",
+"next_id": "63",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -729,11 +858,11 @@ lines = {
 "translation_key": "What! No, of course not. I close my eyes to focus.",
 "type": "dialogue"
 },
-"60": {
+"63": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "61",
-"parent_id": "53",
+"next_id": "64",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -742,11 +871,11 @@ lines = {
 "translation_key": "You were snoring.",
 "type": "dialogue"
 },
-"61": {
+"64": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "62",
-"parent_id": "53",
+"next_id": "65",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -755,11 +884,11 @@ lines = {
 "translation_key": "Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?",
 "type": "dialogue"
 },
-"62": {
+"65": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "63",
-"parent_id": "53",
+"next_id": "66",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -768,11 +897,11 @@ lines = {
 "translation_key": "REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.",
 "type": "dialogue"
 },
-"63": {
+"66": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "64",
-"parent_id": "53",
+"next_id": "67",
+"parent_id": "56",
 "pauses": {
 },
 "replacements": [  ],
@@ -781,12 +910,30 @@ lines = {
 "translation_key": "Better luck next time.",
 "type": "dialogue"
 },
-"64": {
+"67": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "vendor"
+} ], [ {
+"type": "string",
+"value": "pitched"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "68",
+"parent_id": "56",
+"type": "mutation"
+},
+"68": {
 "next_id": "end",
-"parent_id": "53",
+"parent_id": "56",
 "type": "goto"
 },
-"65": {
+"69": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -797,68 +944,19 @@ lines = {
 } ], [ {
 "type": "string",
 "value": "caffeinated"
-} ], [ {
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
 "type": "number",
 "value": 1
-} ] ]
 } ]
 },
-"next_conditional_id": "77",
-"next_id": "66",
-"next_id_after": "77",
-"type": "condition"
-},
-"66": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "67",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!",
-"translation_key": "I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!",
-"type": "dialogue"
-},
-"67": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "68",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Imagine for a moment you're standing in front of you gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....",
-"translation_key": "Imagine for a moment you're standing in front of you gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....",
-"type": "dialogue"
-},
-"68": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "69",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]Your eyes are getting heavier[/i]",
-"translation_key": "[i]Your eyes are getting heavier[/i]",
-"type": "dialogue"
-},
-"69": {
-"character": "You",
-"inline_mutations": [  ],
+"next_conditional_id": "85",
 "next_id": "70",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": ".....",
-"translation_key": ".....",
-"type": "dialogue"
+"next_id_after": "85",
+"type": "condition"
 },
 "7": {
 "next_id": "8",
@@ -869,112 +967,7 @@ lines = {
 "character": "Vendor",
 "inline_mutations": [  ],
 "next_id": "71",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Sir?",
-"translation_key": "Sir?",
-"type": "dialogue"
-},
-"71": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "72",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "What! I'm awake! I got it!",
-"translation_key": "What! I'm awake! I got it!",
-"type": "dialogue"
-},
-"72": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "73",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Socket gas explodes into your ace inhibitors through the bilateral valve component!",
-"translation_key": "Socket gas explodes into your ace inhibitors through the bilateral valve component!",
-"type": "dialogue"
-},
-"73": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "74",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "You fell asleep again.",
-"translation_key": "You fell asleep again.",
-"type": "dialogue"
-},
-"74": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "75",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Dang it!",
-"translation_key": "Dang it!",
-"type": "dialogue"
-},
-"75": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "76",
-"parent_id": "65",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "See you next time.",
-"translation_key": "See you next time.",
-"type": "dialogue"
-},
-"76": {
-"next_id": "end",
-"parent_id": "65",
-"type": "goto"
-},
-"77": {
-"condition": {
-"expression": [ {
-"function": "get_dialog_state",
-"type": "function",
-"value": [ [ {
-"type": "string",
-"value": "player"
-} ], [ {
-"type": "string",
-"value": "caffeinated"
-} ], [ {
-"type": "number",
-"value": 2
-} ] ]
-} ]
-},
-"next_conditional_id": "end",
-"next_id": "78",
-"next_id_after": "end",
-"type": "condition"
-},
-"78": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "79",
-"parent_id": "77",
+"parent_id": "69",
 "pauses": {
 },
 "replacements": [  ],
@@ -983,18 +976,129 @@ lines = {
 "translation_key": "I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!",
 "type": "dialogue"
 },
-"79": {
+"71": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "80",
+"next_id": "72",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....",
+"translation_key": "Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....",
+"type": "dialogue"
+},
+"72": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "73",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]Your eyes are getting heavier[/i]",
+"translation_key": "[i]Your eyes are getting heavier[/i]",
+"type": "dialogue"
+},
+"73": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "74",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": ".....",
+"translation_key": ".....",
+"type": "dialogue"
+},
+"74": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "75",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Excuse me?",
+"translation_key": "Excuse me?",
+"type": "dialogue"
+},
+"75": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "76",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "What! I'm awake! I got it!",
+"translation_key": "What! I'm awake! I got it!",
+"type": "dialogue"
+},
+"76": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "77",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Socket gas explodes into your ace inhibitors through the bilateral valve component!",
+"translation_key": "Socket gas explodes into your ace inhibitors through the bilateral valve component!",
+"type": "dialogue"
+},
+"77": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "vendor"
+} ], [ {
+"type": "string",
+"value": "pitched"
+} ] ]
+}, {
+"type": "comparison",
+"value": ">="
+}, {
+"type": "number",
+"value": 1
+} ]
+},
+"next_conditional_id": "79",
+"next_id": "78",
+"next_id_after": "81",
+"parent_id": "69",
+"type": "condition"
+},
+"78": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "81",
 "parent_id": "77",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Imagine for a moment you're standing in front of you gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.",
-"translation_key": "Imagine for a moment you're standing in front of you gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.",
+"text": "You fell asleep again.",
+"translation_key": "You fell asleep again.",
 "type": "dialogue"
+},
+"79": {
+"next_conditional_id": "81",
+"next_id": "80",
+"next_id_after": "81",
+"parent_id": "69",
+"type": "condition"
 },
 "8": {
 "condition": {
@@ -1025,7 +1129,120 @@ lines = {
 "character": "Vendor",
 "inline_mutations": [  ],
 "next_id": "81",
-"parent_id": "77",
+"parent_id": "79",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You fell asleep.",
+"translation_key": "You fell asleep.",
+"type": "dialogue"
+},
+"81": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "82",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Dang it!",
+"translation_key": "Dang it!",
+"type": "dialogue"
+},
+"82": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "83",
+"parent_id": "69",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "See you next time.",
+"translation_key": "See you next time.",
+"type": "dialogue"
+},
+"83": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "vendor"
+} ], [ {
+"type": "string",
+"value": "pitched"
+} ], [ {
+"type": "number",
+"value": 1
+} ] ],
+"function": "set_dialog_state"
+},
+"next_id": "84",
+"parent_id": "69",
+"type": "mutation"
+},
+"84": {
+"next_id": "end",
+"parent_id": "69",
+"type": "goto"
+},
+"85": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "player"
+} ], [ {
+"type": "string",
+"value": "caffeinated"
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 2
+} ]
+},
+"next_conditional_id": "end",
+"next_id": "86",
+"next_id_after": "end",
+"type": "condition"
+},
+"86": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "87",
+"parent_id": "85",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!",
+"translation_key": "I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!",
+"type": "dialogue"
+},
+"87": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "88",
+"parent_id": "85",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.",
+"translation_key": "Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.",
+"type": "dialogue"
+},
+"88": {
+"character": "Vendor",
+"inline_mutations": [  ],
+"next_id": "89",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1034,11 +1251,11 @@ lines = {
 "translation_key": "Well, with Groovetech's device, the mass function contrabulation mechanism can withstand thirty-seven jules of highly dedicated structural spanners!",
 "type": "dialogue"
 },
-"81": {
+"89": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "82",
-"parent_id": "77",
+"next_id": "90",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1047,11 +1264,16 @@ lines = {
 "translation_key": "[i]20 minutes later[/i]",
 "type": "dialogue"
 },
-"82": {
+"9": {
+"next_id": "1",
+"parent_id": "8",
+"type": "goto"
+},
+"90": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "83",
-"parent_id": "77",
+"next_id": "91",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1060,11 +1282,11 @@ lines = {
 "translation_key": "Oh wow. So the induction reaction actually MULTIPLIES the divisive antenna reducer?",
 "type": "dialogue"
 },
-"83": {
+"91": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "84",
-"parent_id": "77",
+"next_id": "92",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1073,11 +1295,11 @@ lines = {
 "translation_key": "That's right!",
 "type": "dialogue"
 },
-"84": {
+"92": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "85",
-"parent_id": "77",
+"next_id": "93",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1086,11 +1308,11 @@ lines = {
 "translation_key": "This is truly next level engineering.",
 "type": "dialogue"
 },
-"85": {
+"93": {
 "character": "Vendor",
 "inline_mutations": [  ],
-"next_id": "86",
-"parent_id": "77",
+"next_id": "94",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1099,7 +1321,7 @@ lines = {
 "translation_key": "Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].",
 "type": "dialogue"
 },
-"86": {
+"94": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -1107,15 +1329,15 @@ lines = {
 } ] ],
 "function": "add_item"
 },
-"next_id": "87",
-"parent_id": "77",
+"next_id": "95",
+"parent_id": "85",
 "type": "mutation"
 },
-"87": {
+"95": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "88",
-"parent_id": "77",
+"next_id": "96",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1124,7 +1346,7 @@ lines = {
 "translation_key": "Thanks!",
 "type": "dialogue"
 },
-"88": {
+"96": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -1138,11 +1360,11 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "89",
-"parent_id": "77",
+"next_id": "97",
+"parent_id": "85",
 "type": "mutation"
 },
-"89": {
+"97": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -1156,20 +1378,15 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "90",
-"parent_id": "77",
+"next_id": "98",
+"parent_id": "85",
 "type": "mutation"
 },
-"9": {
-"next_id": "1",
-"parent_id": "8",
-"type": "goto"
-},
-"90": {
+"98": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "91",
-"parent_id": "77",
+"next_id": "99",
+"parent_id": "85",
 "pauses": {
 },
 "replacements": [  ],
@@ -1178,66 +1395,9 @@ lines = {
 "translation_key": "[i]You start to feel less jittery[/i]",
 "type": "dialogue"
 },
-"91": {
+"99": {
 "next_id": "end",
-"parent_id": "77",
-"type": "goto"
-},
-"93": {
-"next_id": "94",
-"text": "unamused",
-"type": "title"
-},
-"94": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "95",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I see you're back. Do you want to hear this thing again?",
-"translation_key": "I see you're back. Do you want to hear this thing again?",
-"type": "dialogue"
-},
-"95": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "96",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Let's rock and roll.",
-"translation_key": "Let's rock and roll.",
-"type": "dialogue"
-},
-"96": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "97",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]The vendor sighs at you[/i]",
-"translation_key": "[i]The vendor sighs at you[/i]",
-"type": "dialogue"
-},
-"97": {
-"character": "Vendor",
-"inline_mutations": [  ],
-"next_id": "98",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Okay, here goes...",
-"translation_key": "Okay, here goes...",
-"type": "dialogue"
-},
-"98": {
-"next_id": "53",
+"parent_id": "85",
 "type": "goto"
 }
 }
