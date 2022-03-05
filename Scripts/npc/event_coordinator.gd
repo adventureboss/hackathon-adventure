@@ -9,10 +9,10 @@ func talk_to():
 func give(what):
 	match(what.name):
 		"lens":
-			game_state.show_dialogue(event_coordinator_dialogue, "lens")
+			game_state.show_dialogue(event_coordinator_dialogue, "give_lens")
 		"floppy":
-			game_state.show_dialogue(event_coordinator_dialogue, "floppy")
+			game_state.show_dialogue(event_coordinator_dialogue, "give_floppy")
 		"password":
-			game_state.show_dialogue(event_coordinator_dialogue, "password")
+			game_state.show_dialogue(event_coordinator_dialogue, "give_password")
 		_:
 			return "I don't think they want that"
