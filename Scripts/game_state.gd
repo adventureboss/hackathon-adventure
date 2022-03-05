@@ -137,7 +137,13 @@ func back_to_previous_room(why = ""):
 	var room = _previous_room
 	set_current_room(room)
 	emit_signal("room_changed_programatically", room, why)
-	
+
+func _room_by_name(name):
+	for room in rooms:
+		if room.name == name:
+			return room
+	return null
+
 func load_game(filename: String):
 	var file = File.new()
 	if file.file_exists(filename):
@@ -145,8 +151,6 @@ func load_game(filename: String):
 		var game_data = file.get_var()
 		file.close()
 		
-		# Update items
-		# This is really because of the beans that needs to be disabled
 		for room in rooms:
 			if room.name == game_data["current_room"]:
 				current_room = room
@@ -154,7 +158,14 @@ func load_game(filename: String):
 				_previous_room = room
 			
 			if game_data["rooms"].has(room.name):
-				var saved_room_items = game_data["rooms"]
+				for direction in room.exits:
+					var exit = room.exits[direction]
+					var saved_exit = game_data["rooms"][room.name]["exits"][direction]
+					exit.room_1 = _room_by_name(saved_exit.room_1)
+					exit.room_2 = _room_by_name(saved_exit.room_2)
+					exit.exit_is_locked = saved_exit.exit_is_locked
+				
+				var saved_room_items = game_data["rooms"][room.name]["items"]
 				for item in room.get_children():
 					if "display_name" in item and saved_room_items.has(item.name):
 						item.is_disabled = saved_room_items[item.name]["is_disabled"]
@@ -173,10 +184,22 @@ func save_game(filename: String):
 	var save_data: Dictionary = {}
 	save_data["rooms"] = {}
 	for room in rooms:
-		save_data["rooms"][room.name] = {}
+		save_data["rooms"][room.name] = {
+			"items": {},
+			"exits": {}
+		}
+		
+		for direction in room.exits:
+			var exit = room.exits[direction]
+			save_data["rooms"][room.name]["exits"][direction]   = {
+				"exit_is_locked": exit.exit_is_locked,
+				"room_1": exit.room_1.name,
+				"room_2": exit.room_2.name
+			}
+		
 		for item in room.get_children():
 			if "display_name" in item:
-				save_data["rooms"][room.name][item.name] = {
+				save_data["rooms"][room.name]["items"][item.name] = {
 					"is_disabled": item.is_disabled
 				}
 	
