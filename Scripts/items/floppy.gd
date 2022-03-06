@@ -1,5 +1,7 @@
 extends "res://Scripts/actor.gd"
 
+const dialog = preload("res://Dialogs/event_coordinator.tres")
+
 func pick_up():
 	if game_state.has_item("floppy"):
 		return "I already have the " + keyword("floppy") + " disk."
@@ -21,3 +23,7 @@ func look_at():
 		return "It’s a " + keyword("floppy") + " disk underneath the cat."
 	else:
 		return "It’s a " + keyword("floppy") + " disk just laying on the floor surrounded by cat hair"
+
+func give(who):
+	if who.name == "person":
+		game_state.show_dialogue(dialog, "give_floppy")
