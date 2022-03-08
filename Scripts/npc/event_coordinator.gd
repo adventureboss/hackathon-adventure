@@ -8,8 +8,8 @@ func talk_to():
 
 func give(what):
 	match(what.name):
-		"lens":
-			game_state.show_dialogue(event_coordinator_dialogue, "give_lens")
+		"laser_pointer":
+			game_state.show_dialogue(event_coordinator_dialogue, "give_laser")
 		"floppy":
 			game_state.show_dialogue(event_coordinator_dialogue, "give_floppy")
 		"password":

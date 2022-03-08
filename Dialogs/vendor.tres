@@ -21,7 +21,7 @@ if get_dialog_state(\"vendor\", \"met\") == 1 and get_dialog_state(\"vendor\", \
 	=> subsequent_meet
 if get_dialog_state(\"vendor\", \"met\") == 1 and get_dialog_state(\"vendor\", \"pitched\") == 1
 	=> unamused
-	
+
 ~ first_meet
 Vendor: Well, hello there! Do you have time to discuss GrooveTech's new Retro Action Multi Dynamic Capacitation Encabulator?
 do set_dialog_state(\"vendor\", \"met\", 1)
@@ -46,13 +46,13 @@ Vendor: Hello again, friend! Do you have a few moments to hear about the latest 
 	=> END
 
 ~ more
-Vendor: Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.
+Vendor: Care to hear more? There's some sweet [color=#cb1eca]swag[/color] in it for you.
 - Sure! Hit me! [if get_dialog_state(\"vendor\", \"pitched\") == 0]
 	=> pitch
 - I'm totally ready this time! [if get_dialog_state(\"vendor\", \"pitched\") == 1]
 	=> pitch
-- A REVERSE magnifying glass?
-	Vendor: You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.
+- SWAG!?
+	Vendor: You bet! For anyone that listens to the whole thing, they walk away with cool swag.
 	You: What good is something like that anyway?
 	Vendor: I'm sure you'll figure it out
 	=> more
@@ -62,25 +62,25 @@ Vendor: Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying gla
 
 ~ pitch
 if get_dialog_state(\"player\", \"caffeinated\") == 0
-	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator! 
+	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!
 	Vendor: Imagine for a moment blah blah yadda dah dah pssshhhh....
 	[i]You fell asleep[/i]
 	You: ....
 	Vendor: You fell asleep.
 	You: What! No, of course not. I close my eyes to focus.
 	Vendor: You were snoring.
-	You: Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?
-	Vendor: REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.
+	You: Fine, you got me. Can I have my swag now?
+	Vendor: COOL swag. And no, you cannot have it. You have to listen to the whole pitch.
 	Vendor: Better luck next time.
 	do set_dialog_state(\"vendor\", \"pitched\", 1)
 	=> END
 if get_dialog_state(\"player\", \"caffeinated\") == 1
-	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator! 
+	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!
 	Vendor: Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into blah blah yadda dah dah pssshhhh....
 	[i]Your eyes are getting heavier[/i]
 	You: .....
 	Vendor: Excuse me?
-	You: What! I'm awake! I got it! 
+	You: What! I'm awake! I got it!
 	You: Socket gas explodes into your ace inhibitors through the bilateral valve component!
 	if get_dialog_state(\"vendor\", \"pitched\") >= 1
 		Vendor: You fell asleep again.
@@ -91,15 +91,15 @@ if get_dialog_state(\"player\", \"caffeinated\") == 1
 	do set_dialog_state(\"vendor\", \"pitched\", 1)
 	=> END
 if get_dialog_state(\"player\", \"caffeinated\") == 2
-	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator! 
+	Vendor: I'm presenting to you the latest in Groovetech's standard line of mass inhibiting stablalizers! The Retro Action Multi Dynamic Capacitation Encabulator!
 	Vendor: Imagine for a moment you're standing in front of your gas extraction micro tubulator when BAM! The socket fuse explodes into several master frequency dials resulting in complete disaster.
 	Vendor: Well, with Groovetech's device, the mass function contrabulation mechanism can withstand thirty-seven jules of highly dedicated structural spanners!
 	[i]20 minutes later[/i]
 	You: Oh wow. So the induction reaction actually MULTIPLIES the divisive antenna reducer?
 	Vendor: That's right!
 	You: This is truly next level engineering.
-	Vendor: Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].
-	do add_item(\"magnifying_glass\")
+	Vendor: Groovetech thanks you for your time. Have a cool [color=#cb1eca]laser pointer[/color].
+	do add_item(\"laser_pointer\")
 	You: Thanks!
 	do set_dialog_state(\"vendor\", \"complete\", true)
 	do set_dialog_state(\"player\", \"caffeinated\", 0)
@@ -599,8 +599,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
-"translation_key": "Care to hear more? There's a sweet reverse [color=#cb1eca]magnifying glass[/color] in it for you.",
+"text": "Care to hear more? There's some sweet [color=#cb1eca]swag[/color] in it for you.",
+"translation_key": "Care to hear more? There's some sweet [color=#cb1eca]swag[/color] in it for you.",
 "type": "dialogue"
 },
 "42": {
@@ -672,8 +672,8 @@ lines = {
 "next_id": "47",
 "next_id_after": "end",
 "replacements": [  ],
-"text": "A REVERSE magnifying glass?",
-"translation_key": "A REVERSE magnifying glass?",
+"text": "SWAG!?",
+"translation_key": "SWAG!?",
 "type": "response"
 },
 "47": {
@@ -685,8 +685,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.",
-"translation_key": "You bet! For anyone that listens to the whole thing, they walk away with a reverse [color=#cb1eca]magnifying glass[/color]. Point it at things and they get smaller, or aim light through it and it gets bigger.",
+"text": "You bet! For anyone that listens to the whole thing, they walk away with cool swag.",
+"translation_key": "You bet! For anyone that listens to the whole thing, they walk away with cool swag.",
 "type": "dialogue"
 },
 "48": {
@@ -880,8 +880,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?",
-"translation_key": "Fine, you got me. Can I have my [color=#cb1eca]magnifying glass[/color] now?",
+"text": "Fine, you got me. Can I have my swag now?",
+"translation_key": "Fine, you got me. Can I have my swag now?",
 "type": "dialogue"
 },
 "65": {
@@ -893,8 +893,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.",
-"translation_key": "REVERSE [color=#cb1eca]magnifying glass[/color]. And no, you cannot have it. You have to listen to the whole pitch.",
+"text": "COOL swag. And no, you cannot have it. You have to listen to the whole pitch.",
+"translation_key": "COOL swag. And no, you cannot have it. You have to listen to the whole pitch.",
 "type": "dialogue"
 },
 "66": {
@@ -1317,15 +1317,15 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].",
-"translation_key": "Groovetech thanks you for your time. Have a reverse [color=#cb1eca]magnifying glass[/color].",
+"text": "Groovetech thanks you for your time. Have a cool [color=#cb1eca]laser pointer[/color].",
+"translation_key": "Groovetech thanks you for your time. Have a cool [color=#cb1eca]laser pointer[/color].",
 "type": "dialogue"
 },
 "94": {
 "mutation": {
 "args": [ [ {
 "type": "string",
-"value": "magnifying_glass"
+"value": "laser_pointer"
 } ] ],
 "function": "add_item"
 },

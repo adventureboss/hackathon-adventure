@@ -10,8 +10,8 @@ do set_dialog_state(\"eventc\", \"met\", 0)
 do set_dialog_state(\"eventc\", \"initialized\", true)
 do set_dialog_state(\"eventc\", \"quest_accept\", false)
 do set_dialog_state(\"eventc\", \"items\", 0)
-# magnifying glass 1, floppy 2, password 4. Add together for value
-# magnifying glass and floppy = 3, magnifying glass and password = 5, floppy password = 6, all three = 7
+# laser pointer 1, floppy 2, password 4. Add together for value
+# laser pointer and floppy = 3, laser pointer and password = 5, floppy password = 6, all three = 7
 => main
 
 ~ first_meet
@@ -37,16 +37,16 @@ if get_dialog_state(\"eventc\", \"quest_accept\") == false
 elif get_dialog_state(\"eventc\", \"quest_accept\") == true
 	Coordinator: Did you find all the stuff yet?
 	=> anything_else
-		
+
 ~ items
 if get_dialog_state(\"eventc\", \"items\") == 0
-	Coordinator: I need the lens for the projector,
+	Coordinator: The presenter needs something to help,
 	Coordinator: the floppy disk with the presentation on it,
 	Coordinator: and the wifi password.
 	You: Got it.
 	=> anything_else
 if get_dialog_state(\"eventc\", \"items\") == 2
-	Coordinator: I need the lens for the projector,
+	Coordinator: The presenter needs something to help,
 	Coordinator: and the wifi password
 	You: Got it
 	Coordinator: Anything else?
@@ -58,7 +58,7 @@ if get_dialog_state(\"eventc\", \"items\") == 1
 	Coordinator: Anything else?
 	=> anything_else
 if get_dialog_state(\"eventc\", \"items\") == 4
-	Coordinator: I need the lens for the projecto,
+	Coordinator: The presenter needs something to help,
 	Coordinator: and the floppy disk with the presenation on it.
 	You: Got it.
 	Coordinator: Anything else?
@@ -69,7 +69,7 @@ if get_dialog_state(\"eventc\", \"items\") == 3
 	Coordinator: Anything else?
 	=> anything_else
 if get_dialog_state(\"eventc\", \"items\") == 6
-	Coordinator: I still need the lens for the projector
+	Coordinator: The presenter still needs something to help
 	You: Got it.
 	Coordinator: Anything else?
 	=> anything_else
@@ -100,7 +100,7 @@ if get_dialog_state(\"eventc\", \"items\") == 7
 	Coordinator: ........
 	Coordinator: Since Monday.
 	You: Monday?!
-	Coordinator: That's when they started making the game. 
+	Coordinator: That's when they started making the game.
 	[i]You and the coordinator knowingly nod at each other[/i]
 	=> anything_else
 - See you later!
@@ -144,12 +144,12 @@ Coordinator: Can you fix a projector?
 	=> END
 
 ~ quest
-Coordinator: Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat. 
+Coordinator: Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat.
 Coordinator: I may never work again.
 You: Is that a bad thing?
 Coordinator: I'm not Scrooge McDuck.
 You: Got it. No work equals bad.
-Coordinator: The projector's lens has gone missing. We're going to need to find it, or get a replacement.
+Coordinator: The presenter is requesting something to help with the presentation, anything to make they life easier while presenting.
 Coordinator: I can't find the floppy disk with the keynote presentation on it. We need that too.
 You: Floppy Disk? What year is it anyway?
 Coordinator: Look, you're a character in a text adventure game. Don't look down on ME.
@@ -163,11 +163,11 @@ do add_item(\"quest_items\")
 => anything_else
 
 
-~ give_lens
-You: I found a lens! Or a lens-ish thing we can use.
-do remove_item(\"magnifying_glass\")
+~ give_laser
+You: I found this laser pointer! We could play lightsaber duels afterwards.
+do remove_item(\"laser_pointer\")
 do handle_turnin(1)
-<Magnifying Glass removed from inventory>
+<Laser pointer removed from inventory>
 Coordinator: It's not perfect, but it'll do. Thanks!
 if get_dialog_state(\"eventc\", \"items\", 7)
 	=> items
@@ -200,7 +200,7 @@ titles = {
 "anything_else": "85",
 "first_meet": "10",
 "give_floppy": "170",
-"give_lens": "159",
+"give_laser": "159",
 "give_password": "181",
 "initialize": "1",
 "items": "34",
@@ -735,8 +735,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "The projector's lens has gone missing. We're going to need to find it, or get a replacement.",
-"translation_key": "The projector's lens has gone missing. We're going to need to find it, or get a replacement.",
+"text": "The presenter is requesting something to help with the presentation, anything to make they life easier while presenting.",
+"translation_key": "The presenter is requesting something to help with the presentation, anything to make they life easier while presenting.",
 "type": "dialogue"
 },
 "145": {
@@ -876,7 +876,7 @@ lines = {
 },
 "158": {
 "next_id": "159",
-"text": "give_lens",
+"text": "give_laser",
 "type": "title"
 },
 "159": {
@@ -887,8 +887,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I found a lens! Or a lens-ish thing we can use.",
-"translation_key": "I found a lens! Or a lens-ish thing we can use.",
+"text": "I found this laser pointer! We could play lightsaber duels afterwards.",
+"translation_key": "I found this laser pointer! We could play lightsaber duels afterwards.",
 "type": "dialogue"
 },
 "16": {
@@ -904,7 +904,7 @@ lines = {
 "mutation": {
 "args": [ [ {
 "type": "string",
-"value": "magnifying_glass"
+"value": "laser_pointer"
 } ] ],
 "function": "remove_item"
 },
@@ -930,8 +930,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "<Magnifying Glass removed from inventory>",
-"translation_key": "<Magnifying Glass removed from inventory>",
+"text": "<Laser pointer removed from inventory>",
+"translation_key": "<Laser pointer removed from inventory>",
 "type": "dialogue"
 },
 "163": {
@@ -1394,8 +1394,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I need the lens for the projector,",
-"translation_key": "I need the lens for the projector,",
+"text": "The presenter needs something to help,",
+"translation_key": "The presenter needs something to help,",
 "type": "dialogue"
 },
 "36": {
@@ -1493,8 +1493,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I need the lens for the projector,",
-"translation_key": "I need the lens for the projector,",
+"text": "The presenter needs something to help,",
+"translation_key": "The presenter needs something to help,",
 "type": "dialogue"
 },
 "42": {
@@ -1657,8 +1657,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I need the lens for the projecto,",
-"translation_key": "I need the lens for the projecto,",
+"text": "The presenter needs something to help,",
+"translation_key": "The presenter needs something to help,",
 "type": "dialogue"
 },
 "54": {
@@ -1808,8 +1808,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I still need the lens for the projector",
-"translation_key": "I still need the lens for the projector",
+"text": "The presenter still needs something to help",
+"translation_key": "The presenter still needs something to help",
 "type": "dialogue"
 },
 "65": {

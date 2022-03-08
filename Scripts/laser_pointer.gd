@@ -4,4 +4,4 @@ const dialog = preload("res://Dialogs/event_coordinator.tres")
 
 func give(who):
 	if who.name == "person":
-		game_state.show_dialogue(dialog, "give_lens")
+		game_state.show_dialogue(dialog, "give_laser")
