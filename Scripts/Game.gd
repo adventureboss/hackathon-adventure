@@ -146,6 +146,22 @@ func _on_LookAtButton_pressed() -> void:
 	user_cli.text += "LOOK AT "
 	user_cli.caret_position = button_carot_position
 	
+func _on_WalkNorthButton_pressed() -> void:
+	_on_Input_text_entered("WALK NORTH")
+
+
+func _on_WalkEastButton_pressed() -> void:
+	_on_Input_text_entered("WALK EAST")
+
+
+func _on_WalkWestButton_pressed() -> void:
+	_on_Input_text_entered("WALK WEST")
+
+
+func _on_WalkSouthButton_pressed() -> void:
+	_on_Input_text_entered("WALK SOUTH")
+
+
 func on_keyword_pressed(keyword):
 	if not user_cli.text.ends_with(" "):
 		user_cli.text += " "
