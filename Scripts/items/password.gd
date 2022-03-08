@@ -8,3 +8,4 @@ func look_at():
 func give(who):
 	if who.name == "person":
 		game_state.show_dialogue(dialog, "give_password")
+		return ""
