@@ -29,6 +29,7 @@ func _init():
 	_add_global_item("res://Scripts/items/password.gd", "password", "Password")
 	_add_global_item("res://Scripts/items/tea_cup.gd", "tea_cup", "Tea cup")
 	_add_global_item("res://Scripts/items/quest_items.gd", "quest_items", "Quest Items")
+	_add_global_item("res://Scripts/items/floppy.gd", "floppy", "Floppy")
 	
 	
 	# set player default state
@@ -127,7 +128,7 @@ func get_dialog_state(actor: String, variable, default = null):
 	return self._dialog_state[actor].get(variable, default)
 
 	
-func handle_quest_turnin(item_value):
+func handle_turnin(item_value):
 	var item_number = get_dialog_state("eventc", "items")
 	var result = item_number + item_value
 	return result
