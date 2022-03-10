@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/plex_mono_28.tres" type="DynamicFont" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://Scripts/t-shirt.gd" type="Script" id=25]
 [ext_resource path="res://associates.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/robot_vendor.gd" type="Script" id=27]
-[ext_resource path="res://Scripts/magnifying_glass.gd" type="Script" id=28]
 [ext_resource path="res://Scripts/nerds_session_hall.gd" type="Script" id=29]
 [ext_resource path="res://Scripts/podium.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/nook.gd" type="Script" id=31]
@@ -145,6 +144,9 @@ bg_color = Color( 0.137255, 0, 0.0705882, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CommandProcessor" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -340,10 +342,6 @@ display_name = "Robot vendor"
 [node name="swag" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 23 )
 display_name = "Swag"
-
-[node name="magnifying_glass" type="Node" parent="RoomManager/VendorHall"]
-script = ExtResource( 28 )
-display_name = "Magnifying glass"
 
 [node name="t-shirt" type="Node" parent="RoomManager/VendorHall"]
 script = ExtResource( 25 )
