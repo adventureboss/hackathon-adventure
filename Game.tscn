@@ -260,6 +260,10 @@ display_name = "Stage"
 script = ExtResource( 17 )
 display_name = "Seats"
 
+[node name="pamphlet" type="Node" parent="RoomManager/Ballroom"]
+script = ExtResource( 14 )
+display_name = "Pamphlets"
+
 [node name="EastHall" parent="RoomManager" instance=ExtResource( 6 )]
 margin_left = 664.0
 margin_top = -1202.0
