@@ -147,9 +147,9 @@ Coordinator: Can you fix a projector?
 Coordinator: Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat.
 Coordinator: I may never work again.
 You: Is that a bad thing?
-Coordinator: I'm not Scrooge McDuck.
-You: Got it. No work equals bad.
-Coordinator: The presenter is requesting something to help with the presentation, anything to make they life easier while presenting.
+Coordinator: Do you think I'd be here if I had piles of money laying around?
+You: Point taken. 
+Coordinator: The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.
 Coordinator: I can't find the floppy disk with the keynote presentation on it. We need that too.
 You: Floppy Disk? What year is it anyway?
 Coordinator: Look, you're a character in a text adventure game. Don't look down on ME.
@@ -164,11 +164,11 @@ do add_item(\"quest_items\")
 
 
 ~ give_laser
-You: I found this laser pointer! We could play lightsaber duels afterwards.
+You: I found this laser pointer! We could have a lightsaber duel afterwards.
 do remove_item(\"laser_pointer\")
 do handle_turnin(1)
 <Laser pointer removed from inventory>
-Coordinator: It's not perfect, but it'll do. Thanks!
+Coordinator: Most impressive, young Skywalker. Thanks!
 if get_dialog_state(\"eventc\", \"items\", 7)
 	=> items
 else
@@ -711,8 +711,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I'm not Scrooge McDuck.",
-"translation_key": "I'm not Scrooge McDuck.",
+"text": "Do you think I'd be here if I had piles of money laying around?",
+"translation_key": "Do you think I'd be here if I had piles of money laying around?",
 "type": "dialogue"
 },
 "143": {
@@ -723,8 +723,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Got it. No work equals bad.",
-"translation_key": "Got it. No work equals bad.",
+"text": "Point taken.",
+"translation_key": "Point taken.",
 "type": "dialogue"
 },
 "144": {
@@ -735,8 +735,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "The presenter is requesting something to help with the presentation, anything to make they life easier while presenting.",
-"translation_key": "The presenter is requesting something to help with the presentation, anything to make they life easier while presenting.",
+"text": "The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.",
+"translation_key": "The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.",
 "type": "dialogue"
 },
 "145": {
@@ -887,8 +887,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I found this laser pointer! We could play lightsaber duels afterwards.",
-"translation_key": "I found this laser pointer! We could play lightsaber duels afterwards.",
+"text": "I found this laser pointer! We could have a lightsaber duel afterwards.",
+"translation_key": "I found this laser pointer! We could have a lightsaber duel afterwards.",
 "type": "dialogue"
 },
 "16": {
@@ -942,8 +942,8 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "It's not perfect, but it'll do. Thanks!",
-"translation_key": "It's not perfect, but it'll do. Thanks!",
+"text": "Most impressive, young Skywalker. Thanks!",
+"translation_key": "Most impressive, young Skywalker. Thanks!",
 "type": "dialogue"
 },
 "164": {
