@@ -86,8 +86,15 @@ if get_dialog_state(\"eventc\", \"items\") == 7
 	Coordinator: No. Not really.
 	Coordinator: Literally anyone could have done what you just did.
 	Coordinator: Take a seat, the presentation is about to start.
-	=> END
+	=> roll_credits
 
+~ roll_credits
+You did it! You were able to find all the items and save the conference.
+You should feel good about yourself.
+This adventure was brought to you by Alec Cohan, Josejulio Martinez, and Stephen Adams.
+Thanks for checking it out. We hope you had fun!
+Now turn off your computer and go outside.
+=> END
 
 ~ anything_else
 - Tell me the items again?
@@ -197,18 +204,19 @@ else
 	=> END"
 errors = [  ]
 titles = {
-"anything_else": "85",
+"anything_else": "92",
 "first_meet": "10",
-"give_floppy": "170",
-"give_laser": "159",
-"give_password": "181",
+"give_floppy": "177",
+"give_laser": "166",
+"give_password": "188",
 "initialize": "1",
 "items": "34",
-"main": "103",
-"projector": "115",
-"quest": "139",
+"main": "110",
+"projector": "122",
+"quest": "146",
+"roll_credits": "84",
 "subsequent_meets": "26",
-"whatever": "111"
+"whatever": "118"
 }
 lines = {
 "0": {
@@ -251,16 +259,106 @@ lines = {
 "type": "mutation"
 },
 "100": {
-"next_id": "end",
-"parent_id": "98",
-"type": "goto"
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "101",
+"parent_id": "97",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Since Monday.",
+"translation_key": "Since Monday.",
+"type": "dialogue"
+},
+"101": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "102",
+"parent_id": "97",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Monday?!",
+"translation_key": "Monday?!",
+"type": "dialogue"
 },
 "102": {
+"character": "Coordinator",
+"inline_mutations": [  ],
 "next_id": "103",
+"parent_id": "97",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "That's when they started making the game.",
+"translation_key": "That's when they started making the game.",
+"type": "dialogue"
+},
+"103": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "104",
+"parent_id": "97",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You and the coordinator knowingly nod at each other[/i]",
+"translation_key": "[i]You and the coordinator knowingly nod at each other[/i]",
+"type": "dialogue"
+},
+"104": {
+"next_id": "92",
+"parent_id": "97",
+"type": "goto"
+},
+"105": {
+"next_id": "106",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "See you later!",
+"translation_key": "See you later!",
+"type": "response"
+},
+"106": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "107",
+"parent_id": "105",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Find my stuff!",
+"translation_key": "Find my stuff!",
+"type": "dialogue"
+},
+"107": {
+"next_id": "end",
+"parent_id": "105",
+"type": "goto"
+},
+"109": {
+"next_id": "110",
 "text": "main",
 "type": "title"
 },
-"103": {
+"11": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "12",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You walk up to the person muttering what sounds like expletives under their breath[/i]",
+"translation_key": "[i]You walk up to the person muttering what sounds like expletives under their breath[/i]",
+"type": "dialogue"
+},
+"110": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -280,17 +378,17 @@ lines = {
 "value": false
 } ]
 },
-"next_conditional_id": "105",
-"next_id": "104",
-"next_id_after": "105",
+"next_conditional_id": "112",
+"next_id": "111",
+"next_id_after": "112",
 "type": "condition"
 },
-"104": {
+"111": {
 "next_id": "1",
-"parent_id": "103",
+"parent_id": "110",
 "type": "goto"
 },
-"105": {
+"112": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -310,17 +408,17 @@ lines = {
 "value": 0
 } ]
 },
-"next_conditional_id": "107",
-"next_id": "106",
-"next_id_after": "107",
+"next_conditional_id": "114",
+"next_id": "113",
+"next_id_after": "114",
 "type": "condition"
 },
-"106": {
+"113": {
 "next_id": "10",
-"parent_id": "105",
+"parent_id": "112",
 "type": "goto"
 },
-"107": {
+"114": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -341,36 +439,24 @@ lines = {
 } ]
 },
 "next_conditional_id": "end",
-"next_id": "108",
+"next_id": "115",
 "next_id_after": "end",
 "type": "condition"
 },
-"108": {
+"115": {
 "next_id": "26",
-"parent_id": "107",
+"parent_id": "114",
 "type": "goto"
 },
-"11": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "12",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]You walk up to the person muttering what sounds like expletives under their breath[/i]",
-"translation_key": "[i]You walk up to the person muttering what sounds like expletives under their breath[/i]",
-"type": "dialogue"
-},
-"110": {
-"next_id": "111",
+"117": {
+"next_id": "118",
 "text": "whatever",
 "type": "title"
 },
-"111": {
+"118": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "112",
+"next_id": "119",
 "pauses": {
 },
 "replacements": [  ],
@@ -379,74 +465,9 @@ lines = {
 "translation_key": "Whatever. I don't really care.",
 "type": "dialogue"
 },
-"112": {
-"next_id": "115",
-"type": "goto"
-},
-"114": {
-"next_id": "115",
-"text": "projector",
-"type": "title"
-},
-"115": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "116",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Can you fix a projector?",
-"translation_key": "Can you fix a projector?",
-"type": "dialogue"
-},
-"116": {
-"next_id": "117",
-"next_id_after": "end",
-"replacements": [  ],
-"responses": PoolStringArray( "116", "123", "129", "133" ),
-"text": "If the price is right.",
-"translation_key": "If the price is right.",
-"type": "response"
-},
-"117": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "118",
-"parent_id": "116",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I don't have any money. But I have these drink vouchers.",
-"translation_key": "I don't have any money. But I have these drink vouchers.",
-"type": "dialogue"
-},
-"118": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "119",
-"parent_id": "116",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I'll take it!",
-"translation_key": "I'll take it!",
-"type": "dialogue"
-},
 "119": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "120",
-"parent_id": "116",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "<Vouchers added to inventory>",
-"translation_key": "<Vouchers added to inventory>",
-"type": "dialogue"
+"next_id": "122",
+"type": "goto"
 },
 "12": {
 "character": "Coordinator",
@@ -460,7 +481,72 @@ lines = {
 "translation_key": "Massive piece of junk. This whole thing is a disaster.",
 "type": "dialogue"
 },
-"120": {
+"121": {
+"next_id": "122",
+"text": "projector",
+"type": "title"
+},
+"122": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "123",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Can you fix a projector?",
+"translation_key": "Can you fix a projector?",
+"type": "dialogue"
+},
+"123": {
+"next_id": "124",
+"next_id_after": "end",
+"replacements": [  ],
+"responses": PoolStringArray( "123", "130", "136", "140" ),
+"text": "If the price is right.",
+"translation_key": "If the price is right.",
+"type": "response"
+},
+"124": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "125",
+"parent_id": "123",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I don't have any money. But I have these drink vouchers.",
+"translation_key": "I don't have any money. But I have these drink vouchers.",
+"type": "dialogue"
+},
+"125": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "126",
+"parent_id": "123",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I'll take it!",
+"translation_key": "I'll take it!",
+"type": "dialogue"
+},
+"126": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "127",
+"parent_id": "123",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Vouchers added to inventory>",
+"translation_key": "<Vouchers added to inventory>",
+"type": "dialogue"
+},
+"127": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -468,11 +554,11 @@ lines = {
 } ] ],
 "function": "add_item"
 },
-"next_id": "121",
-"parent_id": "116",
+"next_id": "128",
+"parent_id": "123",
 "type": "mutation"
 },
-"121": {
+"128": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -486,87 +572,14 @@ lines = {
 } ] ],
 "function": "set_dialog_state"
 },
-"next_id": "122",
-"parent_id": "116",
+"next_id": "129",
+"parent_id": "123",
 "type": "mutation"
 },
-"122": {
-"next_id": "139",
-"parent_id": "116",
-"type": "goto"
-},
-"123": {
-"next_id": "124",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "I actually went to college for that.",
-"translation_key": "I actually went to college for that.",
-"type": "response"
-},
-"124": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "125",
-"parent_id": "123",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "You got a BS in BS, eh?",
-"translation_key": "You got a BS in BS, eh?",
-"type": "dialogue"
-},
-"125": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "126",
-"parent_id": "123",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I guess we went to the same college.",
-"translation_key": "I guess we went to the same college.",
-"type": "dialogue"
-},
-"126": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "127",
-"parent_id": "123",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Wassamatta U?",
-"translation_key": "Wassamatta U?",
-"type": "dialogue"
-},
-"127": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "128",
-"parent_id": "123",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]You both grin and do some kind of elaborate handshake[/i]",
-"translation_key": "[i]You both grin and do some kind of elaborate handshake[/i]",
-"type": "dialogue"
-},
-"128": {
-"next_id": "115",
-"parent_id": "123",
-"type": "goto"
-},
 "129": {
-"next_id": "130",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Damn it, Jim. I'm an engineer, not a projector repair man!",
-"translation_key": "Damn it, Jim. I'm an engineer, not a projector repair man!",
-"type": "response"
+"next_id": "146",
+"parent_id": "123",
+"type": "goto"
 },
 "13": {
 "character": "Coordinator",
@@ -581,10 +594,83 @@ lines = {
 "type": "dialogue"
 },
 "130": {
+"next_id": "131",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "I actually went to college for that.",
+"translation_key": "I actually went to college for that.",
+"type": "response"
+},
+"131": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "131",
-"parent_id": "129",
+"next_id": "132",
+"parent_id": "130",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You got a BS in BS, eh?",
+"translation_key": "You got a BS in BS, eh?",
+"type": "dialogue"
+},
+"132": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "133",
+"parent_id": "130",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I guess we went to the same college.",
+"translation_key": "I guess we went to the same college.",
+"type": "dialogue"
+},
+"133": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "134",
+"parent_id": "130",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Wassamatta U?",
+"translation_key": "Wassamatta U?",
+"type": "dialogue"
+},
+"134": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "135",
+"parent_id": "130",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "[i]You both grin and do some kind of elaborate handshake[/i]",
+"translation_key": "[i]You both grin and do some kind of elaborate handshake[/i]",
+"type": "dialogue"
+},
+"135": {
+"next_id": "122",
+"parent_id": "130",
+"type": "goto"
+},
+"136": {
+"next_id": "137",
+"next_id_after": "end",
+"replacements": [  ],
+"text": "Damn it, Jim. I'm an engineer, not a projector repair man!",
+"translation_key": "Damn it, Jim. I'm an engineer, not a projector repair man!",
+"type": "response"
+},
+"137": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "138",
+"parent_id": "136",
 "pauses": {
 },
 "replacements": [  ],
@@ -593,11 +679,11 @@ lines = {
 "translation_key": "Does this look like a joke to you?",
 "type": "dialogue"
 },
-"131": {
+"138": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "132",
-"parent_id": "129",
+"next_id": "139",
+"parent_id": "136",
 "pauses": {
 },
 "replacements": [  ],
@@ -606,66 +692,10 @@ lines = {
 "translation_key": "Most things do",
 "type": "dialogue"
 },
-"132": {
-"next_id": "115",
-"parent_id": "129",
-"type": "goto"
-},
-"133": {
-"next_id": "134",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "Nope! Find someone else",
-"translation_key": "Nope! Find someone else",
-"type": "response"
-},
-"134": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "135",
-"parent_id": "133",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Giving up that easy, eh?",
-"translation_key": "Giving up that easy, eh?",
-"type": "dialogue"
-},
-"135": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "136",
-"parent_id": "133",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "You betcha.",
-"translation_key": "You betcha.",
-"type": "dialogue"
-},
-"136": {
-"next_id": "end",
-"parent_id": "133",
-"type": "goto"
-},
-"138": {
-"next_id": "139",
-"text": "quest",
-"type": "title"
-},
 "139": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "140",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat.",
-"translation_key": "Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat.",
-"type": "dialogue"
+"next_id": "122",
+"parent_id": "136",
+"type": "goto"
 },
 "14": {
 "character": "You",
@@ -680,87 +710,59 @@ lines = {
 "type": "dialogue"
 },
 "140": {
-"character": "Coordinator",
-"inline_mutations": [  ],
 "next_id": "141",
-"pauses": {
-},
+"next_id_after": "end",
 "replacements": [  ],
-"speeds": [  ],
-"text": "I may never work again.",
-"translation_key": "I may never work again.",
-"type": "dialogue"
+"text": "Nope! Find someone else",
+"translation_key": "Nope! Find someone else",
+"type": "response"
 },
 "141": {
-"character": "You",
+"character": "Coordinator",
 "inline_mutations": [  ],
 "next_id": "142",
+"parent_id": "140",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Is that a bad thing?",
-"translation_key": "Is that a bad thing?",
+"text": "Giving up that easy, eh?",
+"translation_key": "Giving up that easy, eh?",
 "type": "dialogue"
 },
 "142": {
-"character": "Coordinator",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "143",
+"parent_id": "140",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Do you think I'd be here if I had piles of money laying around?",
-"translation_key": "Do you think I'd be here if I had piles of money laying around?",
+"text": "You betcha.",
+"translation_key": "You betcha.",
 "type": "dialogue"
 },
 "143": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "144",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Point taken.",
-"translation_key": "Point taken.",
-"type": "dialogue"
-},
-"144": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "145",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.",
-"translation_key": "The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.",
-"type": "dialogue"
+"next_id": "end",
+"parent_id": "140",
+"type": "goto"
 },
 "145": {
-"character": "Coordinator",
-"inline_mutations": [  ],
 "next_id": "146",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "I can't find the floppy disk with the keynote presentation on it. We need that too.",
-"translation_key": "I can't find the floppy disk with the keynote presentation on it. We need that too.",
-"type": "dialogue"
+"text": "quest",
+"type": "title"
 },
 "146": {
-"character": "You",
+"character": "Coordinator",
 "inline_mutations": [  ],
 "next_id": "147",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Floppy Disk? What year is it anyway?",
-"translation_key": "Floppy Disk? What year is it anyway?",
+"text": "Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat.",
+"translation_key": "Okay, so here's the deal. We have a few things that NEED to get fixed or I'm dead meat.",
 "type": "dialogue"
 },
 "147": {
@@ -771,32 +773,32 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Look, you're a character in a text adventure game. Don't look down on ME.",
-"translation_key": "Look, you're a character in a text adventure game. Don't look down on ME.",
+"text": "I may never work again.",
+"translation_key": "I may never work again.",
 "type": "dialogue"
 },
 "148": {
-"character": "Coordinator",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "149",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Last thing. I need the wifi password.",
-"translation_key": "Last thing. I need the wifi password.",
+"text": "Is that a bad thing?",
+"translation_key": "Is that a bad thing?",
 "type": "dialogue"
 },
 "149": {
-"character": "You",
+"character": "Coordinator",
 "inline_mutations": [  ],
 "next_id": "150",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "You don't have the password for your own event?",
-"translation_key": "You don't have the password for your own event?",
+"text": "Do you think I'd be here if I had piles of money laying around?",
+"translation_key": "Do you think I'd be here if I had piles of money laying around?",
 "type": "dialogue"
 },
 "15": {
@@ -812,27 +814,27 @@ lines = {
 "type": "dialogue"
 },
 "150": {
-"character": "Coordinator",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "151",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I can't keep track of everything, you know.",
-"translation_key": "I can't keep track of everything, you know.",
+"text": "Point taken.",
+"translation_key": "Point taken.",
 "type": "dialogue"
 },
 "151": {
-"character": "You",
+"character": "Coordinator",
 "inline_mutations": [  ],
 "next_id": "152",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Neither can I.",
-"translation_key": "Neither can I.",
+"text": "The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.",
+"translation_key": "The presenter is requesting something to help with the presentation, anything to make their life easier while presenting.",
 "type": "dialogue"
 },
 "152": {
@@ -843,52 +845,92 @@ lines = {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "Ugh, fine. Here's a list.",
-"translation_key": "Ugh, fine. Here's a list.",
+"text": "I can't find the floppy disk with the keynote presentation on it. We need that too.",
+"translation_key": "I can't find the floppy disk with the keynote presentation on it. We need that too.",
 "type": "dialogue"
 },
 "153": {
-"character": "",
+"character": "You",
 "inline_mutations": [  ],
 "next_id": "154",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "<Item List added to inventory>",
-"translation_key": "<Item List added to inventory>",
+"text": "Floppy Disk? What year is it anyway?",
+"translation_key": "Floppy Disk? What year is it anyway?",
 "type": "dialogue"
 },
 "154": {
-"mutation": {
-"args": [ [ {
-"type": "string",
-"value": "quest_items"
-} ] ],
-"function": "add_item"
-},
+"character": "Coordinator",
+"inline_mutations": [  ],
 "next_id": "155",
-"type": "mutation"
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Look, you're a character in a text adventure game. Don't look down on ME.",
+"translation_key": "Look, you're a character in a text adventure game. Don't look down on ME.",
+"type": "dialogue"
 },
 "155": {
-"next_id": "85",
-"type": "goto"
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "156",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Last thing. I need the wifi password.",
+"translation_key": "Last thing. I need the wifi password.",
+"type": "dialogue"
+},
+"156": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "157",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You don't have the password for your own event?",
+"translation_key": "You don't have the password for your own event?",
+"type": "dialogue"
+},
+"157": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "158",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I can't keep track of everything, you know.",
+"translation_key": "I can't keep track of everything, you know.",
+"type": "dialogue"
 },
 "158": {
+"character": "You",
+"inline_mutations": [  ],
 "next_id": "159",
-"text": "give_laser",
-"type": "title"
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Neither can I.",
+"translation_key": "Neither can I.",
+"type": "dialogue"
 },
 "159": {
-"character": "You",
+"character": "Coordinator",
 "inline_mutations": [  ],
 "next_id": "160",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I found this laser pointer! We could have a lightsaber duel afterwards.",
-"translation_key": "I found this laser pointer! We could have a lightsaber duel afterwards.",
+"text": "Ugh, fine. Here's a list.",
+"translation_key": "Ugh, fine. Here's a list.",
 "type": "dialogue"
 },
 "16": {
@@ -901,6 +943,50 @@ lines = {
 "type": "response"
 },
 "160": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "161",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Item List added to inventory>",
+"translation_key": "<Item List added to inventory>",
+"type": "dialogue"
+},
+"161": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "quest_items"
+} ] ],
+"function": "add_item"
+},
+"next_id": "162",
+"type": "mutation"
+},
+"162": {
+"next_id": "92",
+"type": "goto"
+},
+"165": {
+"next_id": "166",
+"text": "give_laser",
+"type": "title"
+},
+"166": {
+"character": "You",
+"inline_mutations": [  ],
+"next_id": "167",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I found this laser pointer! We could have a lightsaber duel afterwards.",
+"translation_key": "I found this laser pointer! We could have a lightsaber duel afterwards.",
+"type": "dialogue"
+},
+"167": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -908,10 +994,10 @@ lines = {
 } ] ],
 "function": "remove_item"
 },
-"next_id": "161",
+"next_id": "168",
 "type": "mutation"
 },
-"161": {
+"168": {
 "mutation": {
 "args": [ [ {
 "type": "number",
@@ -919,13 +1005,13 @@ lines = {
 } ] ],
 "function": "handle_turnin"
 },
-"next_id": "162",
+"next_id": "169",
 "type": "mutation"
 },
-"162": {
+"169": {
 "character": "",
 "inline_mutations": [  ],
-"next_id": "163",
+"next_id": "170",
 "pauses": {
 },
 "replacements": [  ],
@@ -934,10 +1020,15 @@ lines = {
 "translation_key": "<Laser pointer removed from inventory>",
 "type": "dialogue"
 },
-"163": {
+"17": {
+"next_id": "118",
+"parent_id": "16",
+"type": "goto"
+},
+"170": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "164",
+"next_id": "171",
 "pauses": {
 },
 "replacements": [  ],
@@ -946,7 +1037,7 @@ lines = {
 "translation_key": "Most impressive, young Skywalker. Thanks!",
 "type": "dialogue"
 },
-"164": {
+"171": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -963,41 +1054,36 @@ lines = {
 } ] ]
 } ]
 },
-"next_conditional_id": "166",
-"next_id": "165",
+"next_conditional_id": "173",
+"next_id": "172",
 "next_id_after": "end",
 "type": "condition"
 },
-"165": {
+"172": {
 "next_id": "34",
-"parent_id": "164",
+"parent_id": "171",
 "type": "goto"
 },
-"166": {
+"173": {
 "next_conditional_id": "end",
-"next_id": "167",
+"next_id": "174",
 "next_id_after": "end",
 "type": "condition"
 },
-"167": {
+"174": {
 "next_id": "end",
-"parent_id": "166",
+"parent_id": "173",
 "type": "goto"
 },
-"169": {
-"next_id": "170",
+"176": {
+"next_id": "177",
 "text": "give_floppy",
 "type": "title"
 },
-"17": {
-"next_id": "111",
-"parent_id": "16",
-"type": "goto"
-},
-"170": {
+"177": {
 "character": "You",
 "inline_mutations": [  ],
-"next_id": "171",
+"next_id": "178",
 "pauses": {
 },
 "replacements": [  ],
@@ -1006,7 +1092,7 @@ lines = {
 "translation_key": "I found your floppy disk!",
 "type": "dialogue"
 },
-"171": {
+"178": {
 "mutation": {
 "args": [ [ {
 "type": "string",
@@ -1014,10 +1100,10 @@ lines = {
 } ] ],
 "function": "remove_item"
 },
-"next_id": "172",
+"next_id": "179",
 "type": "mutation"
 },
-"172": {
+"179": {
 "mutation": {
 "args": [ [ {
 "type": "number",
@@ -1025,70 +1111,8 @@ lines = {
 } ] ],
 "function": "handle_turnin"
 },
-"next_id": "173",
+"next_id": "180",
 "type": "mutation"
-},
-"173": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "174",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "<Floppy removed from inventory>",
-"translation_key": "<Floppy removed from inventory>",
-"type": "dialogue"
-},
-"174": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "175",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Great!",
-"translation_key": "Great!",
-"type": "dialogue"
-},
-"175": {
-"condition": {
-"expression": [ {
-"function": "get_dialog_state",
-"type": "function",
-"value": [ [ {
-"type": "string",
-"value": "eventc"
-} ], [ {
-"type": "string",
-"value": "items"
-} ], [ {
-"type": "number",
-"value": 7
-} ] ]
-} ]
-},
-"next_conditional_id": "177",
-"next_id": "176",
-"next_id_after": "end",
-"type": "condition"
-},
-"176": {
-"next_id": "34",
-"parent_id": "175",
-"type": "goto"
-},
-"177": {
-"next_conditional_id": "end",
-"next_id": "178",
-"next_id_after": "end",
-"type": "condition"
-},
-"178": {
-"next_id": "end",
-"parent_id": "177",
-"type": "goto"
 },
 "18": {
 "next_id": "19",
@@ -1099,69 +1123,30 @@ lines = {
 "type": "response"
 },
 "180": {
+"character": "",
+"inline_mutations": [  ],
 "next_id": "181",
-"text": "give_password",
-"type": "title"
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Floppy removed from inventory>",
+"translation_key": "<Floppy removed from inventory>",
+"type": "dialogue"
 },
 "181": {
-"character": "You",
+"character": "Coordinator",
 "inline_mutations": [  ],
 "next_id": "182",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
-"text": "I found the wifi password!",
-"translation_key": "I found the wifi password!",
+"text": "Great!",
+"translation_key": "Great!",
 "type": "dialogue"
 },
 "182": {
-"mutation": {
-"args": [ [ {
-"type": "string",
-"value": "password"
-} ] ],
-"function": "remove_item"
-},
-"next_id": "183",
-"type": "mutation"
-},
-"183": {
-"mutation": {
-"args": [ [ {
-"type": "number",
-"value": 4
-} ] ],
-"function": "handle_turnin"
-},
-"next_id": "184",
-"type": "mutation"
-},
-"184": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "185",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "<Password removed from inventory>",
-"translation_key": "<Password removed from inventory>",
-"type": "dialogue"
-},
-"185": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "186",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Well done!",
-"translation_key": "Well done!",
-"type": "dialogue"
-},
-"186": {
 "condition": {
 "expression": [ {
 "function": "get_dialog_state",
@@ -1178,30 +1163,131 @@ lines = {
 } ] ]
 } ]
 },
-"next_conditional_id": "188",
-"next_id": "187",
+"next_conditional_id": "184",
+"next_id": "183",
 "next_id_after": "end",
 "type": "condition"
+},
+"183": {
+"next_id": "34",
+"parent_id": "182",
+"type": "goto"
+},
+"184": {
+"next_conditional_id": "end",
+"next_id": "185",
+"next_id_after": "end",
+"type": "condition"
+},
+"185": {
+"next_id": "end",
+"parent_id": "184",
+"type": "goto"
 },
 "187": {
-"next_id": "34",
-"parent_id": "186",
-"type": "goto"
+"next_id": "188",
+"text": "give_password",
+"type": "title"
 },
 "188": {
-"next_conditional_id": "end",
+"character": "You",
+"inline_mutations": [  ],
 "next_id": "189",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "I found the wifi password!",
+"translation_key": "I found the wifi password!",
+"type": "dialogue"
+},
+"189": {
+"mutation": {
+"args": [ [ {
+"type": "string",
+"value": "password"
+} ] ],
+"function": "remove_item"
+},
+"next_id": "190",
+"type": "mutation"
+},
+"19": {
+"next_id": "118",
+"parent_id": "18",
+"type": "goto"
+},
+"190": {
+"mutation": {
+"args": [ [ {
+"type": "number",
+"value": 4
+} ] ],
+"function": "handle_turnin"
+},
+"next_id": "191",
+"type": "mutation"
+},
+"191": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "192",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "<Password removed from inventory>",
+"translation_key": "<Password removed from inventory>",
+"type": "dialogue"
+},
+"192": {
+"character": "Coordinator",
+"inline_mutations": [  ],
+"next_id": "193",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Well done!",
+"translation_key": "Well done!",
+"type": "dialogue"
+},
+"193": {
+"condition": {
+"expression": [ {
+"function": "get_dialog_state",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "eventc"
+} ], [ {
+"type": "string",
+"value": "items"
+} ], [ {
+"type": "number",
+"value": 7
+} ] ]
+} ]
+},
+"next_conditional_id": "195",
+"next_id": "194",
 "next_id_after": "end",
 "type": "condition"
 },
-"189": {
-"next_id": "end",
-"parent_id": "188",
+"194": {
+"next_id": "34",
+"parent_id": "193",
 "type": "goto"
 },
-"19": {
-"next_id": "111",
-"parent_id": "18",
+"195": {
+"next_conditional_id": "end",
+"next_id": "196",
+"next_id_after": "end",
+"type": "condition"
+},
+"196": {
+"next_id": "end",
+"parent_id": "195",
 "type": "goto"
 },
 "2": {
@@ -1230,7 +1316,7 @@ lines = {
 "type": "response"
 },
 "21": {
-"next_id": "111",
+"next_id": "118",
 "parent_id": "20",
 "type": "goto"
 },
@@ -1243,7 +1329,7 @@ lines = {
 "type": "response"
 },
 "23": {
-"next_id": "111",
+"next_id": "118",
 "parent_id": "22",
 "type": "goto"
 },
@@ -1291,7 +1377,7 @@ lines = {
 "type": "dialogue"
 },
 "28": {
-"next_id": "115",
+"next_id": "122",
 "parent_id": "26",
 "type": "goto"
 },
@@ -1351,7 +1437,7 @@ lines = {
 "type": "dialogue"
 },
 "31": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "29",
 "type": "goto"
 },
@@ -1438,7 +1524,7 @@ lines = {
 "type": "dialogue"
 },
 "39": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "34",
 "type": "goto"
 },
@@ -1537,7 +1623,7 @@ lines = {
 "type": "dialogue"
 },
 "45": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "40",
 "type": "goto"
 },
@@ -1619,7 +1705,7 @@ lines = {
 "type": "dialogue"
 },
 "51": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "46",
 "type": "goto"
 },
@@ -1701,7 +1787,7 @@ lines = {
 "type": "dialogue"
 },
 "57": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "52",
 "type": "goto"
 },
@@ -1770,7 +1856,7 @@ lines = {
 "type": "dialogue"
 },
 "62": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "58",
 "type": "goto"
 },
@@ -1839,7 +1925,7 @@ lines = {
 "type": "dialogue"
 },
 "67": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "63",
 "type": "goto"
 },
@@ -1882,7 +1968,7 @@ lines = {
 "type": "dialogue"
 },
 "7": {
-"next_id": "103",
+"next_id": "110",
 "type": "goto"
 },
 "70": {
@@ -1912,7 +1998,7 @@ lines = {
 "type": "dialogue"
 },
 "72": {
-"next_id": "85",
+"next_id": "92",
 "parent_id": "68",
 "type": "goto"
 },
@@ -2033,42 +2119,116 @@ lines = {
 "type": "dialogue"
 },
 "81": {
-"next_id": "end",
+"next_id": "84",
 "parent_id": "73",
 "type": "goto"
 },
+"83": {
+"next_id": "84",
+"text": "roll_credits",
+"type": "title"
+},
 "84": {
+"character": "",
+"inline_mutations": [  ],
 "next_id": "85",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You did it! You were able to find all the items and save the conference.",
+"translation_key": "You did it! You were able to find all the items and save the conference.",
+"type": "dialogue"
+},
+"85": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "86",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "You should feel good about yourself.",
+"translation_key": "You should feel good about yourself.",
+"type": "dialogue"
+},
+"86": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "87",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "This adventure was brought to you by Alec Cohan, Josejulio Martinez, and Stephen Adams.",
+"translation_key": "This adventure was brought to you by Alec Cohan, Josejulio Martinez, and Stephen Adams.",
+"type": "dialogue"
+},
+"87": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "88",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Thanks for checking it out. We hope you had fun!",
+"translation_key": "Thanks for checking it out. We hope you had fun!",
+"type": "dialogue"
+},
+"88": {
+"character": "",
+"inline_mutations": [  ],
+"next_id": "89",
+"pauses": {
+},
+"replacements": [  ],
+"speeds": [  ],
+"text": "Now turn off your computer and go outside.",
+"translation_key": "Now turn off your computer and go outside.",
+"type": "dialogue"
+},
+"89": {
+"next_id": "end",
+"type": "goto"
+},
+"9": {
+"next_id": "10",
+"text": "first_meet",
+"type": "title"
+},
+"91": {
+"next_id": "92",
 "text": "anything_else",
 "type": "title"
 },
-"85": {
-"next_id": "86",
+"92": {
+"next_id": "93",
 "next_id_after": "end",
 "replacements": [  ],
-"responses": PoolStringArray( "85", "87", "90", "98" ),
+"responses": PoolStringArray( "92", "94", "97", "105" ),
 "text": "Tell me the items again?",
 "translation_key": "Tell me the items again?",
 "type": "response"
 },
-"86": {
+"93": {
 "next_id": "34",
-"parent_id": "85",
+"parent_id": "92",
 "type": "goto"
 },
-"87": {
-"next_id": "88",
+"94": {
+"next_id": "95",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "When does the presentation start?",
 "translation_key": "When does the presentation start?",
 "type": "response"
 },
-"88": {
+"95": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "89",
-"parent_id": "87",
+"next_id": "96",
+"parent_id": "94",
 "pauses": {
 },
 "replacements": [  ],
@@ -2077,29 +2237,24 @@ lines = {
 "translation_key": "As soon as you get me what I need. Now hop to it",
 "type": "dialogue"
 },
-"89": {
-"next_id": "85",
-"parent_id": "87",
+"96": {
+"next_id": "92",
+"parent_id": "94",
 "type": "goto"
 },
-"9": {
-"next_id": "10",
-"text": "first_meet",
-"type": "title"
-},
-"90": {
-"next_id": "91",
+"97": {
+"next_id": "98",
 "next_id_after": "end",
 "replacements": [  ],
 "text": "How long have you been an event coordinator?",
 "translation_key": "How long have you been an event coordinator?",
 "type": "response"
 },
-"91": {
+"98": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "92",
-"parent_id": "90",
+"next_id": "99",
+"parent_id": "97",
 "pauses": {
 },
 "replacements": [  ],
@@ -2108,95 +2263,17 @@ lines = {
 "translation_key": "Oh, let me think for a minute",
 "type": "dialogue"
 },
-"92": {
+"99": {
 "character": "Coordinator",
 "inline_mutations": [  ],
-"next_id": "93",
-"parent_id": "90",
+"next_id": "100",
+"parent_id": "97",
 "pauses": {
 },
 "replacements": [  ],
 "speeds": [  ],
 "text": "........",
 "translation_key": "........",
-"type": "dialogue"
-},
-"93": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "94",
-"parent_id": "90",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Since Monday.",
-"translation_key": "Since Monday.",
-"type": "dialogue"
-},
-"94": {
-"character": "You",
-"inline_mutations": [  ],
-"next_id": "95",
-"parent_id": "90",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Monday?!",
-"translation_key": "Monday?!",
-"type": "dialogue"
-},
-"95": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "96",
-"parent_id": "90",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "That's when they started making the game.",
-"translation_key": "That's when they started making the game.",
-"type": "dialogue"
-},
-"96": {
-"character": "",
-"inline_mutations": [  ],
-"next_id": "97",
-"parent_id": "90",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "[i]You and the coordinator knowingly nod at each other[/i]",
-"translation_key": "[i]You and the coordinator knowingly nod at each other[/i]",
-"type": "dialogue"
-},
-"97": {
-"next_id": "85",
-"parent_id": "90",
-"type": "goto"
-},
-"98": {
-"next_id": "99",
-"next_id_after": "end",
-"replacements": [  ],
-"text": "See you later!",
-"translation_key": "See you later!",
-"type": "response"
-},
-"99": {
-"character": "Coordinator",
-"inline_mutations": [  ],
-"next_id": "100",
-"parent_id": "98",
-"pauses": {
-},
-"replacements": [  ],
-"speeds": [  ],
-"text": "Find my stuff!",
-"translation_key": "Find my stuff!",
 "type": "dialogue"
 }
 }
