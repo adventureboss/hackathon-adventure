@@ -25,6 +25,10 @@ func use(with):
 	else:
 		return "The " + keyword("cat") + " is already sleeping"
 
+func give(to):
+	if to.name == "tea_cup":
+		return use(to)
+
 func pick_up():
 	if game_state.get_dialog_state("cat", "complete") == true:
 		return "I already put the " + keyword("cat") + " out of the way"

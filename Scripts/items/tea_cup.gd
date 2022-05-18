@@ -7,10 +7,12 @@ func look_at():
 
 func use(with):
 	if with.name == "cat":
-		game_state.remove_item("tea_cup")
-		game_state.add_item("cup")
-		game_state.show_dialogue(dialog, "give_tea")
+		return with.use(self)
 	if with.name == "self":
 		game_state.remove_item("tea_cup")
 		game_state.add_item("cup")
 		return "Mmmm... that was delicious"
+
+func give(to):
+	if to.name == "cat":
+		return use(to)
