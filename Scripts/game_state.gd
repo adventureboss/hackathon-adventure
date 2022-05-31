@@ -41,6 +41,8 @@ func _init():
 	# npc default states when necessary
 	set_dialog_state("nerds", "present", true)
 	set_dialog_state("cat", "complete", false)
+	set_dialog_state("cat", "sleeping", 0)
+	set_dialog_state("cat", "feral", 0)
 	set_dialog_state("robot", "finished", false)
 
 func _add_global_item(resource, name, display_name, add_to_inventory = false):

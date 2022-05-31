@@ -176,7 +176,7 @@ do remove_item(\"laser_pointer\")
 do handle_turnin(1)
 <Laser pointer removed from inventory>
 Coordinator: Most impressive, young Skywalker. Thanks!
-if get_dialog_state(\"eventc\", \"items\", 7)
+if get_dialog_state(\"eventc\", \"items\") == 7
 	=> items
 else
 	=> END
@@ -187,7 +187,7 @@ do remove_item(\"floppy\")
 do handle_turnin(2)
 <Floppy removed from inventory>
 Coordinator: Great!
-if get_dialog_state(\"eventc\", \"items\", 7)
+if get_dialog_state(\"eventc\", \"items\") == 7
 	=> items
 else
 	=> END
@@ -198,7 +198,7 @@ do remove_item(\"password\")
 do handle_turnin(4)
 <Password removed from inventory>
 Coordinator: Well done!
-if get_dialog_state(\"eventc\", \"items\", 7)
+if get_dialog_state(\"eventc\", \"items\") == 7
 	=> items
 else
 	=> END"
@@ -1048,10 +1048,13 @@ lines = {
 } ], [ {
 "type": "string",
 "value": "items"
-} ], [ {
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
 "type": "number",
 "value": 7
-} ] ]
 } ]
 },
 "next_conditional_id": "173",
@@ -1157,10 +1160,13 @@ lines = {
 } ], [ {
 "type": "string",
 "value": "items"
-} ], [ {
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
 "type": "number",
 "value": 7
-} ] ]
 } ]
 },
 "next_conditional_id": "184",
@@ -1263,10 +1269,13 @@ lines = {
 } ], [ {
 "type": "string",
 "value": "items"
-} ], [ {
+} ] ]
+}, {
+"type": "comparison",
+"value": "=="
+}, {
 "type": "number",
 "value": 7
-} ] ]
 } ]
 },
 "next_conditional_id": "195",
